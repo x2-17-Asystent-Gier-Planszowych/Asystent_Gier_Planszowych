@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Asystent Gier Planszowych</string>
     <string name="title_activity_log_in">Logowanie</string>
+    <string name="title_activity_sign_up">Zarejestruj się</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -11,7 +12,8 @@
     <string name="error_invalid_password">Hasło jest za krótkie</string>
     <string name="error_incorrect_password">Nieprawidłowe hasło</string>
     <string name="error_field_required">Pole wymagane</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+
+    <string name="sign_in_facebook">Zaloguj się przez Facebook</string>
+    <string name="sign_up">Nie masz jeszcze konta? Zarejestruj się</string>
 </resources>

@@ -3,6 +3,7 @@ package pwcdma.asystentgierplanszowych;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -38,6 +39,8 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+
+    static final int RESULT_CODE_SUCCESS = 1;
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -344,6 +347,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
+                setResult(RESULT_CODE_SUCCESS);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
@@ -358,4 +362,3 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 }
-

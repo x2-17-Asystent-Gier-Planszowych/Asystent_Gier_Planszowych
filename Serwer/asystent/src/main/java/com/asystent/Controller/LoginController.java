@@ -18,7 +18,9 @@ public class LoginController {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-///https://spring.io/guides/gs/relational-data-access/
+// Poradnik jak korzystać z jdbcTemplate
+///https://spring.io/guides/gs/relational-data-access
+    //aby polaczyc się z baza trzeba zmienic nazwe w application.properties bo narazie dałem testowa
         private static final String template = "Logowanie, %s!";
         private final AtomicLong counter = new AtomicLong();
 
@@ -26,6 +28,7 @@ public class LoginController {
         public String greeting(@RequestParam(value="name", defaultValue="World") String name) {
 
             jdbcTemplate.batchUpdate("INSERT INTO customers(first_name, last_name) VALUES ('name','last')");
+
             if(name.equals("Login")) {
                 return new
                         String(template + "succes");

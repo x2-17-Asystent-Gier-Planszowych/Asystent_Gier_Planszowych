@@ -1,6 +1,0 @@
-Przyk³adowa aplikacja. Tutorial :
-https://spring.io/guides/gs/consuming-rest/
-
-Aplikacje przyk³adowa rest api aby ka¿dy móg³ wypróbowaæ jak to dzia³a. Ta aplikacja zostanie usuniêta wkrótce.
-
-Example app for rest api serwer. They will be deleted soon

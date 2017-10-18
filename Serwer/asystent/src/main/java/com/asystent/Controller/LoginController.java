@@ -1,6 +1,6 @@
 package com.asystent.Controller;
 
-import com.DAO.DaoImpl;
+
 import com.asystent.Model.TestModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -33,7 +33,7 @@ public class LoginController {
         @RequestMapping("/greeting")
         public String greeting(@RequestParam(value="name", defaultValue="World") String name) {
 
-            jdbcTemplate.batchUpdate("INSERT INTO customers(first_name, last_name) VALUES ('name','last')");
+           // jdbcTemplate.batchUpdate("INSERT INTO customers(first_name, last_name) VALUES ('name','last')");
 
             if(name.equals("Login")) {
                 return new

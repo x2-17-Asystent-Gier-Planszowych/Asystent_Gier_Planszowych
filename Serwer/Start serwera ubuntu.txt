@@ -1,0 +1,13 @@
+Aby wystartowaæ serwer na ubuntu trzeba mieæ zainstalowanego git i mvn. 
+sudo apt-get install git/maven
+ustawiæ JAVA_HOME(ja mia³em b³¹d z java i musia³em od nowa zainstalwoaæ jave czyli sudo apt-get install java)
+export JAVA_HOME="java-1.x.x-openjdk" //uzywamy javy 1.8
+
+skopiowaæ repozytorium
+git clone https://github.com/x2-17-Asystent-Gier-Planszowych/Asystent_Gier_Planszowych.git
+git checkout Serwer
+mvn clean install 
+mvn package
+mvn spring-boot:run
+
+i serwer powinien dzia³aæ. 

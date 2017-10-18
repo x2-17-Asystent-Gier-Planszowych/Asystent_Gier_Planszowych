@@ -10,7 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="pwcdma.asystentgierplanszowych.SignUpActivity">
 
-    <!-- Login progress -->
     <ProgressBar
         android:id="@+id/sign_up_progress"
         style="?android:attr/progressBarStyleLarge"

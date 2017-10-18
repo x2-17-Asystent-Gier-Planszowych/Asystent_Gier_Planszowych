@@ -10,6 +10,7 @@ import android.widget.TextView;
 public class StartActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_LOG_IN = 1;
+    private static final int REQUEST_CODE_SIGN_UP = 2;
     private Button signInButton, signInFacebookButton;
     private TextView signUpText;
 
@@ -24,7 +25,7 @@ public class StartActivity extends AppCompatActivity {
         signUpText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StartActivity.this, SignUpActivity.class));
+                startActivityForResult(new Intent(StartActivity.this, SignUpActivity.class), REQUEST_CODE_SIGN_UP);
             }
         });
     }
@@ -32,7 +33,8 @@ public class StartActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_LOG_IN && resultCode == LogInActivity.RESULT_CODE_SUCCESS){
+        if ((requestCode == REQUEST_CODE_LOG_IN || requestCode == REQUEST_CODE_SIGN_UP)
+                && resultCode == LogInActivity.RESULT_CODE_SUCCESS){
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }

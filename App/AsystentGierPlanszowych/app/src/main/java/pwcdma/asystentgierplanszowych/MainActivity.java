@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         addTab("Gry", R.id.tab2);
         addTab("Mój profil", R.id.tab3);
         getSupportFragmentManager().beginTransaction()
+                .add(R.id.tab1, new GroupsFragment())
                 .add(R.id.tab2, new GamesFragment())
                 .commit();
         if (savedInstanceState != null){

@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StartActivity">
+        <activity android:name=".Activity.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,21 +22,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUpActivity"
+            android:name=".Activity.SignUpActivity"
             android:label="@string/title_activity_sign_up">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="pwcdma.asystentgierplanszowych.StartActivity" />
+                android:value="pwcdma.asystentgierplanszowych.Activity.StartActivity" />
         </activity>
         <activity
-            android:name=".LogInActivity"
+            android:name=".Adapter.LogInActivity"
             android:label="@string/title_activity_log_in"
-            android:parentActivityName=".StartActivity">
+            android:parentActivityName=".Activity.StartActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="pwcdma.asystentgierplanszowych.StartActivity" />
+                android:value="pwcdma.asystentgierplanszowych.Activity.StartActivity" />
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Activity.MainActivity"></activity>
     </application>
 
 </manifest>

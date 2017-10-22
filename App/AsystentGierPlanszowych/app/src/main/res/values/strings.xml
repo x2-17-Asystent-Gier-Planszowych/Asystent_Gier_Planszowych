@@ -20,4 +20,15 @@
 
     <string name="sign_in_facebook">Zaloguj się przez Facebook</string>
     <string name="sign_up">Zarejestruj się</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="startTab1Text">Jesteś mistrzem gry i chcesz zaprosić graczy na niesamowitą sesję RPG?</string>
+    <string name="startTab2Text">Kochasz gry bez prądu i poszukujesz nowych planszówek?</string>
+    <string name="startTab3Text">A może marzysz o znalezieniu idealnej drużyny do gry online?</string>
+    <string name="startTabText1">Jesteś mistrzem gry i chcesz zaprosić graczy na niesamowitą sesję RPG?</string>
+    <string name="startTabText2">Kochasz gry bez prądu i poszukujesz nowych planszówek?</string>
+    <string name="startTabText3">A może marzysz o znalezieniu idealnej drużyny do gry online?</string>
+    <string name="startScreenContentDesc">A set of images showing pieces from board and videogames.</string>
+    <string name="sign_up_encouragement">Nie masz jeszcze konta?</string>
 </resources>

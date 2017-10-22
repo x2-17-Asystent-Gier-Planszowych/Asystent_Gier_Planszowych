@@ -3,9 +3,457 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/black87</item>
+        <item name="colorControlActivated">@color/black87</item>
+        <item name="colorControlHighlight">@color/black87</item>
+    </style>
+
+    <style name="Initials">
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black54</item>
+        <item name="android:lineSpacingExtra">0sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="InputTextBigError">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/error</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="InputTextBigNormal">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="InputTextBigHint">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black38</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+
+    <style name="NameBigLeft">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <style name="NameBigLeftWhiteInactive">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white50</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <style name="NameBigLeftWhiteNormal">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <style name="NameBigCenter">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="NameInactive">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black12</item>
+        <item name="android:lineSpacingExtra">0sp</item>
+    </style>
+
+
+    <style name="NameLeft">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:lineSpacingExtra">0sp</item>
+    </style>
+
+    <style name="NameFade">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black54</item>
+        <item name="android:lineSpacingExtra">0sp</item>
+    </style>
+
+    <style name="InputTextNormal">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+    </style>
+
+    <style name="InputTextDisabled">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black12</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+    </style>
+
+    <style name="InputTextError">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/error</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+    </style>
+
+    <style name="InputTextHint">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black38</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+    </style>
+
+    <style name="InputTextHintUnit">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black38</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:gravity">end</item>
+    </style>
+
+    <style name="BodySemiboldCenter">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="BodySemiboldLeft">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
+    <style name="TabsNormal">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="TabsActive">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="FadedCenter">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black54</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="BodyNormalCenter">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="FadedLeft">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black54</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
+    <style name="BodyFadedLeft">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black54</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
+    <style name="BodyNormalLeft">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
+    <style name="BodyFadedCenter">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black54</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="BodyWhiteCenter">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="FadedInactive">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black12</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
+    <style name="NameSecondline">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black38</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
+    <style name="ChipsNormal">
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:lineSpacingExtra">19sp</item>
+    </style>
+
+    <style name="InputLabelNormal">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="InputLabelDisabled">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black38</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="InputLabelError">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/error</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="BodySmallSemiboldLeft">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="ButtonLabelSecondary">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="ButtonLabelSecondaryInactive">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black12</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="ButtonLabelDisabled">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black12</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="ButtonLabelPrimary">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="ButtonLabelWhite">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="BodySmallNormalLeft">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="BodyError">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/error</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="BodySmallWhiteCenter">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="BodySmallWhiteLeft">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="NotificationCircle">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.App.TextInputLayoutError" parent="@android:style/TextAppearance.Small">
+        <item name="android:textSize">12sp</item>"
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/error</item>
+        <item name="android:letterSpacing">0.6</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance.Small">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:letterSpacing">0.6</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="ButtonLabelFlat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorPrimaryLight</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="CatchPhrasesBigCenter">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+
+    <style name="SpinnerHint">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:letterSpacing">0.6</item>
+        <item name="android:textColorHint">@color/black87</item>
+        <item name="android:textColorHintInverse">@color/black87</item>
+        <item name="android:colorControlNormal">@color/black87</item>
+        <item name="android:colorControlActivated">@color/black87</item>
+        <item name="android:colorControlHighlight">@color/black87</item>
     </style>
 
 </resources>

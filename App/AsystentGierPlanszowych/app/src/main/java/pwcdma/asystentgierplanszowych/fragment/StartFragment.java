@@ -1,4 +1,4 @@
-package pwcdma.asystentgierplanszowych.Fragment;
+package pwcdma.asystentgierplanszowych.fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import pwcdma.asystentgierplanszowych.Model.StartViewPagerItem;
+import pwcdma.asystentgierplanszowych.model.StartViewPagerItem;
 import pwcdma.asystentgierplanszowych.R;
 
 public class StartFragment extends android.support.v4.app.Fragment {

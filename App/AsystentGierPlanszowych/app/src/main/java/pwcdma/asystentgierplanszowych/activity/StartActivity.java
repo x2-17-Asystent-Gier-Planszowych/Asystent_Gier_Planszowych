@@ -1,4 +1,4 @@
-package pwcdma.asystentgierplanszowych.Activity;
+package pwcdma.asystentgierplanszowych.activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,10 +13,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import pwcdma.asystentgierplanszowych.Adapter.LogInActivity;
-import pwcdma.asystentgierplanszowych.Adapter.StartFragmentViewPagerAdapter;
-import pwcdma.asystentgierplanszowych.Fragment.StartFragment;
-import pwcdma.asystentgierplanszowych.Model.StartViewPagerItem;
+import pwcdma.asystentgierplanszowych.adapter.StartFragmentViewPagerAdapter;
+import pwcdma.asystentgierplanszowych.fragment.StartFragment;
+import pwcdma.asystentgierplanszowych.model.StartViewPagerItem;
 import pwcdma.asystentgierplanszowych.R;
 
 public class StartActivity extends AppCompatActivity implements StartFragment.OnFragmentInteractionListener {

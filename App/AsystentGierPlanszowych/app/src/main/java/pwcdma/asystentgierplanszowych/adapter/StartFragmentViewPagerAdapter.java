@@ -1,4 +1,4 @@
-package pwcdma.asystentgierplanszowych.Adapter;
+package pwcdma.asystentgierplanszowych.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,8 +7,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import pwcdma.asystentgierplanszowych.Fragment.StartFragment;
-import pwcdma.asystentgierplanszowych.Model.StartViewPagerItem;
+import pwcdma.asystentgierplanszowych.fragment.StartFragment;
+import pwcdma.asystentgierplanszowych.model.StartViewPagerItem;
 
 /**
  * Created by Patrycja on 21.10.2017.

@@ -1,12 +1,12 @@
-package pwcdma.asystentgierplanszowych.Activity;
+package pwcdma.asystentgierplanszowych.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
-import pwcdma.asystentgierplanszowych.Fragment.GamesFragment;
-import pwcdma.asystentgierplanszowych.Fragment.GroupsFragment;
+import pwcdma.asystentgierplanszowych.fragment.GamesFragment;
+import pwcdma.asystentgierplanszowych.fragment.GroupsFragment;
 import pwcdma.asystentgierplanszowych.R;
 
 public class MainActivity extends AppCompatActivity {

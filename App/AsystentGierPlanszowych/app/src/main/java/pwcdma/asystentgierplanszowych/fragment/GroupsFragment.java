@@ -1,4 +1,4 @@
-package pwcdma.asystentgierplanszowych.Fragment;
+package pwcdma.asystentgierplanszowych.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pwcdma.asystentgierplanszowych.Adapter.GroupRecyclerViewAdapter;
+import pwcdma.asystentgierplanszowych.adapter.GroupRecyclerViewAdapter;
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.dummy.DummyContent;
 import pwcdma.asystentgierplanszowych.dummy.DummyContent.DummyItem;

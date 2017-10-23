@@ -1,0 +1,62 @@
+public static void main(String [] args){
+		System.out.println(loginSerwer("Login","passwd") + "\n");
+		
+		System.out.println(registrSerwer("krisc2ool211","drzewce1","emai1l@e1mi1al.com"));
+	}
+	
+	
+	public static Boolean loginSerwer(String login,String haslo){
+		String response = connectToSerwer("http://localhost:8080/login?login="+ login + "&haslo="+haslo);
+		if(response.equals("Succes")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public static Boolean registrSerwer(String login,String haslo,String email){
+		String response = connectToSerwer("http://localhost:8080/rejestacja?name="+ login + "&email=" + email +"&password="+haslo);
+		if(response.equals("Succes")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	
+	public static String connectToSerwer(String urlToSend){
+		String output = null;
+		try {
+				
+				URL url = new URL(urlToSend);
+				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+				conn.setRequestMethod("GET");
+
+				if (conn.getResponseCode() != 200) {
+					System.out.println(conn.getResponseCode());
+					throw new RuntimeException("Failed : HTTP error code : "
+							+ conn.getResponseCode());
+				}
+
+				BufferedReader br = new BufferedReader(new InputStreamReader(
+					(conn.getInputStream())));
+
+				while ((output = br.readLine()) != null) {
+					System.out.println(output);
+					return output;
+				}
+
+				conn.disconnect();
+			
+			  } catch (MalformedURLException e) {
+
+				
+
+			  } catch (IOException e) {
+
+			
+
+			  }
+		return output;
+		  
+	}

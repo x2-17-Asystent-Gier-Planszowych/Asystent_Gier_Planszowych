@@ -25,7 +25,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
 
     private static final int REQUEST_CODE_LOG_IN = 1;
     private static final int REQUEST_CODE_SIGN_UP = 2;
-    private Button signInButton, signInFacebookButton;
+    private Button signInButton;
     private TextView signUpText;
     private ViewPager mViewPager;
     private TabLayout mTlDotIndicator;
@@ -57,7 +57,6 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
     private void findViews() {
         Log.d(TAG, "findViews: ");
         signInButton = (Button) findViewById(R.id.sign_in_button);
-        signInFacebookButton = (Button) findViewById(R.id.sign_in_facebook_button);
         mViewPager = (ViewPager) findViewById(R.id.start_view_pager);
         mTlDotIndicator = (TabLayout) findViewById(R.id.start_tab_indicator);
         signUpText = (TextView) findViewById(R.id.sign_up_text);

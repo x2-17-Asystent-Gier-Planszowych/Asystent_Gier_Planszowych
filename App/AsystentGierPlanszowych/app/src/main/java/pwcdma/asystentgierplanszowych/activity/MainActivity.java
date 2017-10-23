@@ -8,6 +8,7 @@ import android.widget.TabHost.TabSpec;
 import pwcdma.asystentgierplanszowych.fragment.GamesFragment;
 import pwcdma.asystentgierplanszowych.fragment.GroupsFragment;
 import pwcdma.asystentgierplanszowych.R;
+import pwcdma.asystentgierplanszowych.fragment.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.tab1, new GroupsFragment())
                 .add(R.id.tab2, new GamesFragment())
+                .add(R.id.tab3, new ProfileFragment())
                 .commit();
         if (savedInstanceState != null){
             tabHost.setCurrentTab(savedInstanceState.getInt(TAB));

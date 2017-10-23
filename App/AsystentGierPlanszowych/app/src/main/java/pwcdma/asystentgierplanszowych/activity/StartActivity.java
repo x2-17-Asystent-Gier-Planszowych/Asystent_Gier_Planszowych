@@ -37,6 +37,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         findViews();
+        setActionBar();
         addFragmentsToList();
         setAdapter();
         setButtons();
@@ -50,6 +51,12 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
                 && resultCode == LogInActivity.RESULT_CODE_SUCCESS) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
+        }
+    }
+
+    private void setActionBar() {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
         }
     }
 

@@ -108,13 +108,23 @@
     </style>
 
     <style name="InputTextNormal">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/black87</item>
         <item name="android:letterSpacing">-0.03</item>
         <item name="android:lineSpacingExtra">8sp</item>
     </style>
+
+    <style name="InputTextNormalLight">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+    </style>
+
 
     <style name="InputTextDisabled">
         <item name="android:textSize">16sp</item>
@@ -345,7 +355,7 @@
     </style>
 
     <style name="ButtonLabelPrimary">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/white</item>
@@ -422,8 +432,27 @@
         <item name="android:lineSpacingExtra">4sp</item>
     </style>
 
-    <style name="ButtonLabelFlat">
+    <style name="TextOnGradient">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:textColor">@color/colorAccentLight</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="HintOnGradient">
         <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+
+    <style name="ButtonLabelFlat">
+        <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/colorPrimaryLight</item>
@@ -443,17 +472,12 @@
     </style>
 
 
-    <style name="SpinnerHint">
-        <item name="android:textSize">12sp</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/black87</item>
-        <item name="android:letterSpacing">0.6</item>
-        <item name="android:textColorHint">@color/black87</item>
-        <item name="android:textColorHintInverse">@color/black87</item>
-        <item name="android:colorControlNormal">@color/black87</item>
-        <item name="android:colorControlActivated">@color/black87</item>
-        <item name="android:colorControlHighlight">@color/black87</item>
+    <style name="AppThemeEditTextBottomLine" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
+
+
 
 </resources>

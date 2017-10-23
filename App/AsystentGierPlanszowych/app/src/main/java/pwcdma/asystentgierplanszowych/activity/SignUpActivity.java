@@ -66,7 +66,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        setupActionBar();
+        setActionBar();
 
         mUsernameView = (EditText) findViewById(R.id.username);
 
@@ -152,17 +152,11 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         }
     }
 
-    /**
-     * Set up the {@link android.app.ActionBar}, if the API is available.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void setupActionBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            // Show the Up button in the action bar.
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    private void setActionBar() {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
         }
     }
-
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the

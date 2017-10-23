@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -70,7 +71,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        setupActionBar();
+        setActionBar();
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -129,6 +130,12 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         return false;
     }
 
+    private void setActionBar() {
+        if (getSupportActionBar() != null) {
+           getSupportActionBar().hide();
+        }
+    }
+
     /**
      * Callback received when a permissions request has been completed.
      */
@@ -142,16 +149,6 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-    /**
-     * Set up the {@link android.app.ActionBar}, if the API is available.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void setupActionBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            // Show the Up button in the action bar.
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-    }
 
     /**
      * Attempts to sign in or register the account specified by the login form.

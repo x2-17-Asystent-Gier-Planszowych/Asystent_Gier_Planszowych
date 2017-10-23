@@ -23,6 +23,7 @@
 
     <RelativeLayout
         android:id="@+id/login_form"
+        android:layout_marginTop="@dimen/bigVerticalMargin"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -41,6 +42,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/normalHorizontalMargin"
                     android:clickable="false"
                     android:src="@drawable/ic_sign_in_logo" />
 
@@ -53,6 +55,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/log_in_catchphrase"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"

@@ -33,4 +33,7 @@
     <string name="log_in_catchphrase">Witamy spowrotem! Czeka na Ciebie mnóstwo nowych gier!</string>
 
     <string name="about">O mnie</string>
+    <string name="sign_up_title">Rejestracja</string>
+    <string name="sign_up_catchphrase">Zaczynamy! To zajmie nie więcej czasu niż rozłożenie planszy!</string>
+    <string name="sign_up_password_hint">Hasło musi zawierać przynajmniej 8 znaków, dużą literę i cyfrę</string>
 </resources>

@@ -10,8 +10,6 @@
     <dimen name="normalVerticalMargin">16dp</dimen>
     <dimen name="basicVerticalMargin">16dp</dimen>
     <dimen name="smallVerticalButtonMargin">6dp</dimen>
-    <dimen name="buttonHeight">36dp</dimen>
-    <dimen name="onBoardingViewPagerMarginTop">54dp</dimen>
     <dimen name="fragmentTitleTopMargin">13dp</dimen>
     <dimen name="fragmentOnBoardingTextVerticalMargin">14dp</dimen>
     <dimen name="name_big_center_top_margin">20dp</dimen>
@@ -28,26 +26,17 @@
     <dimen name="dividerMarginVertical">15dp</dimen>
     <dimen name="dividerMiddleMarginBottom">8dp</dimen>
     <dimen name="dividerMiddleMarginTop">7dp</dimen>
-    <dimen name="priceTagHeight">64dp</dimen>
     <dimen name="smallHorizontalMargin">8dp</dimen>
     <dimen name="floatingButtonWidth">56dp</dimen>
     <dimen name="floatingButtonHeight">56dp</dimen>
-    <dimen name="logInSpinnerLeftMargin">20dp</dimen>
-    <dimen name="logInTextInputEditTextPaddingTop">14dp</dimen>
-    <dimen name="showProfileTabLayoutHeight">48dp</dimen>
     <dimen name="notificationFragmentTopPadding">56dp</dimen>
     <dimen name="notificationFragmentBottomPadding">48dp</dimen>
-    <dimen name="peopleFragmentInviteLabelVerticalMargin">20dp</dimen>
-    <dimen name="priceTagIconWidth">24dp</dimen>
-    <dimen name="priceTagIconHeight">24dp</dimen>
     <dimen name="listItemPaddingBottom">5dp</dimen>
     <dimen name="listItemPaddingTop">19dp</dimen>
     <dimen name="avatarSmallWidth">40dp</dimen>
     <dimen name="avatarSmallHeight">40dp</dimen>
-    <dimen name="circledFrameWidth">84dp</dimen>
-    <dimen name="circledFrameHeight">84dp</dimen>
-    <dimen name="circledFrameWhiteWidth">92dp</dimen>
-    <dimen name="circledFrameWhiteHeight">92dp</dimen>
+    <dimen name="avatarBigWidth">92dp</dimen>
+    <dimen name="avatarBigHeight">92dp</dimen>
     <dimen name="avatarTinyWidth">24dp</dimen>
     <dimen name="avatarTinyHeight">24dp</dimen>
 </resources>

@@ -1,4 +1,4 @@
-package pwcdma.asystentgierplanszowych.Model;
+package pwcdma.asystentgierplanszowych.model;
 
 public class StartViewPagerItem {
     private int image;

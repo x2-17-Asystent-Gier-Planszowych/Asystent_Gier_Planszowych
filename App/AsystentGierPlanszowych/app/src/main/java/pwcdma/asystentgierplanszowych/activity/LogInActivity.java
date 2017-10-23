@@ -1,24 +1,27 @@
-package pwcdma.asystentgierplanszowych.Activity;
+package pwcdma.asystentgierplanszowych.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.LoaderManager;
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.app.LoaderManager.LoaderCallbacks;
+
+import android.content.CursorLoader;
+import android.content.Loader;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.AsyncTask;
+
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -33,9 +36,12 @@ import pwcdma.asystentgierplanszowych.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
-public class SignUpActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
-
-    static final int RESULT_CODE_SUCCESS = 1;
+/**
+ * A login screen that offers login via email/password.
+ */
+public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+    // TODO: 22.10.2017 Nadałam jako public, bo przy refaktoryzacji o to krzyczał, poprawię to później ~Patrycja
+    public static final int RESULT_CODE_SUCCESS = 1;
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -52,24 +58,20 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private UserSignUpTask signUpTask = null;
+    private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private EditText mUsernameView;
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
-    private EditText mConfirmPasswordView;
     private View mProgressView;
-    private View mSignUpFormView;
+    private View mLoginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_log_in);
         setupActionBar();
-
-        mUsernameView = (EditText) findViewById(R.id.username);
-
+        // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
 
@@ -77,36 +79,24 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.sign_up || id == EditorInfo.IME_NULL) {
-                    attemptSignUp();
+                if (id == R.id.login || id == EditorInfo.IME_NULL) {
+                    attemptLogin();
                     return true;
                 }
                 return false;
             }
         });
 
-        mConfirmPasswordView = (EditText) findViewById(R.id.confirm_password);
-        mConfirmPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.sign_up || id == EditorInfo.IME_NULL) {
-                    attemptSignUp();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        Button mSignUpButton = (Button) findViewById(R.id.sign_up_button);
-        mSignUpButton.setOnClickListener(new View.OnClickListener() {
+        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptSignUp();
+                attemptLogin();
             }
         });
 
-        mSignUpFormView = findViewById(R.id.sign_up_form);
-        mProgressView = findViewById(R.id.sign_up_progress);
+        mLoginFormView = findViewById(R.id.login_form);
+        mProgressView = findViewById(R.id.login_progress);
     }
 
     private void populateAutoComplete() {
@@ -168,22 +158,18 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptSignUp() {
-        if (signUpTask != null) {
+    private void attemptLogin() {
+        if (mAuthTask != null) {
             return;
         }
 
         // Reset errors.
-        mUsernameView.setError(null);
         mEmailView.setError(null);
         mPasswordView.setError(null);
-        mConfirmPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String username = mUsernameView.getText().toString();
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
-        String confirmPassword = mConfirmPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -192,12 +178,6 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
-            cancel = true;
-        }
-
-        if (!password.equals(confirmPassword)){
-            mConfirmPasswordView.setError(getString(R.string.error_password_mismatch));
-            focusView = mConfirmPasswordView;
             cancel = true;
         }
 
@@ -212,16 +192,6 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
             cancel = true;
         }
 
-        if (TextUtils.isEmpty(username)) {
-            mUsernameView.setError(getString(R.string.error_field_required));
-            focusView = mUsernameView;
-            cancel = true;
-        } else if (!isUsernameValid(username)) {
-            mUsernameView.setError(getString(R.string.error_invalid_username));
-            focusView = mUsernameView;
-            cancel = true;
-        }
-
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
@@ -230,13 +200,9 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            signUpTask = new UserSignUpTask(username, email, password);
-            signUpTask.execute((Void) null);
+            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask.execute((Void) null);
         }
-    }
-
-    private boolean isUsernameValid(String username){
-        return username.length() >= 4;
     }
 
     private boolean isEmailValid(String email) {
@@ -260,12 +226,12 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-            mSignUpFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mSignUpFormView.animate().setDuration(shortAnimTime).alpha(
+            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
                     show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    mSignUpFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
                 }
             });
 
@@ -281,7 +247,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
             // The ViewPropertyAnimator APIs are not available, so simply show
             // and hide the relevant UI components.
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mSignUpFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
 
@@ -290,7 +256,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         return new CursorLoader(this,
                 // Retrieve data rows for the device user's 'profile' contact.
                 Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), SignUpActivity.ProfileQuery.PROJECTION,
+                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
 
                 // Select only email addresses.
                 ContactsContract.Contacts.Data.MIMETYPE +
@@ -307,7 +273,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         List<String> emails = new ArrayList<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            emails.add(cursor.getString(SignUpActivity.ProfileQuery.ADDRESS));
+            emails.add(cursor.getString(ProfileQuery.ADDRESS));
             cursor.moveToNext();
         }
 
@@ -322,7 +288,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(SignUpActivity.this,
+                new ArrayAdapter<>(LogInActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
@@ -343,14 +309,12 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserSignUpTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mUsername;
         private final String mEmail;
         private final String mPassword;
 
-        UserSignUpTask(String username, String email, String password) {
-            mUsername = username;
+        UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
         }
@@ -380,7 +344,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            signUpTask = null;
+            mAuthTask = null;
             showProgress(false);
 
             if (success) {
@@ -394,7 +358,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
 
         @Override
         protected void onCancelled() {
-            signUpTask = null;
+            mAuthTask = null;
             showProgress(false);
         }
     }

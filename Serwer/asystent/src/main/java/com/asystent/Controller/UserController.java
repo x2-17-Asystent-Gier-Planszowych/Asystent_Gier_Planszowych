@@ -5,6 +5,7 @@ import com.asystent.Model.Categories;
 import com.asystent.Model.TestModel;
 import com.asystent.Model.User;
 
+import com.asystent.Service.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -28,46 +29,43 @@ import java.util.concurrent.atomic.AtomicLong;
 public class UserController {
 
     @Autowired
-    JdbcTemplate jdbcTemplate;
+	UserServices userServices;
+
+    @Autowired
+	JdbcTemplate jdbcTemplate;
 
         
         
-        @RequestMapping("/rejestacja")
-        public String rejestacja(@RequestParam(value="name", defaultValue="World") String name,
-        		@RequestParam(value="email", defaultValue="World") String email,
-        		@RequestParam(value="password", defaultValue="World") String password) {
-        	
-        	String sqlForUserName = 	"SELECT EXISTS(SELECT 1 FROM \"Users\" WHERE  \"Username\" = ?)";
-        	Boolean isUsedUserName = jdbcTemplate.queryForObject(sqlForUserName, new Object[] {name}, Boolean.class);
-        	
-        	String sqlForEmail = 	"SELECT EXISTS(SELECT 1 FROM \"Users\" WHERE  \"Email\" = ?)";
-        	Boolean isUsedEmail = jdbcTemplate.queryForObject(sqlForEmail, new Object[] {email}, Boolean.class);
-        	
-        	
-        	
-        	 if(isUsedUserName == false) {
-        		 int updateSucces =jdbcTemplate.update("INSERT INTO \"Users\" (\"Email\", \"Username\",\"Password\") VALUES (?,?,?)",new Object[]{email,name,password});
-        		    if(updateSucces!=0) {
-        		    	return new String("Succes");
-		            }else{
-		                 return new  String("Failed");
-		            }
-        		
-             }else if(isUsedEmail == true) {
-            	 return new
-                         String("Email");
-             }else{
-            	 return new
-                         String("Username");
-             }
-        	 
-        	 
+        @RequestMapping("/registration")
+        public String rejestacja(@RequestParam(value="name") String name,
+        		@RequestParam(value="email") String email,
+        		@RequestParam(value="password") String password) {
+			if(!(email.isEmpty() || name.isEmpty() || password.isEmpty())) {
+				if (!userServices.isUsedUsername(name)) {
+					int updateSucces = userServices.insertUser(email, password, name);
+					if (updateSucces != 0) {
+						return new String("Succes");
+					} else {
+						return new String("Failed");
+					}
+
+				} else if (userServices.isEmailUse(email)) {
+					return new
+							String("Email");
+				} else {
+					return new
+							String("Username");
+				}
+			}else{
+				return "Brak danych";
+			}
+
         
         }
-  //  http://localhost:8080/login?login=Login&haslo=haslo
-    @RequestMapping("/login")
+  	// http://localhost:8080/login?login=Login&haslo=haslo
+    @RequestMapping("/signin")
     public String login(@RequestParam(value="login", defaultValue="World") String login,
-                        @RequestParam(value="haslo", defaultValue="World") String haslo) {
+                        @RequestParam(value="haslo", defaultValue="World") String passwordFromAplication) {
     	
     	String sqlForUserName = 	"SELECT EXISTS(SELECT 1 FROM \"Users\" WHERE  \"Username\" = ?)";
     	Boolean isUsedUserName = jdbcTemplate.queryForObject(sqlForUserName, new Object[] {login}, Boolean.class);
@@ -79,7 +77,7 @@ public class UserController {
     		password = "Mismatch login";
     	}
     	
-       if(haslo.equals(password)) {
+       if(passwordFromAplication.equals(password)) {
             return "Succes";
         }else{
             return "Failed";
@@ -87,7 +85,7 @@ public class UserController {
     	
     }
 
-	@RequestMapping("/changePassword")
+	@RequestMapping("/change/password")
 	public String changePassword(@RequestParam(value="login", defaultValue="World") String login,
 						@RequestParam(value="haslo", defaultValue="World") String haslo) {
 		int updateSucces = jdbcTemplate.update("UPDATE \"Users\" SET \"Password\" = ? where \"Username\" = ?",new Object[]{haslo,login});
@@ -98,7 +96,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping("/changeAbout")
+	@RequestMapping("/change/about")
 	public String changeAbout(@RequestParam(value="about", defaultValue="World") String aboutDescription,
 						   @RequestParam(value="login", defaultValue="World") String login) {
 		int updateSucces = jdbcTemplate.update("UPDATE \"Users\" SET \"About\" = ? where \"Username\" = ?",new Object[]{aboutDescription,login});
@@ -121,7 +119,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping("/changeEmail")
+	@RequestMapping("/change/email")
 	public String changeEmail(@RequestParam(value="deactivate", defaultValue="World") String email,
 							  @RequestParam(value="login", defaultValue="World") String login) {
 		int updateSucces = jdbcTemplate.update("UPDATE \"Users\" SET \"Email\" = ? where \"Username\" = ?",new Object[]{email,login});

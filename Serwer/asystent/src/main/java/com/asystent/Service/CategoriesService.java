@@ -25,6 +25,7 @@ public class CategoriesService {
 
     private final String SELECT_ALL = " SELECT * FROM \"Categories\" ";
     private final String SELECT_BY_NAME = " SELECT * FROM \"Categories\" where \"Catname\" = ?";
+    private final String SELECT_ID = "SELECT \"Id\" FROM \"Categories\" where \"Catname\" = ?" ;
     private final String INSERT = "INSERT INTO \"Categories\" (\"Catname\",\"Active\") VALUES (?,?)";
     private final String UPDATE = "UPDATE \"Categories\" SET \"Active\"= false WHERE \"Catname\" = ?";
     private Gson gson;
@@ -106,6 +107,12 @@ public class CategoriesService {
     public String changeActive(String name){
         jdbcTemplate.update(UPDATE,name );
         return "Success";
+    }
+
+
+    public Integer getIdByName(String name){
+        Integer id = (Integer) jdbcTemplate.queryForObject(SELECT_ID, new Object[] {name}, Integer.class);
+        return id;
     }
 
 }

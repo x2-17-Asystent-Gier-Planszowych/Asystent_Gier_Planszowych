@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -62,6 +63,9 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
     private UserLoginTask mAuthTask = null;
 
     // UI references.
+
+    private TextInputLayout mPasswordTextInputLayout;
+    private TextInputLayout mEmailTextInputLayout;
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
@@ -74,6 +78,8 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         setActionBar();
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mPasswordTextInputLayout = (TextInputLayout) findViewById(R.id.log_in_password_til);
+        mEmailTextInputLayout = (TextInputLayout) findViewById(R.id.log_in_email_til);
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -161,8 +167,8 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
+       mEmailTextInputLayout.setError(null);
+        mPasswordTextInputLayout.setError(null);
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
@@ -173,18 +179,18 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
+            mPasswordTextInputLayout.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
+            mEmailTextInputLayout.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
         } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
+            mEmailTextInputLayout.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
         }
@@ -348,7 +354,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
                 setResult(RESULT_CODE_SUCCESS);
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
+                mPasswordTextInputLayout.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
             }
         }

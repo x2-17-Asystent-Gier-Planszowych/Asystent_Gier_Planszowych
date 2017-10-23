@@ -40,12 +40,6 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
         addFragmentsToList();
         setAdapter();
         setButtons();
-        signUpText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivityForResult(new Intent(StartActivity.this, SignUpActivity.class), REQUEST_CODE_SIGN_UP);
-            }
-        });
     }
 
     @Override
@@ -63,8 +57,8 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
         Log.d(TAG, "findViews: ");
         signInButton = (Button) findViewById(R.id.sign_in_button);
         signInFacebookButton = (Button) findViewById(R.id.sign_in_facebook_button);
-        mViewPager = (ViewPager) findViewById(R.id.homeScreenViewPager);
-        mTlDotIndicator = (TabLayout) findViewById(R.id.homeScreenTabIndicators);
+        mViewPager = (ViewPager) findViewById(R.id.start_view_pager);
+        mTlDotIndicator = (TabLayout) findViewById(R.id.start_tab_indicator);
         signUpText = (TextView) findViewById(R.id.sign_up_text);
     }
 
@@ -84,18 +78,26 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
 
     private void setButtons() {
         Log.d(TAG, "setButtons: ");
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivityForResult(new Intent(StartActivity.this, LogInActivity.class), REQUEST_CODE_LOG_IN);
-            }
-        });
-        signInFacebookButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
+        signInButton.setOnClickListener(onClickListener);
+        signUpText.setOnClickListener(onClickListener);
     }
+
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.sign_in_button:
+                    Log.d(TAG, "onClick: signInButton");
+                    startActivityForResult(new Intent(StartActivity.this, LogInActivity.class), REQUEST_CODE_LOG_IN);
+                    break;
+                case R.id.sign_up_text:
+                    Log.d(TAG, "onClick: signUpText");
+                    startActivityForResult(new Intent(StartActivity.this, SignUpActivity.class), REQUEST_CODE_SIGN_UP);
+                    break;
+            }
+        }
+    };
+
 
     @Override
     public void onFragmentInteraction(Uri uri) {

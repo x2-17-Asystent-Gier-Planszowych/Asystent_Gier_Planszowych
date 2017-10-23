@@ -21,7 +21,6 @@
     <string name="sign_in_facebook">Zaloguj się przez Facebook</string>
     <string name="sign_up">Zarejestruj się</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="startTab1Text">Jesteś mistrzem gry i chcesz zaprosić graczy na niesamowitą sesję RPG?</string>
     <string name="startTab2Text">Kochasz gry bez prądu i poszukujesz nowych planszówek?</string>

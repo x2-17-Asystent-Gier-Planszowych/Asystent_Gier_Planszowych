@@ -72,17 +72,8 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         setActionBar();
-
-        mUsernameView = (EditText) findViewById(R.id.username);
-
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
-
-        mUsernameTextInputLayout = (TextInputLayout) findViewById(R.id.sign_up_username_til);
-        mEmailTextInputLayout = (TextInputLayout) findViewById(R.id.sign_up_email_til);
-        mPasswordTextInputLayout = (TextInputLayout) findViewById(R.id.sign_up_password_til);
-        mConfirmPasswordTextInputLayout = (TextInputLayout) findViewById(R.id.sign_up_confirm_password_til);
-        mPasswordView = (EditText) findViewById(R.id.password);
+        findViews();
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -94,7 +85,6 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
             }
         });
 
-        mConfirmPasswordView = (EditText) findViewById(R.id.confirm_password);
         mConfirmPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -118,6 +108,17 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         mProgressView = findViewById(R.id.sign_up_progress);
     }
 
+    private void findViews(){
+        mUsernameView = (EditText) findViewById(R.id.username);
+        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mUsernameTextInputLayout = (TextInputLayout) findViewById(R.id.sign_up_username_til);
+        mEmailTextInputLayout = (TextInputLayout) findViewById(R.id.sign_up_email_til);
+        mPasswordTextInputLayout = (TextInputLayout) findViewById(R.id.sign_up_password_til);
+        mConfirmPasswordTextInputLayout = (TextInputLayout) findViewById(R.id.sign_up_confirm_password_til);
+        mPasswordView = (EditText) findViewById(R.id.password);
+        mConfirmPasswordView = (EditText) findViewById(R.id.confirm_password);
+    }
+
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
             return;
@@ -127,9 +128,6 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     private boolean mayRequestContacts() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
         if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
             return true;
         }
@@ -261,32 +259,25 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-            mSignUpFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mSignUpFormView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mSignUpFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
+        mSignUpFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+        mSignUpFormView.animate().setDuration(shortAnimTime).alpha(
+                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mSignUpFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+            }
+        });
 
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mSignUpFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
+        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        mProgressView.animate().setDuration(shortAnimTime).alpha(
+                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            }
+        });
     }
 
     @Override

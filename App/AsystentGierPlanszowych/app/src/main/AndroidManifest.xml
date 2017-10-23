@@ -14,7 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.StartActivity">
+        <activity
+            android:name=".activity.StartActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,20 +26,27 @@
         </activity>
         <activity
             android:name=".activity.SignUpActivity"
-            android:label="@string/title_activity_sign_up">
+            android:configChanges="orientation"
+            android:label="@string/title_activity_sign_up"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="pwcdma.asystentgierplanszowych.activity.StartActivity" />
         </activity>
         <activity
             android:name=".activity.LogInActivity"
+            android:configChanges="orientation"
             android:label="@string/title_activity_log_in"
-            android:parentActivityName=".activity.StartActivity">
+            android:parentActivityName=".activity.StartActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="pwcdma.asystentgierplanszowych.activity.StartActivity" />
         </activity>
-        <activity android:name=".activity.MainActivity"></activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@ import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -61,6 +62,10 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
     private EditText mConfirmPasswordView;
     private View mProgressView;
     private View mSignUpFormView;
+    private TextInputLayout mPasswordTextInputLayout;
+    private TextInputLayout mEmailTextInputLayout;
+    private TextInputLayout mConfirmPasswordTextInputLayout;
+    private TextInputLayout mUsernameTextInputLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +78,10 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
 
+        mUsernameTextInputLayout = (TextInputLayout) findViewById(R.id.sign_up_username_til);
+        mEmailTextInputLayout = (TextInputLayout) findViewById(R.id.sign_up_email_til);
+        mPasswordTextInputLayout = (TextInputLayout) findViewById(R.id.sign_up_password_til);
+        mConfirmPasswordTextInputLayout = (TextInputLayout) findViewById(R.id.sign_up_confirm_password_til);
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -157,6 +166,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
             getSupportActionBar().hide();
         }
     }
+
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
@@ -168,10 +178,10 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         }
 
         // Reset errors.
-        mUsernameView.setError(null);
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-        mConfirmPasswordView.setError(null);
+        mPasswordTextInputLayout.setError(null);
+        mEmailTextInputLayout.setError(null);
+        mConfirmPasswordTextInputLayout.setError(null);
+        mUsernameTextInputLayout.setError(null);
 
         // Store values at the time of the login attempt.
         String username = mUsernameView.getText().toString();
@@ -184,34 +194,34 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
 
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
+            mPasswordTextInputLayout.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
-        if (!password.equals(confirmPassword)){
-            mConfirmPasswordView.setError(getString(R.string.error_password_mismatch));
+        if (!password.equals(confirmPassword)) {
+            mConfirmPasswordTextInputLayout.setError(getString(R.string.error_password_mismatch));
             focusView = mConfirmPasswordView;
             cancel = true;
         }
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
+            mEmailTextInputLayout.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
         } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
+            mEmailTextInputLayout.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
         }
 
         if (TextUtils.isEmpty(username)) {
-            mUsernameView.setError(getString(R.string.error_field_required));
+            mUsernameTextInputLayout.setError(getString(R.string.error_field_required));
             focusView = mUsernameView;
             cancel = true;
         } else if (!isUsernameValid(username)) {
-            mUsernameView.setError(getString(R.string.error_invalid_username));
+            mUsernameTextInputLayout.setError(getString(R.string.error_invalid_username));
             focusView = mUsernameView;
             cancel = true;
         }
@@ -229,7 +239,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         }
     }
 
-    private boolean isUsernameValid(String username){
+    private boolean isUsernameValid(String username) {
         return username.length() >= 4;
     }
 
@@ -381,7 +391,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
                 setResult(RESULT_CODE_SUCCESS);
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
+                mPasswordTextInputLayout.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
             }
         }

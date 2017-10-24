@@ -20,9 +20,7 @@ WITH (
 );
 ALTER TABLE "Users"
   OWNER TO postgres;
-
-  
-  -- Table: "Groups"
+-- Table: "Groups"
 
 -- DROP TABLE "Groups";
 
@@ -31,7 +29,8 @@ CREATE TABLE "Groups"
   "Id" serial NOT NULL,
   "Groupname" text NOT NULL,
   "Active" boolean,
-  CONSTRAINT "PK_GROUP" PRIMARY KEY ("Id")
+  CONSTRAINT "PK_GROUP" PRIMARY KEY ("Id"),
+  CONSTRAINT "Group_Unique" UNIQUE ("Groupname")
 )
 WITH (
   OIDS=FALSE
@@ -60,24 +59,6 @@ WITH (
 );
 ALTER TABLE "Group_User"
   OWNER TO postgres;
-
-  -- Table: "Games"
-
--- DROP TABLE "Games";
-
-CREATE TABLE "Games"
-(
-  "Id" serial NOT NULL,
-  "Name" text NOT NULL,
-  "Active" boolean,
-  CONSTRAINT "PK_GAME" PRIMARY KEY ("Id")
-)
-WITH (
-  OIDS=FALSE
-);
-ALTER TABLE "Games"
-  OWNER TO postgres;
-
 -- Table: "Categories"
 
 -- DROP TABLE "Categories";
@@ -87,20 +68,34 @@ CREATE TABLE "Categories"
   "Id" serial NOT NULL,
   "Catname" text NOT NULL,
   "Active" boolean,
-  CONSTRAINT "PK_CATEGORY" PRIMARY KEY ("Id")
+  CONSTRAINT "PK_CATEGORY" PRIMARY KEY ("Id"),
+  CONSTRAINT "Category_Unique" UNIQUE ("Catname")
 )
 WITH (
   OIDS=FALSE
 );
 ALTER TABLE "Categories"
   OWNER TO postgres;
+-- Table: "Games"
 
+-- DROP TABLE "Games";
 
-  -- Table: "Category_Game"
+CREATE TABLE "Games"
+(
+  "Id" serial NOT NULL,
+  "Name" text NOT NULL,
+  "Active" boolean,
+  CONSTRAINT "PK_GAME" PRIMARY KEY ("Id"),
+  CONSTRAINT "Game_Unique" UNIQUE ("Name")
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE "Games"
+  OWNER TO postgres;
+-- Table: "Category_Game"
 
 -- DROP TABLE "Category_Game";
-
-
 
 CREATE TABLE "Category_Game"
 (

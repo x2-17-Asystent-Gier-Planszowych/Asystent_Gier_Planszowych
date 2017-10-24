@@ -2,10 +2,7 @@ package com.asystent.Controller;
 
 import com.asystent.Service.GamesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,8 +24,20 @@ public class GamesController {
         return gamesService.addGame(name);
     }
     @RequestMapping(value = "/games/addCat", method = RequestMethod.POST)
-    public String addCategory(@RequestParam(value = "name") String gameName, @RequestParam(value = "category") String categoryName ) {
+    public String addCategoryToGame(@RequestParam(value = "name") String gameName, @RequestParam(value = "category") String categoryName ) {
         return gamesService.addTag(gameName,categoryName);
+    }
+    @RequestMapping(value = "/games/getTags", method = RequestMethod.GET)
+    public List<String> getTags(@RequestParam(value = "name") String name){
+        return gamesService.getGameTag(name);
+    }
+    @RequestMapping(value = "/games/{gameName}", method = RequestMethod.GET)
+    public String getGameByName(@PathVariable(value = "gameName") String name){
+        return gamesService.getGameByName(name);
+    }
+    @RequestMapping(value = "/games/{gameName}/inactive")
+    public String deleteGame(@PathVariable(value = "gameName") String name){
+        return gamesService.deleteGame(name);
     }
 
 }

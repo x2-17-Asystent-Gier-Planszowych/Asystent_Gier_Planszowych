@@ -1,6 +1,7 @@
 package com.asystent.Service;
 
 
+
 import com.asystent.Model.Games;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,10 @@ public class GamesService {
     private final String SELECT_ID = "SELECT \"Id\" FROM \"Games\" where \"Name\" = ?" ;
     private final String INSERT = "INSERT INTO \"Games\" (\"Name\",\"Active\") VALUES (?,?)";
     private final String INSERT_CAT = "INSERT INTO \"Category_Game\" (\"Category_Id\", \"Game_Id\") VALUES (?,?)";
-    //private final String UPDATE = "UPDATE \"Categories\" SET \"Active\"= false WHERE \"Catname\" = ?";
+    private final String SELECT_TAGS = "SELECT \"Catname\" FROM \"Categories\" Where \"Id\" IN (" +
+            "SELECT \"Category_Id\" FROM \"Category_Game\" WHERE \"Game_Id\" = ?)" ;
+    private final String DELETE_TAGS = "DELETE FROM \"Category_Game\" where \"Game_Id\" = ? ";
+    private final String INACTIVE_GAME = "UPDATE \"Games\" SET \"Active\"= false WHERE \"Id\" = ?";
     private Gson gson;
 
 
@@ -65,7 +69,13 @@ public class GamesService {
     }
 
     public int getIdByName(String name){
-        Integer id = (Integer) jdbcTemplate.queryForObject(SELECT_ID, new Object[] {name}, Integer.class);
+        Integer id;
+        try {
+            id = (Integer) jdbcTemplate.queryForObject(SELECT_ID, new Object[] {name}, Integer.class);
+        } catch (Exception e){
+            return 404;
+        }
+
         return id;
     }
 
@@ -82,4 +92,44 @@ public class GamesService {
 
     }
 
+    public List<String> getGameTag(String name){
+        int gameId = getIdByName(name);
+        List<String> tags = jdbcTemplate.queryForList(SELECT_TAGS, new Object[] { gameId }, String.class);
+        return tags;
+    }
+
+    public String getGameByName(String name){
+
+        String out;
+        gson = new Gson();
+        Games cat = jdbcTemplate.queryForObject(SELECT_BY_NAME, new RowMapper<Games>() {
+            @Override
+            public Games mapRow(ResultSet resultSet, int i) throws SQLException {
+                Games c = new Games();
+                c.setId(resultSet.getLong(1));
+                c.setName(resultSet.getString(2));
+                c.setActive(resultSet.getBoolean(3));
+                return c;
+            }
+        }, name);
+
+        try{
+            out = gson.toJson(cat);
+        } catch (Exception e){
+            return "Fail";
+        }
+        return out;
+
+    }
+
+    public String deleteGame(String name){
+        int id = getIdByName(name);
+        try {
+            jdbcTemplate.update(DELETE_TAGS, id);
+            jdbcTemplate.update(INACTIVE_GAME, id);
+        } catch (Exception e){
+            return "Fail";
+        }
+        return "Success";
+    }
 }

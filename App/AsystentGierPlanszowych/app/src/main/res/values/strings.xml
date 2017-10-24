@@ -9,7 +9,7 @@
     <string name="action_sign_in">Zaloguj się</string>
     <string name="action_sign_in_short">Zaloguj się</string>
     <string name="error_invalid_email">Nieprawidłowy adres email</string>
-    <string name="error_invalid_password">Hasło jest za krótkie</string>
+    <string name="error_invalid_password">Hasło musi zawierać przynajmniej 8 znaków, dużą literę i cyfrę</string>
     <string name="error_incorrect_password">Nieprawidłowe hasło</string>
     <string name="error_field_required">Pole wymagane</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>

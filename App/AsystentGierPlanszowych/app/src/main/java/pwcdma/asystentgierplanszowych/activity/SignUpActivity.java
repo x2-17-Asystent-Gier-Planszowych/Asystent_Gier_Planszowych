@@ -238,17 +238,16 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     private boolean isUsernameValid(String username) {
-        return username.length() >= 4;
+        return username.matches("[A-Za-z0-9_]{4,}");
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
+        return email.matches("[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.matches(".*[A-Z].*") && password.matches(".*[a-z].*") && password.matches(".*[0-9].*")
+                && password.length() >= 8;
     }
 
     /**

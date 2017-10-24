@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import pwcdma.asystentgierplanszowych.fragment.StartFragment;
 import pwcdma.asystentgierplanszowych.model.StartViewPagerItem;
 
-/**
- * Created by Patrycja on 21.10.2017.
- */
 
 public class StartFragmentViewPagerAdapter extends FragmentStatePagerAdapter {
     private static final String TAG = StartFragmentViewPagerAdapter.class.getSimpleName();

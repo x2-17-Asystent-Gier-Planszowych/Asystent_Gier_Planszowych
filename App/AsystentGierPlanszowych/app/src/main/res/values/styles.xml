@@ -441,6 +441,14 @@
         <item name="android:gravity">center_horizontal</item>
     </style>
 
+    <style name="NavigationBar">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+
     <style name="HintOnGradient">
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">sans-serif</item>
@@ -457,7 +465,6 @@
         <item name="android:letterSpacing">0.03</item>
         <item name="android:lineSpacingExtra">4sp</item>
     </style>
-
 
 
     <style name="ButtonLabelFlat">

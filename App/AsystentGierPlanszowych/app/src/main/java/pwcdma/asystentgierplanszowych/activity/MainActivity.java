@@ -9,6 +9,7 @@ import pwcdma.asystentgierplanszowych.fragment.GamesFragment;
 import pwcdma.asystentgierplanszowych.fragment.GroupsFragment;
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.fragment.ProfileFragment;
+import pwcdma.asystentgierplanszowych.fragment.TimerFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,10 +26,12 @@ public class MainActivity extends AppCompatActivity {
         addTab("Grupy", R.id.tab1);
         addTab("Gry", R.id.tab2);
         addTab("Mój profil", R.id.tab3);
+        addTab("Klepsydra", R.id.tab4);
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.tab1, new GroupsFragment())
                 .add(R.id.tab2, new GamesFragment())
                 .add(R.id.tab3, new ProfileFragment())
+                .add(R.id.tab4, new TimerFragment())
                 .commit();
         if (savedInstanceState != null){
             tabHost.setCurrentTab(savedInstanceState.getInt(TAB));

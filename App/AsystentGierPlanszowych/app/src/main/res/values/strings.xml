@@ -32,6 +32,10 @@
     <string name="log_in_title">Logowanie</string>
     <string name="log_in_catchphrase">Witamy spowrotem! Czeka na Ciebie mnóstwo nowych gier!</string>
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="StartCounting">Start</string>
+    <string name="StopCounting">Anuluj</string>
+
     <string name="about">O mnie</string>
     <string name="sign_up_title">Rejestracja</string>
     <string name="sign_up_catchphrase">Zaczynamy! To zajmie nie więcej czasu niż rozłożenie planszy!</string>

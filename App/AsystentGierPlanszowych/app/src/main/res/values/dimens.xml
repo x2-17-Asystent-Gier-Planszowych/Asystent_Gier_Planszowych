@@ -39,4 +39,5 @@
     <dimen name="avatarBigHeight">92dp</dimen>
     <dimen name="avatarTinyWidth">24dp</dimen>
     <dimen name="avatarTinyHeight">24dp</dimen>
+    <dimen name="tab_layout_height">56dp</dimen>
 </resources>

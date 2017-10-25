@@ -1,0 +1,41 @@
+package pwcdma.asystentgierplanszowych.adapter;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+
+import pwcdma.asystentgierplanszowych.fragment.GamesFragment;
+import pwcdma.asystentgierplanszowych.fragment.GroupsFragment;
+import pwcdma.asystentgierplanszowych.fragment.ProfileFragment;
+
+/**
+ * Created by Patrycja on 23.10.2017.
+ */
+
+public class MainActivityViewPagerAdapter extends FragmentPagerAdapter {
+
+    public MainActivityViewPagerAdapter(FragmentManager fm) {
+        super(fm);
+    }
+
+    @Override
+    public Fragment getItem(int pos) {
+        switch (pos) {
+            case 0:
+                return new GroupsFragment();
+            case 1:
+                return new GamesFragment();
+            case 2:
+//                return new ToolFragment();
+                break;
+            case 3:
+                return new ProfileFragment();
+        }
+        return new ProfileFragment();
+    }
+
+    @Override
+    public int getCount() {
+        return 4;
+    }
+}

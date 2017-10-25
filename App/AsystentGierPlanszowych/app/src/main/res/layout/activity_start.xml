@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="bottom"
+    android:layout_gravity="top"
     android:background="@drawable/gradient_background"
     android:orientation="vertical"
     android:padding="@dimen/normalVerticalMargin"
@@ -15,23 +15,21 @@
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/bigVerticalMargin"
         android:layout_height="0dp"
-        android:layout_weight=".5"
+        android:layout_weight=".1"
         android:overScrollMode="never"
         android:scrollbars="none" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/start_tab_indicator"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".1"
+        android:layout_height="wrap_content"
         app:tabBackground="@drawable/view_pager_tab_indicator_selector"
         app:tabGravity="center"
         app:tabIndicatorHeight="0dp" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".4"
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:gravity="top"
         android:orientation="vertical">
 
 

@@ -31,8 +31,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
 
 import pwcdma.asystentgierplanszowych.R;
 
@@ -319,7 +321,27 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+            /*try {
+                URL url = new URL("http://localhost:8080/greeting?name=Login");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setRequestProperty("Accept", "application/json");
+
+                if (connection.getResponseCode() != 200) {
+                    System.out.println(connection.getResponseCode());
+                    throw new RuntimeException("Failed : HTTP error code : " + connection.getResponseCode());
+                }
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String output;
+                while ((output = br.readLine()) != null) {
+
+                }
+                connection.disconnect();
+
+            } catch (IOException e) {
+                throw new RuntimeException(e.getMessage());
+            }*/
 
             try {
                 // Simulate network access.
@@ -336,7 +358,6 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
             }
 
-            // TODO: register the new account here.
             return true;
         }
 

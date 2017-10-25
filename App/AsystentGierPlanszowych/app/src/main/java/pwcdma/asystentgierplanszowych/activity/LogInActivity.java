@@ -9,18 +9,15 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
-
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,6 +32,8 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
+
+import org.json.*;
 
 import pwcdma.asystentgierplanszowych.R;
 
@@ -314,27 +313,6 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            /*try {
-                URL url = new URL("http://localhost:8080/greeting?name=Login");
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
-                connection.setRequestProperty("Accept", "application/json");
-
-                if (connection.getResponseCode() != 200) {
-                    System.out.println(connection.getResponseCode());
-                    throw new RuntimeException("Failed : HTTP error code : " + connection.getResponseCode());
-                }
-
-                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String output;
-                while ((output = br.readLine()) != null) {
-
-                }
-                connection.disconnect();
-
-            } catch (IOException e) {
-                throw new RuntimeException(e.getMessage());
-            }*/
 
             try {
                 // Simulate network access.
@@ -342,6 +320,20 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             } catch (InterruptedException e) {
                 return false;
             }
+
+            String userData;
+            try {
+                JSONObject userDataJson = new JSONObject();
+                userDataJson.put("email", mEmail);
+                userDataJson.put("password", mPassword);
+                userData = userDataJson.toString();
+            } catch(JSONException e){
+                throw new RuntimeException(e.getMessage());
+            }
+
+            /*if (userData != null){
+                login(userData);
+            }*/
 
             return true;
         }
@@ -364,6 +356,32 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
+        }
+
+        private void login(String data){
+            try {
+                URL url = new URL("http://localhost:8080/greeting?name=Login");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("Accept", "application/json");
+                connection.setDoInput(true);
+                connection.setDoOutput(true);
+
+                int responseCode = connection.getResponseCode();
+                if (responseCode != 200) {
+                    throw new RuntimeException("Failed : HTTP error code : " + responseCode);
+                }
+
+                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+                writer.write(data, 0, data.length());
+
+                //TODO: get response
+
+                connection.disconnect();
+
+            } catch (IOException e) {
+                throw new RuntimeException(e.getMessage());
+            }
         }
     }
 }

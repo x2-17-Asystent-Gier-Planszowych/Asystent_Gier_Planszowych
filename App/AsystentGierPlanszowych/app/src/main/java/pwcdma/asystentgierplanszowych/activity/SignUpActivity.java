@@ -353,7 +353,21 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
                 return false;
             }
 
-            // TODO: register the new account here.
+            String userData;
+            try {
+                JSONObject userDataJson = new JSONObject();
+                userDataJson.put("username", mUsername);
+                userDataJson.put("email", mEmail);
+                userDataJson.put("password", mPassword);
+                userData = userDataJson.toString();
+            } catch(JSONException e){
+                throw new RuntimeException(e.getMessage());
+            }
+
+            if (userData != null) {
+                // TODO: register the new account here.
+            }
+
             return true;
         }
 

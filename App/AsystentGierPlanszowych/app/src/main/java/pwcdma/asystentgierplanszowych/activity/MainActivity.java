@@ -5,8 +5,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TabHost;
-import android.widget.TabHost.TabSpec;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.adapter.MainActivityViewPagerAdapter;

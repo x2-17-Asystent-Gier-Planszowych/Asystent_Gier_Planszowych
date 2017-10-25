@@ -7,13 +7,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import pwcdma.asystentgierplanszowych.fragment.GamesFragment;
 import pwcdma.asystentgierplanszowych.fragment.GroupsFragment;
 import pwcdma.asystentgierplanszowych.fragment.ProfileFragment;
-
-/**
- * Created by Patrycja on 23.10.2017.
- */
+import pwcdma.asystentgierplanszowych.fragment.TimerFragment;
 
 public class MainActivityViewPagerAdapter extends FragmentPagerAdapter {
-
+    private static final int NUMBER_OF_FRAGMENTS = 4;
     public MainActivityViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -26,8 +23,7 @@ public class MainActivityViewPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return new GamesFragment();
             case 2:
-//                return new ToolFragment();
-                break;
+                return new TimerFragment();
             case 3:
                 return new ProfileFragment();
         }
@@ -36,6 +32,6 @@ public class MainActivityViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return NUMBER_OF_FRAGMENTS;
     }
 }

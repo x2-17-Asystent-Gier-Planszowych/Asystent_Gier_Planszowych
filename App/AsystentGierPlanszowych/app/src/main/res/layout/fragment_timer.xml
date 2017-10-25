@@ -2,6 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:padding="@dimen/activity_horizontal_margin"
     android:visibility="visible"
     tools:context=".fragment.TimerFragment">
 
@@ -11,6 +13,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:ignore="UselessParent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_hourglass_logo" />
 
         <LinearLayout
             android:id="@+id/horizontalTimer"
@@ -31,27 +39,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
+
         </LinearLayout>
 
         <Button
             android:id="@+id/timerStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
             android:layout_marginTop="30dp"
+            android:background="@drawable/button_primary_selector"
             android:text="@string/StartCounting"
+            android:textAllCaps="true"
+            android:textAppearance="@style/ButtonLabelPrimary"
             tools:ignore="DuplicateIds" />
 
         <Button
             android:id="@+id/timerPause"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/pause" />
+            android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
+            android:layout_marginTop="@dimen/smallVerticalButtonMargin"
+            android:background="@drawable/button_primary_selector"
+            android:text="@string/pause"
+            android:textAllCaps="true"
+            android:textAppearance="@style/ButtonLabelPrimary" />
 
         <Button
             android:id="@+id/timerCancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cancel" />
+            android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
+            android:layout_marginTop="@dimen/smallVerticalButtonMargin"
+            android:background="@drawable/button_primary_selector"
+            android:text="@string/cancel"
+            android:textAllCaps="true"
+            android:textAppearance="@style/ButtonLabelPrimary" />
 
     </LinearLayout>
 

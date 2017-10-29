@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="timePickerWithSeconds-1.0.1">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/defef66f8ed3e009b068e101e297b8372c3d9a68/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/defef66f8ed3e009b068e101e297b8372c3d9a68/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.kovachcode/timePickerWithSeconds/1.0.1/e795dd5b27da5fe5a455f4be8dbad94c7c7098b8/timePickerWithSeconds-1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

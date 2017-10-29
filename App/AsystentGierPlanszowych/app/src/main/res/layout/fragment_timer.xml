@@ -14,21 +14,28 @@
         android:orientation="vertical"
         tools:ignore="UselessParent">
 
-        <ImageView
+
+        <Button
+            android:id="@+id/testTimerPick"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_hourglass_logo" />
+            android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_primary_selector"
+            android:text="Klepsydra"
+            android:textAllCaps="true"
+            android:textAppearance="@style/ButtonLabelPrimary" />
 
         <LinearLayout
             android:id="@+id/horizontalTimer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <NumberPicker
                 android:id="@+id/minutesPicker"
+                style="@style/Theme.AppCompat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -41,6 +48,17 @@
                 android:layout_weight="1" />
 
         </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/testTextViewTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="00:00:00"
+            android:textAppearance="@style/HourglassTimer"
+            android:textColor="@color/colorAccentLight"
+            android:textSize="40sp" />
 
         <Button
             android:id="@+id/timerStart"

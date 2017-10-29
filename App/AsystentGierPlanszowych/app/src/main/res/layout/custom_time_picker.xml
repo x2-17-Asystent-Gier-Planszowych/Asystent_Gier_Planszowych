@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/testText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Nastaw klepsydrę"
+        android:textColor="@color/black87" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
+        android:layout_marginTop="@dimen/smallVerticalButtonMargin"
+        android:paddingEnd="@dimen/horizontalPaddingDialog"
+        android:paddingStart="@dimen/horizontalPaddingDialog">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="godzina:" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="minuta:" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="sekunda:" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/timePickerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <NumberPicker
+            android:id="@+id/testHourPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/smallHorizontalMargin" />
+
+        <NumberPicker
+            android:id="@+id/testMinutesPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/smallHorizontalMargin" />
+
+        <NumberPicker
+            android:id="@+id/testSecondsPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/testDialogButtonOK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
+        android:layout_marginEnd="@dimen/horizontalPaddingDialog"
+        android:layout_marginStart="@dimen/horizontalPaddingDialog"
+        android:layout_marginTop="@dimen/smallVerticalButtonMargin"
+        android:background="@drawable/button_primary_selector"
+        android:gravity="center"
+        android:text=" Ok "
+        android:textAllCaps="true"
+        android:textAppearance="@style/ButtonLabelPrimary" />
+
+</LinearLayout>

@@ -1,6 +1,6 @@
 package pwcdma.asystentgierplanszowych.fragment;
 
-import android.content.Context;
+import android.app.Dialog;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -15,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.NumberPicker;
+import android.widget.TextView;
+
+import com.ikovac.timepickerwithseconds.TimePicker;
 
 import pwcdma.asystentgierplanszowych.R;
 
@@ -28,11 +31,19 @@ public class TimerFragment extends Fragment {
     private Button timerStart;
     private Button timerCancel;
     private Button timerPause;
+    private Button timerPick;
+    private TextView timeTextView;
+    private Button testdialogButtonOk;
     private NumberPicker minutesPicker;
     private NumberPicker secondsPicker;
     private boolean isOn = false;
     private boolean isPause = false;
     private CountDownTimer timer;
+
+    private NumberPicker mHourPicker;
+    private NumberPicker mMinutePicker;
+    private NumberPicker mSecondPicker;
+
     private MediaPlayer mediaPlayer;
     private AudioAttributes audioAttributes;
     Vibrator vibrator;
@@ -49,7 +60,8 @@ public class TimerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_timer, container, false);
-
+        timerPick = (Button) view.findViewById(R.id.testTimerPick);
+        timeTextView = (TextView) view.findViewById(R.id.testTextViewTime);
         timerStart = (Button) view.findViewById(R.id.timerStart);
         timerPause = (Button) view.findViewById(R.id.timerPause);
         timerCancel = (Button) view.findViewById(R.id.timerCancel);
@@ -57,6 +69,9 @@ public class TimerFragment extends Fragment {
         timerStart.setOnClickListener(onClickListenerStart);
         timerPause.setOnClickListener(onClickListenerPause);
         timerCancel.setOnClickListener(onClickListenerCancel);
+
+        timerPick.setOnClickListener(onClickListenerPick);
+
 
         minutesPicker = (NumberPicker) view.findViewById(R.id.minutesPicker);
         secondsPicker = (NumberPicker) view.findViewById(R.id.secondPicker);
@@ -97,6 +112,40 @@ public class TimerFragment extends Fragment {
     }
 
 
+    private View.OnClickListener onClickListenerPick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if (!isOn) {
+                final Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.custom_time_picker);
+                dialog.setTitle("Nastaw klpesydrę");
+
+                mHourPicker = (NumberPicker) dialog.findViewById(R.id.testHourPicker);
+                mMinutePicker = (NumberPicker) dialog.findViewById(R.id.testMinutesPicker);
+                mSecondPicker = (NumberPicker) dialog.findViewById(R.id.testSecondsPicker);
+
+                mHourPicker.setMaxValue(24);
+                mHourPicker.setMinValue(0);
+                mMinutePicker.setMaxValue(59);
+                mMinutePicker.setMinValue(0);
+                mSecondPicker.setMaxValue(59);
+                mSecondPicker.setMinValue(0);
+
+
+
+                testdialogButtonOk = (Button) dialog.findViewById(R.id.testDialogButtonOK);
+                testdialogButtonOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        timeTextView.setText(String.format("%02d:%02d:%02d",mHourPicker.getValue(),mMinutePicker.getValue(),mSecondPicker.getValue()));
+                    }
+                });
+                dialog.show();
+            }
+        }
+    };
+
     private View.OnClickListener onClickListenerStart = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -133,24 +182,25 @@ public class TimerFragment extends Fragment {
     };
 
     private void startCounting() {
-        int time = 60 * minutesPicker.getValue() + secondsPicker.getValue();
-        timer =  new CountDownTimer(time * SECOND, SECOND) {
-
+        int time2 = 3600 *  mHourPicker.getValue() +  60 * mMinutePicker.getValue() + mSecondPicker.getValue();
+        final int time = 60 * minutesPicker.getValue() + secondsPicker.getValue();
+        timer = new CountDownTimer(time2 * SECOND, SECOND) {
             public void onTick(long millisUntilFinished) {
                 if (isPause) {
                     timer.cancel();
                     return;
                 }
-                int[] time = splitToComponentTimes(millisUntilFinished / SECOND);
-                minutesPicker.setValue(time[1]);
-                secondsPicker.setValue(time[2]);
+                int[] time2 = splitToComponentTimes(millisUntilFinished / SECOND);
+                timeTextView.setText(String.format("%02d:%02d:%02d",time2[0],time2[1],time2[2]));
+                minutesPicker.setValue(time2[1]);
+                secondsPicker.setValue(time2[2]);
             }
 
             public void onFinish() {
                 isOn = false;
                 unlockPicker();
+                timeTextView.setText("00:00:00");
                 secondsPicker.setValue(0);
-
                 if (vibrator.hasVibrator()) {
                     vibre();
                 }
@@ -160,7 +210,7 @@ public class TimerFragment extends Fragment {
 
     private void vibre() {
         if (Build.VERSION.SDK_INT >= 26) {
-            ((Vibrator) getActivity().getSystemService(VIBRATOR_SERVICE)).vibrate(VibrationEffect.createOneShot(SECOND,10));
+            ((Vibrator) getActivity().getSystemService(VIBRATOR_SERVICE)).vibrate(VibrationEffect.createOneShot(SECOND, 10));
         } else {
             ((Vibrator) getActivity().getSystemService(VIBRATOR_SERVICE)).vibrate(SECOND);
         }
@@ -183,7 +233,7 @@ public class TimerFragment extends Fragment {
         remainder = remainder - mins * 60;
         int secs = remainder;
 
-        int[] ints = {hours , mins , secs};
+        int[] ints = {hours, mins, secs};
         return ints;
     }
 }

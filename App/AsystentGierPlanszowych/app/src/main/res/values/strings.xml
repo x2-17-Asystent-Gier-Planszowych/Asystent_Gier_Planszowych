@@ -42,4 +42,9 @@
     <string name="sign_up_password_hint">Hasło musi zawierać przynajmniej 8 znaków, dużą literę i cyfrę</string>
     <string name="pause">Pause</string>
     <string name="cancel">Cancel</string>
+    <string name="timePickerHours">godzina:</string>
+    <string name="timePickerMinutes">minuta:</string>
+    <string name="timePickerSeconds">sekunda:</string>
+    <string name="timePickerOkButton">Ok</string>
+    <string name="timerFragmentTimePlaceholder">00:00:00</string>
 </resources>

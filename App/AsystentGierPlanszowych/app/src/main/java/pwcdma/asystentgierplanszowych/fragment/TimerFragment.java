@@ -14,10 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-
-import com.ikovac.timepickerwithseconds.TimePicker;
 
 import pwcdma.asystentgierplanszowych.R;
 
@@ -34,11 +33,15 @@ public class TimerFragment extends Fragment {
     private Button timerPick;
     private TextView timeTextView;
     private Button testdialogButtonOk;
-    private NumberPicker minutesPicker;
-    private NumberPicker secondsPicker;
     private boolean isOn = false;
     private boolean isPause = false;
     private CountDownTimer timer;
+
+    private ImageView mPlayImgBtn;
+    private ImageView mPauseImgBtn;
+    private ImageView mStopImgBtn;
+    private ImageView mRewindImgBtn;
+    private ImageView mSetTimerCountdownImgBtn;
 
     private NumberPicker mHourPicker;
     private NumberPicker mMinutePicker;
@@ -60,26 +63,22 @@ public class TimerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_timer, container, false);
-        timerPick = (Button) view.findViewById(R.id.testTimerPick);
-        timeTextView = (TextView) view.findViewById(R.id.testTextViewTime);
-        timerStart = (Button) view.findViewById(R.id.timerStart);
-        timerPause = (Button) view.findViewById(R.id.timerPause);
-        timerCancel = (Button) view.findViewById(R.id.timerCancel);
+        timeTextView = view.findViewById(R.id.textViewTime);
+        mPlayImgBtn = view.findViewById(R.id.timerPlayButton);
+        mPauseImgBtn = view.findViewById(R.id.timerPauseButton);
+        mStopImgBtn = view.findViewById(R.id.timerStopButton);
+        mRewindImgBtn = view.findViewById(R.id.timerRewindButton);
+        mSetTimerCountdownImgBtn = view.findViewById(R.id.timerSetCountdownButton);
 
-        timerStart.setOnClickListener(onClickListenerStart);
-        timerPause.setOnClickListener(onClickListenerPause);
-        timerCancel.setOnClickListener(onClickListenerCancel);
+        mPlayImgBtn.setOnClickListener(onClickListenerPlay);
+        mPauseImgBtn.setOnClickListener(onClickListenerPause);
+        mStopImgBtn.setOnClickListener(onClickListenerCancel);
+        mSetTimerCountdownImgBtn.setOnClickListener(onClickListenerSetCountdownTimer);
+        mRewindImgBtn.setOnClickListener(onClickListenerRewind);
 
-        timerPick.setOnClickListener(onClickListenerPick);
-
-
-        minutesPicker = (NumberPicker) view.findViewById(R.id.minutesPicker);
-        secondsPicker = (NumberPicker) view.findViewById(R.id.secondPicker);
 
         vibrator = (Vibrator) getActivity().getSystemService(VIBRATOR_SERVICE);
 
-        setTimerPicker(minutesPicker);
-        setTimerPicker(secondsPicker);
 
         return view;
     }
@@ -106,13 +105,8 @@ public class TimerFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    private void setTimerPicker(NumberPicker picker) {
-        picker.setMaxValue(59);
-        picker.setMinValue(0);
-    }
 
-
-    private View.OnClickListener onClickListenerPick = new View.OnClickListener() {
+    private View.OnClickListener onClickListenerSetCountdownTimer = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             if (!isOn) {
@@ -120,9 +114,9 @@ public class TimerFragment extends Fragment {
                 dialog.setContentView(R.layout.custom_time_picker);
                 dialog.setTitle("Nastaw klpesydrę");
 
-                mHourPicker = (NumberPicker) dialog.findViewById(R.id.testHourPicker);
-                mMinutePicker = (NumberPicker) dialog.findViewById(R.id.testMinutesPicker);
-                mSecondPicker = (NumberPicker) dialog.findViewById(R.id.testSecondsPicker);
+                mHourPicker = dialog.findViewById(R.id.timePickerHourPicker);
+                mMinutePicker = dialog.findViewById(R.id.timePickerMinutesPicker);
+                mSecondPicker = dialog.findViewById(R.id.timePickerSecondsPicker);
 
                 mHourPicker.setMaxValue(24);
                 mHourPicker.setMinValue(0);
@@ -132,13 +126,12 @@ public class TimerFragment extends Fragment {
                 mSecondPicker.setMinValue(0);
 
 
-
-                testdialogButtonOk = (Button) dialog.findViewById(R.id.testDialogButtonOK);
+                testdialogButtonOk = (Button) dialog.findViewById(R.id.timePickerOkButton);
                 testdialogButtonOk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
-                        timeTextView.setText(String.format("%02d:%02d:%02d",mHourPicker.getValue(),mMinutePicker.getValue(),mSecondPicker.getValue()));
+                        timeTextView.setText(String.format("%02d:%02d:%02d", mHourPicker.getValue(), mMinutePicker.getValue(), mSecondPicker.getValue()));
                     }
                 });
                 dialog.show();
@@ -146,12 +139,25 @@ public class TimerFragment extends Fragment {
         }
     };
 
-    private View.OnClickListener onClickListenerStart = new View.OnClickListener() {
+    private View.OnClickListener onClickListenerRewind = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            // TODO: 29.10.2017 zaimplementować metodę do resetowania odliczania do ustawionego czasu w timepickerze
+            // TODO: 29.10.2017 ogarnąc to tak by nie powstawał koflikt z anulowaniem odliczania
+        }
+    };
+
+
+    private View.OnClickListener onClickListenerPlay = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             if (!isOn) {
                 isOn = true;
                 isPause = false;
+                mPlayImgBtn.setEnabled(false);
+                mPlayImgBtn.setVisibility(View.INVISIBLE);
+                mPauseImgBtn.setEnabled(true);
+                mPauseImgBtn.setVisibility(View.VISIBLE);
                 disablePicker();
                 startCounting();
             }
@@ -164,6 +170,10 @@ public class TimerFragment extends Fragment {
             if (isOn) {
                 isPause = true;
                 isOn = false;
+                mPlayImgBtn.setEnabled(true);
+                mPlayImgBtn.setVisibility(View.VISIBLE);
+                mPauseImgBtn.setEnabled(false);
+                mPauseImgBtn.setVisibility(View.INVISIBLE);
             }
         }
     };
@@ -172,18 +182,22 @@ public class TimerFragment extends Fragment {
         @Override
         public void onClick(View view) {
             if (isOn) {
+                // TODO: 29.10.2017 dodać funkcjonalność, by po zanulowaniu odliczania zerować timepickera
                 isPause = true;
                 isOn = false;
-                secondsPicker.setValue(0);
-                minutesPicker.setValue(0);
+                mPlayImgBtn.setEnabled(true);
+                mPlayImgBtn.setVisibility(View.VISIBLE);
+                mPauseImgBtn.setEnabled(false);
+                mPauseImgBtn.setVisibility(View.INVISIBLE);
+                timeTextView.setText(R.string.timerFragmentTimePlaceholder);
                 unlockPicker();
             }
         }
     };
 
     private void startCounting() {
-        int time2 = 3600 *  mHourPicker.getValue() +  60 * mMinutePicker.getValue() + mSecondPicker.getValue();
-        final int time = 60 * minutesPicker.getValue() + secondsPicker.getValue();
+        int time2 = 3600 * mHourPicker.getValue() + 60 * mMinutePicker.getValue() + mSecondPicker.getValue();
+
         timer = new CountDownTimer(time2 * SECOND, SECOND) {
             public void onTick(long millisUntilFinished) {
                 if (isPause) {
@@ -191,16 +205,14 @@ public class TimerFragment extends Fragment {
                     return;
                 }
                 int[] time2 = splitToComponentTimes(millisUntilFinished / SECOND);
-                timeTextView.setText(String.format("%02d:%02d:%02d",time2[0],time2[1],time2[2]));
-                minutesPicker.setValue(time2[1]);
-                secondsPicker.setValue(time2[2]);
+
+                timeTextView.setText(String.format("%02d:%02d:%02d", time2[0], time2[1], time2[2]));
             }
 
             public void onFinish() {
                 isOn = false;
                 unlockPicker();
-                timeTextView.setText("00:00:00");
-                secondsPicker.setValue(0);
+                timeTextView.setText(R.string.timerFragmentTimePlaceholder);
                 if (vibrator.hasVibrator()) {
                     vibre();
                 }
@@ -217,13 +229,11 @@ public class TimerFragment extends Fragment {
     }
 
     private void unlockPicker() {
-        minutesPicker.setEnabled(true);
-        secondsPicker.setEnabled(true);
+        mSetTimerCountdownImgBtn.setEnabled(true);
     }
 
     private void disablePicker() {
-        minutesPicker.setEnabled(false);
-        secondsPicker.setEnabled(false);
+        mSetTimerCountdownImgBtn.setEnabled(false);
     }
 
     public static int[] splitToComponentTimes(long longVal) {

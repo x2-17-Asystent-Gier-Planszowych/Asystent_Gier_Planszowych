@@ -15,85 +15,66 @@
         tools:ignore="UselessParent">
 
 
-        <Button
-            android:id="@+id/testTimerPick"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/button_primary_selector"
-            android:text="Klepsydra"
-            android:textAllCaps="true"
-            android:textAppearance="@style/ButtonLabelPrimary" />
-
-        <LinearLayout
-            android:id="@+id/horizontalTimer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <NumberPicker
-                android:id="@+id/minutesPicker"
-                style="@style/Theme.AppCompat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:visibility="visible" />
-
-            <NumberPicker
-                android:id="@+id/secondPicker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-
         <TextView
-            android:id="@+id/testTextViewTime"
+            android:id="@+id/textViewTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="00:00:00"
+            android:text="@string/timerFragmentTimePlaceholder"
             android:textAppearance="@style/HourglassTimer"
             android:textColor="@color/colorAccentLight"
             android:textSize="40sp" />
 
-        <Button
-            android:id="@+id/timerStart"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/button_primary_selector"
-            android:text="@string/StartCounting"
-            android:textAllCaps="true"
-            android:textAppearance="@style/ButtonLabelPrimary"
-            tools:ignore="DuplicateIds" />
+            android:gravity="center_horizontal">
 
-        <Button
-            android:id="@+id/timerPause"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
-            android:layout_marginTop="@dimen/smallVerticalButtonMargin"
-            android:background="@drawable/button_primary_selector"
-            android:text="@string/pause"
-            android:textAllCaps="true"
-            android:textAppearance="@style/ButtonLabelPrimary" />
+            <ImageView
+                android:id="@+id/timerPlayButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/smallHorizontalMargin"
+                android:src="@drawable/ic_play_button"
+                android:layout_alignParentStart="true"
+                android:visibility="visible"/>
 
-        <Button
-            android:id="@+id/timerCancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
-            android:layout_marginTop="@dimen/smallVerticalButtonMargin"
-            android:background="@drawable/button_primary_selector"
-            android:text="@string/cancel"
-            android:textAllCaps="true"
-            android:textAppearance="@style/ButtonLabelPrimary" />
+            <ImageView
+                android:id="@+id/timerPauseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_margin="@dimen/smallHorizontalMargin"
+                android:src="@drawable/ic_pause_button"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/timerStopButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/smallHorizontalMargin"
+                android:layout_toEndOf="@id/timerPauseButton"
+                android:src="@drawable/ic_stop_button"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/timerSetCountdownButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/smallHorizontalMargin"
+                android:layout_toEndOf="@id/timerStopButton"
+                android:src="@drawable/ic_set_hourglass_button" />
+
+            <ImageView
+                android:id="@+id/timerRewindButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/smallHorizontalMargin"
+                android:layout_toEndOf="@id/timerSetCountdownButton"
+                android:src="@drawable/ic_rewind_button" />
+
+
+        </RelativeLayout>
 
     </LinearLayout>
-
 </FrameLayout>

@@ -33,6 +33,7 @@ import java.util.List;
 import org.json.*;
 
 import pwcdma.asystentgierplanszowych.R;
+import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -352,23 +353,12 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
             } catch (InterruptedException e) {
                 return false;
             }
-
-            String userData;
-            try {
-                JSONObject userDataJson = new JSONObject();
-                userDataJson.put("username", mUsername);
-                userDataJson.put("email", mEmail);
-                userDataJson.put("password", mPassword);
-                userData = userDataJson.toString();
-            } catch(JSONException e){
-                throw new RuntimeException(e.getMessage());
-            }
-
-            if (userData != null) {
-                // TODO: register the new account here.
-            }
-
             return true;
+
+            /*String hashPassword = ServerConnection.hashPassword(mPassword);
+            String response = ServerConnection.getResponse("https://safe-mesa-80296.herokuapp.com/registration?" +
+                    "name=" + mUsername + "&email=" + mEmail + "&password=" + hashPassword);
+            return response.equals("Success");*/
         }
 
         @Override

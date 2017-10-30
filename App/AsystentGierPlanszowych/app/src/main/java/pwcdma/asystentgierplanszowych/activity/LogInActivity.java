@@ -28,14 +28,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.*;
-
-import org.json.*;
 
 import pwcdma.asystentgierplanszowych.R;
+import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -301,7 +298,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mEmail;
         private final String mPassword;
@@ -313,29 +310,18 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-
             try {
                 // Simulate network access.
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 return false;
             }
-
-            String userData;
-            try {
-                JSONObject userDataJson = new JSONObject();
-                userDataJson.put("email", mEmail);
-                userDataJson.put("password", mPassword);
-                userData = userDataJson.toString();
-            } catch(JSONException e){
-                throw new RuntimeException(e.getMessage());
-            }
-
-            /*if (userData != null){
-                login(userData);
-            }*/
-
             return true;
+
+            /*String hashPassword = ServerConnection.hashPassword(mPassword);
+            String response = ServerConnection.getResponse("https://safe-mesa-80296.herokuapp.com/signin?" +
+                    "login=" +  + "&haslo=" + hashPassword);
+            return response.equals("Success");*/
         }
 
         @Override
@@ -356,32 +342,6 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
-        }
-
-        private void login(String data){
-            try {
-                URL url = new URL("http://localhost:8080/greeting?name=Login");
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("POST");
-                connection.setRequestProperty("Accept", "application/json");
-                connection.setDoInput(true);
-                connection.setDoOutput(true);
-
-                int responseCode = connection.getResponseCode();
-                if (responseCode != 200) {
-                    throw new RuntimeException("Failed : HTTP error code : " + responseCode);
-                }
-
-                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-                writer.write(data, 0, data.length());
-
-                //TODO: get response
-
-                connection.disconnect();
-
-            } catch (IOException e) {
-                throw new RuntimeException(e.getMessage());
-            }
         }
     }
 }

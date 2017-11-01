@@ -45,6 +45,11 @@ public class TimerFragment extends Fragment {
 
     private Dialog dialog;
 
+    private int mSavedHours;
+    private int mSavedMinutes;
+    private int mSavedSeconds;
+
+
     private MediaPlayer mediaPlayer;
     private AudioAttributes audioAttributes;
     Vibrator vibrator;
@@ -150,6 +155,9 @@ public class TimerFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
+                        mSavedHours = mHourPicker.getValue();
+                        mSavedMinutes = mMinutePicker.getValue();
+                        mSavedSeconds = mSecondPicker.getValue();
                         timeTextView.setText(String.format("%02d:%02d:%02d", mHourPicker.getValue(), mMinutePicker.getValue(), mSecondPicker.getValue()));
                     }
                 });
@@ -164,6 +172,9 @@ public class TimerFragment extends Fragment {
             isPause = true;
             isOn = false;
             showPlayBtn();
+            mHourPicker.setValue(mSavedHours);
+            mMinutePicker.setValue(mSavedMinutes);
+            mSecondPicker.setValue(mSavedSeconds);
             timeTextView.setText(String.format("%02d:%02d:%02d", mHourPicker.getValue(), mMinutePicker.getValue(), mSecondPicker.getValue()));
             unlockPicker();
         }
@@ -219,13 +230,16 @@ public class TimerFragment extends Fragment {
                     return;
                 }
                 int[] time2 = splitToComponentTimes(millisUntilFinished / SECOND);
+                mHourPicker.setValue(time2[0]);
+                mMinutePicker.setValue(time2[1]);
+                mSecondPicker.setValue(time2[2]);
                 timeTextView.setText(String.format("%02d:%02d:%02d", time2[0], time2[1], time2[2]));
+
             }
 
             public void onFinish() {
                 isOn = false;
                 unlockPicker();
-                showPlayBtn();
                 timeTextView.setText(R.string.timerFragmentTimePlaceholder);
                 if (vibrator.hasVibrator()) {
                     vibre();

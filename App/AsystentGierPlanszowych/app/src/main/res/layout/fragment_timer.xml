@@ -54,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/smallHorizontalMargin"
                 android:layout_toEndOf="@id/timerPauseButton"
+                android:background="@drawable/selectable_item_background"
                 android:src="@drawable/ic_stop_button"
                 android:visibility="visible" />
 
@@ -63,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/smallHorizontalMargin"
                 android:layout_toEndOf="@id/timerStopButton"
+                android:background="@drawable/selectable_item_background"
                 android:src="@drawable/ic_set_hourglass_button" />
 
             <ImageView
@@ -71,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/smallHorizontalMargin"
                 android:layout_toEndOf="@id/timerSetCountdownButton"
+                android:background="@drawable/selectable_item_background"
                 android:src="@drawable/ic_rewind_button" />
 
 

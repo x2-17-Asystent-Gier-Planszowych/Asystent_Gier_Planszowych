@@ -27,16 +27,12 @@ public class TimerFragment extends Fragment {
 
     private final int SECOND = 1000;
     private OnFragmentInteractionListener mListener;
-    private Button timerStart;
-    private Button timerCancel;
-    private Button timerPause;
-    private Button timerPick;
     private TextView timeTextView;
     private Button testdialogButtonOk;
     private boolean isOn = false;
     private boolean isPause = false;
     private CountDownTimer timer;
-
+    private ImageView mHourglassImg;
     private ImageView mPlayImgBtn;
     private ImageView mPauseImgBtn;
     private ImageView mStopImgBtn;
@@ -65,19 +61,8 @@ public class TimerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_timer, container, false);
-        timeTextView = view.findViewById(R.id.timerTextViewTime);
-        mPlayImgBtn = view.findViewById(R.id.timerPlayButton);
-        mPauseImgBtn = view.findViewById(R.id.timerPauseButton);
-        mStopImgBtn = view.findViewById(R.id.timerStopButton);
-        mRewindImgBtn = view.findViewById(R.id.timerRewindButton);
-        mSetTimerCountdownImgBtn = view.findViewById(R.id.timerSetCountdownButton);
-
-        mPlayImgBtn.setOnClickListener(onClickListenerPlay);
-        mPauseImgBtn.setOnClickListener(onClickListenerPause);
-        mStopImgBtn.setOnClickListener(onClickListenerCancel);
-        mSetTimerCountdownImgBtn.setOnClickListener(onClickListenerSetCountdownTimer);
-        mRewindImgBtn.setOnClickListener(onClickListenerRewind);
-
+        findViews(view);
+        setOnClickListeners();
 
         vibrator = (Vibrator) getActivity().getSystemService(VIBRATOR_SERVICE);
 
@@ -85,6 +70,23 @@ public class TimerFragment extends Fragment {
         return view;
     }
 
+    private void setOnClickListeners() {
+        mPlayImgBtn.setOnClickListener(onClickListenerPlay);
+        mPauseImgBtn.setOnClickListener(onClickListenerPause);
+        mStopImgBtn.setOnClickListener(onClickListenerCancel);
+        mSetTimerCountdownImgBtn.setOnClickListener(onClickListenerSetCountdownTimer);
+        mRewindImgBtn.setOnClickListener(onClickListenerRewind);
+    }
+
+    private void findViews(View view) {
+        timeTextView = view.findViewById(R.id.timerTextViewTime);
+        mPlayImgBtn = view.findViewById(R.id.timerPlayButton);
+        mPauseImgBtn = view.findViewById(R.id.timerPauseButton);
+        mStopImgBtn = view.findViewById(R.id.timerStopButton);
+        mRewindImgBtn = view.findViewById(R.id.timerRewindButton);
+        mSetTimerCountdownImgBtn = view.findViewById(R.id.timerSetCountdownButton);
+        mHourglassImg = view.findViewById(R.id.timerHourglassImage);
+    }
 //    @Override
 //    public void onAttach(Context context) {
 //        super.onAttach(context);
@@ -171,7 +173,7 @@ public class TimerFragment extends Fragment {
     private View.OnClickListener onClickListenerPlay = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if ((mHourPicker.getValue() + mMinutePicker.getValue() + mSecondPicker.getValue()) != 0 && !isOn) {
+            if ((mHourPicker.getValue() + mMinutePicker.getValue() + mSecondPicker.getValue()!= 0) && !isOn) {
                 isOn = true;
                 isPause = false;
                 disablePicker();
@@ -198,10 +200,7 @@ public class TimerFragment extends Fragment {
         public void onClick(View view) {
             isPause = true;
             isOn = false;
-            mPlayImgBtn.setEnabled(true);
-            mPlayImgBtn.setVisibility(View.VISIBLE);
-            mPauseImgBtn.setEnabled(false);
-            mPauseImgBtn.setVisibility(View.INVISIBLE);
+            showPlayBtn();
             mHourPicker.setValue(0);
             mMinutePicker.setValue(0);
             mSecondPicker.setValue(0);
@@ -226,6 +225,7 @@ public class TimerFragment extends Fragment {
             public void onFinish() {
                 isOn = false;
                 unlockPicker();
+                showPlayBtn();
                 timeTextView.setText(R.string.timerFragmentTimePlaceholder);
                 if (vibrator.hasVibrator()) {
                     vibre();

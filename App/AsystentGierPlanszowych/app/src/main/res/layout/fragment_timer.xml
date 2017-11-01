@@ -15,29 +15,17 @@
         tools:ignore="UselessParent">
 
         <ImageView
-            android:layout_alignParentTop="true"
             android:id="@+id/timerHourglassImage"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:src="@drawable/ic_hourglass_logo" />
 
-        <TextView
-            android:layout_below="@id/timerHourglassImage"
-            android:gravity="center"
-            android:id="@+id/timerTextViewTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/timerFragmentTimePlaceholder"
-            android:textAppearance="@style/HourglassTimer"
-            android:textColor="@color/white50"
-            android:textSize="40sp" />
-
         <RelativeLayout
-            android:layout_alignParentBottom="true"
             android:id="@+id/timerButtonsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:gravity="center_horizontal">
 
             <ImageView
@@ -87,6 +75,18 @@
 
 
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/timerTextViewTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/timerButtonsLayout"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/timerFragmentTimePlaceholder"
+            android:textAppearance="@style/HourglassTimer"
+            android:textColor="@color/white50"
+            android:textSize="72sp" />
 
     </RelativeLayout>
 </FrameLayout>

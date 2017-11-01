@@ -7,25 +7,35 @@
     android:visibility="visible"
     tools:context=".fragment.TimerFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/verticalTimer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:ignore="UselessParent">
 
+        <ImageView
+            android:layout_alignParentTop="true"
+            android:id="@+id/timerHourglassImage"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:src="@drawable/ic_hourglass_logo" />
 
         <TextView
-            android:id="@+id/textViewTime"
-            android:layout_width="wrap_content"
+            android:layout_below="@id/timerHourglassImage"
+            android:gravity="center"
+            android:id="@+id/timerTextViewTime"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/timerFragmentTimePlaceholder"
             android:textAppearance="@style/HourglassTimer"
-            android:textColor="@color/colorAccentLight"
+            android:textColor="@color/white50"
             android:textSize="40sp" />
 
         <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:id="@+id/timerButtonsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
@@ -34,10 +44,11 @@
                 android:id="@+id/timerPlayButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/smallHorizontalMargin"
-                android:src="@drawable/ic_play_button"
                 android:layout_alignParentStart="true"
-                android:visibility="visible"/>
+                android:layout_margin="@dimen/smallHorizontalMargin"
+                android:background="@drawable/selectable_item_background"
+                android:src="@drawable/ic_play_button"
+                android:visibility="visible" />
 
             <ImageView
                 android:id="@+id/timerPauseButton"
@@ -45,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignWithParentIfMissing="true"
                 android:layout_margin="@dimen/smallHorizontalMargin"
+                android:background="@drawable/selectable_item_background"
                 android:src="@drawable/ic_pause_button"
                 android:visibility="invisible" />
 
@@ -76,5 +88,5 @@
 
         </RelativeLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 </FrameLayout>

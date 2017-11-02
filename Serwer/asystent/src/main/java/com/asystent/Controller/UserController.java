@@ -2,7 +2,6 @@ package com.asystent.Controller;
 
 
 import com.asystent.Model.Categories;
-import com.asystent.Model.TestModel;
 import com.asystent.Model.User;
 
 import com.asystent.Service.UserServices;
@@ -30,7 +29,12 @@ public class UserController {
 
     @Autowired
 	UserServices userServices;
-        
+
+
+    @RequestMapping("/get/users")
+	public String getUsers() {
+		return userServices.getAllUsers();
+	}
         @RequestMapping("/registration")
         public String rejestacja(@RequestParam(value="name") String name,
         		@RequestParam(value="email") String email,
@@ -109,7 +113,7 @@ public class UserController {
 	}
 
 	@RequestMapping("/change/email")
-	public String changeEmail(@RequestParam(value="deactivate", defaultValue="World") String email,
+	public String changeEmail(@RequestParam(value="email", defaultValue="World") String email,
 							  @RequestParam(value="login", defaultValue="World") String login) {
 
 		if(userServices.updateEmail(login,email)!=0) {

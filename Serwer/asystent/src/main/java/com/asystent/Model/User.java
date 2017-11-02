@@ -1,16 +1,24 @@
 package com.asystent.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Kamil on 2017-10-17.
  */
 public class User {
-
+    @SerializedName("id")
     private Long id;
+    @SerializedName("username")
     private String username;
+    @SerializedName("email")
     private String email;
+    @SerializedName("password")
     private String password;
+    @SerializedName("about")
     private String about;
+    @SerializedName("avatar")
     private byte[] avatar;
+    @SerializedName("active")
     private boolean active;
 
     public User() {

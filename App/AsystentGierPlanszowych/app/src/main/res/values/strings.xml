@@ -40,6 +40,7 @@
     <string name="sign_up_catchphrase">Zaczynamy! To zajmie nie więcej czasu niż rozłożenie planszy!</string>
     <string name="sign_up_password_hint">Hasło musi zawierać przynajmniej 8 znaków, dużą literę i cyfrę</string>
     <string name="sign_up_failed">Błąd - rejestracja nie powiodła się</string>
+    <string name="sign_up_failed">Błąd - rejestracja nie powiodła się</string>
     <string name="pause">Pause</string>
     <string name="cancel">Cancel</string>
 </resources>

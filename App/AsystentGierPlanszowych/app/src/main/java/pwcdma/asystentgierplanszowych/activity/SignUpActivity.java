@@ -352,7 +352,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
             ServerConnection connection = new ServerConnection("https://gentle-journey-42470.herokuapp.com/registration?" +
                     "name=" + mUsername + "&email=" + mEmail + "&password=" + mPassword);
             String response = connection.getResponse();
-            return response.equals("Success");
+            return response.equals("Succes");
         }
 
         @Override

@@ -318,10 +318,11 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             }
             return true;
 
-            /*String hashPassword = ServerConnection.hashPassword(mPassword);
-            String response = ServerConnection.getResponse("https://safe-mesa-80296.herokuapp.com/signin?" +
-                    "login=" +  + "&haslo=" + hashPassword);
-            return response.equals("Success");*/
+            /*//String hashPassword = ServerConnection.hashPassword(mPassword);
+            ServerConnection connection = new ServerConnection("https://gentle-journey-42470.herokuapp.com/signin?" +
+                    "login=" +  + "&haslo=" + mPassword);
+            String response = connection.getResponse();
+            return response.equals("Succes");*/
         }
 
         @Override

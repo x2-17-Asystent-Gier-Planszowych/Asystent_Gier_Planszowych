@@ -7,6 +7,7 @@ import com.asystent.Model.Games;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
@@ -125,6 +126,7 @@ public class GamesService {
 
         String out;
         gson = new Gson();
+        try {
         Games cat = jdbcTemplate.queryForObject(SELECT_BY_NAME, new RowMapper<Games>() {
             @Override
             public Games mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -136,14 +138,23 @@ public class GamesService {
             }
         }, name);
 
-        try{
-            out = gson.toJson(cat);
-        } catch (Exception e){
+
+        try {
+            if(cat.isActive()) {
+                out = gson.toJson(cat);
+                return out;
+            }
+            out = "Fail";
+        } catch (Exception e) {
             return "Fail";
         }
-        return out;
 
+    } catch (EmptyResultDataAccessException emp) {
+        return "Fail";
     }
+
+        return out;
+}
 
     public String deleteGame(String name){
         int id = getIdByName(name);

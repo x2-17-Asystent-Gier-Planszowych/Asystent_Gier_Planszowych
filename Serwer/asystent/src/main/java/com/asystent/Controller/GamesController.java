@@ -16,19 +16,19 @@ public class GamesController {
     GamesService gamesService;
 
     @RequestMapping(value = "/games", method = RequestMethod.GET)
-    public List<String> getGames() {
+    public String getGames() {
         return gamesService.getAllGames();
     }
-    @RequestMapping(value = "/games", method = RequestMethod.POST)
+    @RequestMapping(value = "/games/addGame", method = RequestMethod.GET)
     public String addGame(@RequestParam(value = "name") String name) {
         return gamesService.addGame(name);
     }
-    @RequestMapping(value = "/games/addCat", method = RequestMethod.POST)
+    @RequestMapping(value = "/games/addCat", method = RequestMethod.GET)
     public String addCategoryToGame(@RequestParam(value = "name") String gameName, @RequestParam(value = "category") String categoryName ) {
         return gamesService.addTag(gameName,categoryName);
     }
     @RequestMapping(value = "/games/getTags", method = RequestMethod.GET)
-    public List<String> getTags(@RequestParam(value = "name") String name){
+    public String getTags(@RequestParam(value = "name") String name){
         return gamesService.getGameTag(name);
     }
     @RequestMapping(value = "/games/{gameName}", method = RequestMethod.GET)

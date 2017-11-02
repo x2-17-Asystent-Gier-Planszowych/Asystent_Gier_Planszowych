@@ -18,7 +18,7 @@ public class CategoriesController {
 
 
     @RequestMapping(value = "/categories", method = RequestMethod.GET)
-    public List<String> getCategories() {
+    public String getCategories() {
         return categoriesService.getCats();
     }
 
@@ -27,12 +27,12 @@ public class CategoriesController {
         return categoriesService.getCatByName(name);
     }
 
-    @RequestMapping(value = "/categories", method = RequestMethod.POST)
+    @RequestMapping(value = "/categories/add", method = RequestMethod.GET)
     public String addCategory(@RequestParam(value = "name") String name) {
         return categoriesService.addCat(name);
     }
 
-    @RequestMapping(value = "categories/{catname}/inactive", method = RequestMethod.GET)
+    @RequestMapping(value = "/categories/{catname}/inactive", method = RequestMethod.GET)
     public String deleteCategory(@PathVariable(value = "catname") String name){
         return categoriesService.changeActive(name);
     }

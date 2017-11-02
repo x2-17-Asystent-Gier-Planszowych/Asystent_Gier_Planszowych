@@ -2,6 +2,7 @@ package com.asystent.Service;
 
 import com.asystent.Model.Categories;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,10 +31,10 @@ public class CategoriesService {
     private final String UPDATE = "UPDATE \"Categories\" SET \"Active\"= false WHERE \"Catname\" = ?";
     private Gson gson;
 
-    public List<String> getCats() {
+    public String getCats() {
 
         gson = new Gson();
-        List<String> cat = new ArrayList<>();
+        JsonArray jsonArray = new JsonArray();
         List<Categories> a = jdbcTemplate.query(SELECT_ALL, new RowMapper<Categories>() {
             @Override
             public Categories mapRow(ResultSet rs, int rownumber) throws SQLException {
@@ -41,18 +42,13 @@ public class CategoriesService {
                 e.setId(rs.getLong(1));
                 e.setName(rs.getString(2));
                 e.setActive(rs.getBoolean(3));
+                if(rs.getBoolean(3)) {
+                    jsonArray.add(gson.toJsonTree(e));
+                }
                 return e;
             }
         });
-
-        try {
-            for (Categories i : a) {
-                cat.add(gson.toJson(i));
-            }
-        } catch (Exception e) {
-            cat.add("{\"id\":0,\"name\":\"\",\"active\":true}");
-        }
-        return cat;
+        return  jsonArray.toString();
     }
 
 
@@ -69,44 +65,45 @@ public class CategoriesService {
                     c.setId(resultSet.getLong(1));
                     c.setName(resultSet.getString(2));
                     c.setActive(resultSet.getBoolean(3));
+
                     return c;
                 }
             }, name);
 
             try {
-                out = gson.toJson(cat);
+                if(cat.isActive()) {
+                    out = gson.toJson(cat);
+                    return out;
+                }
+               out = "None";
             } catch (Exception e) {
                 return "None";
             }
 
         } catch (EmptyResultDataAccessException emp) {
-            return "404 Not Found";
+            return "404";
         }
 
         return out;
     }
 
 
+
     public String addCat(String name) {
         gson = new Gson();
-        List<String> strings = getCats();
-        List<Categories> cats = new ArrayList<>();
-        for (String a : strings) {
-            cats.add(gson.fromJson(a, Categories.class));
+        if(getCatByName(name).equals("404")){
+            jdbcTemplate.update(INSERT, name, true);
+            return  "Success";
         }
-        for (Categories a : cats) {
-            if (a.getName().equals(name)) {
-                return "Duplicated";
-            }
-        }
-
-        jdbcTemplate.update(INSERT, name, true);
-        return "Success";
+        return "Duplicated";
     }
 
     public String changeActive(String name){
-        jdbcTemplate.update(UPDATE,name );
-        return "Success";
+        if(!getCatByName(name).equals("404")) {
+            jdbcTemplate.update(UPDATE, name);
+            return "Success";
+        }
+        return "None";
     }
 
 

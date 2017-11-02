@@ -26,7 +26,7 @@ public class GroupServices {
         Gson gson = new Gson();
         List<String> cat = new ArrayList<>();
         JsonArray jsonArray = new JsonArray();
-        List<Group> a = jdbcTemplate.query(" SELECT \"Id\",\"Groupname\",\"Active\" FROM \"Groups\"", new RowMapper<Group>() {
+        List<Group> a = jdbcTemplate.query(" SELECT \"Id\",\"Groupname\",\"Active\" FROM \"Groups\" WHERE \"Active\"=? ",new Object[]{true}, new RowMapper<Group>() {
             @Override
             public Group mapRow(ResultSet rs, int rownumber) throws SQLException {
 
@@ -39,6 +39,12 @@ public class GroupServices {
             }
         });
         return  jsonArray.toString();
+    }
+
+    public int addUserToGroupByName(String nameUser,String nameGroup){
+        int nameUserLocal = jdbcTemplate.queryForObject(" SELECT \"Id\" FROM \"Users\" WHERE \"Username\"=(?)", new Object[]{nameUser}, Integer.class);
+        int nameGroupLocal = jdbcTemplate.queryForObject(" SELECT \"Id\" FROM \"Groups\" WHERE \"Groupname\"=(?)", new Object[]{nameGroup}, Integer.class);
+        return jdbcTemplate.update("INSERT INTO \"Group_User\"(\"Group_Id\", \"User_Id\") VALUES (?,?)",new Object[]{nameGroupLocal,nameUserLocal});
     }
 
     public int addUserToGroup(int idUser,int idGroup){
@@ -96,6 +102,17 @@ public class GroupServices {
 
     public int addGroup(String nameGroup){
         return jdbcTemplate.update("INSERT INTO \"Groups\"(\"Groupname\",\"Active\") VALUES (?,?)",new Object[]{nameGroup,true});
+    }
+
+    public int deleteGroup(String nameGroup){
+        return jdbcTemplate.update("UPDATE \"Groups\" SET \"Active\"=? WHERE \"Groupname\"=?",new Object[]{false,nameGroup});
+    }
+
+    public int deleteUserFromGroup(String nameUser,String nameGroup){
+        int idGroup = jdbcTemplate.queryForObject(" SELECT \"Id\" FROM \"Groups\" WHERE \"Groupname\"=(?)", new Object[]{nameGroup}, Integer.class);
+        int idUser = jdbcTemplate.queryForObject(" SELECT \"Id\" FROM \"Users\" WHERE \"Username\"=(?)", new Object[]{nameUser}, Integer.class);
+        return jdbcTemplate.update("DELETE FROM \"Group_User\" where \"Group_Id\"=? AND \"User_Id\"=?",new Object[]{idGroup,idUser});
+
     }
 
 

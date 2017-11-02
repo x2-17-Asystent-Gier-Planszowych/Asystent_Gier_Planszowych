@@ -17,7 +17,65 @@ public class GroupController {
     GroupServices groupServices;
 
     @RequestMapping(value = "/group", method = RequestMethod.GET)
-    public String getAllGroups(@RequestParam(value="name") String name) {
+    public String getAllGroups() {
+        return groupServices.allGroup();
+    }
+
+    @RequestMapping(value = "/user/group", method = RequestMethod.GET)
+    public String getUserInGroup(@RequestParam(value="id") int id) {
+        return groupServices.getUserInGroup(id);
+    }
+
+    @RequestMapping(value = "/group/add/user", method = RequestMethod.GET)
+    public String addUserToGroup(@RequestParam(value="idGroup") int idGroup,@RequestParam(value="idUser") int idUser) {
+        if( groupServices.addUserToGroup(idUser,idGroup)!=0) {
+            return new String("Succes");
+        }else{
+            return new  String("Failed");
+        }
+    }
+    @RequestMapping(value = "/group/add/user/name", method = RequestMethod.GET)
+    public String addUserToGroupByName(@RequestParam(value="nameGroup") String nameGroup,@RequestParam(value="nameUser") String nameUser) {
+        if( groupServices.addUserToGroupByName(nameUser,nameGroup)!=0) {
+            return new String("Succes");
+        }else{
+            return new  String("Failed");
+        }
+    }
+    @RequestMapping(value = "/user/group/name", method = RequestMethod.GET)
+    public String getUserInGroupByNameGroup(@RequestParam(value="name") String name) {
+        return groupServices.getUserInGroupByNameGroup(name);
+    }
+
+    @RequestMapping(value = "/group/delete", method = RequestMethod.GET)
+    public String deleteGroup(@RequestParam(value="name") String name) {
+        if(groupServices.deleteGroup(name)!=0) {
+            return new String("Succes");
+        }else{
+            return new  String("Failed");
+        }
+    }
+
+
+    @RequestMapping(value = "/group/delete/user", method = RequestMethod.GET)
+    public String deleteUserFromGroup(@RequestParam(value="nameUser") String nameUser
+    ,@RequestParam(value="nameGroup") String nameGroup) {
+        if(groupServices.deleteUserFromGroup(nameUser,nameGroup)!=0) {
+            return new String("Succes");
+        }else{
+            return new  String("Failed");
+        }
+    }
+
+    @RequestMapping(value = "/group/add", method = RequestMethod.GET)
+    public String addGroup(@RequestParam(value="name") String name) {
+        if(groupServices.addGroup(name)!=0) {
+            return new String("Succes");
+        }else{
+            return new  String("Failed");
+        }
+    }
+}
       /*  String myJSONString = "{\"id\":1,\"groupName\":\"a\",\"active\":false}";
         JsonObject jobj = new Gson().fromJson(myJSONString, JsonObject.class);
 
@@ -35,26 +93,3 @@ public class GroupController {
             JsonPrimitive tsPrimitive = jo.getAsJsonPrimitive("groupName");
             ret = tsPrimitive.getAsString();
         }*/
-        return groupServices.allGroup();
-    }
-
-    @RequestMapping(value = "/user/group", method = RequestMethod.GET)
-    public String getUserInGroup(@RequestParam(value="id") int id) {
-        return groupServices.getUserInGroup(id);
-    }
-
-    @RequestMapping(value = "/group/add/user", method = RequestMethod.GET)
-    public int addUserToGroup(@RequestParam(value="idGroup") int idGroup,@RequestParam(value="idUser") int idUser) {
-        return groupServices.addUserToGroup(idUser,idGroup);
-    }
-
-    @RequestMapping(value = "/user/group/name", method = RequestMethod.GET)
-    public String getUserInGroupByNameGroup(@RequestParam(value="name") String name) {
-        return groupServices.getUserInGroupByNameGroup(name);
-    }
-
-    @RequestMapping(value = "/group/add", method = RequestMethod.GET)
-    public int addGroup(@RequestParam(value="name") String name) {
-        return groupServices.addGroup(name);
-    }
-}

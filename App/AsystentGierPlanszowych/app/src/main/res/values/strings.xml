@@ -18,7 +18,6 @@
     <string name="error_invalid_username">Nieprawidłowa nazwa użytkownika</string>
     <string name="error_password_mismatch">Niezgodność haseł</string>
 
-    <string name="sign_in_facebook">Zaloguj się przez Facebook</string>
     <string name="sign_up">Zarejestruj się</string>
 
     <string name="startTab1Text">Jesteś mistrzem gry i chcesz zaprosić graczy na niesamowitą sesję RPG?</string>
@@ -36,4 +35,5 @@
     <string name="sign_up_title">Rejestracja</string>
     <string name="sign_up_catchphrase">Zaczynamy! To zajmie nie więcej czasu niż rozłożenie planszy!</string>
     <string name="sign_up_password_hint">Hasło musi zawierać przynajmniej 8 znaków, dużą literę i cyfrę</string>
+    <string name="sign_up_failed">Błąd - rejestracja nie powiodła się</string>
 </resources>

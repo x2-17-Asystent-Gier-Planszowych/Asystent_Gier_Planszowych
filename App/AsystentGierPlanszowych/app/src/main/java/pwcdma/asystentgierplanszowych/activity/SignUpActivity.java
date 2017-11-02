@@ -26,6 +26,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -347,18 +348,11 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-            return true;
-
-            /*String hashPassword = ServerConnection.hashPassword(mPassword);
-            String response = ServerConnection.getResponse("https://safe-mesa-80296.herokuapp.com/registration?" +
-                    "name=" + mUsername + "&email=" + mEmail + "&password=" + hashPassword);
-            return response.equals("Success");*/
+            //String hashPassword = ServerConnection.hashPassword(mPassword);
+            ServerConnection connection = new ServerConnection("https://gentle-journey-42470.herokuapp.com/registration?" +
+                    "name=" + mUsername + "&email=" + mEmail + "&password=" + mPassword);
+            String response = connection.getResponse();
+            return response.equals("Success");
         }
 
         @Override
@@ -370,8 +364,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
                 setResult(RESULT_CODE_SUCCESS);
                 finish();
             } else {
-                mPasswordTextInputLayout.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                Toast.makeText(SignUpActivity.this, R.string.sign_up_failed, Toast.LENGTH_LONG).show();
             }
         }
 

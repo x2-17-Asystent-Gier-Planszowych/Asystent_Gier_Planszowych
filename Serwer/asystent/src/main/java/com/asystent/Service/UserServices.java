@@ -25,6 +25,8 @@ public class UserServices {
     JdbcTemplate jdbcTemplate;
 
     public int deactive(String login){
+        int idUser = jdbcTemplate.queryForObject(" SELECT \"Id\" FROM \"Users\" WHERE \"Username\"=(?)", new Object[]{login}, Integer.class);
+        jdbcTemplate.update("DELETE FROM \"Group_User\" where \"User_Id\"=?",new Object[]{idUser});
         return  jdbcTemplate.update("UPDATE \"Users\" SET \"Active\" = ? where \"Username\" = ?",new Object[]{false,login});
     }
     public int updateAbout(String login,String about){

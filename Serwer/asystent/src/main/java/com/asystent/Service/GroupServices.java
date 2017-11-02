@@ -75,7 +75,6 @@ public class GroupServices {
 
 
     public String getUserInGroupByNameGroup(String name){
-
         Gson gson = new Gson();
         JsonArray jsonArray = new JsonArray();
         int idGroup = jdbcTemplate.queryForObject(" SELECT \"Id\" FROM \"Groups\" WHERE \"Groupname\"=(?)", new Object[]{name}, Integer.class);
@@ -105,6 +104,9 @@ public class GroupServices {
     }
 
     public int deleteGroup(String nameGroup){
+
+        int idGroup = jdbcTemplate.queryForObject(" SELECT \"Id\" FROM \"Groups\" WHERE \"Groupname\"=(?)", new Object[]{nameGroup}, Integer.class);
+        jdbcTemplate.update("DELETE FROM \"Group_User\" where \"Group_Id\"=?",new Object[]{idGroup});
         return jdbcTemplate.update("UPDATE \"Groups\" SET \"Active\"=? WHERE \"Groupname\"=?",new Object[]{false,nameGroup});
     }
 

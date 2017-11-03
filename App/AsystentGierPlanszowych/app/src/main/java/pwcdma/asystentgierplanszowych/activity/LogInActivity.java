@@ -27,6 +27,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -310,19 +311,11 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-            return true;
-
-            /*//String hashPassword = ServerConnection.hashPassword(mPassword);
+            String hashPassword = ServerConnection.hashPassword(mPassword);
             ServerConnection connection = new ServerConnection("https://gentle-journey-42470.herokuapp.com/signin?" +
-                    "login=" +  + "&haslo=" + mPassword);
+                    "login=" + mEmail + "&haslo=" + hashPassword);
             String response = connection.getResponse();
-            return response.equals("Succes");*/
+            return response.equals("Succes");
         }
 
         @Override
@@ -331,6 +324,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
+                Toast.makeText(LogInActivity.this, R.string.login_success, Toast.LENGTH_LONG).show();
                 setResult(RESULT_CODE_SUCCESS);
                 finish();
             } else {

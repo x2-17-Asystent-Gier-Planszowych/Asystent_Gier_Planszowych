@@ -348,9 +348,9 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            //String hashPassword = ServerConnection.hashPassword(mPassword);
+            String hashPassword = ServerConnection.hashPassword(mPassword);
             ServerConnection connection = new ServerConnection("https://gentle-journey-42470.herokuapp.com/registration?" +
-                    "name=" + mUsername + "&email=" + mEmail + "&password=" + mPassword);
+                    "name=" + mUsername + "&email=" + mEmail + "&password=" + hashPassword);
             String response = connection.getResponse();
             return response.equals("Succes");
         }
@@ -361,6 +361,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
             showProgress(false);
 
             if (success) {
+                Toast.makeText(SignUpActivity.this, R.string.sign_up_success, Toast.LENGTH_LONG).show();
                 setResult(RESULT_CODE_SUCCESS);
                 finish();
             } else {

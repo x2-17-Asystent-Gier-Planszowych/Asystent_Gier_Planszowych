@@ -5,7 +5,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-//import javax.xml.bind.DatatypeConverter;
 
 public class ServerConnection {
 
@@ -40,11 +39,17 @@ public class ServerConnection {
         return response;
     }
 
-    /*public static String hashPassword(String password) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        md.update(password.getBytes());
-        byte[] digest = md.digest();
-        String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();
-        return myHash;
-    }*/
+    public static String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(password.getBytes());
+            byte[] digest = md.digest();
+            StringBuffer hashStringBuffer = new StringBuffer();
+            for (byte b : digest)
+                hashStringBuffer.append(String.format("%02X", b));
+            return new String(hashStringBuffer);
+        } catch (NoSuchAlgorithmException e){
+            throw new RuntimeException(e.getMessage());
+        }
+    }
 }

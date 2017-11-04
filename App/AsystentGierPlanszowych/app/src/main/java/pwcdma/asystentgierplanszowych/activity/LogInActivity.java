@@ -35,6 +35,8 @@ import java.util.List;
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
+import static pwcdma.asystentgierplanszowych.server.ServerConnection.*;
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -166,7 +168,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         mPasswordTextInputLayout.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
+        String login = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -180,11 +182,11 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(login)) {
             mEmailTextInputLayout.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        } else if (!isEmailValid(login) && !isUsernameValid(login)) {
             mEmailTextInputLayout.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
@@ -198,18 +200,9 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask = new UserLoginTask(login, password);
             mAuthTask.execute((Void) null);
         }
-    }
-
-    private boolean isEmailValid(String email) {
-        return email.matches("[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}");
-    }
-
-    private boolean isPasswordValid(String password) {
-        return password.matches(".*[A-Z].*") && password.matches(".*[a-z].*") && password.matches(".*[0-9].*")
-                && password.length() >= 8;
     }
 
     /**
@@ -301,19 +294,19 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
+        private final String mLogin;
         private final String mPassword;
 
         UserLoginTask(String email, String password) {
-            mEmail = email;
+            mLogin = email;
             mPassword = password;
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            String hashPassword = ServerConnection.hashPassword(mPassword);
+            String hashPassword = hashPassword(mPassword);
             ServerConnection connection = new ServerConnection("https://gentle-journey-42470.herokuapp.com/signin?" +
-                    "login=" + mEmail + "&haslo=" + hashPassword);
+                    "login=" + mLogin + "&haslo=" + hashPassword);
             String response = connection.getResponse();
             return response.equals("Succes");
         }

@@ -31,10 +31,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.*;
-
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
+
+import static pwcdma.asystentgierplanszowych.server.ServerConnection.*;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -234,19 +234,6 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         }
     }
 
-    private boolean isUsernameValid(String username) {
-        return username.matches("[A-Za-z0-9_]{4,}");
-    }
-
-    private boolean isEmailValid(String email) {
-        return email.matches("[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}");
-    }
-
-    private boolean isPasswordValid(String password) {
-        return password.matches(".*[A-Z].*") && password.matches(".*[a-z].*") && password.matches(".*[0-9].*")
-                && password.length() >= 8;
-    }
-
     /**
      * Shows the progress UI and hides the login form.
      */
@@ -348,7 +335,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            String hashPassword = ServerConnection.hashPassword(mPassword);
+            String hashPassword = hashPassword(mPassword);
             ServerConnection connection = new ServerConnection("https://gentle-journey-42470.herokuapp.com/registration?" +
                     "name=" + mUsername + "&email=" + mEmail + "&password=" + hashPassword);
             String response = connection.getResponse();

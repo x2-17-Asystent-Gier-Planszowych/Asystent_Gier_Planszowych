@@ -39,7 +39,7 @@ public class UserServices {
         return jdbcTemplate.update("UPDATE \"Users\" SET \"Password\" = ? where \"Username\" = ?",new Object[]{password,login});
     }
     public String getPassword(String login){
-       return jdbcTemplate.queryForObject("SELECT \"Password\" FROM \"Users\" where \"Username\" = (?)",new Object[]{login}, String.class);
+       return jdbcTemplate.queryForObject("SELECT \"Password\" FROM \"Users\" where \"Username\" = (?) OR \"Email\" = (?)",new Object[]{login,login}, String.class);
     }
 
     public Boolean isUsedUsername(String name){

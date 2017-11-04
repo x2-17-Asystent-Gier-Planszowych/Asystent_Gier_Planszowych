@@ -67,7 +67,7 @@ public class UserController {
                         @RequestParam(value="haslo", defaultValue="World") String passwordFromAplication) {
 
     	String password = null;
-    	if(userServices.isUsedUsername(login) == true){
+    	if(userServices.isUsedUsername(login) == true || userServices.isEmailUse(login) == true){
     		password = userServices.getPassword(login);
     	}else{
     		password = "Mismatch login";

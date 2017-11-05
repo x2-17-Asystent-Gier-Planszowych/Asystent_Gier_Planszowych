@@ -42,4 +42,9 @@
     <string name="sign_up_password_hint">Hasło musi zawierać przynajmniej 8 znaków, dużą literę i cyfrę</string>
     <string name="pause">Pause</string>
     <string name="cancel">Cancel</string>
+    <string name="dicePickDiceText">Wybierz kostkę</string>
+    <string name="diceFragmentPickADiceText">Wybierz kostkę</string>
+    <string name="diceFragmentPickADiceOKBtn">WYBIERZ</string>
+    <string name="diceFragmentPickADiceCancelBtn">ANULUJ</string>
+    <string name="diceRollDiceText">Rzuć kostką</string>
 </resources>

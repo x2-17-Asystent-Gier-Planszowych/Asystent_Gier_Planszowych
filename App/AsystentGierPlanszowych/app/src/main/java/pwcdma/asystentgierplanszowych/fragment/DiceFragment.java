@@ -1,14 +1,22 @@
 package pwcdma.asystentgierplanszowych.fragment;
 
-import android.content.Context;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import pwcdma.asystentgierplanszowych.R;
+import pwcdma.asystentgierplanszowych.model.Dice;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,53 +27,67 @@ import pwcdma.asystentgierplanszowych.R;
  * create an instance of this fragment.
  */
 public class DiceFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private final static String TAG = DiceFragment.class.getSimpleName();
     private OnFragmentInteractionListener mListener;
+    private TextView mDiceRollResult;
+    private TextView mDicePickedTestTV;
+    private Button mDicePickButton;
+    private Button mDiceRollButton;
+    private AlertDialog.Builder builder;
+    private AlertDialog mPickDiceDialog;
+    private int mPickedDice = 0;
+    private String[] items = {"K4", "K6", "K8", "K10", "K12", "K20"};
+    private ArrayList<Dice> dices = new ArrayList<>();
 
     public DiceFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DiceFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static DiceFragment newInstance(String param1, String param2) {
         DiceFragment fragment = new DiceFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dice, container, false);
+        Log.d(TAG, "onCreateView: ");
+        View view = inflater.inflate(R.layout.fragment_dice, container, false);
+        findViews(view);
+        addDicesToList();
+        setupDialog();
+        mDicePickButton.setOnClickListener(onClickListenerPick);
+        return view;
+    }
+
+    private void findViews(View view) {
+        Log.d(TAG, "findViews: ");
+        mDicePickedTestTV = view.findViewById(R.id.dicePicked);
+        mDicePickButton = view.findViewById(R.id.dicePickDiceBtn);
+        mDiceRollButton = view.findViewById(R.id.diceRollDiceBtn);
+        mDiceRollResult = view.findViewById(R.id.diceResult);
+    }
+
+    private void addDicesToList() {
+        dices.add(new Dice("K4", 4, false));
+        dices.add(new Dice("K6", 6, false));
+        dices.add(new Dice("K8", 8, false));
+        dices.add(new Dice("K10", 10, false));
+        dices.add(new Dice("K12", 12, false));
+        dices.add(new Dice("K20", 20, false));
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -74,17 +96,17 @@ public class DiceFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
+//
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//        if (context instanceof OnFragmentInteractionListener) {
+//            mListener = (OnFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
+//    }
 
     @Override
     public void onDetach() {
@@ -92,18 +114,44 @@ public class DiceFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+    private void setupDialog() {
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.custom_dice_dialog, items);
+        builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(R.string.diceFragmentPickADiceText);
+        builder.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mPickedDice = which;
+            }
+        });
+        builder.setPositiveButton(R.string.diceFragmentPickADiceOKBtn, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.d(TAG, "onClick: " + mPickedDice);
+                mDicePickedTestTV.setText(items[mPickedDice]);
+            }
+        });
+        builder.setNegativeButton(R.string.diceFragmentPickADiceCancelBtn, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mPickDiceDialog.dismiss();
+            }
+        });
+        mPickDiceDialog = builder.create();
+
+    }
+
+
+    private View.OnClickListener onClickListenerPick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            mPickDiceDialog.show();
+        }
+    };
+
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }

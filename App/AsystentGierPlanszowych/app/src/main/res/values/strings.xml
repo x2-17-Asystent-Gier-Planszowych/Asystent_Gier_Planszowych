@@ -47,4 +47,5 @@
     <string name="diceFragmentPickADiceOKBtn">WYBIERZ</string>
     <string name="diceFragmentPickADiceCancelBtn">ANULUJ</string>
     <string name="diceRollDiceText">Rzuć kostką</string>
+    <string name="diceImagePlaceholder">dice_image_placeholder</string>
 </resources>

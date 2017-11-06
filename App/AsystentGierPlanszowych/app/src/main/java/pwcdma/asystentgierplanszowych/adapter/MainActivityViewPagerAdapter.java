@@ -9,7 +9,7 @@ import pwcdma.asystentgierplanszowych.fragment.GroupsFragment;
 import pwcdma.asystentgierplanszowych.fragment.ProfileFragment;
 import pwcdma.asystentgierplanszowych.fragment.DiceFragment;
 import pwcdma.asystentgierplanszowych.fragment.TimerFragment;
-
+import pwcdma.asystentgierplanszowych.fragment.ToolsFragment;
 
 
 public class MainActivityViewPagerAdapter extends FragmentPagerAdapter {
@@ -26,7 +26,7 @@ public class MainActivityViewPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return new GamesFragment();
             case 2:
-                return new TimerFragment();
+                return new ToolsFragment();
             case 3:
                 return new ProfileFragment();
         }

@@ -33,7 +33,7 @@ public class DiceFragment extends Fragment {
     private TextView mDiceRollResult;
     private TextView mDicePickedTestTV;
     private Button mPickDiceButton;
-    private Button mRolldiceButton;
+    private Button mRollDiceButton;
     private AlertDialog.Builder builder;
     private AlertDialog mPickDiceDialog;
     private int mPickedDice = 1; //1 = K6
@@ -78,7 +78,7 @@ public class DiceFragment extends Fragment {
     private void setOnClickListerners() {
         Log.d(TAG, "setOnClickListerners: ");
         mPickDiceButton.setOnClickListener(onClickListenerPick);
-        mRolldiceButton.setOnClickListener(onClickListenerRoll);
+        mRollDiceButton.setOnClickListener(onClickListenerRoll);
     }
 
 
@@ -86,7 +86,7 @@ public class DiceFragment extends Fragment {
         Log.d(TAG, "findViews: " + view);
         mDicePickedTestTV = view.findViewById(R.id.dicePicked);
         mPickDiceButton = view.findViewById(R.id.dicePickDiceBtn);
-        mRolldiceButton = view.findViewById(R.id.diceRollDiceBtn);
+        mRollDiceButton = view.findViewById(R.id.diceRollDiceBtn);
         mDiceRollResult = view.findViewById(R.id.diceResult);
     }
 

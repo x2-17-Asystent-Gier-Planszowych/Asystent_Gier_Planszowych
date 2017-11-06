@@ -21,6 +21,15 @@
         <item name="android:gravity">center_horizontal</item>
     </style>
 
+    <style name="HourglassTimer">
+        <item name="android:textSize">36sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/colorAccentLight</item>
+        <item name="android:lineSpacingExtra">0sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
     <style name="InputTextBigError">
         <item name="android:textSize">30sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
@@ -494,7 +503,6 @@
         <item name="colorControlActivated">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
-
 
 
 </resources>

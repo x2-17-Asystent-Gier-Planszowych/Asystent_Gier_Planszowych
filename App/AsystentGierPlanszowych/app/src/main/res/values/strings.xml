@@ -4,22 +4,21 @@
     <string name="title_activity_sign_up">Zarejestruj się</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_login_email">Login / email</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Hasło</string>
-    <string name="prompt_username">Nazwa użytkownika</string>
-    <string name="prompt_confirm_password">Potwierdź hasło</string>
     <string name="action_sign_in">Zaloguj się</string>
     <string name="action_sign_in_short">Zaloguj się</string>
+    <string name="error_invalid_email">Nieprawidłowy adres email</string>
     <string name="error_invalid_password">Hasło musi zawierać przynajmniej 8 znaków, dużą literę i cyfrę</string>
     <string name="error_incorrect_password">Nieprawidłowe hasło</string>
     <string name="error_field_required">Pole wymagane</string>
-    <string name="error_invalid_login">Nieprawidłowa nazwa użytkownika lub adres email</string>
-    <string name="error_invalid_username">Nieprawidłowa nazwa użytkownika</string>
-    <string name="error_invalid_email">Nieprawidłowy adres email</string>
-    <string name="error_password_mismatch">Niezgodność haseł</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="prompt_username">Nazwa użytkownika</string>
+    <string name="prompt_confirm_password">Potwierdź hasło</string>
+    <string name="error_invalid_username">Nieprawidłowa nazwa użytkownika</string>
+    <string name="error_password_mismatch">Niezgodność haseł</string>
 
+    <string name="sign_in_facebook">Zaloguj się przez Facebook</string>
     <string name="sign_up">Zarejestruj się</string>
 
     <string name="startTab1Text">Jesteś mistrzem gry i chcesz zaprosić graczy na niesamowitą sesję RPG?</string>
@@ -33,16 +32,19 @@
     <string name="log_in_title">Logowanie</string>
     <string name="log_in_catchphrase">Witamy spowrotem! Czeka na Ciebie mnóstwo nowych gier!</string>
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="StartCounting">Start</string>
     <string name="StopCounting">Anuluj</string>
-    <string name="pause">Pause</string>
-    <string name="cancel">Cancel</string>
 
     <string name="about">O mnie</string>
     <string name="sign_up_title">Rejestracja</string>
     <string name="sign_up_catchphrase">Zaczynamy! To zajmie nie więcej czasu niż rozłożenie planszy!</string>
     <string name="sign_up_password_hint">Hasło musi zawierać przynajmniej 8 znaków, dużą literę i cyfrę</string>
-    <string name="sign_up_failed">Błąd - rejestracja nie powiodła się</string>
-    <string name="sign_up_success">Zarejestrowano pomyślnie</string>
-    <string name="login_success">Zalogowano pomyślnie</string>
+    <string name="pause">Pause</string>
+    <string name="cancel">Cancel</string>
+    <string name="timePickerHours">godzina:</string>
+    <string name="timePickerMinutes">minuta:</string>
+    <string name="timePickerSeconds">sekunda:</string>
+    <string name="timePickerOkButton">Ok</string>
+    <string name="timerFragmentTimePlaceholder">00:00:00</string>
 </resources>

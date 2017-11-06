@@ -187,7 +187,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             focusView = mEmailView;
             cancel = true;
         } else if (!isEmailValid(login) && !isUsernameValid(login)) {
-            mEmailTextInputLayout.setError(getString(R.string.error_invalid_email));
+            mEmailTextInputLayout.setError(getString(R.string.error_invalid_login));
             focusView = mEmailView;
             cancel = true;
         }

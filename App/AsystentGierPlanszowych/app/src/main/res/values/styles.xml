@@ -73,6 +73,14 @@
         <item name="android:letterSpacing">-0.02</item>
     </style>
 
+    <style name="DiceResultBig">
+        <item name="android:textSize">48sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
     <style name="NameBigCenter">
         <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">sans-serif</item>

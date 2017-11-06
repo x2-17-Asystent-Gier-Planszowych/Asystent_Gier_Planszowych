@@ -19,7 +19,7 @@
             android:id="@+id/diceResult"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textAppearance="@style/NameBigCenter"
+            android:textAppearance="@style/DiceResultBig"
             android:text="0" />
 
         <TextView

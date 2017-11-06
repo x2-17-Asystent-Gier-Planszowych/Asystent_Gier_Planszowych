@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.model.Dice;
@@ -70,6 +71,7 @@ public class DiceFragment extends Fragment {
         addDicesToList();
         setupDialog();
         mDicePickButton.setOnClickListener(onClickListenerPick);
+        mDiceRollButton.setOnClickListener(onClickListenerRoll);
         return view;
     }
 
@@ -149,6 +151,15 @@ public class DiceFragment extends Fragment {
             mPickDiceDialog.show();
         }
     };
+
+    private View.OnClickListener onClickListenerRoll = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "onClick: Roll " + dices.get(mPickedDice).roll());
+            mDiceRollResult.setText(String.valueOf(dices.get(mPickedDice).roll()));
+        }
+    };
+
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);

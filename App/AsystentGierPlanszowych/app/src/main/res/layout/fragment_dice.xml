@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:orientation="vertical"
+    android:padding="@dimen/normalVerticalMargin"
+    android:weightSum="1"
+    tools:context="pwcdma.asystentgierplanszowych.fragment.DiceFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".7">
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/diceResult"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/DiceResultBig"
+            android:text="0" />
+
+        <TextView
+            android:gravity="center_horizontal"
+            android:id="@+id/dicePicked"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/diceImagePlaceholder" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".3"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/dicePickDiceBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
+            android:layout_marginTop="@dimen/smallVerticalButtonMargin"
+            android:background="@drawable/button_primary_selector"
+            android:text="@string/dicePickDiceText"
+            android:textAllCaps="true"
+            android:textAppearance="@style/ButtonLabelPrimary" />
+
+        <Button
+            android:id="@+id/diceRollDiceBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
+            android:layout_marginTop="@dimen/smallVerticalButtonMargin"
+            android:background="@drawable/button_primary_selector"
+            android:text="@string/diceRollDiceText"
+            android:textAllCaps="true"
+            android:textAppearance="@style/ButtonLabelPrimary" />
+    </LinearLayout>
+
+</LinearLayout>

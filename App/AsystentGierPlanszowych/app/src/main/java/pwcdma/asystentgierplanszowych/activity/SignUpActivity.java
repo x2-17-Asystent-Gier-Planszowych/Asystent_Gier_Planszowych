@@ -336,7 +336,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         @Override
         protected Boolean doInBackground(Void... params) {
             String hashPassword = hashPassword(mPassword);
-            ServerConnection connection = new ServerConnection("https://gentle-journey-42470.herokuapp.com/registration?" +
+            ServerConnection connection = new ServerConnection(SERVER_URL + "/registration?" +
                     "name=" + mUsername + "&email=" + mEmail + "&password=" + hashPassword);
             String response = connection.getResponse();
             return response.equals("Succes");

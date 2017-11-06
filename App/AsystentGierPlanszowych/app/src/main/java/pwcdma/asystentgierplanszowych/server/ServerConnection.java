@@ -8,6 +8,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class ServerConnection {
 
+    public static final String SERVER_URL = "https://gentle-journey-42470.herokuapp.com";
     private HttpURLConnection connection;
 
     public ServerConnection(String urlToSend){

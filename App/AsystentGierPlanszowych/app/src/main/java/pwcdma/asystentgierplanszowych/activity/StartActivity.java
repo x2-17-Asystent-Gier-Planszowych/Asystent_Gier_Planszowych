@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import pwcdma.asystentgierplanszowych.adapter.StartFragmentViewPagerAdapter;
@@ -35,6 +36,8 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
+        if (isUserLoggedIn())
+            startActivity(new Intent(this, MainActivity.class));
         setContentView(R.layout.activity_start);
         findViews();
         setActionBar();
@@ -104,6 +107,10 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
         }
     };
 
+    private boolean isUserLoggedIn(){
+        File userDataFile = new File(getFilesDir(), "user_data.json");
+        return userDataFile.exists();
+    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {

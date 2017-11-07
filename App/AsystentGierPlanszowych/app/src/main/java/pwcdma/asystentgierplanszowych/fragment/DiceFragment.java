@@ -18,14 +18,6 @@ import java.util.ArrayList;
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.model.Dice;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link DiceFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link DiceFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class DiceFragment extends Fragment {
 
     private final static String TAG = DiceFragment.class.getSimpleName();
@@ -34,11 +26,13 @@ public class DiceFragment extends Fragment {
     private TextView mDicePickedTestTV;
     private Button mPickDiceButton;
     private Button mRollDiceButton;
+    private Button mShowDiceRollHistoryBtn;
     private AlertDialog.Builder builder;
     private AlertDialog mPickDiceDialog;
     private int mPickedDice = 1; //1 = K6
     private String[] items = {"K4", "K6", "K8", "K10", "K12", "K20"};
     private ArrayList<Dice> dices = new ArrayList<>();
+    private ArrayList<Integer> results = new ArrayList<>();
 
     public DiceFragment() {
         // Required empty public constructor
@@ -79,6 +73,7 @@ public class DiceFragment extends Fragment {
         Log.d(TAG, "setOnClickListerners: ");
         mPickDiceButton.setOnClickListener(onClickListenerPick);
         mRollDiceButton.setOnClickListener(onClickListenerRoll);
+
     }
 
 
@@ -87,6 +82,7 @@ public class DiceFragment extends Fragment {
         mDicePickedTestTV = view.findViewById(R.id.dicePicked);
         mPickDiceButton = view.findViewById(R.id.dicePickDiceBtn);
         mRollDiceButton = view.findViewById(R.id.diceRollDiceBtn);
+        mShowDiceRollHistoryBtn = view.findViewById(R.id.diceResultHistoryBtn);
         mDiceRollResult = view.findViewById(R.id.diceResult);
     }
 
@@ -155,6 +151,35 @@ public class DiceFragment extends Fragment {
     }
 
 
+    private void setupHistoryDialog() {
+        Log.d(TAG, "setupDialog: ");
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.custom_dice_dialog, items);
+        builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(R.string.diceFragmentPickADiceText);
+        builder.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mPickedDice = which;
+            }
+        });
+        builder.setPositiveButton(R.string.diceFragmentPickADiceOKBtn, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.d(TAG, "onClick: " + mPickedDice);
+                mDicePickedTestTV.setText(items[mPickedDice]);
+            }
+        });
+        builder.setNegativeButton(R.string.diceFragmentPickADiceCancelBtn, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mPickDiceDialog.dismiss();
+            }
+        });
+        mPickDiceDialog = builder.create();
+
+    }
+
+
     private View.OnClickListener onClickListenerPick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -166,12 +191,19 @@ public class DiceFragment extends Fragment {
     private View.OnClickListener onClickListenerRoll = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Log.d(TAG, "onClick: Roll " + dices.get(mPickedDice).roll());
-            mDiceRollResult.setText(String.valueOf(dices.get(mPickedDice).roll()));
+            int result = dices.get(mPickedDice).roll();
+            Log.d(TAG, "onClick: Roll " + result);
+            mDiceRollResult.setText(String.valueOf(result));
+            results.add(result);
         }
     };
 
-
+private View.OnClickListener onClickListenerShowHistory = new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        // TODO: 07.11.2017 do some magic here 
+    }
+};
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }

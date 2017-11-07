@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/diceLL"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
@@ -12,31 +13,32 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".7">
+        android:layout_weight=".5">
 
         <TextView
-            android:gravity="center"
             android:id="@+id/diceResult"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textAppearance="@style/DiceResultBig"
-            android:text="0" />
+            android:gravity="center"
+            android:text="0"
+            android:textAppearance="@style/DiceResultBig" />
 
         <TextView
-            android:gravity="center_horizontal"
             android:id="@+id/dicePicked"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_horizontal"
             android:text="@string/diceImagePlaceholder" />
 
     </FrameLayout>
 
     <LinearLayout
-        android:gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".3"
+        android:layout_weight=".5"
+        android:gravity="bottom"
         android:orientation="vertical">
+
 
         <Button
             android:id="@+id/dicePickDiceBtn"
@@ -59,6 +61,19 @@
             android:text="@string/diceRollDiceText"
             android:textAllCaps="true"
             android:textAppearance="@style/ButtonLabelPrimary" />
+
+        <Button
+            android:id="@+id/diceResultHistoryBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
+            android:layout_marginTop="@dimen/smallVerticalButtonMargin"
+            android:background="@drawable/button_primary_selector"
+            android:text="Zobacz historię rzutów"
+            android:textAllCaps="true"
+            android:textAppearance="@style/ButtonLabelPrimary" />
+
+
     </LinearLayout>
 
 </LinearLayout>

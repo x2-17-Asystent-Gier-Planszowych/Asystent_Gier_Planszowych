@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 
 import pwcdma.asystentgierplanszowych.adapter.GroupRecyclerViewAdapter;
 import pwcdma.asystentgierplanszowych.R;
-import pwcdma.asystentgierplanszowych.dummy.DummyContent;
-import pwcdma.asystentgierplanszowych.dummy.DummyContent.DummyItem;
+import pwcdma.asystentgierplanszowych.content.Content;
+import pwcdma.asystentgierplanszowych.content.Content.Item;
 
 /**
  * A fragment representing a list of Items.
@@ -55,7 +55,7 @@ public class GroupsFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new GroupRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new GroupRecyclerViewAdapter(Content.ITEMS, mListener));
         }
         return view;
     }
@@ -89,6 +89,6 @@ public class GroupsFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Item item);
     }
 }

@@ -1,6 +1,7 @@
 package pwcdma.asystentgierplanszowych.fragment;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,10 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import pwcdma.asystentgierplanszowych.activity.MainActivity;
 import pwcdma.asystentgierplanszowych.adapter.GameRecyclerViewAdapter;
 import pwcdma.asystentgierplanszowych.R;
-import pwcdma.asystentgierplanszowych.dummy.DummyContent;
-import pwcdma.asystentgierplanszowych.dummy.DummyContent.DummyItem;
+import pwcdma.asystentgierplanszowych.content.Content;
+import pwcdma.asystentgierplanszowych.content.Content.Item;
 import pwcdma.asystentgierplanszowych.server.GamesController;
 
 /**
@@ -47,6 +55,8 @@ public class GamesFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+
+        new GetGamesTask().execute();
     }
 
     @Override
@@ -63,7 +73,7 @@ public class GamesFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new GameRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new GameRecyclerViewAdapter(Content.ITEMS, mListener));
         }
         return view;
     }
@@ -98,6 +108,51 @@ public class GamesFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Item item);
+    }
+
+
+    private class GetGamesTask extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... args) {
+            File gamesFile = new File(getContext().getFilesDir(), "games.json");
+            if (gamesFile.exists()){
+                return readFile(gamesFile);
+            } else if (((MainActivity) getActivity()).isOnline()) {
+                String data = controller.getAllGames();
+                writeFile(gamesFile, data);
+                return data;
+            } else {
+                return "";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            //TODO: update list
+        }
+
+        private String readFile(File f){
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(f));
+                String data = reader.readLine();
+                reader.close();
+                return data;
+            } catch (IOException e){
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+
+        private void writeFile(File f, String data){
+            try {
+                FileWriter writer = new FileWriter(f);
+                writer.write(data);
+                writer.close();
+            } catch (IOException e){
+                throw new RuntimeException(e.getMessage());
+            }
+        }
     }
 }

@@ -335,11 +335,12 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            String hashPassword = hashPassword(mPassword);
+            /*String hashPassword = hashPassword(mPassword);
             ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/signin?" +
                     "login=" + mLogin + "&haslo=" + hashPassword);
             String response = connection.getResponse();
-            return response.equals("Succes");
+            return response.equals("Succes");*/
+            return true;
         }
 
         @Override

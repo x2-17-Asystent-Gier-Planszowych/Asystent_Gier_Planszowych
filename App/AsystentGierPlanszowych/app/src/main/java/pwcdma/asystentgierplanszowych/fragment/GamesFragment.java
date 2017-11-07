@@ -14,6 +14,7 @@ import pwcdma.asystentgierplanszowych.adapter.GameRecyclerViewAdapter;
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.dummy.DummyContent;
 import pwcdma.asystentgierplanszowych.dummy.DummyContent.DummyItem;
+import pwcdma.asystentgierplanszowych.server.GamesController;
 
 /**
  * A fragment representing a list of Items.
@@ -28,12 +29,15 @@ public class GamesFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    private GamesController controller;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
     public GamesFragment() {
+        if (controller == null)
+            controller = new GamesController();
     }
 
     @Override

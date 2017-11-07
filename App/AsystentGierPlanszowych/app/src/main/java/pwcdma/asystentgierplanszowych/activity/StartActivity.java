@@ -37,7 +37,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
         Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
         if (isUserLoggedIn())
-            startActivity(new Intent(this, MainActivity.class));
+            startMainActivity();
         setContentView(R.layout.activity_start);
         findViews();
         setActionBar();
@@ -52,8 +52,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
         super.onActivityResult(requestCode, resultCode, data);
         if ((requestCode == REQUEST_CODE_LOG_IN || requestCode == REQUEST_CODE_SIGN_UP)
                 && resultCode == LogInActivity.RESULT_CODE_SUCCESS) {
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
+            startMainActivity();
         }
     }
 
@@ -106,6 +105,11 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
             }
         }
     };
+
+    private void startMainActivity() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
 
     private boolean isUserLoggedIn(){
         File userDataFile = new File(getFilesDir(), "user_data.json");

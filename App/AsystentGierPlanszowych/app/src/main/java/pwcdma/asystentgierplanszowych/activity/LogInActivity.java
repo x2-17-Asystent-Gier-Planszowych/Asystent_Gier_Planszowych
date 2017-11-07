@@ -29,8 +29,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.*;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
@@ -304,11 +308,12 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            String hashPassword = hashPassword(mPassword);
+            /*String hashPassword = hashPassword(mPassword);
             ServerConnection connection = new ServerConnection(SERVER_URL + "/signin?" +
                     "login=" + mLogin + "&haslo=" + hashPassword);
             String response = connection.getResponse();
-            return response.equals("Succes");
+            return response.equals("Succes");*/
+            return true;
         }
 
         @Override
@@ -318,6 +323,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 Toast.makeText(LogInActivity.this, R.string.login_success, Toast.LENGTH_LONG).show();
+                saveUserData(mLogin, hashPassword(mPassword));
                 setResult(RESULT_CODE_SUCCESS);
                 finish();
             } else {
@@ -330,6 +336,21 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
+        }
+    }
+
+    private void saveUserData(String login, String password){
+        try {
+            JSONObject userDataJson = new JSONObject();
+            userDataJson.put("login", login);
+            userDataJson.put("password", password);
+            String userData = userDataJson.toString();
+            File userDataFile = new File(getFilesDir(), "user_data.json");
+            FileWriter writer = new FileWriter(userDataFile);
+            writer.write(userData);
+            writer.close();
+        } catch (Exception e){
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

@@ -31,11 +31,11 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
-
-import static pwcdma.asystentgierplanszowych.server.ServerConnection.*;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -205,6 +205,33 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
+    public static boolean isUsernameValid(String username) {
+        return username.matches("[A-Za-z0-9_]{4,}");
+    }
+
+    public static boolean isEmailValid(String email) {
+        return email.matches("[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}");
+    }
+
+    public static boolean isPasswordValid(String password) {
+        return password.matches(".*[A-Z].*") && password.matches(".*[a-z].*") && password.matches(".*[0-9].*")
+                && password.length() >= 8;
+    }
+
+    public static String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(password.getBytes());
+            byte[] digest = md.digest();
+            StringBuffer hashStringBuffer = new StringBuffer();
+            for (byte b : digest)
+                hashStringBuffer.append(String.format("%02X", b));
+            return new String(hashStringBuffer);
+        } catch (NoSuchAlgorithmException e){
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
     /**
      * Shows the progress UI and hides the login form.
      */
@@ -305,7 +332,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             String hashPassword = hashPassword(mPassword);
-            ServerConnection connection = new ServerConnection(SERVER_URL + "/signin?" +
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/signin?" +
                     "login=" + mLogin + "&haslo=" + hashPassword);
             String response = connection.getResponse();
             return response.equals("Succes");

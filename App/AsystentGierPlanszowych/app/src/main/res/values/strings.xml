@@ -45,8 +45,9 @@
     <string name="timerFragmentTimePlaceholder">00:00:00</string>
     <string name="dicePickDiceText">Wybierz kostkę</string>
     <string name="diceFragmentPickADiceText">Wybierz kostkę</string>
-    <string name="diceFragmentPickADiceOKBtn">WYBIERZ</string>
+    <string name="diceFragmentPickADicePickBtn">WYBIERZ</string>
     <string name="diceFragmentPickADiceCancelBtn">ANULUJ</string>
+    <string name="diceFragmentPickADiceOkBtn">POWRÓT</string>
     <string name="diceRollDiceText">Rzuć kostką</string>
     <string name="diceImagePlaceholder">dice_image_placeholder</string>
     <string name="diceFragmentDiceImageTextPlaceholder">dice_placeholder</string>
@@ -55,4 +56,6 @@
     <string name="sign_up_failed">Błąd - rejestracja nie powiodła się</string>
     <string name="sign_up_success">Zarejestrowano pomyślnie</string>
     <string name="login_success">Zalogowano pomyślnie</string>
+    <string name="customDiceListItemDiceLabel">Kostka:</string>
+    <string name="customDiceListItemResultLabel">Wynik:</string>
 </resources>

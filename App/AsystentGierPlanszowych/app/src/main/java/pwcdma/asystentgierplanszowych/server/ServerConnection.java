@@ -19,22 +19,18 @@ public class ServerConnection {
         }
     }
 
-    public String getResponse(){
+    public String getResponse() throws IOException {
         String response = "";
-        try {
-            int responseCode = connection.getResponseCode();
-            if (responseCode != 200) {
-                throw new RuntimeException("Failed : HTTP error code : " + responseCode);
-            }
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            response = reader.readLine();
-
-            connection.disconnect();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
+        int responseCode = connection.getResponseCode();
+        if (responseCode != 200) {
+            throw new RuntimeException("Failed : HTTP error code : " + responseCode);
         }
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        response = reader.readLine();
+
+        connection.disconnect();
+
         return response;
     }
 }

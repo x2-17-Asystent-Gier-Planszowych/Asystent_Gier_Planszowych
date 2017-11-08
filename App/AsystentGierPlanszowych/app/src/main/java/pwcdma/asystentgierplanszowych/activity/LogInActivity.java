@@ -29,6 +29,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.security.MessageDigest;
@@ -331,11 +332,16 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            String hashPassword = hashPassword(mPassword);
-            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/signin?" +
-                    "login=" + mLogin + "&haslo=" + hashPassword);
-            String response = connection.getResponse();
-            return response.equals("Succes");
+            try {
+                String hashPassword = hashPassword(mPassword);
+                ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/signin?" +
+                        "login=" + mLogin + "&haslo=" + hashPassword);
+                String response = connection.getResponse();
+                return response.equals("Succes");
+            } catch (IOException e){
+                Toast.makeText(LogInActivity.this, R.string.connection_error, Toast.LENGTH_LONG).show();
+                return false;
+            }
         }
 
         @Override

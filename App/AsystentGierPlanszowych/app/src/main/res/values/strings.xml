@@ -18,6 +18,7 @@
     <string name="error_invalid_username">Nieprawidłowa nazwa użytkownika</string>
     <string name="error_invalid_email">Nieprawidłowy adres email</string>
     <string name="error_password_mismatch">Niezgodność haseł</string>
+    <string name="connection_error">Brak połączenia z Internetem</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
 
     <string name="sign_up">Zarejestruj się</string>

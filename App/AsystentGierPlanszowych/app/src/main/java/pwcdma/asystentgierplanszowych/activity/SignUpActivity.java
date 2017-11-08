@@ -28,6 +28,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -335,11 +336,16 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            String hashPassword = hashPassword(mPassword);
-            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/registration?" +
-                    "name=" + mUsername + "&email=" + mEmail + "&password=" + hashPassword);
-            String response = connection.getResponse();
-            return response.equals("Succes");
+            try {
+                String hashPassword = hashPassword(mPassword);
+                ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/registration?" +
+                        "name=" + mUsername + "&email=" + mEmail + "&password=" + hashPassword);
+                String response = connection.getResponse();
+                return response.equals("Succes");
+            } catch (IOException e){
+                Toast.makeText(SignUpActivity.this, R.string.connection_error, Toast.LENGTH_LONG).show();
+                return false;
+            }
         }
 
         @Override

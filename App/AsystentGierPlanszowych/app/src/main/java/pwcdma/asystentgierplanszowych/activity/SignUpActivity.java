@@ -34,7 +34,7 @@ import java.util.List;
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
-import static pwcdma.asystentgierplanszowych.server.ServerConnection.*;
+import static pwcdma.asystentgierplanszowych.activity.LogInActivity.*;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -336,7 +336,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         @Override
         protected Boolean doInBackground(Void... params) {
             String hashPassword = hashPassword(mPassword);
-            ServerConnection connection = new ServerConnection(SERVER_URL + "/registration?" +
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/registration?" +
                     "name=" + mUsername + "&email=" + mEmail + "&password=" + hashPassword);
             String response = connection.getResponse();
             return response.equals("Succes");

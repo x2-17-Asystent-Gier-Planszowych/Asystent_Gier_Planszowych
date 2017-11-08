@@ -29,13 +29,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import org.json.*;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
-
-import static pwcdma.asystentgierplanszowych.server.ServerConnection.*;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -175,7 +180,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password) || !isPasswordValid(password)) {
             mPasswordTextInputLayout.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -202,6 +207,33 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(login, password);
             mAuthTask.execute((Void) null);
+        }
+    }
+
+    public static boolean isUsernameValid(String username) {
+        return username.matches("[A-Za-z0-9_]{4,}");
+    }
+
+    public static boolean isEmailValid(String email) {
+        return email.matches("[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}");
+    }
+
+    public static boolean isPasswordValid(String password) {
+        return password.matches(".*[A-Z].*") && password.matches(".*[a-z].*") && password.matches(".*[0-9].*")
+                && password.length() >= 8;
+    }
+
+    public static String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(password.getBytes());
+            byte[] digest = md.digest();
+            StringBuffer hashStringBuffer = new StringBuffer();
+            for (byte b : digest)
+                hashStringBuffer.append(String.format("%02X", b));
+            return new String(hashStringBuffer);
+        } catch (NoSuchAlgorithmException e){
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -304,11 +336,16 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            String hashPassword = hashPassword(mPassword);
-            ServerConnection connection = new ServerConnection(SERVER_URL + "/signin?" +
-                    "login=" + mLogin + "&haslo=" + hashPassword);
-            String response = connection.getResponse();
-            return response.equals("Succes");
+            try {
+                String hashPassword = hashPassword(mPassword);
+                ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/signin?" +
+                        "login=" + mLogin + "&haslo=" + hashPassword);
+                String response = connection.getResponse();
+                return response.equals("Succes");
+            } catch (IOException e){
+                Toast.makeText(LogInActivity.this, R.string.connection_error, Toast.LENGTH_LONG).show();
+                return false;
+            }
         }
 
         @Override
@@ -318,6 +355,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 Toast.makeText(LogInActivity.this, R.string.login_success, Toast.LENGTH_LONG).show();
+                saveUserData(mLogin, hashPassword(mPassword));
                 setResult(RESULT_CODE_SUCCESS);
                 finish();
             } else {
@@ -330,6 +368,21 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
+        }
+    }
+
+    private void saveUserData(String login, String password){
+        try {
+            JSONObject userDataJson = new JSONObject();
+            userDataJson.put("login", login);
+            userDataJson.put("password", password);
+            String userData = userDataJson.toString();
+            File userDataFile = new File(getFilesDir(), "user_data.json");
+            FileWriter writer = new FileWriter(userDataFile);
+            writer.write(userData);
+            writer.close();
+        } catch (Exception e){
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

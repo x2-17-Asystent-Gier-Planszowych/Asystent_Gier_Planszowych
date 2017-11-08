@@ -1,5 +1,8 @@
 package pwcdma.asystentgierplanszowych.activity;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -78,5 +81,11 @@ public class MainActivity extends AppCompatActivity {
             mTlNavBar.getTabAt(i).setIcon(mNavBarIcons[i]);
             mTlNavBar.getTabAt(i).setText(mNavBarTexts[i]);
         }
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 }

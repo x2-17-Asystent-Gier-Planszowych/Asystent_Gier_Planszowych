@@ -28,13 +28,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
-import static pwcdma.asystentgierplanszowych.server.ServerConnection.*;
+import static pwcdma.asystentgierplanszowych.activity.LogInActivity.*;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -188,7 +189,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password) || !isPasswordValid(password)) {
             mPasswordTextInputLayout.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -335,11 +336,16 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            String hashPassword = hashPassword(mPassword);
-            ServerConnection connection = new ServerConnection(SERVER_URL + "/registration?" +
-                    "name=" + mUsername + "&email=" + mEmail + "&password=" + hashPassword);
-            String response = connection.getResponse();
-            return response.equals("Succes");
+            try {
+                String hashPassword = hashPassword(mPassword);
+                ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/registration?" +
+                        "name=" + mUsername + "&email=" + mEmail + "&password=" + hashPassword);
+                String response = connection.getResponse();
+                return response.equals("Succes");
+            } catch (IOException e){
+                Toast.makeText(SignUpActivity.this, R.string.connection_error, Toast.LENGTH_LONG).show();
+                return false;
+            }
         }
 
         @Override

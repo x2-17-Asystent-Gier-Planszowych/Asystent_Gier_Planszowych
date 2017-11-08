@@ -8,21 +8,21 @@ import android.widget.TextView;
 
 import pwcdma.asystentgierplanszowych.fragment.GroupsFragment.OnListFragmentInteractionListener;
 import pwcdma.asystentgierplanszowych.R;
-import pwcdma.asystentgierplanszowych.dummy.DummyContent.DummyItem;
+import pwcdma.asystentgierplanszowych.content.Content.Item;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link Item} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Item> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public GroupRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public GroupRecyclerViewAdapter(List<Item> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -61,7 +61,7 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public Item mItem;
 
         public ViewHolder(View view) {
             super(view);

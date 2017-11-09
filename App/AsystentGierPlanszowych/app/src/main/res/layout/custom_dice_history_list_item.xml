@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="@dimen/smallHorizontalMargin"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/historyDiceNameLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/smallHorizontalMargin"
+            android:layout_weight=".25"
+            android:text="@string/customDiceListItemDiceLabel"
+            android:textAppearance="@style/ButtonLabelSecondary" />
+
+        <TextView
+            android:id="@+id/historyDiceName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/smallHorizontalMargin"
+            android:layout_weight=".25"
+            android:textAppearance="@style/BodySmallSemiboldLeft" />
+
+        <TextView
+            android:id="@+id/historyDiceResultLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            android:text="@string/customDiceListItemResultLabel"
+            android:textAppearance="@style/ButtonLabelSecondary" />
+
+        <TextView
+            android:id="@+id/historyDiceResult"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            android:textAppearance="@style/BodySmallSemiboldLeft" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dividerHeight"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black38" />
+
+</RelativeLayout>

@@ -40,4 +40,6 @@
     <dimen name="avatarTinyWidth">24dp</dimen>
     <dimen name="avatarTinyHeight">24dp</dimen>
     <dimen name="tab_layout_height">56dp</dimen>
+    <dimen name="horizontalPaddingDialog">32dp</dimen>
+    <dimen name="toolsButtonPadding">20dp</dimen>
 </resources>

@@ -11,13 +11,14 @@ import android.util.Log;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.adapter.MainActivityViewPagerAdapter;
+import pwcdma.asystentgierplanszowych.model.CustomViewPager;
 
 public class MainActivity extends AppCompatActivity {
     // TODO: 23.10.2017  ponaprawiać
     private final String TAG = MainActivity.class.getSimpleName();
 
     private static final String TAB = "pwcdma.asystentgierplanszowych.tab";
-    private ViewPager mVpFragmentPager;
+    private CustomViewPager mVpFragmentPager;
     private MainActivityViewPagerAdapter mPagerAdapter;
     private TabLayout mTlNavBar;
     private int[] mNavBarIcons = {
@@ -58,12 +59,13 @@ public class MainActivity extends AppCompatActivity {
     private void findViews() {
         Log.d(TAG, "findViews: ");
         mTlNavBar = (TabLayout) findViewById(R.id.mainActivityTabLayout);
-        mVpFragmentPager = (ViewPager) findViewById(R.id.mainActivityViewPager);
+        mVpFragmentPager = (CustomViewPager) findViewById(R.id.mainActivityViewPager);
     }
 
     private void setViewPager() {
         Log.d(TAG, "setViewPager: ");
         mPagerAdapter = new MainActivityViewPagerAdapter(getSupportFragmentManager());
+        mVpFragmentPager.setPagingEnabled(false);
         mVpFragmentPager.setAdapter(mPagerAdapter);
     }
 

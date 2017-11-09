@@ -120,7 +120,12 @@ public class GamesFragment extends Fragment {
             if (gamesFile.exists()){
                 return readFile(gamesFile);
             } else if (((MainActivity) getActivity()).isOnline()) {
-                String data = controller.getAllGames();
+                String data = null;
+                try {
+                    data = controller.getAllGames();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 writeFile(gamesFile, data);
                 return data;
             } else {

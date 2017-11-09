@@ -19,7 +19,6 @@ public class CustomViewPager extends ViewPager {
         if (this.enabled) {
             return super.onTouchEvent(event);
         }
-
         return false;
     }
 
@@ -28,7 +27,6 @@ public class CustomViewPager extends ViewPager {
         if (this.enabled) {
             return super.onInterceptTouchEvent(event);
         }
-
         return false;
     }
 

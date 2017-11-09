@@ -68,9 +68,7 @@ public class TimerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_timer, container, false);
         findViews(view);
         setOnClickListeners();
-
         vibrator = (Vibrator) getActivity().getSystemService(VIBRATOR_SERVICE);
-
         setupDialog();
         return view;
     }

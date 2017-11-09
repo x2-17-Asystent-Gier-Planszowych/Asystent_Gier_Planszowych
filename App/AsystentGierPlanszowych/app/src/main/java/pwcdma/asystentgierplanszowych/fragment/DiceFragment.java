@@ -38,7 +38,6 @@ public class DiceFragment extends Fragment {
     private ArrayList<Dice> dices = new ArrayList<>();
     private ArrayList<Result> resultItemList = new ArrayList<>();
     public DiceFragment() {
-        // Required empty public constructor
     }
 
 

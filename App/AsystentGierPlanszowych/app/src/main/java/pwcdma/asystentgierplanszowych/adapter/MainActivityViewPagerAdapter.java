@@ -7,8 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import pwcdma.asystentgierplanszowych.fragment.GamesFragment;
 import pwcdma.asystentgierplanszowych.fragment.GroupsFragment;
 import pwcdma.asystentgierplanszowych.fragment.ProfileFragment;
-import pwcdma.asystentgierplanszowych.fragment.DiceFragment;
-import pwcdma.asystentgierplanszowych.fragment.TimerFragment;
 import pwcdma.asystentgierplanszowych.fragment.ToolsFragment;
 
 

@@ -52,8 +52,6 @@ public class ToolsFragment extends Fragment {
         Log.d(TAG, "onCreateView: ");
         View view = inflater.inflate(R.layout.fragment_tools, container, false);
         findViews(view);
-
-
         setOnClickListeners();
         return view;
     }

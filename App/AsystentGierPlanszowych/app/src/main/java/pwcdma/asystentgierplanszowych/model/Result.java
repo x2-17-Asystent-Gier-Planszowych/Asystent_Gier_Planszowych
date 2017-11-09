@@ -2,8 +2,8 @@ package pwcdma.asystentgierplanszowych.model;
 
 
 public class Result {
-    String name;
-    int result;
+    private String name;
+    private int result;
 
     public Result(String name, int result) {
         this.name = name;

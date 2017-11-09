@@ -31,8 +31,8 @@ public  class ResultListItemAdapter extends ArrayAdapter<Result> {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.custom_dice_history_list_item, parent, false);
             viewHolder = new ViewHolder();
-            viewHolder.nameView = (TextView) convertView.findViewById(R.id.historyDiceName);
-            viewHolder.resultView = (TextView) convertView.findViewById(R.id.historyDiceResult);
+            viewHolder.nameView = convertView.findViewById(R.id.historyDiceName);
+            viewHolder.resultView = convertView.findViewById(R.id.historyDiceResult);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();

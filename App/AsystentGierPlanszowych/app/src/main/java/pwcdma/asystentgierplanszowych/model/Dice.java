@@ -28,7 +28,4 @@ public class Dice {
         this.name = name;
     }
 
-    public int getNumberOfSides() {
-        return numberOfSides;
-    }
 }

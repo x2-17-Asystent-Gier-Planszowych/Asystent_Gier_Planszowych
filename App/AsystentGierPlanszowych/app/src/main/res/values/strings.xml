@@ -16,13 +16,9 @@
     <string name="error_incorrect_password">Nieprawidłowe hasło</string>
     <string name="error_field_required">Pole wymagane</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
-    <string name="prompt_username">Nazwa użytkownika</string>
-    <string name="prompt_confirm_password">Potwierdź hasło</string>
     <string name="error_invalid_username">Nieprawidłowa nazwa użytkownika</string>
     <string name="error_password_mismatch">Niezgodność haseł</string>
     <string name="connection_error">Brak połączenia z Internetem</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
-
     <string name="sign_in_facebook">Zaloguj się przez Facebook</string>
     <string name="sign_up">Zarejestruj się</string>
     <string name="startTab1Text">Jesteś mistrzem gry i chcesz zaprosić graczy na niesamowitą sesję RPG?</string>
@@ -57,7 +53,6 @@
     <string name="diceRollDiceText">Rzuć kostką</string>
     <string name="diceImagePlaceholder">dice_image_placeholder</string>
     <string name="diceFragmentDiceImageTextPlaceholder">dice_placeholder</string>
-    <string name="prompt_login_email">Login / email</string>
     <string name="error_invalid_login">Nieprawidłowa nazwa użytkownika lub adres email</string>
     <string name="sign_up_failed">Błąd - rejestracja nie powiodła się</string>
     <string name="sign_up_success">Zarejestrowano pomyślnie</string>

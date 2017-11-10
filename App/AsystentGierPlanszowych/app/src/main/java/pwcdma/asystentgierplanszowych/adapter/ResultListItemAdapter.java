@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.model.Result;
@@ -20,7 +21,7 @@ public  class ResultListItemAdapter extends ArrayAdapter<Result> {
         private TextView resultView;
     }
 
-    public ResultListItemAdapter(Context context, ArrayList<Result> items) {
+    public ResultListItemAdapter(Context context, List<Result> items) {
         super(context, 0, items);
     }
 

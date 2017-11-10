@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.adapter.ResultListItemAdapter;
@@ -26,22 +27,19 @@ public class DiceFragment extends Fragment {
     private final static String TAG = DiceFragment.class.getSimpleName();
     private OnFragmentInteractionListener mListener;
     private TextView mDiceRollResult;
-    private ImageView mK4;
-    private ImageView mK6;
-    private ImageView mK8;
-    private ImageView mK10;
-    private ImageView mK12;
-    private ImageView mK20;
+    private ImageView mNoDicePickedImg;
+    private TextView mNoDicePickedText;
     private Button mPickDiceButton;
     private Button mRollDiceButton;
     private Button mShowDiceRollHistoryBtn;
     private AlertDialog.Builder builder;
     private AlertDialog mPickDiceDialog;
     private AlertDialog mShowHistoryDialog;
-    private int mPickedDice = 1; //1 = K6
+    private int mPickedDice = -1;
     private String[] items = {"K4", "K6", "K8", "K10", "K12", "K20"};
-    private ArrayList<Dice> dices = new ArrayList<>();
-    private ArrayList<Result> resultItemList = new ArrayList<>();
+    private List<Dice> dices = new ArrayList<>();
+    private List<Result> resultItemList = new ArrayList<>();
+    private List<ImageView> diceImages = new ArrayList<>();
 
     public DiceFragment() {
     }
@@ -72,9 +70,12 @@ public class DiceFragment extends Fragment {
         findViews(view);
         mDiceRollResult.setText("");
         addDicesToList();
+        addDiceImagesToList(view);
         setupPickDiceDialog();
         setupHistoryDialog();
         setOnClickListerners();
+        disableButton(mRollDiceButton);
+        disableButton(mShowDiceRollHistoryBtn);
         return view;
     }
 
@@ -85,6 +86,13 @@ public class DiceFragment extends Fragment {
         mShowDiceRollHistoryBtn.setOnClickListener(onClickListenerShowHistory);
     }
 
+    private void disableButton(Button button) {
+        button.setEnabled(false);
+    }
+
+    private void enableButton(Button button) {
+        button.setEnabled(true);
+    }
 
     private void findViews(View view) {
         Log.d(TAG, "findViews: " + view);
@@ -92,12 +100,8 @@ public class DiceFragment extends Fragment {
         mRollDiceButton = view.findViewById(R.id.diceRollDiceBtn);
         mShowDiceRollHistoryBtn = view.findViewById(R.id.diceResultHistoryBtn);
         mDiceRollResult = view.findViewById(R.id.diceResult);
-        mK4 = view.findViewById(R.id.diceK4image);
-        mK6 = view.findViewById(R.id.diceK6image);
-        mK8 = view.findViewById(R.id.diceK8image);
-        mK10 = view.findViewById(R.id.diceK10image);
-        mK12 = view.findViewById(R.id.diceK12image);
-        mK20 = view.findViewById(R.id.diceK20image);
+        mNoDicePickedImg = view.findViewById(R.id.diceNotPickedImage);
+        mNoDicePickedText = view.findViewById(R.id.diceNotPickedText);
     }
 
     private void addDicesToList() {
@@ -108,6 +112,16 @@ public class DiceFragment extends Fragment {
         dices.add(new Dice("K10", 10, false));
         dices.add(new Dice("K12", 12, false));
         dices.add(new Dice("K20", 20, false));
+    }
+
+    private void addDiceImagesToList(View view) {
+        Log.d(TAG, "addDiceImagesToList: ");
+        diceImages.add((ImageView) view.findViewById(R.id.diceK4image));
+        diceImages.add((ImageView) view.findViewById(R.id.diceK6image));
+        diceImages.add((ImageView) view.findViewById(R.id.diceK8image));
+        diceImages.add((ImageView) view.findViewById(R.id.diceK10image));
+        diceImages.add((ImageView) view.findViewById(R.id.diceK12image));
+        diceImages.add((ImageView) view.findViewById(R.id.diceK20image));
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -151,9 +165,13 @@ public class DiceFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Log.d(TAG, "onClick: " + mPickedDice);
-                placeDice(mPickedDice);
+                placeDice2(mPickedDice);
+                enableButton(mRollDiceButton);
+                mNoDicePickedImg.setVisibility(View.GONE);
+                mNoDicePickedText.setVisibility(View.GONE);
             }
         });
+
         builder.setNegativeButton(R.string.diceFragmentPickADiceCancelBtn, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -163,30 +181,16 @@ public class DiceFragment extends Fragment {
         mPickDiceDialog = builder.create();
     }
 
-    private void placeDice(int pickedDice) {
-        switch (pickedDice) {
-            case 0:
-                mK4.setVisibility(View.VISIBLE);
-                break;
-            case 1:
-                mK6.setVisibility(View.VISIBLE);
-                break;
-            case 2:
-                mK8.setVisibility(View.VISIBLE);
-                break;
-            case 3:
-                mK10.setVisibility(View.VISIBLE);
-                break;
-            case 4:
-                mK12.setVisibility(View.VISIBLE);
-                break;
-            case 5:
-                mK20.setVisibility(View.VISIBLE);
-                break;
-            default:
-                break;
+    private void placeDice2(int pickedDice) {
+        for (ImageView temp : diceImages) {
+            if (temp == diceImages.get(pickedDice)) {
+                temp.setVisibility(View.VISIBLE);
+            } else {
+                temp.setVisibility(View.GONE);
+            }
         }
     }
+
 
     private void setupHistoryDialog() {
         Log.d(TAG, "setupPickDiceDialog: ");
@@ -225,6 +229,7 @@ public class DiceFragment extends Fragment {
             Log.d(TAG, "onClick: Roll " + result + " " + name);
             mDiceRollResult.setText(String.valueOf(result));
             resultItemList.add(new Result(name, result));
+            enableButton(mShowDiceRollHistoryBtn);
         }
     };
 

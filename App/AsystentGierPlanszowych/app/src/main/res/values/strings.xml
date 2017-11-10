@@ -59,4 +59,5 @@
     <string name="login_success">Zalogowano pomyślnie</string>
     <string name="customDiceListItemDiceLabel">Kostka:</string>
     <string name="customDiceListItemResultLabel">Wynik:</string>
+    <string name="diceNotPickedText">nie wybrano kostki</string>
 </resources>

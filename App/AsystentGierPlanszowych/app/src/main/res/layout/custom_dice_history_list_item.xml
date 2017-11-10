@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:id="@+id/diceHistoryItemListRL"
-    android:background="@color/white"
+    android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_weight=".2"
-            android:gravity="end"
+            android:gravity="start"
             android:textAppearance="@style/BodySmallSemiboldLeft" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_gravity="bottom"
             android:layout_marginEnd="@dimen/smallHorizontalMargin"
             android:text="@string/customDiceListItemResultLabel"
-            android:textAppearance="@style/BodySmallLightLeft"  />
+            android:textAppearance="@style/BodySmallLightLeft" />
 
         <TextView
             android:id="@+id/historyDiceResult"

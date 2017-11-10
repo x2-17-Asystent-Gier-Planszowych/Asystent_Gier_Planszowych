@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,9 +27,15 @@ public class DiceFragment extends Fragment {
 
     private final static String TAG = DiceFragment.class.getSimpleName();
     private OnFragmentInteractionListener mListener;
-    private TextView mDiceRollResult;
+    private TextView mDiceRollResult1;
+    private TextView mDiceRollResult2;
+    private TextView mDiceRollResult3;
+    private TextView mDiceRollResult4;
+    private TextView mDiceRollResult5;
+    private TextView mDiceRollResult6;
     private ImageView mNoDicePickedImg;
     private TextView mNoDicePickedText;
+    private LinearLayout mDiceNotPickedLayout;
     private Button mPickDiceButton;
     private Button mRollDiceButton;
     private Button mShowDiceRollHistoryBtn;
@@ -39,7 +46,12 @@ public class DiceFragment extends Fragment {
     private String[] items = {"K4", "K6", "K8", "K10", "K12", "K20"};
     private List<Dice> dices = new ArrayList<>();
     private List<Result> resultItemList = new ArrayList<>();
-    private List<ImageView> diceImages = new ArrayList<>();
+    private List<ImageView> diceImages1 = new ArrayList<>();
+    private List<ImageView> diceImages2 = new ArrayList<>();
+    private List<ImageView> diceImages3 = new ArrayList<>();
+    private List<ImageView> diceImages4 = new ArrayList<>();
+    private List<ImageView> diceImages5 = new ArrayList<>();
+    private List<ImageView> diceImages6 = new ArrayList<>();
 
     public DiceFragment() {
     }
@@ -68,7 +80,7 @@ public class DiceFragment extends Fragment {
         Log.d(TAG, "onCreateView: ");
         View view = inflater.inflate(R.layout.fragment_dice, container, false);
         findViews(view);
-        mDiceRollResult.setText("");
+        mDiceRollResult1.setText("");
         addDicesToList();
         addDiceImagesToList(view);
         setupPickDiceDialog();
@@ -99,9 +111,13 @@ public class DiceFragment extends Fragment {
         mPickDiceButton = view.findViewById(R.id.dicePickDiceBtn);
         mRollDiceButton = view.findViewById(R.id.diceRollDiceBtn);
         mShowDiceRollHistoryBtn = view.findViewById(R.id.diceResultHistoryBtn);
-        mDiceRollResult = view.findViewById(R.id.diceResult);
-        mNoDicePickedImg = view.findViewById(R.id.diceNotPickedImage);
-        mNoDicePickedText = view.findViewById(R.id.diceNotPickedText);
+        mDiceRollResult1 = view.findViewById(R.id.diceResult1);
+        mDiceRollResult2 = view.findViewById(R.id.diceResult2);
+        mDiceRollResult3 = view.findViewById(R.id.diceResult3);
+        mDiceRollResult4 = view.findViewById(R.id.diceResult4);
+        mDiceRollResult5 = view.findViewById(R.id.diceResult5);
+        mDiceRollResult6 = view.findViewById(R.id.diceResult6);
+        mDiceNotPickedLayout = view.findViewById(R.id.diceNotPickedLayout);
     }
 
     private void addDicesToList() {
@@ -116,12 +132,47 @@ public class DiceFragment extends Fragment {
 
     private void addDiceImagesToList(View view) {
         Log.d(TAG, "addDiceImagesToList: ");
-        diceImages.add((ImageView) view.findViewById(R.id.diceK4image));
-        diceImages.add((ImageView) view.findViewById(R.id.diceK6image));
-        diceImages.add((ImageView) view.findViewById(R.id.diceK8image));
-        diceImages.add((ImageView) view.findViewById(R.id.diceK10image));
-        diceImages.add((ImageView) view.findViewById(R.id.diceK12image));
-        diceImages.add((ImageView) view.findViewById(R.id.diceK20image));
+        diceImages1.add((ImageView) view.findViewById(R.id.diceK4image1));
+        diceImages1.add((ImageView) view.findViewById(R.id.diceK6image1));
+        diceImages1.add((ImageView) view.findViewById(R.id.diceK8image1));
+        diceImages1.add((ImageView) view.findViewById(R.id.diceK10image1));
+        diceImages1.add((ImageView) view.findViewById(R.id.diceK12image1));
+        diceImages1.add((ImageView) view.findViewById(R.id.diceK20image1));
+
+        diceImages2.add((ImageView) view.findViewById(R.id.diceK4image2));
+        diceImages2.add((ImageView) view.findViewById(R.id.diceK6image2));
+        diceImages2.add((ImageView) view.findViewById(R.id.diceK8image2));
+        diceImages2.add((ImageView) view.findViewById(R.id.diceK10image2));
+        diceImages2.add((ImageView) view.findViewById(R.id.diceK12image2));
+        diceImages2.add((ImageView) view.findViewById(R.id.diceK20image2));
+
+        diceImages3.add((ImageView) view.findViewById(R.id.diceK4image3));
+        diceImages3.add((ImageView) view.findViewById(R.id.diceK6image3));
+        diceImages3.add((ImageView) view.findViewById(R.id.diceK8image3));
+        diceImages3.add((ImageView) view.findViewById(R.id.diceK10image3));
+        diceImages3.add((ImageView) view.findViewById(R.id.diceK12image3));
+        diceImages3.add((ImageView) view.findViewById(R.id.diceK20image3));
+
+        diceImages4.add((ImageView) view.findViewById(R.id.diceK4image4));
+        diceImages4.add((ImageView) view.findViewById(R.id.diceK6image4));
+        diceImages4.add((ImageView) view.findViewById(R.id.diceK8image4));
+        diceImages4.add((ImageView) view.findViewById(R.id.diceK10image4));
+        diceImages4.add((ImageView) view.findViewById(R.id.diceK12image4));
+        diceImages4.add((ImageView) view.findViewById(R.id.diceK20image4));
+
+        diceImages5.add((ImageView) view.findViewById(R.id.diceK4image5));
+        diceImages5.add((ImageView) view.findViewById(R.id.diceK6image5));
+        diceImages5.add((ImageView) view.findViewById(R.id.diceK8image5));
+        diceImages5.add((ImageView) view.findViewById(R.id.diceK10image5));
+        diceImages5.add((ImageView) view.findViewById(R.id.diceK12image5));
+        diceImages5.add((ImageView) view.findViewById(R.id.diceK20image5));
+
+        diceImages6.add((ImageView) view.findViewById(R.id.diceK4image6));
+        diceImages6.add((ImageView) view.findViewById(R.id.diceK6image6));
+        diceImages6.add((ImageView) view.findViewById(R.id.diceK8image6));
+        diceImages6.add((ImageView) view.findViewById(R.id.diceK10image6));
+        diceImages6.add((ImageView) view.findViewById(R.id.diceK12image6));
+        diceImages6.add((ImageView) view.findViewById(R.id.diceK20image6));
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -165,10 +216,10 @@ public class DiceFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Log.d(TAG, "onClick: " + mPickedDice);
-                placeDice2(mPickedDice);
+                placeDice(mPickedDice);
                 enableButton(mRollDiceButton);
-                mNoDicePickedImg.setVisibility(View.GONE);
-                mNoDicePickedText.setVisibility(View.GONE);
+                mDiceNotPickedLayout.setVisibility(View.GONE);
+
             }
         });
 
@@ -181,9 +232,44 @@ public class DiceFragment extends Fragment {
         mPickDiceDialog = builder.create();
     }
 
-    private void placeDice2(int pickedDice) {
-        for (ImageView temp : diceImages) {
-            if (temp == diceImages.get(pickedDice)) {
+    private void placeDice(int pickedDice) {
+        for (ImageView temp : diceImages1) {
+            if (temp == diceImages1.get(pickedDice)) {
+                temp.setVisibility(View.VISIBLE);
+            } else {
+                temp.setVisibility(View.GONE);
+            }
+        }
+        for (ImageView temp : diceImages2) {
+            if (temp == diceImages2.get(pickedDice)) {
+                temp.setVisibility(View.VISIBLE);
+            } else {
+                temp.setVisibility(View.GONE);
+            }
+        }
+        for (ImageView temp : diceImages3) {
+            if (temp == diceImages3.get(pickedDice)) {
+                temp.setVisibility(View.VISIBLE);
+            } else {
+                temp.setVisibility(View.GONE);
+            }
+        }
+        for (ImageView temp : diceImages4) {
+            if (temp == diceImages4.get(pickedDice)) {
+                temp.setVisibility(View.VISIBLE);
+            } else {
+                temp.setVisibility(View.GONE);
+            }
+        }
+        for (ImageView temp : diceImages5) {
+            if (temp == diceImages5.get(pickedDice)) {
+                temp.setVisibility(View.VISIBLE);
+            } else {
+                temp.setVisibility(View.GONE);
+            }
+        }
+        for (ImageView temp : diceImages6) {
+            if (temp == diceImages6.get(pickedDice)) {
                 temp.setVisibility(View.VISIBLE);
             } else {
                 temp.setVisibility(View.GONE);
@@ -224,11 +310,22 @@ public class DiceFragment extends Fragment {
     private View.OnClickListener onClickListenerRoll = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            int result = dices.get(mPickedDice).roll();
+            int result[] = new int[6];
+            for (int i = 0; i <= 5; i++) {
+                result[i] = dices.get(mPickedDice).roll();
+            }
+
             String name = dices.get(mPickedDice).getName();
             Log.d(TAG, "onClick: Roll " + result + " " + name);
-            mDiceRollResult.setText(String.valueOf(result));
-            resultItemList.add(new Result(name, result));
+            mDiceRollResult1.setText(String.valueOf(result[0]));
+            mDiceRollResult2.setText(String.valueOf(result[1]));
+            mDiceRollResult3.setText(String.valueOf(result[2]));
+            mDiceRollResult4.setText(String.valueOf(result[3]));
+            mDiceRollResult5.setText(String.valueOf(result[4]));
+            mDiceRollResult6.setText(String.valueOf(result[5]));
+            for (int i = 0; i <= 5; i++) {
+                resultItemList.add(new Result(name, result[i]));
+            }
             enableButton(mShowDiceRollHistoryBtn);
         }
     };

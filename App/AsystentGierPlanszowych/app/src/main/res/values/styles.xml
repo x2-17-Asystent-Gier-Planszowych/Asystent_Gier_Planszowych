@@ -83,7 +83,7 @@
     </style>
 
     <style name="DiceResultBig">
-        <item name="android:textSize">48sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/white70</item>

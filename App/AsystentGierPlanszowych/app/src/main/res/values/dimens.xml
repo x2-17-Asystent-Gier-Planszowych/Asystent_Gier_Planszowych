@@ -42,4 +42,5 @@
     <dimen name="tab_layout_height">56dp</dimen>
     <dimen name="horizontalPaddingDialog">32dp</dimen>
     <dimen name="toolsButtonPadding">20dp</dimen>
+    <dimen name="k4_padding_bottom">15dp</dimen>
 </resources>

@@ -15,20 +15,68 @@
         android:layout_height="0dp"
         android:layout_weight=".5">
 
+        <ImageView
+            android:id="@+id/diceK4image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:src="@drawable/ic_dice_k4"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/diceK6image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingBottom="55dp"
+            android:paddingEnd="0dp"
+            android:paddingStart="10dp"
+            android:paddingTop="30dp"
+            android:src="@drawable/ic_dice_k6"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/diceK8image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="30dp"
+            android:src="@drawable/ic_dice_k8"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/diceK10image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="40dp"
+            android:src="@drawable/ic_dice_k10"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/diceK12image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:src="@drawable/ic_dice_k12"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/diceK20image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="15dp"
+            android:src="@drawable/ic_dice_k20"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/diceResult"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:text=":)"
             android:gravity="center"
-            android:text="0"
             android:textAppearance="@style/DiceResultBig" />
-
-        <TextView
-            android:id="@+id/dicePicked"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:text="@string/diceImagePlaceholder" />
 
     </FrameLayout>
 

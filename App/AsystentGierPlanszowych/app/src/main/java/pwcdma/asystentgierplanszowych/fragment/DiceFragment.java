@@ -1,7 +1,6 @@
 package pwcdma.asystentgierplanszowych.fragment;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
@@ -12,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,7 +26,12 @@ public class DiceFragment extends Fragment {
     private final static String TAG = DiceFragment.class.getSimpleName();
     private OnFragmentInteractionListener mListener;
     private TextView mDiceRollResult;
-    private TextView mDicePickedTestTV;
+    private ImageView mK4;
+    private ImageView mK6;
+    private ImageView mK8;
+    private ImageView mK10;
+    private ImageView mK12;
+    private ImageView mK20;
     private Button mPickDiceButton;
     private Button mRollDiceButton;
     private Button mShowDiceRollHistoryBtn;
@@ -37,6 +42,7 @@ public class DiceFragment extends Fragment {
     private String[] items = {"K4", "K6", "K8", "K10", "K12", "K20"};
     private ArrayList<Dice> dices = new ArrayList<>();
     private ArrayList<Result> resultItemList = new ArrayList<>();
+
     public DiceFragment() {
     }
 
@@ -66,7 +72,7 @@ public class DiceFragment extends Fragment {
         findViews(view);
         mDiceRollResult.setText("");
         addDicesToList();
-        setupDialog();
+        setupPickDiceDialog();
         setupHistoryDialog();
         setOnClickListerners();
         return view;
@@ -82,11 +88,16 @@ public class DiceFragment extends Fragment {
 
     private void findViews(View view) {
         Log.d(TAG, "findViews: " + view);
-        mDicePickedTestTV = view.findViewById(R.id.dicePicked);
         mPickDiceButton = view.findViewById(R.id.dicePickDiceBtn);
         mRollDiceButton = view.findViewById(R.id.diceRollDiceBtn);
         mShowDiceRollHistoryBtn = view.findViewById(R.id.diceResultHistoryBtn);
         mDiceRollResult = view.findViewById(R.id.diceResult);
+        mK4 = view.findViewById(R.id.diceK4image);
+        mK6 = view.findViewById(R.id.diceK6image);
+        mK8 = view.findViewById(R.id.diceK8image);
+        mK10 = view.findViewById(R.id.diceK10image);
+        mK12 = view.findViewById(R.id.diceK12image);
+        mK20 = view.findViewById(R.id.diceK20image);
     }
 
     private void addDicesToList() {
@@ -125,8 +136,8 @@ public class DiceFragment extends Fragment {
         mListener = null;
     }
 
-    private void setupDialog() {
-        Log.d(TAG, "setupDialog: ");
+    private void setupPickDiceDialog() {
+        Log.d(TAG, "setupPickDiceDialog: ");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.custom_dice_dialog_list_item, items);
         builder = new AlertDialog.Builder(getContext());
         builder.setTitle(R.string.diceFragmentPickADiceText);
@@ -140,7 +151,7 @@ public class DiceFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Log.d(TAG, "onClick: " + mPickedDice);
-                mDicePickedTestTV.setText(items[mPickedDice]);
+                placeDice(mPickedDice);
             }
         });
         builder.setNegativeButton(R.string.diceFragmentPickADiceCancelBtn, new DialogInterface.OnClickListener() {
@@ -152,9 +163,33 @@ public class DiceFragment extends Fragment {
         mPickDiceDialog = builder.create();
     }
 
+    private void placeDice(int pickedDice) {
+        switch (pickedDice) {
+            case 0:
+                mK4.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                mK6.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                mK8.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                mK10.setVisibility(View.VISIBLE);
+                break;
+            case 4:
+                mK12.setVisibility(View.VISIBLE);
+                break;
+            case 5:
+                mK20.setVisibility(View.VISIBLE);
+                break;
+            default:
+                break;
+        }
+    }
 
     private void setupHistoryDialog() {
-        Log.d(TAG, "setupDialog: ");
+        Log.d(TAG, "setupPickDiceDialog: ");
         ResultListItemAdapter adapter = new ResultListItemAdapter(getContext(), resultItemList);
         builder = new AlertDialog.Builder(getContext());
         builder.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
@@ -189,7 +224,7 @@ public class DiceFragment extends Fragment {
             String name = dices.get(mPickedDice).getName();
             Log.d(TAG, "onClick: Roll " + result + " " + name);
             mDiceRollResult.setText(String.valueOf(result));
-            resultItemList.add(new Result(name,result));
+            resultItemList.add(new Result(name, result));
         }
     };
 

@@ -15,7 +15,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import pwcdma.asystentgierplanszowych.R;
@@ -33,17 +37,23 @@ public class DiceFragment extends Fragment {
     private TextView mDiceRollResult4;
     private TextView mDiceRollResult5;
     private TextView mDiceRollResult6;
-    private ImageView mNoDicePickedImg;
-    private TextView mNoDicePickedText;
+    private LinearLayout mLlTopRowOFDices;
+    private LinearLayout mLlBottomRowOFDices;
     private LinearLayout mDiceNotPickedLayout;
     private Button mPickDiceButton;
     private Button mRollDiceButton;
     private Button mShowDiceRollHistoryBtn;
+    private Button mPickNumberOfDicesBtn;
     private AlertDialog.Builder builder;
     private AlertDialog mPickDiceDialog;
     private AlertDialog mShowHistoryDialog;
-    private int mPickedDice = -1;
-    private String[] items = {"K4", "K6", "K8", "K10", "K12", "K20"};
+    private AlertDialog mPickNumberOfDicesDialog;
+    private FloatingActionButton mFAB;
+    private FloatingActionMenu mFAM;
+    private int mPickedDice = 1;
+    private int mNumberOfDices = -1;
+    private String[] diceNamesList = {"K4", "K6", "K8", "K10", "K12", "K20"};
+    private Byte[] diceNumberList = {1, 2, 3, 4, 5, 6};
     private List<Dice> dices = new ArrayList<>();
     private List<Result> resultItemList = new ArrayList<>();
     private List<ImageView> diceImages1 = new ArrayList<>();
@@ -52,6 +62,8 @@ public class DiceFragment extends Fragment {
     private List<ImageView> diceImages4 = new ArrayList<>();
     private List<ImageView> diceImages5 = new ArrayList<>();
     private List<ImageView> diceImages6 = new ArrayList<>();
+    private List<List<ImageView>> diceImages = new ArrayList<>();
+    private List<TextView> diceResults = new ArrayList<>();
 
     public DiceFragment() {
     }
@@ -83,11 +95,14 @@ public class DiceFragment extends Fragment {
         mDiceRollResult1.setText("");
         addDicesToList();
         addDiceImagesToList(view);
+        setupDiceResultsList();
         setupPickDiceDialog();
         setupHistoryDialog();
+        setupNumberOfDicesDialog();
         setOnClickListerners();
         disableButton(mRollDiceButton);
         disableButton(mShowDiceRollHistoryBtn);
+        disableButton(mPickDiceButton);
         return view;
     }
 
@@ -96,6 +111,7 @@ public class DiceFragment extends Fragment {
         mPickDiceButton.setOnClickListener(onClickListenerPick);
         mRollDiceButton.setOnClickListener(onClickListenerRoll);
         mShowDiceRollHistoryBtn.setOnClickListener(onClickListenerShowHistory);
+        mPickNumberOfDicesBtn.setOnClickListener(onClickListenerPickNumberOFDices);
     }
 
     private void disableButton(Button button) {
@@ -111,6 +127,7 @@ public class DiceFragment extends Fragment {
         mPickDiceButton = view.findViewById(R.id.dicePickDiceBtn);
         mRollDiceButton = view.findViewById(R.id.diceRollDiceBtn);
         mShowDiceRollHistoryBtn = view.findViewById(R.id.diceResultHistoryBtn);
+        mPickNumberOfDicesBtn = view.findViewById(R.id.dicePickNoDicesBtn);
         mDiceRollResult1 = view.findViewById(R.id.diceResult1);
         mDiceRollResult2 = view.findViewById(R.id.diceResult2);
         mDiceRollResult3 = view.findViewById(R.id.diceResult3);
@@ -118,6 +135,18 @@ public class DiceFragment extends Fragment {
         mDiceRollResult5 = view.findViewById(R.id.diceResult5);
         mDiceRollResult6 = view.findViewById(R.id.diceResult6);
         mDiceNotPickedLayout = view.findViewById(R.id.diceNotPickedLayout);
+        mLlTopRowOFDices = view.findViewById(R.id.diceTopDicesLL);
+        mLlBottomRowOFDices = view.findViewById(R.id.diceBottomDicesLL);
+        mFAM = view.findViewById(R.id.menuFAB);
+    }
+
+    private void setupDiceResultsList() {
+        diceResults.add(mDiceRollResult1);
+        diceResults.add(mDiceRollResult2);
+        diceResults.add(mDiceRollResult3);
+        diceResults.add(mDiceRollResult4);
+        diceResults.add(mDiceRollResult5);
+        diceResults.add(mDiceRollResult6);
     }
 
     private void addDicesToList() {
@@ -173,6 +202,13 @@ public class DiceFragment extends Fragment {
         diceImages6.add((ImageView) view.findViewById(R.id.diceK10image6));
         diceImages6.add((ImageView) view.findViewById(R.id.diceK12image6));
         diceImages6.add((ImageView) view.findViewById(R.id.diceK20image6));
+
+        diceImages.add(diceImages1);
+        diceImages.add(diceImages2);
+        diceImages.add(diceImages3);
+        diceImages.add(diceImages4);
+        diceImages.add(diceImages5);
+        diceImages.add(diceImages6);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -203,7 +239,8 @@ public class DiceFragment extends Fragment {
 
     private void setupPickDiceDialog() {
         Log.d(TAG, "setupPickDiceDialog: ");
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.custom_dice_dialog_list_item, items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.custom_dice_dialog_list_item, diceNamesList);
+
         builder = new AlertDialog.Builder(getContext());
         builder.setTitle(R.string.diceFragmentPickADiceText);
         builder.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
@@ -219,10 +256,10 @@ public class DiceFragment extends Fragment {
                 placeDice(mPickedDice);
                 enableButton(mRollDiceButton);
                 mDiceNotPickedLayout.setVisibility(View.GONE);
-
+                mLlTopRowOFDices.setVisibility(View.VISIBLE);
+                mLlBottomRowOFDices.setVisibility(View.VISIBLE);
             }
         });
-
         builder.setNegativeButton(R.string.diceFragmentPickADiceCancelBtn, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -232,54 +269,58 @@ public class DiceFragment extends Fragment {
         mPickDiceDialog = builder.create();
     }
 
+    private void setupNumberOfDicesDialog() {
+        Log.d(TAG, "setupNumberOfDicesDialog: ");
+        ArrayAdapter<Byte> adapter = new ArrayAdapter<>(getContext(), R.layout.custom_dice_dialog_list_item, diceNumberList);
+
+        builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(R.string.dicePickNoOFDicesText);
+        builder.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.d(TAG, "onClick: " + which);
+                mNumberOfDices = which + 1;
+            }
+        });
+        builder.setPositiveButton(R.string.diceFragmentPickADicePickBtn, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.d(TAG, "onClick: " + mNumberOfDices);
+                enableButton(mPickDiceButton);
+                placeDice(mPickedDice);
+            }
+        });
+        builder.setNegativeButton(R.string.diceFragmentPickADiceCancelBtn, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mPickNumberOfDicesDialog.dismiss();
+            }
+        });
+        mPickNumberOfDicesDialog = builder.create();
+    }
+
+
     private void placeDice(int pickedDice) {
-        for (ImageView temp : diceImages1) {
-            if (temp == diceImages1.get(pickedDice)) {
-                temp.setVisibility(View.VISIBLE);
-            } else {
-                temp.setVisibility(View.GONE);
+        for (List<ImageView> temp : diceImages) {
+            for (ImageView diceImage : temp) {
+                diceImage.setVisibility(View.GONE);
             }
         }
-        for (ImageView temp : diceImages2) {
-            if (temp == diceImages2.get(pickedDice)) {
-                temp.setVisibility(View.VISIBLE);
-            } else {
-                temp.setVisibility(View.GONE);
-            }
-        }
-        for (ImageView temp : diceImages3) {
-            if (temp == diceImages3.get(pickedDice)) {
-                temp.setVisibility(View.VISIBLE);
-            } else {
-                temp.setVisibility(View.GONE);
-            }
-        }
-        for (ImageView temp : diceImages4) {
-            if (temp == diceImages4.get(pickedDice)) {
-                temp.setVisibility(View.VISIBLE);
-            } else {
-                temp.setVisibility(View.GONE);
-            }
-        }
-        for (ImageView temp : diceImages5) {
-            if (temp == diceImages5.get(pickedDice)) {
-                temp.setVisibility(View.VISIBLE);
-            } else {
-                temp.setVisibility(View.GONE);
-            }
-        }
-        for (ImageView temp : diceImages6) {
-            if (temp == diceImages6.get(pickedDice)) {
-                temp.setVisibility(View.VISIBLE);
-            } else {
-                temp.setVisibility(View.GONE);
+        for (int i = 0; i < mNumberOfDices; i++) {
+            List<ImageView> temp = diceImages.get(i);
+            for (ImageView diceImage : temp) {
+                if (diceImage == temp.get(pickedDice)) {
+                    diceImage.setVisibility(View.VISIBLE);
+                } else {
+                    diceImage.setVisibility(View.GONE);
+                }
             }
         }
     }
 
 
     private void setupHistoryDialog() {
-        Log.d(TAG, "setupPickDiceDialog: ");
+        Log.d(TAG, "setupHistoryDialog: ");
         ResultListItemAdapter adapter = new ResultListItemAdapter(getContext(), resultItemList);
         builder = new AlertDialog.Builder(getContext());
         builder.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
@@ -311,22 +352,44 @@ public class DiceFragment extends Fragment {
         @Override
         public void onClick(View view) {
             int result[] = new int[6];
-            for (int i = 0; i <= 5; i++) {
+            Log.d(TAG, "onClick: " + result[5]);
+            for (int i = 0; i < mNumberOfDices; i++) {
                 result[i] = dices.get(mPickedDice).roll();
             }
 
             String name = dices.get(mPickedDice).getName();
-            Log.d(TAG, "onClick: Roll " + result + " " + name);
-            mDiceRollResult1.setText(String.valueOf(result[0]));
-            mDiceRollResult2.setText(String.valueOf(result[1]));
-            mDiceRollResult3.setText(String.valueOf(result[2]));
-            mDiceRollResult4.setText(String.valueOf(result[3]));
-            mDiceRollResult5.setText(String.valueOf(result[4]));
-            mDiceRollResult6.setText(String.valueOf(result[5]));
-            for (int i = 0; i <= 5; i++) {
+            Log.d(TAG, "onClick: Roll ");
+            if (result[0] != 0) {
+                mDiceRollResult1.setText(String.valueOf(result[0]));
+            } else mDiceRollResult1.setText("");
+            if (result[1] != 0) {
+                mDiceRollResult2.setText(String.valueOf(result[1]));
+            } else mDiceRollResult2.setText("");
+            if (result[2] != 0) {
+                mDiceRollResult3.setText(String.valueOf(result[2]));
+            } else mDiceRollResult3.setText("");
+            if (result[3] != 0) {
+                mDiceRollResult4.setText(String.valueOf(result[3]));
+            } else mDiceRollResult4.setText("");
+            if (result[4] != 0) {
+                mDiceRollResult5.setText(String.valueOf(result[4]));
+            } else mDiceRollResult5.setText("");
+            if (result[5] != 0) {
+                mDiceRollResult6.setText(String.valueOf(result[5]));
+            } else mDiceRollResult6.setText("");
+
+            for (int i = 0; i < mNumberOfDices; i++) {
                 resultItemList.add(new Result(name, result[i]));
             }
             enableButton(mShowDiceRollHistoryBtn);
+        }
+    };
+
+    private View.OnClickListener onClickListenerPickNumberOFDices = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Log.d(TAG, "onClick: ");
+            mPickNumberOfDicesDialog.show();
         }
     };
 

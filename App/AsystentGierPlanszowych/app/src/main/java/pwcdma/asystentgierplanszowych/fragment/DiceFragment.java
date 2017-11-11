@@ -19,7 +19,6 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import pwcdma.asystentgierplanszowych.R;
@@ -40,16 +39,15 @@ public class DiceFragment extends Fragment {
     private LinearLayout mLlTopRowOFDices;
     private LinearLayout mLlBottomRowOFDices;
     private LinearLayout mDiceNotPickedLayout;
-    private Button mPickDiceButton;
     private Button mRollDiceButton;
-    private Button mShowDiceRollHistoryBtn;
-    private Button mPickNumberOfDicesBtn;
     private AlertDialog.Builder builder;
     private AlertDialog mPickDiceDialog;
     private AlertDialog mShowHistoryDialog;
     private AlertDialog mPickNumberOfDicesDialog;
-    private FloatingActionButton mFAB;
-    private FloatingActionMenu mFAM;
+    private FloatingActionButton mFabShowHistory;
+    private FloatingActionButton mFabNumberOfDices;
+    private FloatingActionButton mFabNumberOfDiceSides;
+    private FloatingActionMenu mFloatingActionMenu;
     private int mPickedDice = 1;
     private int mNumberOfDices = -1;
     private String[] diceNamesList = {"K4", "K6", "K8", "K10", "K12", "K20"};
@@ -100,18 +98,24 @@ public class DiceFragment extends Fragment {
         setupHistoryDialog();
         setupNumberOfDicesDialog();
         setOnClickListerners();
+        setupFAM();
         disableButton(mRollDiceButton);
-        disableButton(mShowDiceRollHistoryBtn);
-        disableButton(mPickDiceButton);
+        mFabShowHistory.setEnabled(false);
+        mFabNumberOfDiceSides.setEnabled(false);
         return view;
+    }
+
+    private void setupFAM() {
+        Log.d(TAG, "setupFAM: ");
+
     }
 
     private void setOnClickListerners() {
         Log.d(TAG, "setOnClickListerners: ");
-        mPickDiceButton.setOnClickListener(onClickListenerPick);
         mRollDiceButton.setOnClickListener(onClickListenerRoll);
-        mShowDiceRollHistoryBtn.setOnClickListener(onClickListenerShowHistory);
-        mPickNumberOfDicesBtn.setOnClickListener(onClickListenerPickNumberOFDices);
+        mFabShowHistory.setOnClickListener(onClickListenerShowHistory);
+        mFabNumberOfDices.setOnClickListener(onClickListenerPickNumberOfDices);
+        mFabNumberOfDiceSides.setOnClickListener(onClickListenerPick);
     }
 
     private void disableButton(Button button) {
@@ -124,10 +128,7 @@ public class DiceFragment extends Fragment {
 
     private void findViews(View view) {
         Log.d(TAG, "findViews: " + view);
-        mPickDiceButton = view.findViewById(R.id.dicePickDiceBtn);
         mRollDiceButton = view.findViewById(R.id.diceRollDiceBtn);
-        mShowDiceRollHistoryBtn = view.findViewById(R.id.diceResultHistoryBtn);
-        mPickNumberOfDicesBtn = view.findViewById(R.id.dicePickNoDicesBtn);
         mDiceRollResult1 = view.findViewById(R.id.diceResult1);
         mDiceRollResult2 = view.findViewById(R.id.diceResult2);
         mDiceRollResult3 = view.findViewById(R.id.diceResult3);
@@ -137,7 +138,10 @@ public class DiceFragment extends Fragment {
         mDiceNotPickedLayout = view.findViewById(R.id.diceNotPickedLayout);
         mLlTopRowOFDices = view.findViewById(R.id.diceTopDicesLL);
         mLlBottomRowOFDices = view.findViewById(R.id.diceBottomDicesLL);
-        mFAM = view.findViewById(R.id.menuFAB);
+        mFloatingActionMenu = view.findViewById(R.id.menuFAB);
+        mFabShowHistory = view.findViewById(R.id.fabShowHistory);
+        mFabNumberOfDices = view.findViewById(R.id.fabNumberOfDices);
+        mFabNumberOfDiceSides = view.findViewById(R.id.fabNumberOfSides);
     }
 
     private void setupDiceResultsList() {
@@ -286,7 +290,7 @@ public class DiceFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Log.d(TAG, "onClick: " + mNumberOfDices);
-                enableButton(mPickDiceButton);
+                mFabNumberOfDiceSides.setEnabled(true);
                 placeDice(mPickedDice);
             }
         });
@@ -381,11 +385,11 @@ public class DiceFragment extends Fragment {
             for (int i = 0; i < mNumberOfDices; i++) {
                 resultItemList.add(new Result(name, result[i]));
             }
-            enableButton(mShowDiceRollHistoryBtn);
+            mFabShowHistory.setEnabled(true);
         }
     };
 
-    private View.OnClickListener onClickListenerPickNumberOFDices = new View.OnClickListener() {
+    private View.OnClickListener onClickListenerPickNumberOfDices = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Log.d(TAG, "onClick: ");

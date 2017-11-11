@@ -498,95 +498,70 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:orientation="vertical">
-
-
-            <Button
-                android:id="@+id/dicePickNoDicesBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
-                android:layout_marginTop="@dimen/smallVerticalButtonMargin"
-                android:background="@drawable/button_primary_selector"
-                android:text="@string/dicePickNoOFDicesText"
-                android:textAllCaps="true"
-                android:textAppearance="@style/ButtonLabelPrimary" />
-
-            <Button
-                android:id="@+id/dicePickDiceBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
-                android:layout_marginTop="@dimen/smallVerticalButtonMargin"
-                android:background="@drawable/button_primary_selector"
-                android:text="@string/dicePickDiceText"
-                android:textAllCaps="true"
-                android:textAppearance="@style/ButtonLabelPrimary" />
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/diceRollDiceBtn"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
                 android:layout_marginTop="@dimen/smallVerticalButtonMargin"
+                android:layout_weight=".8"
                 android:background="@drawable/button_primary_selector"
                 android:text="@string/diceRollDiceText"
                 android:textAllCaps="true"
                 android:textAppearance="@style/ButtonLabelPrimary" />
 
-            <Button
-                android:id="@+id/diceResultHistoryBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
-                android:layout_marginTop="@dimen/smallVerticalButtonMargin"
-                android:background="@drawable/button_primary_selector"
-                android:text="Zobacz historię rzutów"
-                android:textAllCaps="true"
-                android:textAppearance="@style/ButtonLabelPrimary" />
-
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".2" />
 
         </LinearLayout>
+
 
         <com.github.clans.fab.FloatingActionMenu
             android:id="@+id/menuFAB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
+            android:layout_marginBottom="@dimen/smallVerticalButtonMargin"
+            android:layout_marginEnd="@dimen/smallHorizontalMargin"
+            android:layout_marginStart="@dimen/smallHorizontalMargin"
             fab:menu_animationDelayPerItem="0"
             fab:menu_colorNormal="@color/colorAccent"
             fab:menu_colorPressed="@color/colorAccentLight"
             fab:menu_colorRipple="@color/colorAccentLight"
+            fab:menu_icon="@drawable/ic_fab_dice"
             fab:menu_labels_hideAnimation="@anim/jump_to_down"
             fab:menu_labels_showAnimation="@anim/jump_from_down"
             fab:menu_labels_style="@style/MenuLabelsStyle"
             fab:menu_shadowColor="#444">
 
             <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/fab12"
+                android:id="@+id/fabNumberOfDices"
                 style="@style/MenuButtonsStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_fab_dice"
-                fab:fab_label="Menu item 1" />
+                fab:fab_label="@string/dicePickNoOFDicesText" />
 
             <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/fab22"
+                android:id="@+id/fabNumberOfSides"
                 style="@style/MenuButtonsStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_fab_dice"
-                fab:fab_label="Menu item 2" />
+                fab:fab_label="@string/dicePickDiceText" />
 
             <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/fab32"
+                android:id="@+id/fabShowHistory"
                 style="@style/MenuButtonsStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_fab_dice"
-                fab:fab_label="LOREM" />
+                fab:fab_label="@string/diceShowHistoryText" />
 
         </com.github.clans.fab.FloatingActionMenu>
     </FrameLayout>

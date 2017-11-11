@@ -29,7 +29,7 @@ public class ToolsFragment extends Fragment {
         Log.d(TAG, "ToolsFragment: ");
     }
 
-    public static ToolsFragment newInstance(String param1, String param2) {
+    public static ToolsFragment newInstance() {
         Log.d(TAG, "newInstance: ");
         ToolsFragment fragment = new ToolsFragment();
         Bundle args = new Bundle();

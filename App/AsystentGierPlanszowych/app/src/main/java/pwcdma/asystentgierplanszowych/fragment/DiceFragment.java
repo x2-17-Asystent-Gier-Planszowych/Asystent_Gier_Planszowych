@@ -53,6 +53,7 @@ public class DiceFragment extends Fragment {
     private String[] diceNamesList = {"K4", "K6", "K8", "K10", "K12", "K20"};
     private Byte[] diceNumberList = {1, 2, 3, 4, 5, 6};
     private List<Dice> dices = new ArrayList<>();
+    private int result[] = new int[6];
     private List<Result> resultItemList = new ArrayList<>();
     private List<ImageView> diceImages1 = new ArrayList<>();
     private List<ImageView> diceImages2 = new ArrayList<>();
@@ -262,6 +263,7 @@ public class DiceFragment extends Fragment {
                 mDiceNotPickedLayout.setVisibility(View.GONE);
                 mLlTopRowOFDices.setVisibility(View.VISIBLE);
                 mLlBottomRowOFDices.setVisibility(View.VISIBLE);
+                cleanResultsOnDices();
             }
         });
         builder.setNegativeButton(R.string.diceFragmentPickADiceCancelBtn, new DialogInterface.OnClickListener() {
@@ -291,6 +293,7 @@ public class DiceFragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 Log.d(TAG, "onClick: " + mNumberOfDices);
                 mFabNumberOfDiceSides.setEnabled(true);
+                cleanResultsOnDices();
                 placeDice(mPickedDice);
             }
         });
@@ -355,40 +358,36 @@ public class DiceFragment extends Fragment {
     private View.OnClickListener onClickListenerRoll = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            int result[] = new int[6];
-            Log.d(TAG, "onClick: " + result[5]);
-            for (int i = 0; i < mNumberOfDices; i++) {
-                result[i] = dices.get(mPickedDice).roll();
-            }
-
-            String name = dices.get(mPickedDice).getName();
-            Log.d(TAG, "onClick: Roll ");
-            if (result[0] != 0) {
-                mDiceRollResult1.setText(String.valueOf(result[0]));
-            } else mDiceRollResult1.setText("");
-            if (result[1] != 0) {
-                mDiceRollResult2.setText(String.valueOf(result[1]));
-            } else mDiceRollResult2.setText("");
-            if (result[2] != 0) {
-                mDiceRollResult3.setText(String.valueOf(result[2]));
-            } else mDiceRollResult3.setText("");
-            if (result[3] != 0) {
-                mDiceRollResult4.setText(String.valueOf(result[3]));
-            } else mDiceRollResult4.setText("");
-            if (result[4] != 0) {
-                mDiceRollResult5.setText(String.valueOf(result[4]));
-            } else mDiceRollResult5.setText("");
-            if (result[5] != 0) {
-                mDiceRollResult6.setText(String.valueOf(result[5]));
-            } else mDiceRollResult6.setText("");
-
-            for (int i = 0; i < mNumberOfDices; i++) {
-                resultItemList.add(new Result(name, result[i]));
-            }
+            Log.d(TAG, "onClick: " + mNumberOfDices );
+            fetchResults();
+            showResultsOnDiceAndList();
             mFabShowHistory.setEnabled(true);
         }
     };
 
+    private void cleanResultsOnDices(){
+        for(int i= 0; i < 5 ; i++){
+            diceResults.get(i).setText("");
+            result[i] = 0;
+        }
+
+    }
+
+    private void fetchResults() {
+        for (int i = 0; i < mNumberOfDices; i++) {
+            result[i] = dices.get(mPickedDice).roll();
+        }
+    }
+
+    private void showResultsOnDiceAndList(){
+        String name = dices.get(mPickedDice).getName();
+        for (int i = 0; i < 5; i++) {
+            if (result[i] != 0) {
+                diceResults.get(i).setText(String.valueOf(result[i]));
+                resultItemList.add(new Result(name, result[i]));
+            } else diceResults.get(i).setText("");
+        }
+    }
     private View.OnClickListener onClickListenerPickNumberOfDices = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

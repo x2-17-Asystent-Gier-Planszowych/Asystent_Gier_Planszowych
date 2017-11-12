@@ -1,6 +1,7 @@
 package pwcdma.asystentgierplanszowych.fragment;
 
 import android.app.Dialog;
+import android.graphics.drawable.Animatable;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.os.VibrationEffect;
 import android.support.v4.app.Fragment;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,7 @@ import static android.content.Context.VIBRATOR_SERVICE;
 
 public class TimerFragment extends Fragment {
 
+    private final String TAG = TimerFragment.class.getSimpleName();
     private final int SECOND = 1000;
     private OnFragmentInteractionListener mListener;
     private TextView timeTextView;
@@ -44,6 +47,8 @@ public class TimerFragment extends Fragment {
     private NumberPicker mSecondPicker;
 
     private Dialog dialog;
+
+    private boolean tapBlock = false;
 
     private int mSavedHours;
     private int mSavedMinutes;
@@ -88,7 +93,7 @@ public class TimerFragment extends Fragment {
         mStopImgBtn = view.findViewById(R.id.timerStopButton);
         mRewindImgBtn = view.findViewById(R.id.timerRewindButton);
         mSetTimerCountdownImgBtn = view.findViewById(R.id.timerSetCountdownButton);
-        mHourglassImg = view.findViewById(R.id.timerHourglassImage);
+        mHourglassImg = view.findViewById(R.id.timer);
     }
 //    @Override
 //    public void onAttach(Context context) {
@@ -143,6 +148,7 @@ public class TimerFragment extends Fragment {
         mPauseImgBtn.setVisibility(View.VISIBLE);
     }
 
+
     private View.OnClickListener onClickListenerSetCountdownTimer = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -182,9 +188,10 @@ public class TimerFragment extends Fragment {
     private View.OnClickListener onClickListenerPlay = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if ((mHourPicker.getValue() + mMinutePicker.getValue() + mSecondPicker.getValue()!= 0) && !isOn) {
+            if ((mHourPicker.getValue() + mMinutePicker.getValue() + mSecondPicker.getValue() != 0) && !isOn) {
                 isOn = true;
                 isPause = false;
+                ((Animatable) mHourglassImg.getDrawable()).start();
                 disablePicker();
                 startCounting();
                 showPauseBn();
@@ -197,6 +204,7 @@ public class TimerFragment extends Fragment {
         @Override
         public void onClick(View view) {
             if (isOn) {
+                ((Animatable) mHourglassImg.getDrawable()).stop();
                 isPause = true;
                 isOn = false;
                 showPlayBtn();
@@ -213,6 +221,7 @@ public class TimerFragment extends Fragment {
             mHourPicker.setValue(0);
             mMinutePicker.setValue(0);
             mSecondPicker.setValue(0);
+            ((Animatable) mHourglassImg.getDrawable()).stop();
             timeTextView.setText(R.string.timerFragmentTimePlaceholder);
             unlockPicker();
         }
@@ -220,28 +229,34 @@ public class TimerFragment extends Fragment {
 
     private void startCounting() {
         int time2 = 3600 * mHourPicker.getValue() + 60 * mMinutePicker.getValue() + mSecondPicker.getValue();
-
-        timer = new CountDownTimer(time2 * SECOND, SECOND) {
+        Log.d(TAG, "startCounting: " + time2);
+        timer = new CountDownTimer((time2 * SECOND)+100, SECOND) {
             public void onTick(long millisUntilFinished) {
+                Log.d(TAG, "onTick: TICK " + millisUntilFinished);
                 if (isPause) {
                     timer.cancel();
                     return;
                 }
-                int[] time2 = splitToComponentTimes(millisUntilFinished / SECOND);
+                ((Animatable) mHourglassImg.getDrawable()).start();
+                int[] time2 = splitToComponentTimes((millisUntilFinished-100) / SECOND);
                 mHourPicker.setValue(time2[0]);
                 mMinutePicker.setValue(time2[1]);
                 mSecondPicker.setValue(time2[2]);
                 timeTextView.setText(String.format("%02d:%02d:%02d", time2[0], time2[1], time2[2]));
-
+                Log.d(TAG, "onTick: " + (millisUntilFinished/1000 == 1));
+                if(millisUntilFinished/1000 == 1){
+                    isOn = false;
+                    unlockPicker();
+                    ((Animatable) mHourglassImg.getDrawable()).start();
+                    showPlayBtn();
+                    timeTextView.setText(R.string.timerFragmentTimePlaceholder);
+                    if (vibrator.hasVibrator()) {
+                        vibre();
+                    }
+                }
             }
 
             public void onFinish() {
-                isOn = false;
-                unlockPicker();
-                timeTextView.setText(R.string.timerFragmentTimePlaceholder);
-                if (vibrator.hasVibrator()) {
-                    vibre();
-                }
             }
         }.start();
     }

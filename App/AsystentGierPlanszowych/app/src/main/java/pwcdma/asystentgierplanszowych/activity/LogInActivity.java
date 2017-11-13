@@ -41,6 +41,7 @@ import org.json.*;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
+import pwcdma.asystentgierplanszowych.server.UserController;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -60,6 +61,8 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
+
+    private UserController controller;
 
     // UI references.
 
@@ -98,6 +101,9 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
                 attemptLogin();
             }
         });
+
+        if (controller == null)
+            controller = new UserController();
 
     }
 
@@ -338,10 +344,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         protected Boolean doInBackground(Void... params) {
             try {
                 String hashPassword = hashPassword(mPassword);
-                ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/signin?" +
-                        "login=" + mLogin + "&haslo=" + hashPassword);
-                String response = connection.getResponse();
-                return response.equals("Succes");
+                return controller.signIn(mLogin, hashPassword);
             } catch (IOException e){
                 Toast.makeText(LogInActivity.this, R.string.connection_error, Toast.LENGTH_LONG).show();
                 return false;

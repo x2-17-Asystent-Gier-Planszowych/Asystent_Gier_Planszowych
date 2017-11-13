@@ -547,4 +547,27 @@
         <item name="fab_colorRipple">@color/colorAccentLight</item>
     </style>
 
+
+
+    <style name="TableCell">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black87</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+
+
+    <style name="TableColumnTitle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
 </resources>

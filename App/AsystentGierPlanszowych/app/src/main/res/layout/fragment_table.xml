@@ -1,6 +1,2214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</LinearLayout>
+
+    <ScrollView
+        android:id="@+id/tableShowView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:scrollbars="vertical"
+        android:visibility="visible">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadeScrollbars="false"
+            android:overScrollMode="never">
+
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:isScrollContainer="true"
+                android:shrinkColumns="true"
+                android:stretchColumns="true">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimaryLight"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/column01"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col1"
+                        android:textAppearance="@style/TableColumnTitle" />
+
+                    <TextView
+                        android:id="@+id/column02"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col2"
+                        android:textAppearance="@style/TableColumnTitle" />
+
+                    <TextView
+                        android:id="@+id/column03"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col3"
+                        android:textAppearance="@style/TableColumnTitle" />
+
+                    <TextView
+                        android:id="@+id/column04"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col4"
+                        android:textAppearance="@style/TableColumnTitle" />
+
+                    <TextView
+                        android:id="@+id/column05"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col5"
+                        android:textAppearance="@style/TableColumnTitle" />
+
+                    <TextView
+                        android:id="@+id/column06"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col6"
+                        android:textAppearance="@style/TableColumnTitle" />
+
+                    <TextView
+                        android:id="@+id/column07"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col7"
+                        android:textAppearance="@style/TableColumnTitle" />
+
+                    <TextView
+                        android:id="@+id/column08"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col8"
+                        android:textAppearance="@style/TableColumnTitle" />
+
+                    <TextView
+                        android:id="@+id/column09"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col9"
+                        android:textAppearance="@style/TableColumnTitle" />
+
+                    <TextView
+                        android:id="@+id/column10"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col10"
+                        android:textAppearance="@style/TableColumnTitle" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal">
+
+
+                    <TextView
+                        android:id="@+id/cell0101"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0101"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0201"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0201"
+                        android:textAppearance="@style/TableCell" />
+
+
+                    <TextView
+                        android:id="@+id/cell0301"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0301"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0401"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0401"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0501"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0501"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0601"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0601"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0701"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0701"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0801"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0801"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0901"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0901"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell1001"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1001"
+                        android:textAppearance="@style/TableCell" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black12"
+                    android:gravity="center_horizontal">
+
+
+                    <TextView
+                        android:id="@+id/cell0102"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0102"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0202"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0202"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0302"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0302"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0402"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0402"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0502"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0502"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0602"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0602"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0702"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0702"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0802"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0802"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0902"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0902"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell1002"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1002"
+                        android:textAppearance="@style/TableCell" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+
+                    <TextView
+                        android:id="@+id/cell0103"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0103"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0203"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0203"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0303"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0303"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0403"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0403"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0503"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0503"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0603"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0603"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0703"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0703"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0803"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0803"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0903"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0903"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell1003"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1003"
+                        android:textAppearance="@style/TableCell" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black12"
+                    android:gravity="center_horizontal">
+
+
+                    <TextView
+                        android:id="@+id/cell0104"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0104"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0204"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0204"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0304"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0304"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0404"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0404"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0504"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0504"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0604"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0604"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0704"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0704"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0804"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0804"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0904"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0904"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell1004"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1004"
+                        android:textAppearance="@style/TableCell" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+
+                    <TextView
+                        android:id="@+id/cell0105"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0105"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0205"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0205"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0305"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0305"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0405"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0405"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0505"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0505"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0605"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0605"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0705"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0705"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0805"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0805"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0905"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0905"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell1005"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1005"
+                        android:textAppearance="@style/TableCell" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black12"
+                    android:gravity="center_horizontal">
+
+
+                    <TextView
+                        android:id="@+id/cell0106"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0106"
+                        android:textAppearance="@style/TableCell" />
+
+
+                    <TextView
+                        android:id="@+id/cell0206"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0206"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0306"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0306"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0406"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0406"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0506"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0506"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0606"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0606"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0706"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0706"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0806"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0806"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0906"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0906"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell1006"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1006"
+                        android:textAppearance="@style/TableCell" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+
+                    <TextView
+                        android:id="@+id/cell0107"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0107"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0207"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0207"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0307"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0307"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0407"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0407"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0507"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0507"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0607"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0607"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0707"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0707"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0807"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0807"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0907"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0907"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell1007"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1007"
+                        android:textAppearance="@style/TableCell" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black12"
+                    android:gravity="center_horizontal">
+
+
+                    <TextView
+                        android:id="@+id/cell0108"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0108"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0208"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0208"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0308"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0308"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0408"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0408"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0508"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0508"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0608"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0608"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0708"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0708"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0808"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0808"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0908"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0908"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell1008"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1008"
+                        android:textAppearance="@style/TableCell" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+
+                    <TextView
+                        android:id="@+id/cell0109"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0109"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0209"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0209"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0309"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0309"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0409"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0409"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0509"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0509"
+                        android:textAppearance="@style/TableCell" />
+
+
+                    <TextView
+                        android:id="@+id/cell0609"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0609"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0709"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0709"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0809"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0809"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0909"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0909"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell1009"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1009"
+                        android:textAppearance="@style/TableCell" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black12"
+                    android:gravity="center_horizontal">
+
+
+                    <TextView
+                        android:id="@+id/cell01010"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0110"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0210"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0210"
+                        android:textAppearance="@style/TableCell"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/cell0310"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0310"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0410"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0410"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0510"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0510"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0610"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0610"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0710"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0710"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0810"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0810"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell0910"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0910"
+                        android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/cell1010"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1010"
+                        android:textAppearance="@style/TableCell" />
+
+                </TableRow>
+
+                <!--<TableRow-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/colorPrimary"-->
+                <!--android:gravity="center_horizontal">-->
+
+                <!--<View android:layout_height="86dp" />-->
+                <!--</TableRow>-->
+            </TableLayout>
+
+
+        </HorizontalScrollView>
+    </ScrollView>
+
+
+    <ScrollView
+        android:id="@+id/tableEditView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:scrollbars="vertical"
+        android:visibility="gone">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadeScrollbars="false"
+            android:overScrollMode="never">
+
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:isScrollContainer="true"
+                android:shrinkColumns="true"
+                android:stretchColumns="true">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimaryLight"
+                    android:gravity="center_horizontal">
+
+                    <EditText
+                        android:id="@+id/editColumn01"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col1"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/editColumn02"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col2"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/editColumn03"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col3"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/editColumn04"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col4"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/editColumn05"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col5"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/editColumn06"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col6"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/editColumn07"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col7"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/editColumn08"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col8"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/editColumn09"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col9"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        android:id="@+id/editColumn10"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="col10"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal">
+
+
+                    <EditText
+                        android:id="@+id/editCell0101"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0101"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0201"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0201"
+                        android:textAppearance="@style/TableCell" />
+
+
+                    <EditText
+                        android:id="@+id/editCell0301"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0301"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0401"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0401"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0501"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0501"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0601"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0601"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0701"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0701"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0801"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0801"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0901"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0901"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1001"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1001"
+                        android:textAppearance="@style/TableCell" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black12"
+                    android:gravity="center_horizontal">
+
+
+                    <EditText
+                        android:id="@+id/editCell0102"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0102"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0202"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0202"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0302"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0302"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0402"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0402"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0502"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0502"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0602"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0602"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0702"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0702"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0802"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0802"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0902"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0902"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1002"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1002"
+                        android:textAppearance="@style/TableCell" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+
+                    <EditText
+                        android:id="@+id/editCell0103"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0103"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0203"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0203"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0303"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0303"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0403"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0403"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0503"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0503"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0603"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0603"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0703"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0703"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0803"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0803"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0903"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0903"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1003"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1003"
+                        android:textAppearance="@style/TableCell" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black12"
+                    android:gravity="center_horizontal">
+
+
+                    <EditText
+                        android:id="@+id/editCell0104"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0104"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0204"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0204"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0304"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0304"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0404"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0404"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0504"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0504"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0604"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0604"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0704"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0704"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0804"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0804"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0904"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0904"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1004"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1004"
+                        android:textAppearance="@style/TableCell" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+
+                    <EditText
+                        android:id="@+id/editCell0105"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0105"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0205"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0205"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0305"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0305"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0405"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0405"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0505"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0505"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0605"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0605"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0705"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0705"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0805"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0805"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0905"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0905"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1005"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1005"
+                        android:textAppearance="@style/TableCell" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black12"
+                    android:gravity="center_horizontal">
+
+
+                    <EditText
+                        android:id="@+id/editCell0106"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0106"
+                        android:textAppearance="@style/TableCell" />
+
+
+                    <EditText
+                        android:id="@+id/editCell0206"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0206"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0306"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0306"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0406"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0406"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0506"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0506"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0606"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0606"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0706"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0706"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0806"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0806"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0906"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0906"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1006"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1006"
+                        android:textAppearance="@style/TableCell" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+
+                    <EditText
+                        android:id="@+id/editCell0107"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0107"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0207"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0207"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0307"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0307"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0407"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0407"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0507"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0507"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0607"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0607"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0707"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0707"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0807"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0807"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0907"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0907"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1007"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1007"
+                        android:textAppearance="@style/TableCell" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black12"
+                    android:gravity="center_horizontal">
+
+
+                    <EditText
+                        android:id="@+id/editCell0108"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0108"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0208"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0208"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0308"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0308"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0408"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0408"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0508"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0508"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0608"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0608"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0708"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0708"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0808"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0808"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0908"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0908"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1008"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1008"
+                        android:textAppearance="@style/TableCell" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+
+                    <EditText
+                        android:id="@+id/editCell0109"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0109"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0209"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0209"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0309"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0309"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0409"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0409"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0509"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0509"
+                        android:textAppearance="@style/TableCell" />
+
+
+                    <EditText
+                        android:id="@+id/editCell0609"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0609"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0709"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0709"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0809"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0809"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0909"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0909"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1009"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1009"
+                        android:textAppearance="@style/TableCell" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black12"
+                    android:gravity="center_horizontal">
+
+
+                    <EditText
+                        android:id="@+id/editCell01010"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0110"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0210"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0210"
+                        android:textAppearance="@style/TableCell"
+                        android:textColor="#000" />
+
+                    <EditText
+                        android:id="@+id/editCell0310"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0310"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0410"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0410"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0510"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0510"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0610"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0610"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0710"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0710"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0810"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0810"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0910"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="0910"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1010"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="1010"
+                        android:textAppearance="@style/TableCell" />
+
+                </TableRow>
+
+                <!--<TableRow-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/colorPrimary"-->
+                <!--android:gravity="center_horizontal">-->
+
+                <!--<View android:layout_height="86dp" />-->
+                <!--</TableRow>-->
+            </TableLayout>
+
+
+        </HorizontalScrollView>
+    </ScrollView>
+
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/tableMenuFAB"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom|end"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        fab:menu_animationDelayPerItem="0"
+        fab:menu_backgroundColor="@color/black87"
+        fab:menu_colorNormal="@color/colorAccent"
+        fab:menu_colorPressed="@color/colorAccentLight"
+        fab:menu_colorRipple="@color/colorAccentLight"
+        fab:menu_icon="@drawable/ic_fab_dice"
+        fab:menu_labels_hideAnimation="@anim/jump_to_down"
+        fab:menu_labels_showAnimation="@anim/jump_from_down"
+        fab:menu_labels_style="@style/MenuLabelsStyle"
+        fab:menu_shadowColor="#444">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabTableCreate"
+            style="@style/MenuButtonsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_fab_dice"
+            fab:fab_label="Utwórz tabelę" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabTableEditOrSave"
+            style="@style/MenuButtonsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_fab_dice"
+            fab:fab_label="Edytuj tabelę" />
+
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabTableResize"
+            style="@style/MenuButtonsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_fab_dice"
+            fab:fab_label="Zmień rozmiar" />
+
+
+    </com.github.clans.fab.FloatingActionMenu>
+</FrameLayout>

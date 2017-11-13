@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import pwcdma.asystentgierplanszowych.fragment.GamesFragment;
 import pwcdma.asystentgierplanszowych.fragment.GroupsFragment;
 import pwcdma.asystentgierplanszowych.fragment.ProfileFragment;
+import pwcdma.asystentgierplanszowych.fragment.TableFragment;
 import pwcdma.asystentgierplanszowych.fragment.ToolsFragment;
 
 
@@ -24,7 +25,7 @@ public class MainActivityViewPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return new GamesFragment();
             case 2:
-                return new ToolsFragment();
+                return new TableFragment();
             case 3:
                 return new ProfileFragment();
         }

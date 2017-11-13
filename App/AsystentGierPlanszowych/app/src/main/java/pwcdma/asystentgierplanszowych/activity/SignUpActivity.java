@@ -34,6 +34,7 @@ import java.util.List;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
+import pwcdma.asystentgierplanszowych.server.UserController;
 
 import static pwcdma.asystentgierplanszowych.activity.LogInActivity.*;
 
@@ -52,6 +53,8 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserSignUpTask signUpTask = null;
+
+    private UserController controller;
 
     // UI references.
     private EditText mUsernameView;
@@ -104,6 +107,9 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
 
         mSignUpFormView = findViewById(R.id.sign_up_form);
         mProgressView = findViewById(R.id.sign_up_progress);
+
+        if (controller == null)
+            controller = new UserController();
     }
 
     private void findViews(){
@@ -338,10 +344,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         protected Boolean doInBackground(Void... params) {
             try {
                 String hashPassword = hashPassword(mPassword);
-                ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/registration?" +
-                        "name=" + mUsername + "&email=" + mEmail + "&password=" + hashPassword);
-                String response = connection.getResponse();
-                return response.equals("Succes");
+                return controller.register(mUsername, mEmail, hashPassword);
             } catch (IOException e){
                 return false;
             }

@@ -39,6 +39,8 @@
     <string name="current_password">Aktualne hasło</string>
     <string name="new_password">Nowe hasło</string>
     <string name="save">Zapisz</string>
+    <string name="update_profile_success">Zaktualizowano profil</string>
+    <string name="update_profile_error">Błąd - nie można zaktualizować profilu</string>
     <string name="sign_up_catchphrase">Zaczynamy! To zajmie nie więcej czasu niż rozłożenie planszy!</string>
     <string name="sign_up_password_hint">Hasło musi zawierać przynajmniej 8 znaków, dużą literę i cyfrę</string>
     <string name="pause">Pause</string>

@@ -40,4 +40,11 @@ public class GamesController {
         return gamesService.deleteGame(name);
     }
 
+    @RequestMapping(value = "/games/getByTags", method = RequestMethod.GET)
+    public String getByTags(@RequestParam(value = "tag1") String tag1,
+                            @RequestParam(value = "tag2", defaultValue = "") String tag2,
+                            @RequestParam(value = "tag3", defaultValue = "") String tag3){
+        return gamesService.getByTags(tag1,tag2,tag3);
+    }
+
 }

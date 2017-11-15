@@ -38,6 +38,25 @@ public class GamesService {
             "SELECT \"Category_Id\" FROM \"Category_Game\" WHERE \"Game_Id\" = ?)" ;
     private final String DELETE_TAGS = "DELETE FROM \"Category_Game\" where \"Game_Id\" = ? ";
     private final String INACTIVE_GAME = "UPDATE \"Games\" SET \"Active\"= false WHERE \"Id\" = ?";
+    private final String SELECT_BY_ONE_TAG = "SELECT * FROM \"Games\" WHERE \"Id\" IN (\n" +
+            "SELECT \"Game_Id\" from \"Category_Game\" where \"Category_Id\" =\n" +
+            "(SELECT \"Id\" from \"Categories\" where \"Catname\"  =?))";
+    private final String SELECT_BY_TWO_TAGS = "SELECT * FROM \"Games\" WHERE \"Id\" IN (\n" +
+            "SELECT \"Game_Id\" from \"Category_Game\" where \"Category_Id\" =\n" +
+            "(SELECT \"Id\" from \"Categories\" where \"Catname\"  = ?)\n" +
+            "INTERSECT\n" +
+            "SELECT \"Game_Id\" from \"Category_Game\" where \"Category_Id\" =\n" +
+            "(SELECT \"Id\" from \"Categories\" where \"Catname\"  = ?))";
+    private final String SELECT_BY_THREE_TAGS = "SELECT * FROM \"Games\" WHERE \"Id\" IN (\n" +
+            "SELECT \"Game_Id\" from \"Category_Game\" where \"Category_Id\" =\n" +
+            "(SELECT \"Id\" from \"Categories\" where \"Catname\"  =?)\n" +
+            "INTERSECT\n" +
+            "SELECT \"Game_Id\" from \"Category_Game\" where \"Category_Id\" =\n" +
+            "(SELECT \"Id\" from \"Categories\" where \"Catname\"  = ?\n" +
+            "INTERSECT\n" +
+            "SELECT \"Game_Id\" from \"Category_Game\" where \"Category_Id\" =\n" +
+            "(SELECT \"Id\" from \"Categories\" where \"Catname\"  = ?))";
+
     private Gson gson;
 
 
@@ -165,5 +184,75 @@ public class GamesService {
             return "Fail";
         }
         return "Success";
+    }
+
+    public String getByOne(String tag1){
+        gson = new Gson();
+        List<String> cat = new ArrayList<>();
+        JsonArray jsonArray = new JsonArray();
+        List<Games> a = jdbcTemplate.query(SELECT_BY_ONE_TAG, new RowMapper<Games>() {
+            @Override
+            public Games mapRow(ResultSet rs, int rownumber) throws SQLException {
+                Games e = new Games();
+                e.setId(rs.getLong(1));
+                e.setName(rs.getString(2));
+                e.setActive(rs.getBoolean(3));
+                if(rs.getBoolean(3)) {
+                    jsonArray.add(gson.toJsonTree(e));
+                }
+                return e;
+            }
+        },tag1);
+        return jsonArray.toString();
+    }
+
+    public String getByTwo(String tag1, String tag2){
+        gson = new Gson();
+        List<String> cat = new ArrayList<>();
+        JsonArray jsonArray = new JsonArray();
+        List<Games> a = jdbcTemplate.query(SELECT_BY_TWO_TAGS, new RowMapper<Games>() {
+            @Override
+            public Games mapRow(ResultSet rs, int rownumber) throws SQLException {
+                Games e = new Games();
+                e.setId(rs.getLong(1));
+                e.setName(rs.getString(2));
+                e.setActive(rs.getBoolean(3));
+                if(rs.getBoolean(3)) {
+                    jsonArray.add(gson.toJsonTree(e));
+                }
+                return e;
+            }
+        },tag1, tag2);
+        return jsonArray.toString();
+    }
+
+    public String getByThree(String tag1, String tag2, String tag3){
+        gson = new Gson();
+        List<String> cat = new ArrayList<>();
+        JsonArray jsonArray = new JsonArray();
+        List<Games> a = jdbcTemplate.query(SELECT_BY_THREE_TAGS, new RowMapper<Games>() {
+            @Override
+            public Games mapRow(ResultSet rs, int rownumber) throws SQLException {
+                Games e = new Games();
+                e.setId(rs.getLong(1));
+                e.setName(rs.getString(2));
+                e.setActive(rs.getBoolean(3));
+                if(rs.getBoolean(3)) {
+                    jsonArray.add(gson.toJsonTree(e));
+                }
+                return e;
+            }
+        },tag1,tag2,tag3);
+        return jsonArray.toString();
+    }
+
+    public String getByTags(String tag1, String tag2, String tag3){
+       if(tag2.equals("")){
+            return getByOne(tag1);
+        } else if (tag3.equals("")) {
+            return getByTwo(tag1,tag2);}
+            else {
+            return getByThree(tag1,tag2,tag3);
+        }
     }
 }

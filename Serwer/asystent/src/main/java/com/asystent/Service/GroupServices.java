@@ -26,7 +26,7 @@ public class GroupServices {
         Gson gson = new Gson();
         List<String> cat = new ArrayList<>();
         JsonArray jsonArray = new JsonArray();
-        List<Group> a = jdbcTemplate.query(" SELECT \"Id\",\"Groupname\",\"Active\" FROM \"Groups\" WHERE \"Active\"=? ",new Object[]{true}, new RowMapper<Group>() {
+        List<Group> a = jdbcTemplate.query(" SELECT \"Id\",\"Groupname\",\"Active\" FROM \"Groups\" WHERE \"Active\"=? ORDER BY \"Groupname\" ",new Object[]{true}, new RowMapper<Group>() {
             @Override
             public Group mapRow(ResultSet rs, int rownumber) throws SQLException {
 

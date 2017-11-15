@@ -61,7 +61,7 @@ public class UserServices {
 
         Gson gson = new Gson();
         JsonArray jsonArray = new JsonArray();
-        jdbcTemplate.query(" SELECT \"Id\",\"Username\",\"Email\",\"About\" FROM \"Users\" WHERE \"Active\"=? ",new Object[]{true}, new RowMapper<User>() {
+        jdbcTemplate.query(" SELECT \"Id\",\"Username\",\"Email\",\"About\" FROM \"Users\" WHERE \"Active\"=?  ORDER BY \"Username\"",new Object[]{true}, new RowMapper<User>() {
             @Override
             public User mapRow(ResultSet rs, int rownumber) throws SQLException {
 

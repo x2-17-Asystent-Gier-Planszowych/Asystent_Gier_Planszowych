@@ -24,7 +24,7 @@ public class CategoriesService {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    private final String SELECT_ALL = " SELECT * FROM \"Categories\" ";
+    private final String SELECT_ALL = " SELECT * FROM \"Categories\" ORDER BY \"Catname\" ";
     private final String SELECT_BY_NAME = " SELECT * FROM \"Categories\" where \"Catname\" = ?";
     private final String SELECT_ID = "SELECT \"Id\" FROM \"Categories\" where \"Catname\" = ?" ;
     private final String INSERT = "INSERT INTO \"Categories\" (\"Catname\",\"Active\") VALUES (?,?)";

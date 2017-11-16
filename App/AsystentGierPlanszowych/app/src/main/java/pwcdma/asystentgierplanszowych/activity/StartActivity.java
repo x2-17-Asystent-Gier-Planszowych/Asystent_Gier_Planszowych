@@ -18,6 +18,7 @@ import pwcdma.asystentgierplanszowych.adapter.StartFragmentViewPagerAdapter;
 import pwcdma.asystentgierplanszowych.fragment.StartFragment;
 import pwcdma.asystentgierplanszowych.model.StartViewPagerItem;
 import pwcdma.asystentgierplanszowych.R;
+import pwcdma.asystentgierplanszowych.model.User;
 
 public class StartActivity extends AppCompatActivity implements StartFragment.OnFragmentInteractionListener {
 
@@ -112,7 +113,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
     }
 
     private boolean isUserLoggedIn(){
-        File userDataFile = new File(getFilesDir(), "user_data.json");
+        File userDataFile = new File(getFilesDir(), User.FILE_NAME);
         return userDataFile.exists();
     }
 

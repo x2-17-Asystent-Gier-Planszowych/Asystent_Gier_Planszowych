@@ -28,11 +28,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import pwcdma.asystentgierplanszowych.R;
+import pwcdma.asystentgierplanszowych.model.User;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
 import pwcdma.asystentgierplanszowych.server.UserController;
 
@@ -337,14 +339,13 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         UserSignUpTask(String username, String email, String password) {
             mUsername = username;
             mEmail = email;
-            mPassword = password;
+            mPassword = hashPassword(password);
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
-                String hashPassword = hashPassword(mPassword);
-                return controller.register(mUsername, mEmail, hashPassword);
+                return controller.register(mUsername, mEmail, mPassword);
             } catch (IOException e){
                 Toast.makeText(SignUpActivity.this, R.string.connection_error, Toast.LENGTH_LONG).show();
                 return false;
@@ -358,6 +359,8 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
 
             if (success) {
                 Toast.makeText(SignUpActivity.this, R.string.sign_up_success, Toast.LENGTH_LONG).show();
+                new User(mUsername, mEmail, mPassword)
+                        .saveUserData(new File(getFilesDir(), User.FILE_NAME));
                 setResult(RESULT_CODE_SUCCESS);
                 finish();
             } else {

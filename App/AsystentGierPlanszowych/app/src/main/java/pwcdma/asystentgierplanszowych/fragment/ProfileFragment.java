@@ -1,5 +1,6 @@
 package pwcdma.asystentgierplanszowych.fragment;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
 
 import pwcdma.asystentgierplanszowych.R;
@@ -29,18 +31,20 @@ public class ProfileFragment extends Fragment {
     private UserController controller;
     private User userData;
     private String login, password;
+    private File userDataFile;
 
     public ProfileFragment() {
         controller = new UserController();
     }
 
-    /*@Override
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        userData = User.getUserData(new File(context.getFilesDir(), "user_data.json"));
+        userDataFile = new File(context.getFilesDir(), User.FILE_NAME);
+        userData = User.getUserData(userDataFile);
         login = userData.getUsername();
         password = userData.getPassword();
-    }*/
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,8 +57,8 @@ public class ProfileFragment extends Fragment {
         newPasswordText = v.findViewById(R.id.new_password);
         saveButton = v.findViewById(R.id.save_button);
         saveButton.setOnClickListener(new SaveButtonOnClickListener());
-        /*emailText.setText(userData.getEmail());
-        aboutText.setText(userData.getAbout());*/
+        emailText.setText(userData.getEmail());
+        aboutText.setText(userData.getAbout());
         return v;
     }
 
@@ -105,8 +109,10 @@ public class ProfileFragment extends Fragment {
                 boolean success = true;
                 success &= controller.changeEmail(login, email);
                 success &= controller.changeAbout(login, about);
-                if (!TextUtils.isEmpty(password))
-                    success &= controller.changePassword(login, hashPassword(password));
+                if (!TextUtils.isEmpty(password)) {
+                    password = hashPassword(password);
+                    success &= controller.changePassword(login, password);
+                }
                 return success;
             } catch(IOException e){
                 return false;
@@ -117,11 +123,15 @@ public class ProfileFragment extends Fragment {
         protected void onPostExecute(Boolean success) {
             super.onPostExecute(success);
             int message;
-            if (success)
+            if (success) {
+                userData.setEmail(email);
+                userData.setPassword(password);
+                userData.setAbout(about);
+                userData.saveUserData(userDataFile);
                 message = R.string.update_profile_success;
-            else
+            } else {
                 message = R.string.update_profile_error;
-
+            }
             Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
         }
     }

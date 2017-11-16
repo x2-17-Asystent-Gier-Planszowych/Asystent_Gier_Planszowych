@@ -6,6 +6,8 @@ import org.json.*;
 
 public class User {
 
+    public static final String FILE_NAME = "user_data.json";
+
     private String username;
     private String email;
     private String password;
@@ -16,6 +18,13 @@ public class User {
         this.email = email;
         this.password = password;
         this.about = about;
+    }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.about = "";
     }
 
     public String getUsername() {
@@ -32,6 +41,34 @@ public class User {
 
     public String getAbout() {
         return about;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public void saveUserData(File userDataFile){
+        try {
+            JSONObject userDataJson = new JSONObject();
+            userDataJson.put("username", username);
+            userDataJson.put("email", email);
+            userDataJson.put("password", password);
+            userDataJson.put("about", about);
+            String userData = userDataJson.toString();
+            FileWriter writer = new FileWriter(userDataFile);
+            writer.write(userData);
+            writer.close();
+        } catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public static User getUserData(File f){

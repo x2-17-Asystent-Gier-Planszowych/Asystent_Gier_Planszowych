@@ -21,6 +21,8 @@ public class GroupServices {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+    @Autowired
+    UserServices userServices;
 
     public String allGroup() {
         Gson gson = new Gson();
@@ -99,8 +101,9 @@ public class GroupServices {
 
     }
 
-    public int addGroup(String nameGroup){
-        return jdbcTemplate.update("INSERT INTO \"Groups\"(\"Groupname\",\"Active\") VALUES (?,?)",new Object[]{nameGroup,true});
+    public int addGroup(String nameGroup, String owner){
+        int userId = userServices.getId(owner);
+        return jdbcTemplate.update("INSERT INTO \"Groups\"(\"Groupname\",\"Active\",\"Owner\") VALUES (?,?,?)",new Object[]{nameGroup,true,userId});
     }
 
     public int deleteGroup(String nameGroup){

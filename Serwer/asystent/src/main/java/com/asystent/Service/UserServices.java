@@ -24,6 +24,10 @@ public class UserServices {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    public int getId(String login){
+        return  jdbcTemplate.queryForObject(" SELECT \"Id\" FROM \"Users\" WHERE \"Username\"=(?)", new Object[]{login}, Integer.class);
+    }
+
     public int deactive(String login){
         int idUser = jdbcTemplate.queryForObject(" SELECT \"Id\" FROM \"Users\" WHERE \"Username\"=(?)", new Object[]{login}, Integer.class);
         jdbcTemplate.update("DELETE FROM \"Group_User\" where \"User_Id\"=?",new Object[]{idUser});

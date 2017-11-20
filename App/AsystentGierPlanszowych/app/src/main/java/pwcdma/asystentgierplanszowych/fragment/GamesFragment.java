@@ -10,19 +10,32 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
+import pwcdma.asystentgierplanszowych.activity.LogInActivity;
 import pwcdma.asystentgierplanszowych.activity.MainActivity;
 import pwcdma.asystentgierplanszowych.adapter.GameRecyclerViewAdapter;
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.content.Content;
 import pwcdma.asystentgierplanszowych.content.Content.Item;
+import pwcdma.asystentgierplanszowych.model.Game;
 import pwcdma.asystentgierplanszowych.server.GamesController;
+import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
 /**
  * A fragment representing a list of Items.
@@ -38,6 +51,9 @@ public class GamesFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private GamesController controller;
+    private TableLayout games;
+    private GetGamesTask mGameTask = null;
+    private List<Game> gamesList = null;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -48,6 +64,8 @@ public class GamesFragment extends Fragment {
             controller = new GamesController();
     }
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,14 +73,17 @@ public class GamesFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+        mGameTask = new GetGamesTask();
+        mGameTask.execute();
 
-        new GetGamesTask().execute();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game_list, container, false);
+        games = view.findViewById(R.id.games);
+        setGames();
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -75,7 +96,25 @@ public class GamesFragment extends Fragment {
             }
             recyclerView.setAdapter(new GameRecyclerViewAdapter(Content.ITEMS, mListener));
         }
+
+
         return view;
+    }
+
+
+    private void setGames() {
+        if (games == null) {
+            return;
+        }
+        games.setStretchAllColumns(true);
+        games.bringToFront();
+        for(int i = 0; i < gamesList.size(); i++){
+            TableRow tr =  new TableRow(getActivity());
+            TextView c1 = new TextView(getActivity());
+            c1.setText(gamesList.get(i).getName());
+            tr.addView(c1);
+            games.addView(tr);
+        }
     }
 
 /*
@@ -116,6 +155,17 @@ public class GamesFragment extends Fragment {
 
         @Override
         protected String doInBackground(Void... args) {
+            try {
+                ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/games");
+                String response = connection.getResponse();
+
+                return response;
+            } catch (IOException e){
+                return getGamesFromFile();
+            }
+        }
+
+        private String getGamesFromFile() {
             File gamesFile = new File(getContext().getFilesDir(), "games.json");
             if (gamesFile.exists()){
                 return readFile(gamesFile);
@@ -134,9 +184,15 @@ public class GamesFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            //TODO: update list
+        protected void onPostExecute(String response) {
+            Gson gson = new Gson();
+            Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
+            List<Game> gamesListFromServer = new Gson().fromJson(response, listType);
+            gamesList = gamesListFromServer;
+        }
+
+        private void setGameList(List<Game> gamesList) {
+
         }
 
         private String readFile(File f){

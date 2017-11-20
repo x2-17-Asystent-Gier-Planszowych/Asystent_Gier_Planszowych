@@ -20,11 +20,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import pwcdma.asystentgierplanszowych.activity.MainActivity;
 import pwcdma.asystentgierplanszowych.adapter.GameRecyclerViewAdapter;
 import pwcdma.asystentgierplanszowych.R;
-import pwcdma.asystentgierplanszowych.content.Content;
 import pwcdma.asystentgierplanszowych.content.Content.Item;
 import pwcdma.asystentgierplanszowych.server.GamesController;
 
@@ -115,6 +115,11 @@ public class GamesFragment extends Fragment {
         void onListFragmentInteraction(Item item);
     }
 
+    private Item getRandomGame(){
+        Random rand = new Random();
+        int i = rand.nextInt(games.size());
+        return games.get(i);
+    }
 
     private class GetGamesTask extends AsyncTask<Void, Void, String> {
 

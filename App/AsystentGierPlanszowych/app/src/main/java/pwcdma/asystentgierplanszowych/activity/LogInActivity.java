@@ -343,7 +343,12 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
                 String response = connection.getResponse();
                 return response.equals("Succes");
             } catch (IOException e){
-                Toast.makeText(LogInActivity.this, R.string.connection_error, Toast.LENGTH_LONG).show();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(LogInActivity.this, R.string.connection_error, Toast.LENGTH_LONG).show();
+                    }
+                });
                 return false;
             }
         }

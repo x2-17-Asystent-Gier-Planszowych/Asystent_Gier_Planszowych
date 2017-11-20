@@ -343,7 +343,6 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
                 String response = connection.getResponse();
                 return response.equals("Succes");
             } catch (IOException e){
-                Toast.makeText(SignUpActivity.this, R.string.connection_error, Toast.LENGTH_LONG).show();
                 return false;
             }
         }

@@ -64,6 +64,12 @@ public class Content {
             this.details = details;
         }
 
+        public Item(String content){
+            this.content = content;
+            this.id = "";
+            this.details = "";
+        }
+
         @Override
         public String toString() {
             return content;

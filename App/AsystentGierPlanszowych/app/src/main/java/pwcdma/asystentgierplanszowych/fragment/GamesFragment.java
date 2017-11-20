@@ -11,11 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.json.JSONArray;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import pwcdma.asystentgierplanszowych.activity.MainActivity;
 import pwcdma.asystentgierplanszowych.adapter.GameRecyclerViewAdapter;
@@ -36,8 +40,10 @@ public class GamesFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+    private RecyclerView recyclerView;
     private OnListFragmentInteractionListener mListener;
     private GamesController controller;
+    private List<Item> games;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -55,8 +61,6 @@ public class GamesFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
-
-        new GetGamesTask().execute();
     }
 
     @Override
@@ -67,13 +71,13 @@ public class GamesFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new GameRecyclerViewAdapter(Content.ITEMS, mListener));
+            new GetGamesTask().execute();
         }
         return view;
     }
@@ -117,9 +121,7 @@ public class GamesFragment extends Fragment {
         @Override
         protected String doInBackground(Void... args) {
             File gamesFile = new File(getContext().getFilesDir(), "games.json");
-            if (gamesFile.exists()){
-                return readFile(gamesFile);
-            } else if (((MainActivity) getActivity()).isOnline()) {
+            if (((MainActivity) getActivity()).isOnline()){
                 String data = null;
                 try {
                     data = controller.getAllGames();
@@ -128,15 +130,27 @@ public class GamesFragment extends Fragment {
                 }
                 writeFile(gamesFile, data);
                 return data;
+            } else if (gamesFile.exists()) {
+                return readFile(gamesFile);
             } else {
-                return "";
+                return "[]";
             }
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            //TODO: update list
+            try {
+                JSONArray array = new JSONArray(s);
+                games = new ArrayList<>();
+                for (int i = 0; i < array.length(); i++) {
+                    String name = array.getJSONObject(i).getString("name");
+                    games.add(new Item(name));
+                }
+                recyclerView.setAdapter(new GameRecyclerViewAdapter(games, mListener));
+            } catch (Exception e){
+                throw new RuntimeException(e.getMessage());
+            }
         }
 
         private String readFile(File f){

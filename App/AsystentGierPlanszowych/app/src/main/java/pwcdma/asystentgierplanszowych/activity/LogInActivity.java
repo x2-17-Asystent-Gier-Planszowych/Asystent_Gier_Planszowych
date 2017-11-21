@@ -362,7 +362,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 Toast.makeText(LogInActivity.this, R.string.login_success, Toast.LENGTH_LONG).show();
-//                saveUserData(mLogin, mPassword);
+                //TODO: get user data from server
                 setResult(RESULT_CODE_SUCCESS);
                 finish();
             } else {

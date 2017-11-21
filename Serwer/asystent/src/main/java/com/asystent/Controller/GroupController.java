@@ -75,6 +75,30 @@ public class GroupController {
             return new  String("Failed");
         }
     }
+
+
+    @RequestMapping(value = "/group/addGame", method = RequestMethod.GET)
+    public String addGameToGroup(@RequestParam(value="nameGroup") String nameGroup, @RequestParam(value="nameGame") String nameGame) {
+        if(groupServices.addGameToGroup(nameGroup,nameGame)!=0) {
+            return new String("Succes");
+        }else{
+            return new  String("Failed");
+        }
+    }
+
+    @RequestMapping(value = "/group/setGame", method = RequestMethod.GET)
+    public String setGameToGroup(@RequestParam(value="nameGroup") String nameGroup, @RequestParam(value="nameGame") String nameGame) {
+        if(groupServices.setMainGame(nameGroup,nameGame)!=0) {
+            return new String("Succes");
+        }else{
+            return new  String("Failed");
+        }
+    }
+
+    @RequestMapping(value = "/group/getGame", method = RequestMethod.GET)
+    public String getGameFromGroup(@RequestParam(value="nameGroup") String nameGroup) {
+        return groupServices.getGamesFromGroup(nameGroup);
+    }
 }
       /*  String myJSONString = "{\"id\":1,\"groupName\":\"a\",\"active\":false}";
         JsonObject jobj = new Gson().fromJson(myJSONString, JsonObject.class);

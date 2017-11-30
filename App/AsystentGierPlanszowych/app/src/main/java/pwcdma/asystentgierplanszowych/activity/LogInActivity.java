@@ -29,9 +29,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Downloader;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.security.MessageDigest;
@@ -40,6 +45,10 @@ import java.security.NoSuchAlgorithmException;
 import org.json.*;
 
 import pwcdma.asystentgierplanszowych.R;
+import pwcdma.asystentgierplanszowych.content.Content;
+import pwcdma.asystentgierplanszowych.model.Game;
+import pwcdma.asystentgierplanszowych.model.Group;
+import pwcdma.asystentgierplanszowych.server.GroupControllerSerwer;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -341,6 +350,9 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
                 ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/signin?" +
                         "login=" + mLogin + "&haslo=" + hashPassword);
                 String response = connection.getResponse();
+
+                gamesGet();
+                groupGet();
                 return response.equals("Succes");
             } catch (IOException e){
                 runOnUiThread(new Runnable() {
@@ -352,6 +364,41 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
             }
         }
+
+
+        protected void gamesGet() {
+
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/games");
+            String responsee = null;
+            try {
+                responsee = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
+            List<Game> gamesListFromServer = new Gson().fromJson(responsee, listType);
+            for(Game g : gamesListFromServer){
+                Content.Item item = new Content.Item(g.getId().toString(),g.getName(),"");
+                Content.addGame(item);
+            }
+        }
+
+
+
+        protected void groupGet() {
+            GroupControllerSerwer gf = new GroupControllerSerwer();
+            String responsee = gf.getAllGroups();
+
+
+            Type listType = new TypeToken<ArrayList<Group>>(){}.getType();
+            List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);
+            for(Group g : gamesListFromServer){
+                Content.Item item = new Content.Item(Integer.toString(g.getId()), g.getGroupName(),"");
+                Content.addGroup(item);
+            }
+        }
+
 
         @Override
         protected void onPostExecute(final Boolean success) {

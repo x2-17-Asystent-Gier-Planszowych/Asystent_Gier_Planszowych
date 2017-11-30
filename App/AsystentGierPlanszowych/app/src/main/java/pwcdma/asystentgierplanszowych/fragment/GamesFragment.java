@@ -8,21 +8,31 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import pwcdma.asystentgierplanszowych.activity.MainActivity;
 import pwcdma.asystentgierplanszowych.adapter.GameRecyclerViewAdapter;
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.content.Content;
 import pwcdma.asystentgierplanszowych.content.Content.Item;
+import pwcdma.asystentgierplanszowych.model.Game;
 import pwcdma.asystentgierplanszowych.server.GamesController;
+import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
 /**
  * A fragment representing a list of Items.
@@ -48,6 +58,9 @@ public class GamesFragment extends Fragment {
             controller = new GamesController();
     }
 
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +68,6 @@ public class GamesFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
-
         new GetGamesTask().execute();
     }
 
@@ -73,7 +85,7 @@ public class GamesFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new GameRecyclerViewAdapter(Content.ITEMS, mListener));
+            recyclerView.setAdapter(new GameRecyclerViewAdapter(Content.GAMES, mListener));
         }
         return view;
     }
@@ -113,10 +125,10 @@ public class GamesFragment extends Fragment {
 
 
     private class GetGamesTask extends AsyncTask<Void, Void, String> {
-
+        String response = null;
         @Override
         protected String doInBackground(Void... args) {
-            File gamesFile = new File(getContext().getFilesDir(), "games.json");
+          /*  File gamesFile = new File(getContext().getFilesDir(), "games.json");
             if (gamesFile.exists()){
                 return readFile(gamesFile);
             } else if (((MainActivity) getActivity()).isOnline()) {
@@ -130,14 +142,34 @@ public class GamesFragment extends Fragment {
                 return data;
             } else {
                 return "";
+            }*/
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/games");
+
+
+
+
+
+            try {
+                response = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            return response;
         }
 
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            //TODO: update list
-        }
+
+
+
+//        @Override
+//        protected void onPostExecute(String s) {
+//            Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
+//            List<Game> gamesListFromServer = new Gson().fromJson(response, listType);
+//            for(Game g : gamesListFromServer){
+//                Item item = new Item(g.getId().toString(),g.getName(),"");
+//                Content.addGame(item);
+//            }
+//            super.onPostExecute(s);
+//        }
 
         private String readFile(File f){
             try {

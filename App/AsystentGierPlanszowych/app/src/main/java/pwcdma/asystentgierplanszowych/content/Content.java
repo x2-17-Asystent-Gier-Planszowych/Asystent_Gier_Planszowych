@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pwcdma.asystentgierplanszowych.model.Game;
+
 /**
  * Helper class for providing sample content for user interfaces created by
  * Android template wizards.
@@ -16,14 +18,17 @@ public class Content {
     /**
      * An array of sample (dummy) items.
      */
-    public static final List<Item> ITEMS = new ArrayList<Item>();
-
+    public static  List<Item> ITEMS = new ArrayList<Item>();
+    public static  List<Item> GAMES= new ArrayList<Item>();
+    public static  List<Item> GROUPS= new ArrayList<Item>();
     /**
      * A map of sample (dummy) items, by ID.
      */
-    public static final Map<String, Item> ITEM_MAP = new HashMap<String, Item>();
+    public static  Map<String, Item> ITEM_MAP = new HashMap<String, Item>();
+    public static  Map<String, Item> GAME_MAP = new HashMap<String, Item>();
+    public static  Map<String, Item> GROUP_MAP = new HashMap<String, Item>();
 
-    private static final int COUNT = 25;
+    private static  int COUNT = 25;
 
     static {
         // Add some sample items.
@@ -32,9 +37,17 @@ public class Content {
         }
     }
 
-    private static void addItem(Item item) {
+    public static void addItem(Item item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
+    }
+    public static void addGame(Item item) {
+        GAMES.add(item);
+        GAME_MAP.put("1", item);
+    }
+    public static void addGroup(Item item) {
+        GROUPS.add(item);
+        GROUP_MAP.put("1", item);
     }
 
     private static Item createDummyItem(int position) {

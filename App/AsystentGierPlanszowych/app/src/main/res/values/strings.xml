@@ -67,4 +67,7 @@
     <string name="customDiceListItemResultLabel">Wynik:</string>
     <string name="diceNotPickedText">nie wybrano kostki</string>
     <string name="diceShowHistoryText">Zobacz historię rzutów</string>
+
+
+    <string name="chuj"> kutas</string>
 </resources>

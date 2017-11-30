@@ -36,6 +36,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="pwcdma.asystentgierplanszowych.activity.StartActivity" />
         </activity>
+        <activity android:name=".activity.AddGameActivity"
+            android:configChanges="orientation"
+            android:label="sdsdsdd"
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".activity.LogInActivity"
             android:configChanges="orientation"
@@ -49,7 +55,16 @@
         <activity
             android:name=".activity.MainActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

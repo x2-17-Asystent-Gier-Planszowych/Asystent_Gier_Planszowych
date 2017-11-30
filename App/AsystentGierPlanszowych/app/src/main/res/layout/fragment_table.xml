@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:overScrollMode="never"
         android:scrollbars="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col1"
+                        android:text="0"
                         android:textAppearance="@style/TableColumnTitle" />
 
                     <TextView
@@ -47,7 +47,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col2"
+                        android:text="0"
                         android:textAppearance="@style/TableColumnTitle" />
 
                     <TextView
@@ -55,7 +55,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col3"
+                        android:text="0"
                         android:textAppearance="@style/TableColumnTitle" />
 
                     <TextView
@@ -63,7 +63,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col4"
+                        android:text="0"
                         android:textAppearance="@style/TableColumnTitle" />
 
                     <TextView
@@ -71,7 +71,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col5"
+                        android:text="0"
                         android:textAppearance="@style/TableColumnTitle" />
 
                     <TextView
@@ -79,7 +79,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col6"
+                        android:text="0"
                         android:textAppearance="@style/TableColumnTitle" />
 
                     <TextView
@@ -87,7 +87,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col7"
+                        android:text="0"
                         android:textAppearance="@style/TableColumnTitle" />
 
                     <TextView
@@ -95,7 +95,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col8"
+                        android:text="0"
                         android:textAppearance="@style/TableColumnTitle" />
 
                     <TextView
@@ -103,7 +103,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col9"
+                        android:text="0"
                         android:textAppearance="@style/TableColumnTitle" />
 
                     <TextView
@@ -111,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col10"
+                        android:text="00"
                         android:textAppearance="@style/TableColumnTitle" />
 
                 </TableRow>
@@ -127,7 +127,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0101"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -135,7 +135,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0201"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
 
@@ -144,7 +144,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0301"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -152,7 +152,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0401"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -160,7 +160,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0501"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -168,7 +168,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0601"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -176,7 +176,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0701"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -184,7 +184,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0801"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -192,7 +192,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0901"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -200,7 +200,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="1001"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                 </TableRow>
@@ -217,7 +217,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0102"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -225,7 +225,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0202"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -233,7 +233,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0302"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -241,7 +241,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0402"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -249,7 +249,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0502"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -257,7 +257,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0602"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -265,7 +265,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0702"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -273,7 +273,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0802"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -281,7 +281,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0902"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -289,7 +289,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="1002"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
 
@@ -306,7 +306,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0103"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -314,7 +314,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0203"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -322,7 +322,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0303"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -330,7 +330,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0403"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -338,7 +338,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0503"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -346,7 +346,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0603"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -354,7 +354,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0703"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -362,7 +362,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0803"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -370,7 +370,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0903"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -378,7 +378,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="1003"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
 
@@ -396,7 +396,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0104"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -404,7 +404,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0204"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -412,7 +412,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0304"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -420,7 +420,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0404"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -428,7 +428,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0504"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -436,7 +436,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0604"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -444,7 +444,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0704"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -452,7 +452,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0804"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -460,7 +460,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0904"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -468,7 +468,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="1004"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                 </TableRow>
@@ -484,7 +484,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0105"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -492,7 +492,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0205"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -500,7 +500,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0305"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -508,7 +508,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0405"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -516,7 +516,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0505"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -524,7 +524,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0605"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -532,7 +532,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0705"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -540,7 +540,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0805"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -548,7 +548,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0905"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -556,7 +556,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="1005"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
 
@@ -574,7 +574,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0106"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
 
@@ -583,7 +583,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0206"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -591,7 +591,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0306"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -599,7 +599,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0406"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -607,7 +607,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0506"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -615,7 +615,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0606"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -623,7 +623,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0706"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -631,7 +631,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0806"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -639,7 +639,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0906"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -647,7 +647,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="1006"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                 </TableRow>
@@ -663,7 +663,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0107"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -671,7 +671,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0207"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -679,7 +679,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0307"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -687,7 +687,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0407"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -695,7 +695,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0507"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -703,7 +703,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0607"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -711,7 +711,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0707"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -719,7 +719,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0807"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -727,7 +727,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0907"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -735,7 +735,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="1007"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
 
@@ -753,7 +753,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0108"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -761,7 +761,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0208"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -769,7 +769,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0308"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -777,7 +777,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0408"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -785,7 +785,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0508"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -793,7 +793,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0608"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -801,7 +801,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0708"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -809,7 +809,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0808"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -817,7 +817,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0908"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -825,7 +825,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="1008"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
 
@@ -842,7 +842,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0109"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -850,7 +850,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0209"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -858,7 +858,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0309"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -866,7 +866,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0409"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -874,7 +874,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0509"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
 
@@ -883,7 +883,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0609"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -891,7 +891,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0709"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -899,7 +899,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0809"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -907,7 +907,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0909"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -915,7 +915,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="1009"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
 
@@ -933,7 +933,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0110"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -941,7 +941,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0210"
+                        android:text="0"
                         android:textAppearance="@style/TableCell"
                         android:textColor="#000" />
 
@@ -950,7 +950,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0310"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -958,7 +958,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0410"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -966,7 +966,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0510"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -974,7 +974,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0610"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -982,7 +982,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0710"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -990,7 +990,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0810"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -998,7 +998,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="0910"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                     <TextView
@@ -1006,7 +1006,7 @@
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="1010"
+                        android:text="0"
                         android:textAppearance="@style/TableCell" />
 
                 </TableRow>
@@ -1032,7 +1032,7 @@
         android:layout_height="wrap_content"
         android:overScrollMode="never"
         android:scrollbars="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -1060,7 +1060,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col1"
+                        android:text="col01"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1070,7 +1070,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col2"
+                        android:text="col02"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1080,7 +1080,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col3"
+                        android:text="col03"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1090,7 +1090,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col4"
+                        android:text="col04"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1100,7 +1100,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col5"
+                        android:text="col05"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1110,7 +1110,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col6"
+                        android:text="col06"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1120,7 +1120,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col7"
+                        android:text="col07"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1130,7 +1130,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col8"
+                        android:text="col08"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1140,7 +1140,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col9"
+                        android:text="col09"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1151,6 +1151,15 @@
                         android:gravity="center"
                         android:padding="18dip"
                         android:text="col10"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/resultColumn"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1167,8 +1176,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0101"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1176,8 +1186,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0201"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
 
@@ -1186,8 +1197,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0301"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1195,8 +1207,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0401"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1204,8 +1217,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0501"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1213,8 +1227,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0601"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1222,8 +1237,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0701"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1231,8 +1247,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0801"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1240,8 +1257,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0901"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1249,9 +1267,20 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="1001"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/result01"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="Wynik"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
 
                 </TableRow>
 
@@ -1267,8 +1296,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0102"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1276,8 +1306,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0202"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1285,8 +1316,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0302"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1294,8 +1326,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0402"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1303,8 +1336,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0502"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1312,8 +1346,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0602"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1321,8 +1356,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0702"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1330,8 +1366,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0802"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1339,8 +1376,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0902"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1348,9 +1386,19 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="1002"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/result02"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
 
 
                 </TableRow>
@@ -1366,8 +1414,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0103"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1375,8 +1424,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0203"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1384,8 +1434,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0303"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1393,8 +1444,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0403"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1402,8 +1454,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0503"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1411,8 +1464,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0603"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1420,8 +1474,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0703"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1429,8 +1484,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0803"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1438,8 +1494,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0903"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1447,9 +1504,19 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="1003"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/result03"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
 
 
                 </TableRow>
@@ -1466,8 +1533,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0104"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1475,8 +1543,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0204"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1484,8 +1553,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0304"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1493,8 +1563,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0404"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1502,8 +1573,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0504"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1511,8 +1583,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0604"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1520,8 +1593,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0704"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1529,8 +1603,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0804"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1538,8 +1613,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0904"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1547,9 +1623,19 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="1004"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/result04"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
 
                 </TableRow>
 
@@ -1564,8 +1650,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0105"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1573,8 +1660,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0205"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1582,8 +1670,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0305"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1591,8 +1680,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0405"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1600,8 +1690,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0505"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1609,8 +1700,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0605"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1618,8 +1710,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0705"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1627,8 +1720,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0805"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1636,8 +1730,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0905"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1645,9 +1740,19 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="1005"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/result05"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
 
 
                 </TableRow>
@@ -1664,8 +1769,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0106"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
 
@@ -1674,8 +1780,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0206"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1683,8 +1790,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0306"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1692,8 +1800,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0406"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1701,8 +1810,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0506"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1710,8 +1820,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0606"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1719,8 +1830,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0706"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1728,8 +1840,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0806"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1737,8 +1850,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0906"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1746,9 +1860,19 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="1006"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/result06"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
 
                 </TableRow>
 
@@ -1763,8 +1887,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0107"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1772,8 +1897,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0207"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1781,8 +1907,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0307"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1790,8 +1917,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0407"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1799,8 +1927,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0507"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1808,8 +1937,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0607"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1817,8 +1947,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0707"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1826,8 +1957,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0807"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1835,8 +1967,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0907"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1844,9 +1977,19 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="1007"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/result07"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
 
 
                 </TableRow>
@@ -1863,8 +2006,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0108"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1872,8 +2016,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0208"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1881,8 +2026,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0308"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1890,8 +2036,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0408"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1899,8 +2046,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0508"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1908,8 +2056,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0608"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1917,8 +2066,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0708"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1926,8 +2076,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0808"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1935,8 +2086,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0908"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1944,11 +2096,19 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="1008"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
-
+                    <TextView
+                        android:id="@+id/result08"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
                 </TableRow>
 
                 <TableRow
@@ -1962,8 +2122,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0109"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1971,8 +2132,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0209"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1980,8 +2142,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0309"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1989,8 +2152,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0409"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1998,8 +2162,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0509"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
 
@@ -2008,8 +2173,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0609"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2017,8 +2183,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0709"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2026,8 +2193,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0809"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2035,8 +2203,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0909"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2044,10 +2213,19 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="1009"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
+                    <TextView
+                        android:id="@+id/result09"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
 
                 </TableRow>
 
@@ -2063,8 +2241,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0110"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2072,8 +2251,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0210"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell"
                         android:textColor="#000" />
 
@@ -2082,8 +2262,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0310"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2091,8 +2272,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0410"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2100,8 +2282,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0510"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2109,8 +2292,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0610"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2118,8 +2302,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0710"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2127,8 +2312,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0810"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2136,8 +2322,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="0910"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2145,9 +2332,19 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:text="1010"
+                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
+
+                    <TextView
+                        android:id="@+id/result10"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
 
                 </TableRow>
 
@@ -2173,12 +2370,12 @@
         android:layout_gravity="bottom|end"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingEnd="@dimen/activity_horizontal_margin"
-        fab:menu_fab_size="mini"
         fab:menu_animationDelayPerItem="0"
         fab:menu_backgroundColor="@color/black87"
         fab:menu_colorNormal="@color/colorAccent"
         fab:menu_colorPressed="@color/colorAccentLight"
         fab:menu_colorRipple="@color/colorAccentLight"
+        fab:menu_fab_size="mini"
         fab:menu_icon="@drawable/ic_fab_dice"
         fab:menu_labels_hideAnimation="@anim/jump_to_down"
         fab:menu_labels_showAnimation="@anim/jump_from_down"
@@ -2194,12 +2391,12 @@
             fab:fab_label="Utwórz tabelę" />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fabTableEditOrSave"
+            android:id="@+id/fabTableShowResults"
             style="@style/MenuButtonsStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_fab_dice"
-            fab:fab_label="Edytuj tabelę" />
+            fab:fab_label="Oblicz wyniki" />
 
 
         <com.github.clans.fab.FloatingActionButton

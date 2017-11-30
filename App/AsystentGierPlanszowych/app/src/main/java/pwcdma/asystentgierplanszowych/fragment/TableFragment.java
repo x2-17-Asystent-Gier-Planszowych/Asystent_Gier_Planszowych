@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ScrollView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.github.clans.fab.FloatingActionButton;
@@ -20,14 +19,12 @@ import java.util.List;
 
 import pwcdma.asystentgierplanszowych.R;
 
-import static android.view.View.GONE;
-
 
 public class TableFragment extends Fragment {
     private ScrollView mSvTable;
     private ScrollView mSvEditTable;
     private FloatingActionMenu mFam;
-    private FloatingActionButton mFabEditOrSaveTable;
+    private FloatingActionButton mFabShowResultsTable;
     private FloatingActionButton mFabCreateTable;
     private FloatingActionButton mFabResizeTable;
     private List<TextView> mTableTitles = new ArrayList<>();
@@ -42,6 +39,9 @@ public class TableFragment extends Fragment {
     private List<TextView> mRow08 = new ArrayList<>();
     private List<TextView> mRow09 = new ArrayList<>();
     private List<TextView> mRow10 = new ArrayList<>();
+
+    private List<TextView> mResults = new ArrayList<>();
+
     private List<TextView> mTableTitlesEdit = new ArrayList<>();
     private List<List<EditText>> mCellsEdit = new ArrayList<>();
     private List<EditText> mRowEdit01 = new ArrayList<>();
@@ -55,9 +55,10 @@ public class TableFragment extends Fragment {
     private List<EditText> mRowEdit09 = new ArrayList<>();
     private List<EditText> mRowEdit10 = new ArrayList<>();
     private String[] titles;
-    private String[][] cells;
-    private int mNumberOfRows;
-    private int mNumberOfCols;
+    private int cells[][];
+    // TODO: 26.11.2017 naprawic
+    private int mNumberOfRows = 10;
+    private int mNumberOfCols = 10;
     private static final String TAG = TableFragment.class.getSimpleName();
 
 
@@ -91,46 +92,23 @@ public class TableFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_table, container, false);
         findViews(view);
         setOnClickListeners();
+        cells = new int[mNumberOfCols][mNumberOfRows];
         return view;
     }
 
     private void setOnClickListeners() {
-        mFabEditOrSaveTable.setOnClickListener(onClickListenerEditOrSaveTable);
+        mFabResizeTable.setOnClickListener(onClickListenerResizeTable);
+        mFabCreateTable.setOnClickListener(onClickListenerCreateTable);
+        mFabShowResultsTable.setOnClickListener(onClickListenerShowResults);
     }
 
-    private View.OnClickListener onClickListenerEditOrSaveTable = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            if (!mSvEditTable.isShown()) {
-                Log.d(TAG, "onClickEditOrSaveTable: " + mSvEditTable.isShown());
-                mSvEditTable.setVisibility(View.VISIBLE);
-                mSvTable.setVisibility(View.GONE);
-            } else {
-                Log.d(TAG, "onClickEditOrSaveTable: " + mSvEditTable.isShown());
-                mSvEditTable.setVisibility(View.GONE);
-                mSvTable.setVisibility(View.VISIBLE);
-                setTexts();
-            }
-            mFam.close(true);
-        }
-    };
-private void getTexts(){
-   for(int i = 0 ; i < mNumberOfRows; i++){
-       for(int j = 0; j < mNumberOfCols; j++){
-           cells[i][j] = mCellsEdit.get(mNumberOfCols).get(mNumberOfRows).getText().toString();
-           Log.d(TAG, "getTexts: " + cells[i][j]);
-           // TODO: 17.11.2017 na tym stanęłam 
-       }
-   }
-}
-
-    private void setTexts(){
-        for (List<TextView> list: mCells) {
-            for (TextView text: list) {
-//                text.setText();
+    private void getTexts() {
+        for (int i = 0; i < mNumberOfRows; i++) {
+            for (int j = 0; j < mNumberOfCols; j++) {
             }
         }
     }
+
 
     private View.OnClickListener onClickListenerResizeTable = new View.OnClickListener() {
         @Override
@@ -146,15 +124,49 @@ private void getTexts(){
             mFam.close(true);
         }
     };
+    private View.OnClickListener onClickListenerShowResults = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "onClickShowResultsTable: ");
+            showResults();
+            mFam.close(true);
+        }
+    };
 
+
+    private void showResults() {
+        for(int i=0; i<mNumberOfRows; i++) {
+            for (int j = 0; j < mNumberOfCols; j++) {
+//                Log.d(TAG, "showResults: " + mCellsEdit.get(i).get(j).getText().toString());
+                if (mCellsEdit.get(i).get(j).getText().toString().equals("")){
+                    cells[i][j] = 0;
+                } else {
+                    String tmp =  mCellsEdit.get(i).get(j).getText().toString();
+                    Log.d(TAG, "showResults: " + Integer.getInteger(tmp));
+//                    cells[i][j] = Integer.getInteger(tmp);
+                }
+            }
+        }
+    }
 
     private void findViews(View view) {
         mSvTable = view.findViewById(R.id.tableShowView);
         mSvEditTable = view.findViewById(R.id.tableEditView);
         mFam = view.findViewById(R.id.tableMenuFAB);
         mFabCreateTable = view.findViewById(R.id.fabTableCreate);
-        mFabEditOrSaveTable = view.findViewById(R.id.fabTableEditOrSave);
+        mFabShowResultsTable = view.findViewById(R.id.fabTableShowResults);
         mFabResizeTable = view.findViewById(R.id.fabTableResize);
+
+        mResults.add((TextView) view.findViewById(R.id.result01));
+        mResults.add((TextView) view.findViewById(R.id.result02));
+        mResults.add((TextView) view.findViewById(R.id.result03));
+        mResults.add((TextView) view.findViewById(R.id.result04));
+        mResults.add((TextView) view.findViewById(R.id.result05));
+        mResults.add((TextView) view.findViewById(R.id.result06));
+        mResults.add((TextView) view.findViewById(R.id.result07));
+        mResults.add((TextView) view.findViewById(R.id.result08));
+        mResults.add((TextView) view.findViewById(R.id.result09));
+        mResults.add((TextView) view.findViewById(R.id.result10));
 
         mTableTitles.add((TextView) view.findViewById(R.id.column01));
         mTableTitles.add((TextView) view.findViewById(R.id.column02));
@@ -310,93 +322,93 @@ private void getTexts(){
         mRowEdit02.add((EditText) view.findViewById(R.id.editCell0902));
         mRowEdit02.add((EditText) view.findViewById(R.id.editCell1002));
 
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0103));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0203));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0303));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0403));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0503));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0603));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0703));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0803));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0903));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell1003));
+        mRowEdit03.add((EditText) view.findViewById(R.id.editCell0103));
+        mRowEdit03.add((EditText) view.findViewById(R.id.editCell0203));
+        mRowEdit03.add((EditText) view.findViewById(R.id.editCell0303));
+        mRowEdit03.add((EditText) view.findViewById(R.id.editCell0403));
+        mRowEdit03.add((EditText) view.findViewById(R.id.editCell0503));
+        mRowEdit03.add((EditText) view.findViewById(R.id.editCell0603));
+        mRowEdit03.add((EditText) view.findViewById(R.id.editCell0703));
+        mRowEdit03.add((EditText) view.findViewById(R.id.editCell0803));
+        mRowEdit03.add((EditText) view.findViewById(R.id.editCell0903));
+        mRowEdit03.add((EditText) view.findViewById(R.id.editCell1003));
 
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0104));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0204));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0304));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0404));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0504));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0604));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0704));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0804));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0904));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell1004));
+        mRowEdit04.add((EditText) view.findViewById(R.id.editCell0104));
+        mRowEdit04.add((EditText) view.findViewById(R.id.editCell0204));
+        mRowEdit04.add((EditText) view.findViewById(R.id.editCell0304));
+        mRowEdit04.add((EditText) view.findViewById(R.id.editCell0404));
+        mRowEdit04.add((EditText) view.findViewById(R.id.editCell0504));
+        mRowEdit04.add((EditText) view.findViewById(R.id.editCell0604));
+        mRowEdit04.add((EditText) view.findViewById(R.id.editCell0704));
+        mRowEdit04.add((EditText) view.findViewById(R.id.editCell0804));
+        mRowEdit04.add((EditText) view.findViewById(R.id.editCell0904));
+        mRowEdit04.add((EditText) view.findViewById(R.id.editCell1004));
 
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0105));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0205));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0305));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0405));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0505));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0605));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0705));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0805));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0905));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell1005));
+        mRowEdit05.add((EditText) view.findViewById(R.id.editCell0105));
+        mRowEdit05.add((EditText) view.findViewById(R.id.editCell0205));
+        mRowEdit05.add((EditText) view.findViewById(R.id.editCell0305));
+        mRowEdit05.add((EditText) view.findViewById(R.id.editCell0405));
+        mRowEdit05.add((EditText) view.findViewById(R.id.editCell0505));
+        mRowEdit05.add((EditText) view.findViewById(R.id.editCell0605));
+        mRowEdit05.add((EditText) view.findViewById(R.id.editCell0705));
+        mRowEdit05.add((EditText) view.findViewById(R.id.editCell0805));
+        mRowEdit05.add((EditText) view.findViewById(R.id.editCell0905));
+        mRowEdit05.add((EditText) view.findViewById(R.id.editCell1005));
 
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0106));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0206));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0306));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0406));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0506));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0606));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0706));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0806));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0906));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell1006));
+        mRowEdit06.add((EditText) view.findViewById(R.id.editCell0106));
+        mRowEdit06.add((EditText) view.findViewById(R.id.editCell0206));
+        mRowEdit06.add((EditText) view.findViewById(R.id.editCell0306));
+        mRowEdit06.add((EditText) view.findViewById(R.id.editCell0406));
+        mRowEdit06.add((EditText) view.findViewById(R.id.editCell0506));
+        mRowEdit06.add((EditText) view.findViewById(R.id.editCell0606));
+        mRowEdit06.add((EditText) view.findViewById(R.id.editCell0706));
+        mRowEdit06.add((EditText) view.findViewById(R.id.editCell0806));
+        mRowEdit06.add((EditText) view.findViewById(R.id.editCell0906));
+        mRowEdit06.add((EditText) view.findViewById(R.id.editCell1006));
 
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0107));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0207));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0307));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0407));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0507));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0607));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0707));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0807));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0907));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell1007));
+        mRowEdit07.add((EditText) view.findViewById(R.id.editCell0107));
+        mRowEdit07.add((EditText) view.findViewById(R.id.editCell0207));
+        mRowEdit07.add((EditText) view.findViewById(R.id.editCell0307));
+        mRowEdit07.add((EditText) view.findViewById(R.id.editCell0407));
+        mRowEdit07.add((EditText) view.findViewById(R.id.editCell0507));
+        mRowEdit07.add((EditText) view.findViewById(R.id.editCell0607));
+        mRowEdit07.add((EditText) view.findViewById(R.id.editCell0707));
+        mRowEdit07.add((EditText) view.findViewById(R.id.editCell0807));
+        mRowEdit07.add((EditText) view.findViewById(R.id.editCell0907));
+        mRowEdit07.add((EditText) view.findViewById(R.id.editCell1007));
 
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0108));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0208));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0308));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0408));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0508));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0608));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0708));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0808));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0908));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell1008));
+        mRowEdit08.add((EditText) view.findViewById(R.id.editCell0108));
+        mRowEdit08.add((EditText) view.findViewById(R.id.editCell0208));
+        mRowEdit08.add((EditText) view.findViewById(R.id.editCell0308));
+        mRowEdit08.add((EditText) view.findViewById(R.id.editCell0408));
+        mRowEdit08.add((EditText) view.findViewById(R.id.editCell0508));
+        mRowEdit08.add((EditText) view.findViewById(R.id.editCell0608));
+        mRowEdit08.add((EditText) view.findViewById(R.id.editCell0708));
+        mRowEdit08.add((EditText) view.findViewById(R.id.editCell0808));
+        mRowEdit08.add((EditText) view.findViewById(R.id.editCell0908));
+        mRowEdit08.add((EditText) view.findViewById(R.id.editCell1008));
 
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0109));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0209));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0309));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0409));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0509));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0609));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0709));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0809));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell0909));
-        mRowEdit01.add((EditText) view.findViewById(R.id.editCell1009));
+        mRowEdit09.add((EditText) view.findViewById(R.id.editCell0109));
+        mRowEdit09.add((EditText) view.findViewById(R.id.editCell0209));
+        mRowEdit09.add((EditText) view.findViewById(R.id.editCell0309));
+        mRowEdit09.add((EditText) view.findViewById(R.id.editCell0409));
+        mRowEdit09.add((EditText) view.findViewById(R.id.editCell0509));
+        mRowEdit09.add((EditText) view.findViewById(R.id.editCell0609));
+        mRowEdit09.add((EditText) view.findViewById(R.id.editCell0709));
+        mRowEdit09.add((EditText) view.findViewById(R.id.editCell0809));
+        mRowEdit09.add((EditText) view.findViewById(R.id.editCell0909));
+        mRowEdit09.add((EditText) view.findViewById(R.id.editCell1009));
 
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0110));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0210));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0310));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0410));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0510));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0610));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0710));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0810));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell0910));
-        mRowEdit02.add((EditText) view.findViewById(R.id.editCell1010));
+        mRowEdit10.add((EditText) view.findViewById(R.id.editCell0110));
+        mRowEdit10.add((EditText) view.findViewById(R.id.editCell0210));
+        mRowEdit10.add((EditText) view.findViewById(R.id.editCell0310));
+        mRowEdit10.add((EditText) view.findViewById(R.id.editCell0410));
+        mRowEdit10.add((EditText) view.findViewById(R.id.editCell0510));
+        mRowEdit10.add((EditText) view.findViewById(R.id.editCell0610));
+        mRowEdit10.add((EditText) view.findViewById(R.id.editCell0710));
+        mRowEdit10.add((EditText) view.findViewById(R.id.editCell0810));
+        mRowEdit10.add((EditText) view.findViewById(R.id.editCell0910));
+        mRowEdit10.add((EditText) view.findViewById(R.id.editCell1010));
 
         mCells.add(mRow01);
         mCells.add(mRow02);

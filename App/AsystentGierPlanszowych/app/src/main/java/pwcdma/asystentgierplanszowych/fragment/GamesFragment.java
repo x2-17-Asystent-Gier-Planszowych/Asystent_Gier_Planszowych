@@ -8,8 +8,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -32,7 +30,6 @@ import pwcdma.asystentgierplanszowych.content.Content;
 import pwcdma.asystentgierplanszowych.content.Content.Item;
 import pwcdma.asystentgierplanszowych.model.Game;
 import pwcdma.asystentgierplanszowych.server.GamesController;
-import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
 /**
  * A fragment representing a list of Items.
@@ -54,12 +51,8 @@ public class GamesFragment extends Fragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public GamesFragment() {
-        if (controller == null)
-            controller = new GamesController();
+        controller = new GamesController();
     }
-
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -125,53 +118,38 @@ public class GamesFragment extends Fragment {
 
 
     private class GetGamesTask extends AsyncTask<Void, Void, String> {
-        String response = null;
+
         @Override
         protected String doInBackground(Void... args) {
-          /*  File gamesFile = new File(getContext().getFilesDir(), "games.json");
-            if (gamesFile.exists()){
-                return readFile(gamesFile);
-            } else if (((MainActivity) getActivity()).isOnline()) {
+            File gamesFile = new File(getContext().getFilesDir(), "games.json");
+            if (((MainActivity) getActivity()).isOnline()){
                 String data = null;
                 try {
                     data = controller.getAllGames();
+                    saveGamesToFile(gamesFile, data);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                writeFile(gamesFile, data);
                 return data;
+            } else if (gamesFile.exists()) {
+                return getGamesFromFile(gamesFile);
             } else {
-                return "";
-            }*/
-            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/games");
-
-
-
-
-
-            try {
-                response = connection.getResponse();
-            } catch (IOException e) {
-                e.printStackTrace();
+                return "[]";
             }
-            return response;
         }
 
+        @Override
+        protected void onPostExecute(String response) {
+            super.onPostExecute(response);
+            Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
+            List<Game> gamesListFromServer = new Gson().fromJson(response, listType);
+            for(Game g : gamesListFromServer){
+                Item item = new Item(g.getId().toString(),g.getName(),"");
+                Content.addGame(item);
+            }
+        }
 
-
-
-//        @Override
-//        protected void onPostExecute(String s) {
-//            Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
-//            List<Game> gamesListFromServer = new Gson().fromJson(response, listType);
-//            for(Game g : gamesListFromServer){
-//                Item item = new Item(g.getId().toString(),g.getName(),"");
-//                Content.addGame(item);
-//            }
-//            super.onPostExecute(s);
-//        }
-
-        private String readFile(File f){
+        private String getGamesFromFile(File f){
             try {
                 BufferedReader reader = new BufferedReader(new FileReader(f));
                 String data = reader.readLine();
@@ -182,7 +160,7 @@ public class GamesFragment extends Fragment {
             }
         }
 
-        private void writeFile(File f, String data){
+        private void saveGamesToFile(File f, String data){
             try {
                 FileWriter writer = new FileWriter(f);
                 writer.write(data);

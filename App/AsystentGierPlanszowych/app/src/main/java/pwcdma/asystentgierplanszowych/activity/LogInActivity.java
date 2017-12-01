@@ -352,7 +352,10 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
-                return controller.signIn(mLogin, mPassword);
+                boolean response = controller.signIn(mLogin, mPassword);
+                gamesGet();
+                groupGet();
+                return response;
             } catch (IOException e){
                 runOnUiThread(new Runnable() {
                     @Override
@@ -365,7 +368,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
 
-        protected void gamesGet() {
+        private void gamesGet() {
 
             ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/games");
             String responsee = null;
@@ -383,9 +386,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         }
 
-
-
-        protected void groupGet() {
+        private void groupGet() {
             GroupControllerSerwer gf = new GroupControllerSerwer();
             String responsee = gf.getAllGroups();
 

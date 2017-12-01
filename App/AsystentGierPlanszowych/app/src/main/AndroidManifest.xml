@@ -40,8 +40,7 @@
             android:configChanges="orientation"
             android:label="sdsdsdd"
             android:parentActivityName=".activity.MainActivity"
-            android:screenOrientation="portrait"
-            ></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.LogInActivity"
             android:configChanges="orientation"

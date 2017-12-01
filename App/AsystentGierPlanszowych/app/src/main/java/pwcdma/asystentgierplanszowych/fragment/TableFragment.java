@@ -56,9 +56,12 @@ public class TableFragment extends Fragment {
     private List<EditText> mRowEdit10 = new ArrayList<>();
     private String[] titles;
     private int cells[][];
+
     // TODO: 26.11.2017 naprawic
     private int mNumberOfRows = 10;
     private int mNumberOfCols = 10;
+    private int rowSum[] = new int[mNumberOfRows];
+    private int colSum[] = new int[mNumberOfCols];
     private static final String TAG = TableFragment.class.getSimpleName();
 
 
@@ -135,17 +138,41 @@ public class TableFragment extends Fragment {
 
 
     private void showResults() {
-        for(int i=0; i<mNumberOfRows; i++) {
+        clearSums();
+        iterateTable();
+        showRowResults();
+    }
+
+    private void iterateTable() {
+        for (int i = 0; i < mNumberOfRows; i++) {
             for (int j = 0; j < mNumberOfCols; j++) {
-//                Log.d(TAG, "showResults: " + mCellsEdit.get(i).get(j).getText().toString());
-                if (mCellsEdit.get(i).get(j).getText().toString().equals("")){
+                if (mCellsEdit.get(i).get(j).getText().toString().equals("")) {
                     cells[i][j] = 0;
+                    Log.d(TAG, "showResults: " + cells[i][j]);
                 } else {
-                    String tmp =  mCellsEdit.get(i).get(j).getText().toString();
-                    Log.d(TAG, "showResults: " + Integer.getInteger(tmp));
-//                    cells[i][j] = Integer.getInteger(tmp);
+                    String tmp = mCellsEdit.get(i).get(j).getText().toString();
+                    cells[i][j] = Integer.parseInt(tmp);
+                    Log.d(TAG, "showResults: " + Integer.parseInt(tmp) + " " + cells[i][j]);
                 }
+                rowSum[i] += cells[i][j];
+                Log.d(TAG, "iterateTable: temp1 " + rowSum[j]);
             }
+
+        }
+    }
+
+    private void clearSums() {
+        for (int i = 0; i < mNumberOfRows; i++) {
+            rowSum[i] = 0;
+        }
+    }
+
+
+    public void showRowResults() {
+        int i = 0;
+        for (TextView tv : mResults) {
+            tv.setText(String.valueOf(rowSum[i]));
+            i++;
         }
     }
 

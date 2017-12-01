@@ -1279,8 +1279,7 @@
                         android:gravity="center"
                         android:padding="18dip"
                         android:text="Wynik"
-                        android:textAppearance="@style/TableColumnTitle"
-                        android:textColor="@color/white" />
+                        android:textAppearance="@style/TableCell" />
 
                 </TableRow>
 
@@ -1397,8 +1396,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:textAppearance="@style/TableColumnTitle"
-                        android:textColor="@color/white" />
+                        android:textAppearance="@style/TableCell" />
 
 
                 </TableRow>
@@ -1515,8 +1513,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:textAppearance="@style/TableColumnTitle"
-                        android:textColor="@color/white" />
+                        android:textAppearance="@style/TableCell" />
 
 
                 </TableRow>
@@ -1634,8 +1631,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:textAppearance="@style/TableColumnTitle"
-                        android:textColor="@color/white" />
+                        android:textAppearance="@style/TableCell" />
 
                 </TableRow>
 
@@ -1751,8 +1747,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:textAppearance="@style/TableColumnTitle"
-                        android:textColor="@color/white" />
+                        android:textAppearance="@style/TableCell" />
 
 
                 </TableRow>
@@ -1871,8 +1866,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:textAppearance="@style/TableColumnTitle"
-                        android:textColor="@color/white" />
+                        android:textAppearance="@style/TableCell" />
 
                 </TableRow>
 
@@ -1988,8 +1982,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:textAppearance="@style/TableColumnTitle"
-                        android:textColor="@color/white" />
+                        android:textAppearance="@style/TableCell" />
 
 
                 </TableRow>
@@ -2107,8 +2100,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:textAppearance="@style/TableColumnTitle"
-                        android:textColor="@color/white" />
+                        android:textAppearance="@style/TableCell" />
                 </TableRow>
 
                 <TableRow
@@ -2224,8 +2216,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:textAppearance="@style/TableColumnTitle"
-                        android:textColor="@color/white" />
+                        android:textAppearance="@style/TableCell"/>
 
                 </TableRow>
 
@@ -2343,8 +2334,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:textAppearance="@style/TableColumnTitle"
-                        android:textColor="@color/white" />
+                        android:textAppearance="@style/TableCell" />
 
                 </TableRow>
 

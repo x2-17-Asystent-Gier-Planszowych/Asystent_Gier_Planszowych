@@ -1,24 +1,11 @@
 package pwcdma.asystentgierplanszowych.activity;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,15 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pwcdma.asystentgierplanszowych.R;
-import pwcdma.asystentgierplanszowych.adapter.MainActivityViewPagerAdapter;
 import pwcdma.asystentgierplanszowych.content.Content;
-import pwcdma.asystentgierplanszowych.fragment.GamesFragment;
-import pwcdma.asystentgierplanszowych.model.CustomViewPager;
-import pwcdma.asystentgierplanszowych.model.Game;
 import pwcdma.asystentgierplanszowych.model.Group;
-import pwcdma.asystentgierplanszowych.server.GamesController;
-import pwcdma.asystentgierplanszowych.server.GroupControllerSerwer;
-import pwcdma.asystentgierplanszowych.server.ServerConnection;
+import pwcdma.asystentgierplanszowych.server.GroupsController;
 
 public class AddGameActivity extends AppCompatActivity {
 
@@ -73,16 +54,25 @@ public class AddGameActivity extends AppCompatActivity {
         }
 
         protected void gamesAdd() {
-            GroupControllerSerwer g = new GroupControllerSerwer();
+            GroupsController g = new GroupsController();
 
+            try {
                 g.addGroup(title);
-                groupGet();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            groupGet();
 
         }
 
         protected void groupGet() {
-            GroupControllerSerwer gf = new GroupControllerSerwer();
-            String responsee = gf.getAllGroups();
+            GroupsController gf = new GroupsController();
+            String responsee = null;
+            try {
+                responsee = gf.getAllGroups();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 
             Type listType = new TypeToken<ArrayList<Group>>(){}.getType();

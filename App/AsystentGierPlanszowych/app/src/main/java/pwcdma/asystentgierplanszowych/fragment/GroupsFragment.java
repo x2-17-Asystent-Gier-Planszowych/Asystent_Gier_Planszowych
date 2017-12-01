@@ -10,11 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pwcdma.asystentgierplanszowych.adapter.GameRecyclerViewAdapter;
 import pwcdma.asystentgierplanszowych.adapter.GroupRecyclerViewAdapter;
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.content.Content;
 import pwcdma.asystentgierplanszowych.content.Content.Item;
+import pwcdma.asystentgierplanszowych.server.GroupsController;
 
 /**
  * A fragment representing a list of Items.
@@ -27,6 +27,8 @@ public class GroupsFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
 
+    private GroupsController controller;
+
     private OnListFragmentInteractionListener mListener;
 
     /**
@@ -34,6 +36,7 @@ public class GroupsFragment extends Fragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public GroupsFragment() {
+        controller = new GroupsController();
     }
 
     @Override

@@ -31,10 +31,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.squareup.picasso.Downloader;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -42,13 +39,11 @@ import java.util.List;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.json.*;
-
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.content.Content;
 import pwcdma.asystentgierplanszowych.model.Game;
 import pwcdma.asystentgierplanszowych.model.Group;
-import pwcdma.asystentgierplanszowych.server.GroupControllerSerwer;
+import pwcdma.asystentgierplanszowych.server.GroupsController;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
 import pwcdma.asystentgierplanszowych.server.UserController;
 
@@ -387,9 +382,13 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         private void groupGet() {
-            GroupControllerSerwer gf = new GroupControllerSerwer();
-            String responsee = gf.getAllGroups();
-
+            GroupsController gf = new GroupsController();
+            String responsee = null;
+            try {
+                responsee = gf.getAllGroups();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             Type listType = new TypeToken<ArrayList<Group>>(){}.getType();
             List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);

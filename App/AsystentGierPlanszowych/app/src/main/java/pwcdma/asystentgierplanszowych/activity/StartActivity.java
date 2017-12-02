@@ -54,8 +54,8 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
         if (isUserLoggedIn())
             startMainActivity();
         setContentView(R.layout.activity_start);
-        mainActivity = new MainActivityTask(this);
-        mainActivity.execute((Void) null);
+        //mainActivity = new MainActivityTask(this);
+       // mainActivity.execute((Void) null);
         findViews();
         setActionBar();
         addFragmentsToList();

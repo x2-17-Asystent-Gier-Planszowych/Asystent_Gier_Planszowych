@@ -7,6 +7,17 @@
     app:layout_behavior="@string/chuj"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <ProgressBar
+        android:id="@+id/login_progress2"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        android:indeterminateDrawable="@drawable/spinning_dice"
+        android:visibility="gone" />
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"

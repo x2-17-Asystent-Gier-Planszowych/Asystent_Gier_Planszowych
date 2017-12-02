@@ -21,6 +21,11 @@ public class GroupController {
         return groupServices.allGroup();
     }
 
+    @RequestMapping(value = "/group/useringroup", method = RequestMethod.GET)
+    public String getUserInGroup() {
+        return groupServices.userInGroup();
+    }
+
     @RequestMapping(value = "/user/group", method = RequestMethod.GET)
     public String getUserInGroup(@RequestParam(value="id") int id) {
         return groupServices.getUserInGroup(id);

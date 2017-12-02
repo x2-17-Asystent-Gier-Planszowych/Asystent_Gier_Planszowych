@@ -1,8 +1,6 @@
 package com.asystent.Service;
 
-import com.asystent.Model.Categories;
-import com.asystent.Model.Games;
-import com.asystent.Model.Group;
+import com.asystent.Model.*;
 import com.google.gson.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -26,6 +24,40 @@ public class GroupServices {
     UserServices userServices;
     @Autowired
     GamesService gamesService;
+
+
+
+    public String userInGroup(){
+        Gson gson = new Gson();
+        List<String> cat = new ArrayList<>();
+        JsonArray jsonArray = new JsonArray();
+        List<UserInGroup> a = jdbcTemplate.query(" SELECT \"Group_Id\",\"User_Id\" FROM \"Group_User\"", new RowMapper<UserInGroup>() {
+            @Override
+            public UserInGroup mapRow(ResultSet rs, int rownumber) throws SQLException {
+                UserInGroup g = new UserInGroup();
+               g.setIdGruop(rs.getInt(1));
+                g.setIdUser(rs.getInt(2));
+                return g;
+            }
+        });
+
+
+        List<UserInGroupString> userString = new ArrayList<UserInGroupString>();
+        for (UserInGroup g: a
+             ) {
+            UserInGroupString date = new UserInGroupString();
+            String nameUserLocal = jdbcTemplate.queryForObject(" SELECT \"Username\" FROM \"Users\" WHERE \"Id\"=(?)", new Object[]{g.getIdUser()}, String.class);
+            String nameGroup = jdbcTemplate.queryForObject(" SELECT \"Groupname\" FROM \"Groups\" WHERE \"Id\"=(?)", new Object[]{g.getIdGruop()}, String.class);
+            date.setNameGroup(nameGroup);
+            date.setNameUser(nameUserLocal);
+            userString.add(date);
+            jsonArray.add(gson.toJsonTree(date));
+        }
+
+
+        return  jsonArray.toString();
+    }
+
 
     public String allGroup() {
         Gson gson = new Gson();

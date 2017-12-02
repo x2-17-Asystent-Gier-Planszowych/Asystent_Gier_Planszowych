@@ -24,6 +24,27 @@ public class UserServices {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    public String getUserInfo(String name,String email){
+        Gson gson = new Gson();
+        JsonArray jsonArray = new JsonArray();
+        jdbcTemplate.query(" SELECT \"Id\",\"Username\",\"Email\",\"About\" FROM \"Users\" WHERE \"Active\"=?  AND \"Username\"=? OR \"Email\"=?",new Object[]{true,name,email}, new RowMapper<User>() {
+
+            @Override
+            public User mapRow(ResultSet rs, int rownumber) throws SQLException {
+
+                User user= new User();
+                user.setId(rs.getLong(1));
+                user.setUsername(rs.getString(2));
+                user.setEmail(rs.getString(3));
+                user.setAbout(rs.getString(4));
+                user.setActive(true);
+                jsonArray.add(gson.toJsonTree(user));
+                return user;
+            }
+        });
+        return  jsonArray.toString();
+    }
+
     public int getId(String login){
         return  jdbcTemplate.queryForObject(" SELECT \"Id\" FROM \"Users\" WHERE \"Username\"=(?)", new Object[]{login}, Integer.class);
     }

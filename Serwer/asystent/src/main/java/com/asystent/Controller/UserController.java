@@ -31,10 +31,22 @@ public class UserController {
 	UserServices userServices;
 
 
+
+
+	@RequestMapping("/get/user/info")
+	public String getUserInfo(@RequestParam(value="name",defaultValue="World") String name,
+							 @RequestParam(value="email",defaultValue="World") String email) {
+
+			return userServices.getUserInfo(name, email);
+
+
+	}
     @RequestMapping("/get/users")
 	public String getUsers() {
 		return userServices.getAllUsers();
 	}
+
+
         @RequestMapping("/registration")
         public String rejestacja(@RequestParam(value="name") String name,
         		@RequestParam(value="email") String email,

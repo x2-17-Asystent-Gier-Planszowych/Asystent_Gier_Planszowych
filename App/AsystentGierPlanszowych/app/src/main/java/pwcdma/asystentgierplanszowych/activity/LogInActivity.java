@@ -3,6 +3,7 @@ package pwcdma.asystentgierplanszowych.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -34,8 +35,11 @@ import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Downloader;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -214,7 +218,8 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(login, password);
+
+            mAuthTask = new UserLoginTask(login, password,getApplicationContext());
             mAuthTask.execute((Void) null);
         }
     }
@@ -337,10 +342,11 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
         private final String mLogin;
         private final String mPassword;
-
-        UserLoginTask(String email, String password) {
+        private Context cont;
+        UserLoginTask(String email, String password,Context context) {
             mLogin = email;
             mPassword = password;
+            this.cont=context;
         }
 
         @Override
@@ -353,6 +359,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 gamesGet();
                 groupGet();
+
                 return response.equals("Succes");
             } catch (IOException e){
                 runOnUiThread(new Runnable() {
@@ -375,7 +382,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
+            saveFile(responsee);
             Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
             List<Game> gamesListFromServer = new Gson().fromJson(responsee, listType);
             for(Game g : gamesListFromServer){
@@ -421,7 +428,21 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
         }
+        public boolean saveFile(String text){
+            try {
+                FileOutputStream fos = cont.openFileOutput(cont.getFilesDir().getAbsolutePath() + "/" + "data" +".txt",Context.MODE_PRIVATE);
+                Writer out = new OutputStreamWriter(fos);
+                out.write(text);
+                out.close();
+                return true;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
     }
+
+
 
     private void saveUserData(String login, String password){
         try {

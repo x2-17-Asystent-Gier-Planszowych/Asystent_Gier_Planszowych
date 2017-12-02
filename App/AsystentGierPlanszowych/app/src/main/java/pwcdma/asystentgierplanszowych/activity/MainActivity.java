@@ -19,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -67,8 +68,10 @@ public class MainActivity extends AppCompatActivity {
             "Przybornik",
             "Profil"
     };
-
+    private LinearLayout tab_host;
     private UserAddToGroup userAddToGroup;
+    private View mProgressView;
+    private WaitFroDate waitFroDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: ");
@@ -85,15 +88,14 @@ public class MainActivity extends AppCompatActivity {
             Content.Item item = new Content.Item(g.getId().toString(),g.getName(),"");
             Content.addGame(item);
         }*/
-
+        tab_host =(LinearLayout) findViewById(R.id.tab_host);
+        mProgressView = findViewById(R.id.login_progress2);
      new Thread(new Runnable() {
             public Handler mHandler;
             @Override
             public void run() {
                 while(true) {
                     try {
-
-
                     userAddToGroup = new UserAddToGroup();
                     userAddToGroup.execute((Void) null);
                         Thread.sleep(3000);
@@ -111,9 +113,37 @@ public class MainActivity extends AppCompatActivity {
             TabLayout.Tab tab = mTlNavBar.getTabAt(savedInstanceState.getInt(TAB));
             tab.select();
         }
+        showProgress(true);
+        waitFroDate = new WaitFroDate();
+        waitFroDate.execute((Void) null);
     }
 
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    private void showProgress(final boolean show) {
+        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
+        // for very easy animations. If available, use these APIs to fade-in
+        // the progress spinner.
+        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
+        tab_host.setVisibility(show ? View.GONE : View.VISIBLE);
+        tab_host.animate().setDuration(shortAnimTime).alpha(
+                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                tab_host.setVisibility(show ? View.GONE : View.VISIBLE);
+            }
+        });
+
+        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        mProgressView.animate().setDuration(shortAnimTime).alpha(
+                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            }
+        });
+    }
     public String load(Context context){
       /*  try {
             FileInputStream fis = context.openFileInput(getFilesDir().getAbsolutePath() + "/" + "data" + ".txt");
@@ -200,6 +230,70 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    class WaitFroDate extends AsyncTask<Void, Void, Boolean> {
+
+        WaitFroDate(){}
+
+
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            gamesGet();
+            groupGet();
+            return true;
+        }
+
+
+        protected void gamesGet() {
+
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/games");
+            String responsee = null;
+            try {
+                responsee = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
+            List<Game> gamesListFromServer = new Gson().fromJson(responsee, listType);
+            for(Game g : gamesListFromServer){
+                Content.Item item = new Content.Item(g.getId().toString(),g.getName(),"");
+                Content.addGame(item);
+            }
+        }
+
+
+
+        protected void groupGet() {
+
+            GroupControllerSerwer gf = new GroupControllerSerwer();
+            String responsee = gf.getAllGroups();
+
+
+            Type listType = new TypeToken<ArrayList<Group>>(){}.getType();
+            List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);
+            for(Group g : gamesListFromServer){
+                Content.Item item = new Content.Item(Integer.toString(g.getId()), g.getGroupName(),"");
+                Content.addGroup(item);
+            }
+        }
+
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            // mAuthTask = null;
+            // showProgress(false);
+
+            //activity.startActivity(new Intent(activity, MainActivity.class));;
+        }
+
+        @Override
+        protected void onCancelled() {
+            //  showProgress(false);
+        }
+    }
     class UserAddToGroup extends AsyncTask<Void, Void, Boolean> {
 
         private String respone="";
@@ -236,6 +330,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(final Boolean success) {
+
+            showProgress(false);
             if(success){
             Toast.makeText(MainActivity.this, "Zostałes dodany do grupy", Toast.LENGTH_LONG).show();}
         }

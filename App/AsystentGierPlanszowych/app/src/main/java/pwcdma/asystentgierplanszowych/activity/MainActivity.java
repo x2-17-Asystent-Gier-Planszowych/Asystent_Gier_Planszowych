@@ -10,6 +10,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +34,8 @@ import java.io.Writer;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.adapter.MainActivityViewPagerAdapter;
@@ -39,6 +44,7 @@ import pwcdma.asystentgierplanszowych.fragment.GamesFragment;
 import pwcdma.asystentgierplanszowych.model.CustomViewPager;
 import pwcdma.asystentgierplanszowych.model.Game;
 import pwcdma.asystentgierplanszowych.model.Group;
+import pwcdma.asystentgierplanszowych.model.UserInGroup;
 import pwcdma.asystentgierplanszowych.server.GroupControllerSerwer;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
@@ -62,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             "Profil"
     };
 
-
+    private UserAddToGroup userAddToGroup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: ");
@@ -80,20 +86,27 @@ public class MainActivity extends AppCompatActivity {
             Content.addGame(item);
         }*/
 
-        new Thread(new Runnable() {
+     new Thread(new Runnable() {
+            public Handler mHandler;
             @Override
             public void run() {
                 while(true) {
                     try {
-                        Thread.sleep(1000);
 
+
+                    userAddToGroup = new UserAddToGroup();
+                    userAddToGroup.execute((Void) null);
+                        Thread.sleep(3000);
+                    userAddToGroup.cancel(true);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
                 }
             }
         }).start();
+
+
+
         if (savedInstanceState != null) {
             TabLayout.Tab tab = mTlNavBar.getTabAt(savedInstanceState.getInt(TAB));
             tab.select();
@@ -189,27 +202,42 @@ public class MainActivity extends AppCompatActivity {
 
     class UserAddToGroup extends AsyncTask<Void, Void, Boolean> {
 
-
+        private String respone="";
         private Context cont;
-        UserAddToGroup(String email, String password,Context context) {
+        UserAddToGroup() {
 
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
-                //ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/signin?" +
-                 //       "login=" + mLogin + "&haslo=" + hashPassword);
-               // String response = connection.getResponse();
+                ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/group/useringroup");
 
+            try {
+                respone = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Type listType = new TypeToken<ArrayList<UserInGroup>>(){}.getType();
+            List<UserInGroup> gamesListFromServer = new Gson().fromJson(respone, listType);
+            if(gamesListFromServer.size()>Content.sizeOfList){
+                for (UserInGroup user: gamesListFromServer
+                        ) {
+                    Content.sizeOfList = gamesListFromServer.size();
+                    if(user.getNameUser().equals("misckq")){
+                        return true;
+                    }
 
+                }
+            }
 
-                return true;
+            return false;
 
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
-
+            if(success){
+            Toast.makeText(MainActivity.this, "Zostałes dodany do grupy", Toast.LENGTH_LONG).show();}
         }
 
         @Override

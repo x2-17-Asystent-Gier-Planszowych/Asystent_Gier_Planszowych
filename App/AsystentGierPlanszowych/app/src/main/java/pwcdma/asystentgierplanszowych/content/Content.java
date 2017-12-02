@@ -14,7 +14,7 @@ import pwcdma.asystentgierplanszowych.model.Game;
  * TODO: Replace all uses of this class before publishing your app.
  */
 public class Content {
-
+    public static int sizeOfList = 0;
     /**
      * An array of sample (dummy) items.
      */

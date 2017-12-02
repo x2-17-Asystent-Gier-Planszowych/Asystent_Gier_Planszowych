@@ -30,7 +30,7 @@ public class GamesService {
     CategoriesService categoriesService;
 
     private final String SELECT_ALL = " SELECT * FROM \"Games\" ORDER BY \"Name\" ";
-    private final String SELECT_BY_NAME = " SELECT * FROM \"Games\" where \"Name\" = ? \"Name\"";
+    private final String SELECT_BY_NAME = " SELECT * FROM \"Games\" where \"Name\" = ?";
     private final String SELECT_ID = "SELECT \"Id\" FROM \"Games\" where \"Name\" = ?" ;
     private final String INSERT = "INSERT INTO \"Games\" (\"Name\",\"Active\") VALUES (?,?)";
     private final String INSERT_CAT = "INSERT INTO \"Category_Game\" (\"Category_Id\", \"Game_Id\") VALUES (?,?)";

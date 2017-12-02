@@ -1,7 +1,9 @@
 package pwcdma.asystentgierplanszowych.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,13 +13,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 import pwcdma.asystentgierplanszowych.adapter.StartFragmentViewPagerAdapter;
+import pwcdma.asystentgierplanszowych.content.Content;
 import pwcdma.asystentgierplanszowych.fragment.StartFragment;
+import pwcdma.asystentgierplanszowych.model.Game;
+import pwcdma.asystentgierplanszowych.model.Group;
 import pwcdma.asystentgierplanszowych.model.StartViewPagerItem;
 import pwcdma.asystentgierplanszowych.R;
+import pwcdma.asystentgierplanszowych.server.GroupControllerSerwer;
+import pwcdma.asystentgierplanszowych.server.ServerConnection;
 import pwcdma.asystentgierplanszowych.model.User;
 
 public class StartActivity extends AppCompatActivity implements StartFragment.OnFragmentInteractionListener {
@@ -32,14 +45,17 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
     private TabLayout mTlDotIndicator;
     private StartFragmentViewPagerAdapter mVpAdapter;
     private ArrayList<StartViewPagerItem> mFragmentItemsList = new ArrayList<>();
-
+    private  MainActivityTask mainActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
+
         if (isUserLoggedIn())
             startMainActivity();
         setContentView(R.layout.activity_start);
+        mainActivity = new MainActivityTask(this);
+        mainActivity.execute((Void) null);
         findViews();
         setActionBar();
         addFragmentsToList();
@@ -121,5 +137,86 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
     public void onFragmentInteraction(Uri uri) {
         Log.d(TAG, "onFragmentInteraction: ");
 
+    }
+
+    class MainActivityTask extends AsyncTask<Void, Void, Boolean> {
+
+        private Activity activity;
+
+        MainActivityTask(Activity activity) {
+            this.activity=activity;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            gamesGet();
+            groupGet();
+            return true;
+        }
+
+
+        protected void gamesGet() {
+
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/games");
+            String responsee = null;
+            try {
+                responsee = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
+            List<Game> gamesListFromServer = new Gson().fromJson(responsee, listType);
+            for(Game g : gamesListFromServer){
+                Content.Item item = new Content.Item(g.getId().toString(),g.getName(),"");
+                Content.addGame(item);
+            }
+        }
+
+
+
+        protected void groupGet() {
+
+            GroupControllerSerwer gf = new GroupControllerSerwer();
+            String responsee = gf.getAllGroups();
+
+
+            Type listType = new TypeToken<ArrayList<Group>>(){}.getType();
+            List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);
+            for(Group g : gamesListFromServer){
+                Content.Item item = new Content.Item(Integer.toString(g.getId()), g.getGroupName(),"");
+                Content.addGroup(item);
+            }
+        }
+
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            // mAuthTask = null;
+            // showProgress(false);
+
+            //activity.startActivity(new Intent(activity, MainActivity.class));;
+        }
+
+        @Override
+        protected void onCancelled() {
+            //  showProgress(false);
+        }
+    }
+
+    private void saveUserData(String login, String password){
+        /*try {
+            JSONObject userDataJson = new JSONObject();
+            userDataJson.put("login", login);
+            userDataJson.put("password", password);
+            String userData = userDataJson.toString();
+            File userDataFile = new File(getFilesDir(), "user_data.json");
+            FileWriter writer = new FileWriter(userDataFile);
+            writer.write(userData);
+            writer.close();
+        } catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+        }*/
     }
 }

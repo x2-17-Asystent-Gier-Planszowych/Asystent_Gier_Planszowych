@@ -21,6 +21,10 @@ public class Content {
     public static  List<Item> ITEMS = new ArrayList<Item>();
     public static  List<Item> GAMES= new ArrayList<Item>();
     public static  List<Item> GROUPS= new ArrayList<Item>();
+    public static  List<Item> TAGS= new ArrayList<Item>();
+
+
+    public static  List<Item> USER= new ArrayList<Item>();
     /**
      * A map of sample (dummy) items, by ID.
      */
@@ -50,8 +54,20 @@ public class Content {
         GROUP_MAP.put("1", item);
     }
 
+    public static void addUser(Item item) {
+        USER.add(item);
+    }
+    public static void addTags(Item item){
+        TAGS.add(item);
+    }
+
     private static Item createDummyItem(int position) {
         return new Item(String.valueOf(position), "Item " + position, makeDetails(position));
+    }
+
+    public static void clearList(List<Item> listIn,Map<String, Item> mapIn ){
+        listIn.clear();
+        mapIn.clear();
     }
 
     private static String makeDetails(int position) {

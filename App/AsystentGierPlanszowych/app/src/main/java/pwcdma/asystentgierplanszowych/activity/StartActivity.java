@@ -16,7 +16,9 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ import pwcdma.asystentgierplanszowych.model.Game;
 import pwcdma.asystentgierplanszowych.model.Group;
 import pwcdma.asystentgierplanszowych.model.StartViewPagerItem;
 import pwcdma.asystentgierplanszowych.R;
+import pwcdma.asystentgierplanszowych.model.UsefullValues;
 import pwcdma.asystentgierplanszowych.server.GroupControllerSerwer;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
@@ -44,7 +47,6 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
     private TabLayout mTlDotIndicator;
     private StartFragmentViewPagerAdapter mVpAdapter;
     private ArrayList<StartViewPagerItem> mFragmentItemsList = new ArrayList<>();
-    private  MainActivityTask mainActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: ");
@@ -53,8 +55,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
         if (isUserLoggedIn())
             startMainActivity();
         setContentView(R.layout.activity_start);
-        //mainActivity = new MainActivityTask(this);
-       // mainActivity.execute((Void) null);
+        getNameUser();
         findViews();
         setActionBar();
         addFragmentsToList();
@@ -62,6 +63,34 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
         setButtons();
     }
 
+    private void getNameUser(){
+        StringBuilder contents = new StringBuilder();
+
+        try {
+            //use buffering, reading one line at a time
+            //FileReader always assumes default encoding is OK!
+            BufferedReader input =  new BufferedReader(new FileReader(getFilesDir().toString()+ "user_data.json"));
+            try {
+                String line = null; //not declared within while loop
+        /*
+        * readLine is a bit quirky :
+        * it returns the content of a line MINUS the newline.
+        * it returns null only for the END of the stream.
+        * it returns an empty String if two newlines appear in a row.
+        */
+                while (( line = input.readLine()) != null){
+                    contents.append(line);
+                }
+            }
+            finally {
+                input.close();
+            }
+        }
+        catch (IOException ex){
+            ex.printStackTrace();
+        }
+        UsefullValues.name=contents.toString();
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(TAG, "onActivityResult: ");
@@ -138,84 +167,5 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
 
     }
 
-    class MainActivityTask extends AsyncTask<Void, Void, Boolean> {
 
-        private Activity activity;
-
-        MainActivityTask(Activity activity) {
-            this.activity=activity;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-
-            gamesGet();
-            groupGet();
-            return true;
-        }
-
-
-        protected void gamesGet() {
-
-            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/games");
-            String responsee = null;
-            try {
-                responsee = connection.getResponse();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
-            List<Game> gamesListFromServer = new Gson().fromJson(responsee, listType);
-            for(Game g : gamesListFromServer){
-                Content.Item item = new Content.Item(g.getId().toString(),g.getName(),"");
-                Content.addGame(item);
-            }
-        }
-
-
-
-        protected void groupGet() {
-
-            GroupControllerSerwer gf = new GroupControllerSerwer();
-            String responsee = gf.getAllGroups();
-
-
-            Type listType = new TypeToken<ArrayList<Group>>(){}.getType();
-            List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);
-            for(Group g : gamesListFromServer){
-                Content.Item item = new Content.Item(Integer.toString(g.getId()), g.getGroupName(),"");
-                Content.addGroup(item);
-            }
-        }
-
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            // mAuthTask = null;
-            // showProgress(false);
-
-            //activity.startActivity(new Intent(activity, MainActivity.class));;
-        }
-
-        @Override
-        protected void onCancelled() {
-            //  showProgress(false);
-        }
-    }
-
-    private void saveUserData(String login, String password){
-        /*try {
-            JSONObject userDataJson = new JSONObject();
-            userDataJson.put("login", login);
-            userDataJson.put("password", password);
-            String userData = userDataJson.toString();
-            File userDataFile = new File(getFilesDir(), "user_data.json");
-            FileWriter writer = new FileWriter(userDataFile);
-            writer.write(userData);
-            writer.close();
-        } catch (Exception e){
-            throw new RuntimeException(e.getMessage());
-        }*/
-    }
 }

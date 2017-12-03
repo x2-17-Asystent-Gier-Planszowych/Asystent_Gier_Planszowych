@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -382,7 +383,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            saveFile(responsee);
+            //saveFile(responsee);
             Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
             List<Game> gamesListFromServer = new Gson().fromJson(responsee, listType);
             for(Game g : gamesListFromServer){
@@ -450,6 +451,8 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             userDataJson.put("login", login);
             userDataJson.put("password", password);
             String userData = userDataJson.toString();
+            Log.d("tag",getFilesDir().toString());
+            String dir = getFilesDir().toString();
             File userDataFile = new File(getFilesDir(), "user_data.json");
             FileWriter writer = new FileWriter(userDataFile);
             writer.write(userData);

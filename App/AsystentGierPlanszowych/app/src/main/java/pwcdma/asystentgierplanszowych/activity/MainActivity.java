@@ -11,8 +11,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -25,26 +23,19 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.adapter.MainActivityViewPagerAdapter;
 import pwcdma.asystentgierplanszowych.content.Content;
-import pwcdma.asystentgierplanszowych.fragment.GamesFragment;
 import pwcdma.asystentgierplanszowych.model.CustomViewPager;
 import pwcdma.asystentgierplanszowych.model.Game;
 import pwcdma.asystentgierplanszowych.model.Group;
+import pwcdma.asystentgierplanszowych.model.UsefullValues;
+import pwcdma.asystentgierplanszowych.model.User;
 import pwcdma.asystentgierplanszowych.model.UserInGroup;
 import pwcdma.asystentgierplanszowych.server.GroupControllerSerwer;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
@@ -98,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                     userAddToGroup = new UserAddToGroup();
                     userAddToGroup.execute((Void) null);
-                        Thread.sleep(3000);
+                    Thread.sleep(3000);
                     userAddToGroup.cancel(true);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -193,7 +184,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                Log.d(TAG, "onPageSelected: " + position);
+
+                UsefullValues.pageSelected = position;
+                Log.d(TAG, "onPageSelected: " +  UsefullValues.pageSelected);
             }
 
             @Override
@@ -225,9 +218,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void kurwa(View view){
-        Intent myIntent = new Intent(MainActivity.this, AddGameActivity.class);
-        MainActivity.this.startActivity(myIntent);
-
+        /* TODO */
+        if(UsefullValues.pageSelected == 1) {
+            Intent myIntent = new Intent(MainActivity.this, AddGameActivity.class);
+            MainActivity.this.startActivity(myIntent);
+        }else{
+            Intent myIntent = new Intent(MainActivity.this, AddGroupActivity.class);
+            MainActivity.this.startActivity(myIntent);
+        }
     }
 
 
@@ -242,6 +240,7 @@ public class MainActivity extends AppCompatActivity {
 
             gamesGet();
             groupGet();
+            userGet();
             return true;
         }
 
@@ -261,6 +260,24 @@ public class MainActivity extends AppCompatActivity {
             for(Game g : gamesListFromServer){
                 Content.Item item = new Content.Item(g.getId().toString(),g.getName(),"");
                 Content.addGame(item);
+            }
+        }
+
+        protected void userGet() {
+
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/get/users");
+            String responsee = null;
+            try {
+                responsee = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Type listType = new TypeToken<ArrayList<User>>(){}.getType();
+            List<User> userListFromSerwer = new Gson().fromJson(responsee, listType);
+            for(User g : userListFromSerwer){
+                Content.Item item = new Content.Item(g.getId().toString(),g.getUsername(),"");
+                Content.addUser(item);
             }
         }
 
@@ -314,10 +331,10 @@ public class MainActivity extends AppCompatActivity {
             Type listType = new TypeToken<ArrayList<UserInGroup>>(){}.getType();
             List<UserInGroup> gamesListFromServer = new Gson().fromJson(respone, listType);
             if(gamesListFromServer.size()>Content.sizeOfList){
-                for (UserInGroup user: gamesListFromServer
+                for (int i = Content.sizeOfList;i<gamesListFromServer.size();i++
                         ) {
-                    Content.sizeOfList = gamesListFromServer.size();
-                    if(user.getNameUser().equals("misckq")){
+                    if(gamesListFromServer.get(i).getNameUser().equals("misckq")){
+                        Content.sizeOfList = gamesListFromServer.size();
                         return true;
                     }
 
@@ -333,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
 
             showProgress(false);
             if(success){
-            Toast.makeText(MainActivity.this, "Zostałes dodany do grupy", Toast.LENGTH_LONG).show();}
+            Toast.makeText(MainActivity.this, "Dodano cię do grupy", Toast.LENGTH_LONG).show();}
         }
 
         @Override

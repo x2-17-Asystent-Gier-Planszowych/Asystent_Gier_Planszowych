@@ -38,6 +38,7 @@ import java.security.NoSuchAlgorithmException;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.model.User;
+import pwcdma.asystentgierplanszowych.server.ServerConnection;
 import pwcdma.asystentgierplanszowych.server.UserController;
 
 import static android.Manifest.permission.READ_CONTACTS;

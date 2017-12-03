@@ -69,6 +69,12 @@ public class GamesService {
         return "Fail";
     }
 
+    public String addGameWithTag(String name, String tag){
+        addGame(name);
+        String result = addTag(name,tag);
+        return result;
+    }
+
     public String getAllGames(){
         gson = new Gson();
         List<String> cat = new ArrayList<>();

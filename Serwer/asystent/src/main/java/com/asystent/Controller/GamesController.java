@@ -52,4 +52,10 @@ public class GamesController {
         return gamesService.getByTags(tag1,tag2,tag3);
     }
 
+    @RequestMapping(value = "/games/addGame2", method = RequestMethod.GET)
+    public String getByTags(@RequestParam(value = "name") String name,@RequestParam(value = "tag") String tag){
+        return gamesService.addGameWithTag(name,tag);
+    }
+   //
+
 }

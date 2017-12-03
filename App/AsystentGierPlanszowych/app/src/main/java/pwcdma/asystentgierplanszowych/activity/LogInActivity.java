@@ -387,7 +387,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
             List<Game> gamesListFromServer = new Gson().fromJson(responsee, listType);
             for(Game g : gamesListFromServer){
-                Content.Item item = new Content.Item(g.getId().toString(),g.getName(),"");
+                Content.Item item = new Content.Item(g.getId().toString(),g.getName(),"",null);
                 Content.addGame(item);
             }
         }
@@ -402,7 +402,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             Type listType = new TypeToken<ArrayList<Group>>(){}.getType();
             List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);
             for(Group g : gamesListFromServer){
-                Content.Item item = new Content.Item(Integer.toString(g.getId()), g.getGroupName(),"");
+                Content.Item item = new Content.Item(Integer.toString(g.getId()), g.getGroupName(),"",null);
                 Content.addGroup(item);
             }
         }

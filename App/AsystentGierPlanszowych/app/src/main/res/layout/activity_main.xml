@@ -31,13 +31,22 @@
         android:layout_gravity="right"
         android:onClick="kurwa"
         />
+
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/button_primary_selector"
-            android:text="Departure"
             android:layout_gravity="right"
-            />
+            android:onClick="refresh"
+            android:src="@drawable/button_primary_selector"
+            android:text="Departure" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:onClick="randGame"
+            android:src="@drawable/button_primary_selector"
+            android:text="Departure" />
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

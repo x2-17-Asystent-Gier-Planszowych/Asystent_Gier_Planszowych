@@ -1,5 +1,7 @@
 package pwcdma.asystentgierplanszowych.content;
 
+import android.widget.Button;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,9 +38,9 @@ public class Content {
 
     static {
         // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
+       /* for (int i = 1; i <= COUNT; i++) {
             addItem(createDummyItem(i));
-        }
+        }*/
     }
 
     public static void addItem(Item item) {
@@ -61,9 +63,9 @@ public class Content {
         TAGS.add(item);
     }
 
-    private static Item createDummyItem(int position) {
-        return new Item(String.valueOf(position), "Item " + position, makeDetails(position));
-    }
+    /*private static Item createDummyItem(int position) {
+        return new Item(String.valueOf(position), "Item " + position, makeDetails(position),new Button());
+    }*/
 
     public static void clearList(List<Item> listIn,Map<String, Item> mapIn ){
         listIn.clear();
@@ -86,11 +88,14 @@ public class Content {
         public final String id;
         public final String content;
         public final String details;
+        public final Button button;
+        public String getContent(){return content;}
 
-        public Item(String id, String content, String details) {
+        public Item(String id, String content, String details,Button button) {
             this.id = id;
             this.content = content;
             this.details = details;
+            this.button=button;
         }
 
         @Override

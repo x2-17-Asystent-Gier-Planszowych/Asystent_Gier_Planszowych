@@ -29,6 +29,7 @@ import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
 /**
  * Created by kriscool on 03.12.2017.
+ * kzsysztow nooob
  */
 
 public class AddGameActivity extends AppCompatActivity {
@@ -53,6 +54,10 @@ public class AddGameActivity extends AppCompatActivity {
 
         this.finish();
     }
+
+
+
+
     protected void fillDropdown(){
         Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
 
@@ -67,9 +72,10 @@ public class AddGameActivity extends AppCompatActivity {
     class GameTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String title;
-
+        private final String tags;
         GameTask(String title,String tags) {
             this.title=title;
+            this.tags = tags;
         }
 
         @Override
@@ -84,8 +90,7 @@ public class AddGameActivity extends AppCompatActivity {
 
         protected void gamesAdd() throws IOException {
             GamesController gc = new GamesController();
-            gc.addGame(title);
-            addTag();
+            gc.addGame(title, tags);
             gamesGet();
         }
 
@@ -107,8 +112,11 @@ public class AddGameActivity extends AppCompatActivity {
 
             Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
             List<Game> gamesListFromServer = new Gson().fromJson(responsee, listType);
+            Content.GAMES.clear();
+            int i = 0;
             for(Game g : gamesListFromServer){
-                Content.Item item = new Content.Item(g.getId().toString(),g.getName(),"");
+                i++;
+                Content.Item item = new Content.Item(String.valueOf(i),g.getName(),"", null);
                 Content.addGame(item);
             }
         }

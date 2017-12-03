@@ -17,6 +17,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -25,8 +27,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.adapter.MainActivityViewPagerAdapter;
@@ -107,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
         showProgress(true);
         waitFroDate = new WaitFroDate();
         waitFroDate.execute((Void) null);
+        Button a = new Button(this);
     }
 
 
@@ -180,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 Log.d(TAG, "onPageScrolled: " + position);
+
             }
 
             @Override
@@ -189,12 +195,15 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onPageSelected: " +  UsefullValues.pageSelected);
             }
 
+
+
             @Override
             public void onPageScrollStateChanged(int state) {
                 Log.d(TAG, "onPageScrollStateChanged: " + state);
             }
         });
     }
+
 
     private void setTabLayout() {
         Log.d(TAG, "setTabLayout: ");
@@ -222,12 +231,36 @@ public class MainActivity extends AppCompatActivity {
         if(UsefullValues.pageSelected == 1) {
             Intent myIntent = new Intent(MainActivity.this, AddGameActivity.class);
             MainActivity.this.startActivity(myIntent);
-        }else{
+        }else if(UsefullValues.pageSelected == 0){
             Intent myIntent = new Intent(MainActivity.this, AddGroupActivity.class);
             MainActivity.this.startActivity(myIntent);
         }
     }
 
+    public void randGame(View view) {
+        Random r = new Random();
+        int i1 = r.nextInt(Content.GAMES.size() - 1) + 1;
+        Log.d("Wylosowana liczba",Integer.toString(i1));
+        if(UsefullValues.pageSelected == 1) {
+            Toast.makeText(MainActivity.this, "Wylosowałeś grę " + Content.GAMES.get(i1).getContent(), Toast.LENGTH_LONG).show();
+        }
+        }
+    public void onClickButtonOnListGroup(View view){
+ /*      // Content.GROUPS.bsetOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> list, View v, int pos, long id) {
+                // Your code for item clicks
+            }
+        });*/
+    }
+    public void refresh(View view) {
+        Log.d("tutaj refresh", "refresh");
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+        showProgress(true);
+        waitFroDate = new WaitFroDate();
+        waitFroDate.execute((Void) null);
+    }
 
     class WaitFroDate extends AsyncTask<Void, Void, Boolean> {
 
@@ -254,11 +287,13 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
+            Content.clearList(Content.GAMES, Content.GAME_MAP);
             Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
             List<Game> gamesListFromServer = new Gson().fromJson(responsee, listType);
+            int i = 0;
             for(Game g : gamesListFromServer){
-                Content.Item item = new Content.Item(g.getId().toString(),g.getName(),"");
+                i++;
+                Content.Item item = new Content.Item(String.valueOf(i),g.getName(),"",null);
                 Content.addGame(item);
             }
         }
@@ -276,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
             Type listType = new TypeToken<ArrayList<User>>(){}.getType();
             List<User> userListFromSerwer = new Gson().fromJson(responsee, listType);
             for(User g : userListFromSerwer){
-                Content.Item item = new Content.Item(g.getId().toString(),g.getUsername(),"");
+                Content.Item item = new Content.Item(g.getId().toString(),g.getUsername(),"",null);
                 Content.addUser(item);
             }
         }
@@ -291,8 +326,12 @@ public class MainActivity extends AppCompatActivity {
 
             Type listType = new TypeToken<ArrayList<Group>>(){}.getType();
             List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);
+            Content.clearList(Content.GROUPS, Content.GROUP_MAP);
+
+
+            int i = 0;
             for(Group g : gamesListFromServer){
-                Content.Item item = new Content.Item(Integer.toString(g.getId()), g.getGroupName(),"");
+                Content.Item item = new Content.Item(String.valueOf(++i), g.getGroupName(),"",null);
                 Content.addGroup(item);
             }
         }
@@ -303,7 +342,7 @@ public class MainActivity extends AppCompatActivity {
             // mAuthTask = null;
             // showProgress(false);
 
-            //activity.startActivity(new Intent(activity, MainActivity.class));;
+         //   activity.startActivity(new Intent(activity, MainActivity.class));;
         }
 
         @Override

@@ -69,7 +69,7 @@ public class AddGroupActivity extends AppCompatActivity {
             List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);
             Content.clearList(Content.GROUPS, Content.GROUP_MAP);
             for(Group g : gamesListFromServer){
-                Content.Item item = new Content.Item(Integer.toString(g.getId()), g.getGroupName(),"");
+                Content.Item item = new Content.Item(Integer.toString(g.getId()), g.getGroupName(),"",null);
                 Content.addGroup(item);
             }
         }

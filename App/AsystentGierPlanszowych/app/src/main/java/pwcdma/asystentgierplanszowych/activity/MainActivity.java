@@ -237,14 +237,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void randGame(View view) {
-        Random r = new Random();
-        int i1 = r.nextInt(Content.GAMES.size() - 1) + 1;
-        Log.d("Wylosowana liczba",Integer.toString(i1));
-        if(UsefullValues.pageSelected == 1) {
-            Toast.makeText(MainActivity.this, "Wylosowałeś grę " + Content.GAMES.get(i1).getContent(), Toast.LENGTH_LONG).show();
-        }
-        }
+
     public void onClickButtonOnListGroup(View view){
  /*      // Content.GROUPS.bsetOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> list, View v, int pos, long id) {
@@ -253,7 +246,6 @@ public class MainActivity extends AppCompatActivity {
         });*/
     }
     public void refresh(View view) {
-        Log.d("tutaj refresh", "refresh");
         Intent intent = getIntent();
         finish();
         startActivity(intent);

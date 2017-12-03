@@ -415,7 +415,7 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 Toast.makeText(LogInActivity.this, R.string.login_success, Toast.LENGTH_LONG).show();
-                saveUserData(mLogin, hashPassword(mPassword));
+                saveUserData(mLogin);
                 setResult(RESULT_CODE_SUCCESS);
                 finish();
             } else {
@@ -445,20 +445,23 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-    private void saveUserData(String login, String password){
-        try {
-            JSONObject userDataJson = new JSONObject();
-            userDataJson.put("login", login);
-            userDataJson.put("password", password);
-            String userData = userDataJson.toString();
-            Log.d("tag",getFilesDir().toString());
-            String dir = getFilesDir().toString();
-            File userDataFile = new File(getFilesDir(), "user_data.json");
-            FileWriter writer = new FileWriter(userDataFile);
-            writer.write(userData);
-            writer.close();
-        } catch (Exception e){
-            throw new RuntimeException(e.getMessage());
-        }
+    private void saveUserData(String login){
+
+        
+
+//        try {
+//            JSONObject userDataJson = new JSONObject();
+//            userDataJson.put("login", login);
+//            userDataJson.put("password", password);
+//            String userData = userDataJson.toString();
+//            Log.d("tag",getFilesDir().toString());
+//            String dir = getFilesDir().toString();
+//            File userDataFile = new File(getFilesDir(), "user_data.json");
+//            FileWriter writer = new FileWriter(userDataFile);
+//            writer.write(userData);
+//            writer.close();
+//        } catch (Exception e){
+//            throw new RuntimeException(e.getMessage());
+//        }
     }
 }

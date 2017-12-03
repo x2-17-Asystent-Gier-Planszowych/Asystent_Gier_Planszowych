@@ -1,5 +1,10 @@
 package pwcdma.asystentgierplanszowych.model;
 
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileWriter;
+
 /**
  * Created by kriscool on 03.12.2017.
  */
@@ -82,4 +87,22 @@ public class User {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+    public void saveUserData(File userDataFile){
+        try {
+            JSONObject userDataJson = new JSONObject();
+            userDataJson.put("username", username);
+            userDataJson.put("email", email);
+            userDataJson.put("password", password);
+            userDataJson.put("about", about);
+            String userData = userDataJson.toString();
+            FileWriter writer = new FileWriter(userDataFile);
+            writer.write(userData);
+            writer.close();
+        } catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+
 }

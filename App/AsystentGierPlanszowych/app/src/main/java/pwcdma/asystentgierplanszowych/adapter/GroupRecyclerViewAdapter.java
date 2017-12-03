@@ -11,10 +11,12 @@ import android.widget.TextView;
 
 import pwcdma.asystentgierplanszowych.activity.AddGameActivity;
 import pwcdma.asystentgierplanszowych.activity.AddGroupActivity;
+import pwcdma.asystentgierplanszowych.activity.GroupActivity;
 import pwcdma.asystentgierplanszowych.activity.MainActivity;
 import pwcdma.asystentgierplanszowych.fragment.GroupsFragment.OnListFragmentInteractionListener;
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.content.Content.Item;
+import pwcdma.asystentgierplanszowych.model.Group;
 
 import java.util.List;
 
@@ -50,8 +52,10 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
             @Override
             public void onClick(View v) {
                TextView w = (TextView) v.findViewById(R.id.content);
-                Log.d("AAAAAAAAAAAAAAAAA",w.getText().toString());
-                v.getContext().startActivity(new Intent(v.getContext(),AddGroupActivity.class));
+                Intent intent = new Intent(v.getContext(),GroupActivity.class);
+                intent.putExtra("nameGroup", w.getText().toString());
+
+                v.getContext().startActivity(intent);
 
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the

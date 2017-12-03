@@ -2,12 +2,57 @@
 <items version="2" >
 
     <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\26.0.0-alpha1\support-annotations-26.0.0-alpha1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="023ee503b631f69511e335a061ea008f8da60f40">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\support-annotations-26.0.0-alpha1_053ba2be09ed494bebd6783a2c36696a28c82854.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\.android\build-cache\16476c6ef880ffcfd3adba4d41eb3db6f8f277d8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="952944218ecedea1554a513dec0c14d570642843">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\classes_0e9c8ecf86593e3d8053197a5bb1677ff2ff6e08.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\.android\build-cache\7496e0fea3907ebd2526886ddc7a83ee01b013ee\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6a022bf00ccd0948a8180c505e8e458bbddd43a6">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\classes_6d49c635d8ba2f8e493e10e040a7a5b8cbc3a1a0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\.android\build-cache\da3b26b9e09e565da34fc895d1b6fe8db260da7d\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\classes_7a55ef9f5f97d555902f5a4b16d334e5aa234391.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\.android\build-cache\c4411071253defbc2fc95493c3348fe65aca6b04\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\classes_204bc5b48425b6cf9d97c6e0bc93cec6617efec5.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="0b107572b1527449f8d68246b55f26a9b0035190">
+        sha1="de367d721e6e93efb588a24e2f6636c8654f78ba">
         <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_19a975a230a9c36151104727413547196c42261e\classes.dex" />
     </item>
     <item
@@ -20,13 +65,121 @@
         <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_58fc161ef3d62e3f2109fe20466bf10369215284\classes.dex" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
+        jar="C:\Users\kriscool\.android\build-cache\13e37c548c05dea0d804d294c0f85d40c23d2ec8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\classes_2a85f18e38d7db399c9ba41d62b8a451dcc1e99d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_f8b530ddde1e54247be16a1dce859f3039521eba.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\.android\build-cache\900a61fb0563216722ad50075c3905e1824c7ba5\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\classes_e7b7e8d0737bedfb904805deb901c0f9330630a9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\.android\build-cache\5f7bf3100c7efd842e3ab2d0f1f79865db216881\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="1c3b9743fe8bb166a90a7e98b9b9f1f8021d80cd">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\classes_56f9fe8102d8b96afab18b1abc190ef38c8174be.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\.android\build-cache\9b40a131d3d0f5b9dd65f36af4eece2e5046eac2\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9935891f23923f39d002087085d9696568a9f657">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\classes_8e5e30d57886790026dee9c0084e1f028007461f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\.android\build-cache\80ddb019644486785953c448de028a599c2b3308\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c4f45092eee6cdf1a5dbd597b2b6819be652ce2e">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\classes_452b8ade436eb7231016caf6f32605f2eb2d67d3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\.android\build-cache\1ba258964254652253914714ea48af12f5446504\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\classes_a2c3ce7aa4a5be8c3937264ab74905e5b1885d58.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\picasso-2.5.2_9b5db4719edfcf60222f73228eb67ff41216963e.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\kriscool\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="26.0.2"
         sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
-        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.3.1_b1f0e1a6c8081e05b375660756df4c0ce3e2671d\classes.dex" />
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\gson-2.3.1_b1f0e1a6c8081e05b375660756df4c0ce3e2671d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\.android\build-cache\750aa4fc2fbb7d9dd02fe3756b8cbd12a49e9f20\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cddcd0fb93bc70e27325f2f715b2710332004ebb">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\classes_405c1771296718d4159970f77fb657063d5e6c15.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\.android\build-cache\4edfe3e7b61f100e7d28e25eeb9a23cdaf9e4c3b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\classes_99a2a886f0a3c01fcb38beec89692e5f06740d92.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\.android\build-cache\23d643e00f6bcde4f3c84f5591c52ba0ec116996\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\classes_6056745acef7496bc5849bb5b5fc4efe26d5c973.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kriscool\.android\build-cache\960b4e511f1e86e8060f789783d577745126d69f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\kriscool\Desktop\Asystent_Gier_Planszowych\Asystent_Gier_Planszowych\App\AsystentGierPlanszowych\app\build\intermediates\pre-dexed\debug\classes_a286adbdc6ba36a44c917bf940123131fa3f557f.jar" />
     </item>
 
 </items>

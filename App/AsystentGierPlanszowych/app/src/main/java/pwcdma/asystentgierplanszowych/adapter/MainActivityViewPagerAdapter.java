@@ -25,7 +25,7 @@ public class MainActivityViewPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return new GamesFragment();
             case 2:
-                return new TableFragment();
+                return new ToolsFragment();
             case 3:
                 return new ProfileFragment();
         }

@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="1"
     tools:context="pwcdma.asystentgierplanszowych.fragment.ToolsFragment">
 
     <ImageView
         android:id="@+id/toolsFragmentDiceButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".5"
+        android:layout_weight="1"
         android:background="@color/colorAccent"
         android:padding="@dimen/toolsButtonPadding"
         android:src="@drawable/ic_dice_button" />
@@ -20,8 +19,17 @@
         android:id="@+id/toolsFragmentTimerButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".5"
+        android:layout_weight="1"
         android:background="@color/colorPrimaryLight"
         android:padding="@dimen/toolsButtonPadding"
         android:src="@drawable/ic_hourglass_button" />
+
+    <ImageView
+        android:id="@+id/toolsFragmentTableButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorAccentDark"
+        android:padding="@dimen/toolsButtonPadding"
+        android:src="@drawable/ic_table_button"/>
 </LinearLayout>

@@ -22,6 +22,7 @@ public class ToolsFragment extends Fragment {
 
     private ImageView mDiceImageButton;
     private ImageView mTimerImageButton;
+    private ImageView mTableImageButton;
 
     private OnFragmentInteractionListener mListener;
 
@@ -59,6 +60,7 @@ public class ToolsFragment extends Fragment {
     private void setOnClickListeners(){
         mTimerImageButton.setOnClickListener(onClickListenerTimerBtn);
         mDiceImageButton.setOnClickListener(onClickListenerDiceBtn);
+        mTableImageButton.setOnClickListener(getOnClickListenerTableBtn);
     }
 
     private View.OnClickListener onClickListenerDiceBtn = new View.OnClickListener() {
@@ -84,9 +86,21 @@ public class ToolsFragment extends Fragment {
         }
     };
 
+    private View.OnClickListener getOnClickListenerTableBtn = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            FragmentManager manager = getFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.toolsLL, new TableFragment(), "TIMER_FRAGMENT");
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    };
+
     private void findViews(View view) {
         mDiceImageButton = view.findViewById(R.id.toolsFragmentDiceButton);
         mTimerImageButton = view.findViewById(R.id.toolsFragmentTimerButton);
+        mTableImageButton = view.findViewById(R.id.toolsFragmentTableButton);
     }
 
     public void onButtonPressed(Uri uri) {

@@ -1,1030 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tableFrameLayout"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <ScrollView
-        android:id="@+id/tableShowView"
+    <LinearLayout
+        android:id="@+id/tableEmptyLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never"
-        android:scrollbars="vertical"
-        android:visibility="gone">
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
+        android:visibility="invisible">
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fadeScrollbars="false"
-            android:overScrollMode="never">
-
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:isScrollContainer="true"
-                android:shrinkColumns="true"
-                android:stretchColumns="false">
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimaryLight"
-                    android:gravity="center_horizontal">
-
-                    <TextView
-                        android:id="@+id/column01"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableColumnTitle" />
-
-                    <TextView
-                        android:id="@+id/column02"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableColumnTitle" />
-
-                    <TextView
-                        android:id="@+id/column03"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableColumnTitle" />
-
-                    <TextView
-                        android:id="@+id/column04"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableColumnTitle" />
-
-                    <TextView
-                        android:id="@+id/column05"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableColumnTitle" />
-
-                    <TextView
-                        android:id="@+id/column06"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableColumnTitle" />
-
-                    <TextView
-                        android:id="@+id/column07"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableColumnTitle" />
-
-                    <TextView
-                        android:id="@+id/column08"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableColumnTitle" />
-
-                    <TextView
-                        android:id="@+id/column09"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableColumnTitle" />
-
-                    <TextView
-                        android:id="@+id/column10"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="00"
-                        android:textAppearance="@style/TableColumnTitle" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal">
-
-
-                    <TextView
-                        android:id="@+id/cell0101"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0201"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-
-                    <TextView
-                        android:id="@+id/cell0301"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0401"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0501"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0601"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0701"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0801"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0901"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell1001"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/black12"
-                    android:gravity="center_horizontal">
-
-
-                    <TextView
-                        android:id="@+id/cell0102"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0202"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0302"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0402"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0502"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0602"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0702"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0802"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0902"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell1002"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
-
-
-                    <TextView
-                        android:id="@+id/cell0103"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0203"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0303"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0403"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0503"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0603"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0703"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0803"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0903"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell1003"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/black12"
-                    android:gravity="center_horizontal">
-
-
-                    <TextView
-                        android:id="@+id/cell0104"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0204"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0304"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0404"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0504"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0604"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0704"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0804"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0904"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell1004"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
-
-
-                    <TextView
-                        android:id="@+id/cell0105"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0205"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0305"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0405"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0505"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0605"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0705"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0805"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0905"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell1005"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/black12"
-                    android:gravity="center_horizontal">
-
-
-                    <TextView
-                        android:id="@+id/cell0106"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-
-                    <TextView
-                        android:id="@+id/cell0206"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0306"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0406"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0506"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0606"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0706"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0806"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0906"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell1006"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
-
-
-                    <TextView
-                        android:id="@+id/cell0107"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0207"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0307"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0407"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0507"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0607"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0707"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0807"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0907"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell1007"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/black12"
-                    android:gravity="center_horizontal">
-
-
-                    <TextView
-                        android:id="@+id/cell0108"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0208"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0308"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0408"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0508"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0608"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0708"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0808"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0908"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell1008"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
-
-
-                    <TextView
-                        android:id="@+id/cell0109"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0209"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0309"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0409"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0509"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-
-                    <TextView
-                        android:id="@+id/cell0609"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0709"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0809"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0909"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell1009"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/black12"
-                    android:gravity="center_horizontal">
-
-
-                    <TextView
-                        android:id="@+id/cell0110"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0210"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell"
-                        android:textColor="#000" />
-
-                    <TextView
-                        android:id="@+id/cell0310"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0410"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0510"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0610"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0710"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0810"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell0910"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <TextView
-                        android:id="@+id/cell1010"
-                        android:layout_width="wrap_content"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="0"
-                        android:textAppearance="@style/TableCell" />
-
-                </TableRow>
-
-                <!--<TableRow-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@color/colorPrimary"-->
-                <!--android:gravity="center_horizontal">-->
-
-                <!--<View android:layout_height="86dp" />-->
-                <!--</TableRow>-->
-            </TableLayout>
-
-
-        </HorizontalScrollView>
-    </ScrollView>
-
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:src="@drawable/ic_welcome_logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:text="Dodaj tabelę"
+            android:textAppearance="@style/HintOnGradient" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:text="Mozesz w niej zapisywać punkty, statystyki, zmieniać nazwy kolumn oraz sumować wartości z wierszach."
+            android:textAlignment="center"
+            android:textAppearance="@style/NameSecondline" />
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/tableEditView"
@@ -1054,13 +68,23 @@
                     android:background="@color/colorPrimaryLight"
                     android:gravity="center_horizontal">
 
+                    <TextView
+                        android:id="@+id/resultColumn"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:text="SUMA"
+                        android:textAppearance="@style/TableColumnTitle"
+                        android:textColor="@color/white" />
+
                     <EditText
                         android:id="@+id/editColumn01"
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col01"
+                        android:text="A"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1070,7 +94,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col02"
+                        android:text="B"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1080,7 +104,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col03"
+                        android:text="C"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1090,7 +114,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col04"
+                        android:text="D"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1100,7 +124,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col05"
+                        android:text="E"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1110,7 +134,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col06"
+                        android:text="F"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1120,7 +144,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col07"
+                        android:text="G"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1130,7 +154,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col08"
+                        android:text="H"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1140,7 +164,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col09"
+                        android:text="I"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
@@ -1150,18 +174,10 @@
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:padding="18dip"
-                        android:text="col10"
+                        android:text="J"
                         android:textAppearance="@style/TableColumnTitle"
                         android:textColor="@color/white" />
 
-                    <TextView
-                        android:id="@+id/resultColumn"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:textAppearance="@style/TableColumnTitle"
-                        android:textColor="@color/white" />
 
                 </TableRow>
 
@@ -1170,15 +186,22 @@
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal">
 
+                    <TextView
+                        android:id="@+id/result01"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
 
                     <EditText
                         android:id="@+id/editCell0101"
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1186,9 +209,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
 
@@ -1197,9 +220,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1207,9 +230,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1217,9 +240,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1227,9 +250,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1237,9 +260,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1247,9 +270,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1257,9 +280,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -1267,19 +290,11 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
-                    <TextView
-                        android:id="@+id/result01"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:text="Wynik"
-                        android:textAppearance="@style/TableCell" />
 
                 </TableRow>
 
@@ -1288,108 +303,6 @@
                     android:layout_height="wrap_content"
                     android:background="@color/black12"
                     android:gravity="center_horizontal">
-
-
-                    <EditText
-                        android:id="@+id/editCell0102"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0202"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0302"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0402"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0502"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0602"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0702"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0802"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0902"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell1002"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
                     <TextView
                         android:id="@+id/result02"
                         android:layout_width="wrap_content"
@@ -1398,6 +311,108 @@
                         android:padding="18dip"
                         android:textAppearance="@style/TableCell" />
 
+                    <EditText
+                        android:id="@+id/editCell0102"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0202"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0302"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0402"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0502"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0602"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0702"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0802"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0902"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1002"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+
+
 
                 </TableRow>
 
@@ -1405,107 +420,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal">
-
-
-                    <EditText
-                        android:id="@+id/editCell0103"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0203"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0303"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0403"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0503"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0603"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0703"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0803"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0903"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell1003"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
 
                     <TextView
                         android:id="@+id/result03"
@@ -1515,6 +429,105 @@
                         android:padding="18dip"
                         android:textAppearance="@style/TableCell" />
 
+                    <EditText
+                        android:id="@+id/editCell0103"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0203"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0303"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0403"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0503"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0603"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0703"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0803"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0903"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1003"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
 
                 </TableRow>
 
@@ -1523,107 +536,6 @@
                     android:layout_height="wrap_content"
                     android:background="@color/black12"
                     android:gravity="center_horizontal">
-
-
-                    <EditText
-                        android:id="@+id/editCell0104"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0204"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0304"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0404"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0504"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0604"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0704"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0804"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0904"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell1004"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
 
                     <TextView
                         android:id="@+id/result04"
@@ -1633,113 +545,114 @@
                         android:padding="18dip"
                         android:textAppearance="@style/TableCell" />
 
+                    <EditText
+                        android:id="@+id/editCell0104"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0204"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0304"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0404"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0504"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0604"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0704"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0804"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0904"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1004"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+
+
                 </TableRow>
 
                 <TableRow
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal">
-
-
-                    <EditText
-                        android:id="@+id/editCell0105"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0205"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0305"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0405"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0505"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0605"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0705"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0805"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0905"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell1005"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
 
                     <TextView
                         android:id="@+id/result05"
@@ -1749,6 +662,108 @@
                         android:padding="18dip"
                         android:textAppearance="@style/TableCell" />
 
+                    <EditText
+                        android:id="@+id/editCell0105"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0205"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0305"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0405"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0505"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0605"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0705"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0805"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0905"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1005"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+
+
 
                 </TableRow>
 
@@ -1757,108 +772,6 @@
                     android:layout_height="wrap_content"
                     android:background="@color/black12"
                     android:gravity="center_horizontal">
-
-
-                    <EditText
-                        android:id="@+id/editCell0106"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-
-                    <EditText
-                        android:id="@+id/editCell0206"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0306"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0406"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0506"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0606"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0706"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0806"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0906"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell1006"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
 
                     <TextView
                         android:id="@+id/result06"
@@ -1868,113 +781,115 @@
                         android:padding="18dip"
                         android:textAppearance="@style/TableCell" />
 
+                    <EditText
+                        android:id="@+id/editCell0106"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+
+                    <EditText
+                        android:id="@+id/editCell0206"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0306"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0406"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0506"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0606"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0706"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0806"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0906"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1006"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+
+
                 </TableRow>
 
                 <TableRow
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal">
-
-
-                    <EditText
-                        android:id="@+id/editCell0107"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0207"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0307"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0407"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0507"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0607"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0707"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0807"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0907"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell1007"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
 
                     <TextView
                         android:id="@+id/result07"
@@ -1984,6 +899,108 @@
                         android:padding="18dip"
                         android:textAppearance="@style/TableCell" />
 
+                    <EditText
+                        android:id="@+id/editCell0107"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0207"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0307"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0407"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0507"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0607"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0707"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0807"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0907"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1007"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+
+
 
                 </TableRow>
 
@@ -1992,107 +1009,6 @@
                     android:layout_height="wrap_content"
                     android:background="@color/black12"
                     android:gravity="center_horizontal">
-
-
-                    <EditText
-                        android:id="@+id/editCell0108"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0208"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0308"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0408"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0508"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0608"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0708"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0808"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell0908"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
-
-                    <EditText
-                        android:id="@+id/editCell1008"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:inputType="numberSigned"
-                        android:padding="18dip"
-                        android:hint="0"
-                        android:textAppearance="@style/TableCell" />
 
                     <TextView
                         android:id="@+id/result08"
@@ -2101,6 +1017,108 @@
                         android:gravity="center"
                         android:padding="18dip"
                         android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0108"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0208"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0308"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0408"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0508"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0608"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0708"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0808"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell0908"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+                    <EditText
+                        android:id="@+id/editCell1008"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:inputType="numberSigned"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
+
+
                 </TableRow>
 
                 <TableRow
@@ -2108,15 +1126,22 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal">
 
+                    <TextView
+                        android:id="@+id/result09"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
 
                     <EditText
                         android:id="@+id/editCell0109"
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2124,9 +1149,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2134,9 +1159,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2144,9 +1169,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2154,9 +1179,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
 
@@ -2165,9 +1190,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2175,9 +1200,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2185,9 +1210,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2195,9 +1220,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2205,18 +1230,12 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
-                    <TextView
-                        android:id="@+id/result09"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:textAppearance="@style/TableCell"/>
+
 
                 </TableRow>
 
@@ -2226,15 +1245,22 @@
                     android:background="@color/black12"
                     android:gravity="center_horizontal">
 
+                    <TextView
+                        android:id="@+id/result10"
+                        android:layout_width="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="18dip"
+                        android:textAppearance="@style/TableCell" />
 
                     <EditText
                         android:id="@+id/editCell0110"
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2242,9 +1268,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell"
                         android:textColor="#000" />
 
@@ -2253,9 +1279,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2263,9 +1289,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2273,9 +1299,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2283,9 +1309,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2293,9 +1319,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2303,9 +1329,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2313,9 +1339,9 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
                     <EditText
@@ -2323,18 +1349,12 @@
                         android:layout_width="wrap_content"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:hint="0"
                         android:inputType="numberSigned"
                         android:padding="18dip"
-                        android:hint="0"
                         android:textAppearance="@style/TableCell" />
 
-                    <TextView
-                        android:id="@+id/result10"
-                        android:layout_width="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:padding="18dip"
-                        android:textAppearance="@style/TableCell" />
+
 
                 </TableRow>
 

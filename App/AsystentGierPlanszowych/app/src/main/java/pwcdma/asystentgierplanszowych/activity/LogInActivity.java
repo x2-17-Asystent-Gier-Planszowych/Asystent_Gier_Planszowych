@@ -30,17 +30,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.json.*;
-
 import pwcdma.asystentgierplanszowych.R;
-import pwcdma.asystentgierplanszowych.server.ServerConnection;
+import pwcdma.asystentgierplanszowych.model.User;
 import pwcdma.asystentgierplanszowych.server.UserController;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -343,7 +340,13 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
-                return controller.signIn(mLogin, mPassword);
+                boolean success = controller.signIn(mLogin, mPassword);
+                if (success){
+                    User user = new User(controller.getUserInfo(mLogin));
+                    user.setPassword(mPassword);
+                    user.saveUserData(new File(getFilesDir(), User.FILE_NAME));
+                }
+                return success;
             } catch (IOException e){
                 runOnUiThread(new Runnable() {
                     @Override
@@ -362,7 +365,6 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 Toast.makeText(LogInActivity.this, R.string.login_success, Toast.LENGTH_LONG).show();
-                //TODO: get user data from server
                 setResult(RESULT_CODE_SUCCESS);
                 finish();
             } else {

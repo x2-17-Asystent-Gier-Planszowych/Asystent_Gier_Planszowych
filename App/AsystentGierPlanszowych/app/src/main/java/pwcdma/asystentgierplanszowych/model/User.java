@@ -27,6 +27,20 @@ public class User {
         this.about = "";
     }
 
+    public User(String userData){
+        try {
+            JSONObject json = new JSONArray(userData).getJSONObject(0);
+            username = json.getString("username");
+            email = json.getString("email");
+            if (json.has("about"))
+                about = json.getString("about");
+            else
+                about = "";
+        } catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
     public String getUsername() {
         return username;
     }

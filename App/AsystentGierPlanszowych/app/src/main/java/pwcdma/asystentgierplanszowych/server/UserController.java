@@ -39,6 +39,11 @@ public class UserController {
         return response.equals("Succes");
     }
 
+    public String getUserInfo(String login) throws IOException {
+        return new ServerConnection(ServerConnection.SERVER_URL + "/get/user/info?name=" + login)
+                .getResponse();
+    }
+
     public Boolean deactivate(String login) throws IOException {
         String response = new ServerConnection(ServerConnection.SERVER_URL + "/deactivate?login=" + login)
                 .getResponse();

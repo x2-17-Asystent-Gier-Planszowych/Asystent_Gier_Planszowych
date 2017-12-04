@@ -52,13 +52,17 @@ public class AddGroupActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
+        try{
+            if(gamesAdd()) {
+                groupGet();
+                return true;
 
-           if(gamesAdd()) {
-               groupGet();
-              return true;
+            }
+        }catch(RuntimeException e){
 
-           }
-            Toast.makeText(AddGroupActivity.this, "Nie udało się dodać gry", Toast.LENGTH_LONG).show();
+        }
+
+
            return false;
         }
 
@@ -69,7 +73,16 @@ public class AddGroupActivity extends AppCompatActivity {
 
 
         }
+        @Override
+        protected void onPostExecute(final Boolean success) {
+        if(success){
 
+            Toast.makeText(AddGroupActivity.this, "Udało się dodać gre", Toast.LENGTH_LONG).show();
+        }else{
+
+            Toast.makeText(AddGroupActivity.this, "Nie udało się dodać gry", Toast.LENGTH_LONG).show();
+        }
+        }
         protected void groupGet() {
             ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/getGroupsForUser?name=" + UsefullValues.name);
             // ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/getUsersForGroupJSON?name=" + UsefullValues.name);

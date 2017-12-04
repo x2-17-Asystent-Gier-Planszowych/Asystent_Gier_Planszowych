@@ -34,14 +34,13 @@ public class AddUserToGroupActivity extends AppCompatActivity {
         if (extras != null) {
             groupName = extras.getString("nameGroup");
         }
-        usernameText = (EditText) findViewById(R.id.username_text);
         addButton = (Button) findViewById(R.id.add_button);
         fillDropdown();
     }
 
 
     public void addUserToGroup(View view) {
-        Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
+        Spinner dropdown = (Spinner)findViewById(R.id.user_spinner);
         userName = dropdown.getSelectedItem().toString();
         addUserToGroupTask = new AddUserToGroupTask(userName);
         addUserToGroupTask.execute((Void) null);
@@ -72,7 +71,10 @@ public class AddUserToGroupActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            return controller.addUserToGroupByName(username, groupName);
+            try {
+                return controller.addUserToGroupByName(username, groupName);
+            }catch(RuntimeException e){}
+            return false;
         }
 
         @Override

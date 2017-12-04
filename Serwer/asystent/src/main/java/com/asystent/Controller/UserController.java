@@ -134,6 +134,17 @@ public class UserController {
 			return new  String("Failed");
 		}
 	}
+
+	@RequestMapping("/getGroupsForUser")
+	public String getGroupForUser(@RequestParam(value="name") String name){
+		return userServices.getGroupsByUser(name);
+	}
+
+	@RequestMapping("/getUsersForGroup")
+	public String getUsersForGroup(@RequestParam(value="name") String name){
+		return userServices.getUsersInGroup(name);
+	}
+
 }
 //nie działa to dao trzeba poprawić
 // DaoImpl dao = new DaoImpl();

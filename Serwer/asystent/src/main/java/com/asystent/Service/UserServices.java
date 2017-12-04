@@ -103,4 +103,49 @@ public class UserServices {
         return  jsonArray.toString();
     };
 
+    public String getGroupsByUser(String name){
+        Gson gson = new Gson();
+        String query = "select * from \"Groups\" where \"Id\" in (\n" +
+                "SELECT \"Group_Id\" FROM \"Group_User\" where \"User_Id\" = \n" +
+                "(SELECT \"Id\" from \"Users\" where \"Username\" = ?)\n" +
+                ")";
+        JsonArray jsonArray = new JsonArray();
+        List<Group> a = jdbcTemplate.query(query,new Object[]{name}, new RowMapper<Group>() {
+            @Override
+            public Group mapRow(ResultSet rs, int rownumber) throws SQLException {
+
+                Group g = new Group();
+                g.setId(rs.getInt(1));
+                g.setGroupName(rs.getString(2));
+                g.setActive(rs.getBoolean(3));
+                jsonArray.add(gson.toJsonTree(g));
+                return g;
+            }
+        });
+        return  jsonArray.toString();
+
+    }
+
+    public String getUsersInGroup(String name){
+        Gson gson = new Gson();
+        JsonArray jsonArray = new JsonArray();
+        String query= "select * from \"Users\" where \"Id\" in (\n" +
+                "SELECT \"User_Id\" FROM \"Group_User\" where \"Group_Id\" = \n" +
+                "( SELECT \"Id\" from \"Groups\" where \"Groupname\" = ?))";
+        jdbcTemplate.query(query,new Object[]{name}, new RowMapper<User>() {
+            @Override
+            public User mapRow(ResultSet rs, int rownumber) throws SQLException {
+
+                User user= new User();
+                user.setId(rs.getLong(1));
+                user.setUsername(rs.getString(2));
+                user.setEmail(rs.getString(3));
+                user.setAbout(rs.getString(4));
+                jsonArray.add(gson.toJsonTree(user));
+                return user;
+            }
+        });
+        return  jsonArray.toString();
+    }
+
 }

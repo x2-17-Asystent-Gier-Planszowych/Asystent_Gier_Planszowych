@@ -94,7 +94,7 @@ public class UserController {
     }
 
 	@RequestMapping("/change/password")
-	public String changePassword(@RequestParam(value="login", defaultValue="World") String login,
+	public String changePassword(@RequestParam(value="login") String login,
 						@RequestParam(value="haslo", defaultValue="World") String haslo) {
 		if( userServices.updatePassword(login,haslo)!=0) {
 			return "Succes";

@@ -37,12 +37,12 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/username_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="none" />
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/email_label"
@@ -54,12 +54,12 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/email_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="none" />
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/about_label"
@@ -71,12 +71,30 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/about_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="none" />
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/edytuj_dane"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edytuj Dane"
+                android:textColor="@color/colorAccentLight"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/edit_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/avatarSmallWidth"
+                android:text="Edytuj Hasło"
+                android:textColor="@color/colorAccentLight"
+                android:textSize="24sp" />
+
         </LinearLayout>
 
     </LinearLayout>

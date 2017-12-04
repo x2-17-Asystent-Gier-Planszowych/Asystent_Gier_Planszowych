@@ -10,22 +10,30 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary">
+        android:background="?attr/colorPrimary"
+        android:visibility="gone">
+
+
         <ImageButton
+            android:id="@+id/add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_sign_in_logo"
-            android:text="Departure"
             android:layout_gravity="right"
-            android:onClick="kurwa"
-            />
+            android:backgroundTint="@color/colorPrimary"
+            android:onClick="Filtr"
+            android:src="@android:drawable/ic_menu_add"
+            android:text="Departure" />
+
         <ImageButton
+            android:id="@+id/refresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/button_primary_selector"
-            android:text="Departure"
             android:layout_gravity="right"
-            />
+            android:backgroundTint="@color/colorPrimary"
+            android:onClick="refresh"
+            android:src="@android:drawable/ic_menu_rotate"
+            android:text="Departure" />
+
     </android.support.v7.widget.Toolbar>
 
 
@@ -54,11 +62,38 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/avatarBigHeight">
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="164dp"
+                        android:layout_height="75dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_add_game_logo" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Twojej ulubionej gry nie ma w bazie? Dodaj ją do naszej kolekcji "
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Podaj nazwe gry" />
+                    android:paddingTop="@dimen/accountDetailsLabelHeight"
+                    android:text="TYTUL GRY"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/addGameText"
@@ -67,12 +102,15 @@
                     android:ems="10"
                     android:inputType="textPersonName" />
 
-                <Button
-                    android:id="@+id/button2"
+                <TextView
+                    android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="addGame"
-                    android:text="Dodaj Gre" />
+                    android:paddingTop="32dp"
+                    android:text="TAG"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/spinner1"
@@ -80,6 +118,15 @@
                     android:layout_height="wrap_content"
                     android:background="@android:drawable/btn_dropdown"
                     android:spinnerMode="dropdown" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAccentLight"
+                    android:onClick="addGame"
+                    android:text="Dodaj Gre"
+                    android:textColor="@color/white" />
 
 
             </LinearLayout>

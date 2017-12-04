@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -210,6 +211,11 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             focusView = mEmailView;
             cancel = true;
         }
+        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
+        SharedPreferences.Editor Ed=sp.edit();
+        Ed.clear();
+        Ed.putString("loginlogin",login);
+        Ed.commit();
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -218,8 +224,9 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
 
+
+            showProgress(true);
             mAuthTask = new UserLoginTask(login, password,getApplicationContext());
             mAuthTask.execute((Void) null);
         }
@@ -413,9 +420,11 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
 
+
             if (success) {
                 Toast.makeText(LogInActivity.this, R.string.login_success, Toast.LENGTH_LONG).show();
                 saveUserData(mLogin);
+
                 setResult(RESULT_CODE_SUCCESS);
                 finish();
             } else {

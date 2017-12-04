@@ -26,7 +26,7 @@ public class Content {
     public static  List<Item> TAGS= new ArrayList<Item>();
 
 
-    public static  List<Item> USER= new ArrayList<Item>();
+    public static  List<String> USER= new ArrayList<String>();
     /**
      * A map of sample (dummy) items, by ID.
      */
@@ -56,7 +56,7 @@ public class Content {
         GROUP_MAP.put("1", item);
     }
 
-    public static void addUser(Item item) {
+    public static void addUser(String item) {
         USER.add(item);
     }
     public static void addTags(Item item){

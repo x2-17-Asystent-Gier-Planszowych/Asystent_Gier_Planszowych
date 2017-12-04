@@ -3,14 +3,19 @@ package pwcdma.asystentgierplanszowych.activity;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 
 import pwcdma.asystentgierplanszowych.R;
+import pwcdma.asystentgierplanszowych.content.Content;
 import pwcdma.asystentgierplanszowych.model.Group;
 import pwcdma.asystentgierplanszowych.server.GroupControllerSerwer;
 
@@ -20,7 +25,7 @@ public class AddUserToGroupActivity extends AppCompatActivity {
     private Button addButton;
     private String groupName;
     private AddUserToGroupTask addUserToGroupTask;
-
+    private String userName ="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,19 +36,29 @@ public class AddUserToGroupActivity extends AppCompatActivity {
         }
         usernameText = (EditText) findViewById(R.id.username_text);
         addButton = (Button) findViewById(R.id.add_button);
-        setButton();
+        fillDropdown();
     }
 
-    private void setButton(){
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String username = usernameText.getText().toString();
-                addUserToGroupTask = new AddUserToGroupTask(username);
-                addUserToGroupTask.execute((Void) null);
-            }
-        });
+
+    public void addUserToGroup(View view) {
+        Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
+        userName = dropdown.getSelectedItem().toString();
+        addUserToGroupTask = new AddUserToGroupTask(userName);
+        addUserToGroupTask.execute((Void) null);
+        this.finish();
     }
+
+    protected void fillDropdown(){
+        Spinner dropdown = (Spinner)findViewById(R.id.user_spinner);
+        String[] items =new String[Content.USER.size()];
+        for(int i =0;i< Content.USER.size();i++){
+            items[i]=Content.USER.get(i);
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        dropdown.setAdapter(adapter);
+
+    }
+
 
     private class AddUserToGroupTask extends AsyncTask<Void, Void, Boolean> {
 

@@ -2,6 +2,7 @@ package pwcdma.asystentgierplanszowych.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.design.widget.TabLayout;
@@ -51,49 +52,30 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
+        SharedPreferences sp1=this.getSharedPreferences("Login", MODE_PRIVATE);
 
+        String loginfromlogin=sp1.getString("loginlogin", null);
+        String loginfromsignup=sp1.getString("signuplogin", null);
+        // String pass = sp1.getString("Psw", null);
+
+        UsefullValues.name=loginfromsignup;
+        UsefullValues.name=loginfromlogin;
         if (isUserLoggedIn())
             startMainActivity();
         setContentView(R.layout.activity_start);
-        getNameUser();
         findViews();
+
         setActionBar();
         addFragmentsToList();
         setAdapter();
         setButtons();
+
     }
 
-    private void getNameUser(){
-        StringBuilder contents = new StringBuilder();
 
-        try {
-            //use buffering, reading one line at a time
-            //FileReader always assumes default encoding is OK!
-            BufferedReader input =  new BufferedReader(new FileReader(getFilesDir().toString()+ "user_data.json"));
-            try {
-                String line = null; //not declared within while loop
-        /*
-        * readLine is a bit quirky :
-        * it returns the content of a line MINUS the newline.
-        * it returns null only for the END of the stream.
-        * it returns an empty String if two newlines appear in a row.
-        */
-                while (( line = input.readLine()) != null){
-                    contents.append(line);
-                }
-            }
-            finally {
-                input.close();
-            }
-        }
-        catch (IOException ex){
-            ex.printStackTrace();
-        }
-        UsefullValues.name=contents.toString();
-    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG, "onActivityResult: ");
+
         super.onActivityResult(requestCode, resultCode, data);
         if ((requestCode == REQUEST_CODE_LOG_IN || requestCode == REQUEST_CODE_SIGN_UP)
                 && resultCode == LogInActivity.RESULT_CODE_SUCCESS) {
@@ -108,7 +90,6 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
     }
 
     private void findViews() {
-        Log.d(TAG, "findViews: ");
         signInButton = (Button) findViewById(R.id.sign_in_button);
         mViewPager = (ViewPager) findViewById(R.id.start_view_pager);
         mTlDotIndicator = (TabLayout) findViewById(R.id.start_tab_indicator);
@@ -116,21 +97,18 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
     }
 
     private void setAdapter(){
-        Log.d(TAG, "setAdapter: ");
         mVpAdapter = new StartFragmentViewPagerAdapter(getSupportFragmentManager(), mFragmentItemsList);
         mViewPager.setAdapter(mVpAdapter);
         mTlDotIndicator.setupWithViewPager(mViewPager, true);
     }
 
     private void addFragmentsToList(){
-        Log.d(TAG, "addFragmentsToList: ");
         mFragmentItemsList.add(new StartViewPagerItem(R.drawable.ic_start_tab_1, getString(R.string.startTabText1)));
         mFragmentItemsList.add(new StartViewPagerItem(R.drawable.ic_start_tab_2, getString(R.string.startTabText2)));
         mFragmentItemsList.add(new StartViewPagerItem(R.drawable.ic_start_tab_3, getString(R.string.startTabText3)));
     }
 
     private void setButtons() {
-        Log.d(TAG, "setButtons: ");
         signInButton.setOnClickListener(onClickListener);
         signUpText.setOnClickListener(onClickListener);
     }
@@ -140,11 +118,9 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.sign_in_button:
-                    Log.d(TAG, "onClick: signInButton");
                     startActivityForResult(new Intent(StartActivity.this, LogInActivity.class), REQUEST_CODE_LOG_IN);
                     break;
                 case R.id.sign_up_text:
-                    Log.d(TAG, "onClick: signUpText");
                     startActivityForResult(new Intent(StartActivity.this, SignUpActivity.class), REQUEST_CODE_SIGN_UP);
                     break;
             }
@@ -163,7 +139,6 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-        Log.d(TAG, "onFragmentInteraction: ");
 
     }
 

@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import pwcdma.asystentgierplanszowych.model.UsefullValues;
+
 public class GroupControllerSerwer {
 	private final String ipSerwer="https://gentle-journey-42470.herokuapp.com";
 	
@@ -55,7 +57,7 @@ public class GroupControllerSerwer {
 	}
 	
 	public Boolean addGroup(String nameGroup){
-		String response = connectToSerwer(ipSerwer+"/group/add?name="+nameGroup+"&owner="+"testtest");
+		String response = connectToSerwer(ipSerwer+"/group/add?name="+nameGroup+"&owner="+ UsefullValues.name);
 		if(response.equals("Succes")){
 			return true;
 		}else{

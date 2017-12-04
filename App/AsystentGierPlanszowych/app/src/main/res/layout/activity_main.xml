@@ -1,88 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.AppBarLayout android:layout_width="match_parent"
+<android.support.design.widget.AppBarLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/AppTheme"
     app:layout_behavior="@string/chuj"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ProgressBar
-        android:id="@+id/login_progress2"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:indeterminateDrawable="@drawable/spinning_dice"
-        android:visibility="gone" />
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary">
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_sign_in_logo"
-        android:text="Departure"
-        android:layout_gravity="right"
-        android:onClick="kurwa"
-        />
+
 
         <ImageButton
+            android:id="@+id/add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:backgroundTint="@color/colorPrimary"
+            android:onClick="kurwa"
+            android:src="@android:drawable/ic_menu_add"
+            android:text="Departure" />
+
+        <ImageButton
+            android:id="@+id/refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:backgroundTint="@color/colorPrimary"
             android:onClick="refresh"
-            android:src="@drawable/button_primary_selector"
+            android:src="@android:drawable/ic_menu_rotate"
+            android:text="Departure" />
+
+        <ImageButton
+            android:id="@+id/filtr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:backgroundTint="@color/colorPrimary"
+            android:onClick="kurwa"
+            android:src="@android:drawable/ic_menu_sort_by_size"
             android:text="Departure" />
 
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tab_host"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    tools:context="pwcdma.asystentgierplanszowych.activity.MainActivity">
-
-
-    <RelativeLayout
-
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <pwcdma.asystentgierplanszowych.model.CustomViewPager
-            android:id="@+id/mainActivityViewPager"
+        <ProgressBar
+            android:id="@+id/login_progress2"
+            style="?android:attr/progressBarStyleLarge"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never"
-            android:scrollbars="none">
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:indeterminateDrawable="@drawable/spinning_dice"
+            android:visibility="gone" />
 
-        </pwcdma.asystentgierplanszowych.model.CustomViewPager>
-    </RelativeLayout>
+        <LinearLayout
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/mainActivityTabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tab_layout_height"
-        android:layout_gravity="bottom"
-        android:background="@color/colorPrimary"
-        android:elevation="0dp"
-        app:tabIndicatorHeight="0dp"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/colorAccent"
-        app:tabTextAppearance="@style/NavigationBar"
-        app:tabTextColor="@color/colorPrimaryHelper" />
+            android:id="@+id/tab_host"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            tools:context="pwcdma.asystentgierplanszowych.activity.MainActivity">
 
-</LinearLayout>
+
+            <RelativeLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <pwcdma.asystentgierplanszowych.model.CustomViewPager
+                    android:id="@+id/mainActivityViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    android:scrollbars="none">
+
+                </pwcdma.asystentgierplanszowych.model.CustomViewPager>
+            </RelativeLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/mainActivityTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tab_layout_height"
+                android:layout_gravity="bottom"
+                android:background="@color/colorPrimary"
+                android:elevation="0dp"
+                app:tabIndicatorHeight="0dp"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/colorAccent"
+                app:tabTextAppearance="@style/NavigationBar"
+                app:tabTextColor="@color/colorPrimaryHelper" />
+
+        </LinearLayout>
+    </LinearLayout>
 
 </android.support.design.widget.AppBarLayout>

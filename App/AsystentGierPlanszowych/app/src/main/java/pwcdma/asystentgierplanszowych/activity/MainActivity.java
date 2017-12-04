@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -76,15 +77,15 @@ public class MainActivity extends AppCompatActivity {
         setViewPager();
         setTabLayout();
         setFragmentBarIcons();
-      /*  String json = load(getApplicationContext());
-        Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
-        List<Game> gamesListFromServer = new Gson().fromJson(json, listType);
-        for(Game g : gamesListFromServer){
-            Content.Item item = new Content.Item(g.getId().toString(),g.getName(),"");
-            Content.addGame(item);
-        }*/
+
         tab_host =(LinearLayout) findViewById(R.id.tab_host);
         mProgressView = findViewById(R.id.login_progress2);
+
+        SharedPreferences sp1=this.getSharedPreferences("Login", MODE_PRIVATE);
+
+        String unm=sp1.getString("Unm", null);
+        UsefullValues.name= sp1.getString("loginlogin", null);
+        Toast.makeText(MainActivity.this, UsefullValues.name, Toast.LENGTH_LONG).show();
      new Thread(new Runnable() {
             public Handler mHandler;
             @Override
@@ -103,15 +104,16 @@ public class MainActivity extends AppCompatActivity {
         }).start();
 
 
-
+        UsefullValues.userInGroup.add("");
         if (savedInstanceState != null) {
             TabLayout.Tab tab = mTlNavBar.getTabAt(savedInstanceState.getInt(TAB));
             tab.select();
         }
+
         showProgress(true);
         waitFroDate = new WaitFroDate();
         waitFroDate.execute((Void) null);
-        Button a = new Button(this);
+
     }
 
 
@@ -140,24 +142,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public String load(Context context){
-      /*  try {
-            FileInputStream fis = context.openFileInput(getFilesDir().getAbsolutePath() + "/" + "data" + ".txt");
-            BufferedReader r = new BufferedReader(new InputStreamReader(fis));
-            String s = "";
-            String txt = "";
-            while ((s = r.readLine()) != null) {
-                txt += s;
-            }
-            r.close();
-            Toast.makeText(MainActivity.this, txt, Toast.LENGTH_LONG).show();
-            return txt;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }*/
-      return null;
-    }
+
     @Override
     protected void onSaveInstanceState(Bundle state) {
         Log.d(TAG, "onSaveInstanceState: ");
@@ -238,13 +223,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void onClickButtonOnListGroup(View view){
- /*      // Content.GROUPS.bsetOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> list, View v, int pos, long id) {
-                // Your code for item clicks
-            }
-        });*/
-    }
+
     public void refresh(View view) {
         Intent intent = getIntent();
         finish();
@@ -262,6 +241,19 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/get/user/info?name="+UsefullValues.name);
+            String responsee = null;
+
+            try {
+                responsee = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Type listType = new TypeToken<ArrayList<User>>(){}.getType();
+            List<User> userList = new Gson().fromJson(responsee, listType);
+            UsefullValues.name = userList.get(0).getUsername();
+            UsefullValues.email = userList.get(0).getEmail();
+            UsefullValues.about = userList.get(0).getAbout();
 
             gamesGet();
             groupGet();
@@ -303,8 +295,7 @@ public class MainActivity extends AppCompatActivity {
             Type listType = new TypeToken<ArrayList<User>>(){}.getType();
             List<User> userListFromSerwer = new Gson().fromJson(responsee, listType);
             for(User g : userListFromSerwer){
-                Content.Item item = new Content.Item(g.getId().toString(),g.getUsername(),"",null);
-                Content.addUser(item);
+                Content.addUser(g.getUsername());
             }
         }
 
@@ -326,20 +317,18 @@ public class MainActivity extends AppCompatActivity {
                 Content.Item item = new Content.Item(String.valueOf(++i), g.getGroupName(),"",null);
                 Content.addGroup(item);
             }
+
+
         }
 
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            // mAuthTask = null;
-            // showProgress(false);
 
-         //   activity.startActivity(new Intent(activity, MainActivity.class));;
         }
 
         @Override
         protected void onCancelled() {
-            //  showProgress(false);
         }
     }
     class UserAddToGroup extends AsyncTask<Void, Void, Boolean> {
@@ -364,7 +353,7 @@ public class MainActivity extends AppCompatActivity {
             if(gamesListFromServer.size()>Content.sizeOfList){
                 for (int i = Content.sizeOfList;i<gamesListFromServer.size();i++
                         ) {
-                    if(gamesListFromServer.get(i).getNameUser().equals("misckq")){
+                    if(gamesListFromServer.get(i).getNameUser().equals(UsefullValues.name)){
                         Content.sizeOfList = gamesListFromServer.size();
                         return true;
                     }
@@ -382,6 +371,7 @@ public class MainActivity extends AppCompatActivity {
             showProgress(false);
             if(success){
             Toast.makeText(MainActivity.this, "Dodano cię do grupy", Toast.LENGTH_LONG).show();}
+
         }
 
         @Override

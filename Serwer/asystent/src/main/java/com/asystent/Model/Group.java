@@ -11,6 +11,16 @@ public class Group {
     @SerializedName("groupName")
     String groupName;
 
+    String about;
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
     public Group(){
         this(0,null,false);
     }

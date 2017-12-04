@@ -15,6 +15,16 @@ public class GroupWithUsers {
     @SerializedName("active")
     Boolean active;
 
+    String about;
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
     List<User> list;
 
     public int getId() {

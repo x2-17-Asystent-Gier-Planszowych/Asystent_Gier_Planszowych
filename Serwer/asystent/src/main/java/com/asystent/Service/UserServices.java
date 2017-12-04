@@ -154,7 +154,7 @@ public class UserServices {
         JsonArray jsonArray = new JsonArray();
 
         List<User> listUser = new ArrayList<>();
-        String query1 = "select * from \"Groups\" where \"Groupname\" = ?";
+        String query1 = "select \"Id\", \"Groupname\", \"Active\", \"About\" from \"Groups\" where \"Groupname\" = ?";
         final Group  g = new Group();
                 jdbcTemplate.query(query1,new Object[]{name}, new RowMapper<Group>() {
             @Override
@@ -163,6 +163,7 @@ public class UserServices {
                // g = new Group();
                 g.setId(rs.getInt(1));
                 g.setGroupName(rs.getString(2));
+                g.setAbout(rs.getString(4));
                 g.setActive(rs.getBoolean(3));
                 return g;
             }
@@ -192,6 +193,7 @@ public class UserServices {
         gwu.setGroupName(g.getGroupName());
         gwu.setId(g.getId());
         gwu.setActive(g.getActive());
+        gwu.setAbout(g.getAbout());
         gwu.setList(listUser);
 
 String out = gson.toJson(gwu);

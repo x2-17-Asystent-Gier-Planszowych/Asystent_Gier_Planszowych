@@ -145,6 +145,11 @@ public class UserController {
 		return userServices.getUsersInGroup(name);
 	}
 
+	@RequestMapping("/getUsersForGroupJSON")
+	public String getUsersForGroupJSON(@RequestParam(value="name") String name){
+		return userServices.groupuser(name);
+	}
+
 }
 //nie działa to dao trzeba poprawić
 // DaoImpl dao = new DaoImpl();

@@ -1,6 +1,7 @@
 package com.asystent.Service;
 
 import com.asystent.Model.Group;
+import com.asystent.Model.GroupWithUsers;
 import com.asystent.Model.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -146,6 +147,55 @@ public class UserServices {
             }
         });
         return  jsonArray.toString();
+    }
+
+    public String groupuser(String name){
+        Gson gson = new Gson();
+        JsonArray jsonArray = new JsonArray();
+
+        List<User> listUser = new ArrayList<>();
+        String query1 = "select * from \"Groups\" where \"Groupname\" = ?";
+        final Group  g = new Group();
+                jdbcTemplate.query(query1,new Object[]{name}, new RowMapper<Group>() {
+            @Override
+            public Group mapRow(ResultSet rs, int rownumber) throws SQLException {
+
+               // g = new Group();
+                g.setId(rs.getInt(1));
+                g.setGroupName(rs.getString(2));
+                g.setActive(rs.getBoolean(3));
+                return g;
+            }
+        });
+
+
+
+
+        String query= "select * from \"Users\" where \"Id\" in (\n" +
+                "SELECT \"User_Id\" FROM \"Group_User\" where \"Group_Id\" = \n" +
+                "( SELECT \"Id\" from \"Groups\" where \"Groupname\" = ?))";
+        jdbcTemplate.query(query,new Object[]{name}, new RowMapper<User>() {
+            @Override
+            public User mapRow(ResultSet rs, int rownumber) throws SQLException {
+
+                User user= new User();
+                user.setId(rs.getLong(1));
+                user.setUsername(rs.getString(2));
+                user.setEmail(rs.getString(3));
+                user.setAbout(rs.getString(4));
+               listUser.add(user);
+                return user;
+            }
+        });
+
+        GroupWithUsers gwu = new GroupWithUsers();
+        gwu.setGroupName(g.getGroupName());
+        gwu.setId(g.getId());
+        gwu.setActive(g.getActive());
+        gwu.setList(listUser);
+
+String out = gson.toJson(gwu);
+return out;
     }
 
 }

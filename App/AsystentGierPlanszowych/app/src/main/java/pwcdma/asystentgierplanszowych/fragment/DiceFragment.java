@@ -376,12 +376,13 @@ public class DiceFragment extends Fragment {
     private void fetchResults() {
         for (int i = 0; i < mNumberOfDices; i++) {
             result[i] = dices.get(mPickedDice).roll();
+            Log.d(TAG, "fetchResults: " + result[i]);
         }
     }
 
     private void showResultsOnDiceAndList(){
         String name = dices.get(mPickedDice).getName();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i <= 5; i++) {
             if (result[i] != 0) {
                 diceResults.get(i).setText(String.valueOf(result[i]));
                 resultItemList.add(new Result(name, result[i]));

@@ -101,8 +101,8 @@ public class DiceFragment extends Fragment {
         setOnClickListerners();
         setupFAM();
         disableButton(mRollDiceButton);
-        mFabShowHistory.setEnabled(false);
-        mFabNumberOfDiceSides.setEnabled(false);
+        mFabShowHistory.setVisibility(View.GONE);
+        mFabNumberOfDiceSides.setVisibility(View.GONE);
         return view;
     }
 
@@ -120,10 +120,12 @@ public class DiceFragment extends Fragment {
     }
 
     private void disableButton(Button button) {
+        button.setVisibility(View.GONE);
         button.setEnabled(false);
     }
 
     private void enableButton(Button button) {
+        button.setVisibility(View.VISIBLE);
         button.setEnabled(true);
     }
 
@@ -293,6 +295,7 @@ public class DiceFragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 Log.d(TAG, "onClick: " + mNumberOfDices);
                 mFabNumberOfDiceSides.setEnabled(true);
+                mFabNumberOfDiceSides.setVisibility(View.VISIBLE);
                 cleanResultsOnDices();
                 placeDice(mPickedDice);
             }
@@ -362,6 +365,8 @@ public class DiceFragment extends Fragment {
             fetchResults();
             showResultsOnDiceAndList();
             mFabShowHistory.setEnabled(true);
+            mFabShowHistory.setVisibility(View.VISIBLE);
+            mFloatingActionMenu.close(true);
         }
     };
 

@@ -1,117 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<android.support.design.widget.AppBarLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp"
-    tools:context="pwcdma.asystentgierplanszowych.activity.AddUserToGroupActivity">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/AppTheme"
+    app:layout_behavior="@string/chuj"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:id="@+id/tab"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"></android.support.v7.widget.Toolbar>
 
-        <TextView
-            android:id="@+id/group_label"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/tab_host"
+        android:layout_width="match_parent"
+        android:layout_height="567dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context="pwcdma.asystentgierplanszowych.activity.MainActivity">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Grupa"
-            android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp"
+            tools:context="pwcdma.asystentgierplanszowych.activity.AddUserToGroupActivity">
 
-        <TextView
-            android:id="@+id/Gra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Gra"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/Game_rand"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Notatki"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/about_game"
-            android:layout_width="match_parent"
-            android:layout_height="105dp"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Gracze"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/gamers"
-            android:layout_width="match_parent"
-            android:layout_height="83dp"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/rand_button"
+            <LinearLayout
+                android:id="@+id/tab"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="@color/colorAccentLight"
-                android:onClick="randGame"
-                android:text="Wylosuj Gre"
-                android:textColor="@color/white" />
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/add_button"
+                <TextView
+                    android:id="@+id/group_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Grupa"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/Gra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gra"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/Game_rand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Notatki"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/about_game"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gracze"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/gamers"
+                    android:layout_width="match_parent"
+                    android:layout_height="83dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/rand_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorAccentLight"
+                        android:onClick="randGame"
+                        android:text="Wylosuj Gre"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/add_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorAccentLight"
+                        android:onClick="addUserToGroup"
+                        android:text="Dodaj użytkownika "
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/login_progress3"
+                style="?android:attr/progressBarStyleLarge"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginBottom="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/colorAccentLight"
-                android:onClick="addUserToGroup"
-                android:text="Dodaj użytkownika "
-                android:textColor="@color/white" />
+                android:indeterminateDrawable="@drawable/spinning_dice"
+                android:visibility="gone" />
+
+        </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/login_progress3"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:indeterminateDrawable="@drawable/spinning_dice"
-        android:visibility="gone" />
-
-</LinearLayout>
+</android.support.design.widget.AppBarLayout>

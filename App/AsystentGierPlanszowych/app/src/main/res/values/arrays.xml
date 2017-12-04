@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+    <array name="restext">
+        <item>"Bitewna"</item>
+        <item>"Ekonomiczna"</item>
+        <item>"Karciana"</item>
+        <item>"Logiczna"</item>
+        <item>"MMO"</item>
+        <item>"Online"</item>
+        <item>"Strategiczna"</item>
+    </array>
+
+</resources>

@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:backgroundTint="@color/colorPrimary"
-            android:onClick="kurwa"
+            android:onClick="Filtr"
             android:src="@android:drawable/ic_menu_sort_by_size"
             android:text="Departure" />
 

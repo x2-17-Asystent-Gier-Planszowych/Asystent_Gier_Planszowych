@@ -233,6 +233,13 @@ public class MainActivity extends AppCompatActivity {
         waitFroDate.execute((Void) null);
     }
 
+    public void Filtr(View view) {
+        if(UsefullValues.pageSelected == 1) {
+            Intent myIntent = new Intent(MainActivity.this, TagActivity.class);
+            MainActivity.this.startActivity(myIntent);
+        }
+    }
+
     class WaitFroDate extends AsyncTask<Void, Void, Boolean> {
 
         WaitFroDate(){}
@@ -303,10 +310,17 @@ public class MainActivity extends AppCompatActivity {
 
         protected void groupGet() {
 
-            GroupControllerSerwer gf = new GroupControllerSerwer();
-            String responsee = gf.getAllGroups();
+            /*GroupControllerSerwer gf = new GroupControllerSerwer();
+            String responsee = gf.getAllGroups();*/
 
-
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/getGroupsForUser?name=" + UsefullValues.name);
+           // ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/getUsersForGroupJSON?name=" + UsefullValues.name);
+            String responsee = null;
+            try {
+                responsee = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             Type listType = new TypeToken<ArrayList<Group>>(){}.getType();
             List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);
             Content.clearList(Content.GROUPS, Content.GROUP_MAP);

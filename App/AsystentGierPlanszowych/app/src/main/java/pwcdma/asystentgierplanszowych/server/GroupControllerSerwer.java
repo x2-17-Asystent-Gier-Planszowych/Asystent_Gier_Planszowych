@@ -17,7 +17,7 @@ public class GroupControllerSerwer {
 	}
 	
 	public Boolean addUserToGroupByName(String userName,String groupName){
-		String response = connectToSerwer(ipSerwer+"/group/add/user/name?nameGroup="+ groupName + "&nameUser="+userName);
+		String response = connectToSerwer(ipSerwer+"/group/add/user/name?nameGroup="+ groupName + "&nameUser="+UsefullValues.name);
 		if(response.equals("Succes")){
 			return true;
 		}else{

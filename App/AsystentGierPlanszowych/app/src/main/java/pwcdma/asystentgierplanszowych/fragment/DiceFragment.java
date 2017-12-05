@@ -102,7 +102,9 @@ public class DiceFragment extends Fragment {
         setupFAM();
         disableButton(mRollDiceButton);
         mFabShowHistory.setEnabled(false);
+        mFabShowHistory.setVisibility(View.GONE);
         mFabNumberOfDiceSides.setEnabled(false);
+        mFabNumberOfDiceSides.setVisibility(View.GONE);
         return view;
     }
 
@@ -120,10 +122,14 @@ public class DiceFragment extends Fragment {
     }
 
     private void disableButton(Button button) {
+
+        button.setVisibility(View.GONE);
         button.setEnabled(false);
     }
 
     private void enableButton(Button button) {
+
+        button.setVisibility(View.VISIBLE);
         button.setEnabled(true);
     }
 
@@ -293,6 +299,7 @@ public class DiceFragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 Log.d(TAG, "onClick: " + mNumberOfDices);
                 mFabNumberOfDiceSides.setEnabled(true);
+                mFabNumberOfDiceSides.setVisibility(View.VISIBLE);
                 cleanResultsOnDices();
                 placeDice(mPickedDice);
             }
@@ -362,11 +369,12 @@ public class DiceFragment extends Fragment {
             fetchResults();
             showResultsOnDiceAndList();
             mFabShowHistory.setEnabled(true);
+            mFabShowHistory.setVisibility(View.VISIBLE);
         }
     };
 
     private void cleanResultsOnDices(){
-        for(int i= 0; i < 5 ; i++){
+        for(int i= 0; i < 6 ; i++){
             diceResults.get(i).setText("");
             result[i] = 0;
         }
@@ -381,7 +389,7 @@ public class DiceFragment extends Fragment {
 
     private void showResultsOnDiceAndList(){
         String name = dices.get(mPickedDice).getName();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             if (result[i] != 0) {
                 diceResults.get(i).setText(String.valueOf(result[i]));
                 resultItemList.add(new Result(name, result[i]));

@@ -1,9 +1,11 @@
 package pwcdma.asystentgierplanszowych.activity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,10 +40,12 @@ public class AddGroupActivity extends AppCompatActivity {
         title = tv.getText().toString();
         groupTask = new GroupTask(title);
         groupTask.execute((Void) null);
-
-        this.finish();
     }
+    public void change(){
+        Intent myIntent = new Intent(AddGroupActivity.this, MainActivity.class);
 
+        AddGroupActivity.this.startActivity(myIntent);
+    }
     class GroupTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String title;
@@ -53,8 +57,7 @@ public class AddGroupActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
         try{
-            if(gamesAdd()) {
-                groupGet();
+            if(groupGet()) {
                 return true;
 
             }
@@ -68,40 +71,48 @@ public class AddGroupActivity extends AppCompatActivity {
 
         protected Boolean gamesAdd() {
             GroupControllerSerwer g = new GroupControllerSerwer();
+            return g.addGroup(title);
 
-                return g.addGroup(title);
 
 
         }
         @Override
         protected void onPostExecute(final Boolean success) {
         if(success){
-
-            Toast.makeText(AddGroupActivity.this, "Udało się dodać gre", Toast.LENGTH_LONG).show();
+            Toast.makeText(AddGroupActivity.this, "Udało się dodać grupe", Toast.LENGTH_LONG).show();
+            change();
         }else{
 
-            Toast.makeText(AddGroupActivity.this, "Nie udało się dodać gry", Toast.LENGTH_LONG).show();
+            Toast.makeText(AddGroupActivity.this, "Nie udało się dodać grupy. Może nazwa grupy już jest użyta?", Toast.LENGTH_LONG).show();
         }
         }
-        protected void groupGet() {
-            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/getGroupsForUser?name=" + UsefullValues.name);
-            // ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/getUsersForGroupJSON?name=" + UsefullValues.name);
-            String responsee = null;
-            try {
-                responsee = connection.getResponse();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Type listType = new TypeToken<ArrayList<Group>>(){}.getType();
-            List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);
-            Content.clearList(Content.GROUPS, Content.GROUP_MAP);
+        protected Boolean groupGet() {
+            GroupControllerSerwer gc = new GroupControllerSerwer();
+            Boolean b= gc.addGroup(title);
+            if(b) {
+                GroupControllerSerwer gcs = new GroupControllerSerwer();
+                gcs.addUserToGroupByName(UsefullValues.name, title);
+                ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/getGroupsForUser?name=" + UsefullValues.name);
+                // ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/getUsersForGroupJSON?name=" + UsefullValues.name);
+                String responsee = null;
+                try {
+                    responsee = connection.getResponse();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Type listType = new TypeToken<ArrayList<Group>>() {
+                }.getType();
+                List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);
+                Content.clearList(Content.GROUPS, Content.GROUP_MAP);
 
 
-            int i = 0;
-            for(Group g : gamesListFromServer){
-                Content.Item item = new Content.Item(String.valueOf(++i), g.getGroupName(),"",null);
-                Content.addGroup(item);
+                int i = 0;
+                for (Group g : gamesListFromServer) {
+                    Content.Item item = new Content.Item(String.valueOf(++i), g.getGroupName(), "", null);
+                    Content.addGroup(item);
+                }
             }
+            return b;
         }
 
     }

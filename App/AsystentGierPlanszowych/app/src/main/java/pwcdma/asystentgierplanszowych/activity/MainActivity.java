@@ -26,6 +26,10 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.ConnectException;
@@ -39,6 +43,8 @@ import pwcdma.asystentgierplanszowych.content.Content;
 import pwcdma.asystentgierplanszowych.model.CustomViewPager;
 import pwcdma.asystentgierplanszowych.model.Game;
 import pwcdma.asystentgierplanszowych.model.Group;
+import pwcdma.asystentgierplanszowych.model.GroupWithUser;
+import pwcdma.asystentgierplanszowych.model.Test;
 import pwcdma.asystentgierplanszowych.model.UsefullValues;
 import pwcdma.asystentgierplanszowych.model.User;
 import pwcdma.asystentgierplanszowych.model.UserInGroup;
@@ -83,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sp1=this.getSharedPreferences("Login", MODE_PRIVATE);
 
-        String unm=sp1.getString("Unm", null);
         UsefullValues.name= sp1.getString("loginlogin", null);
         Toast.makeText(MainActivity.this, UsefullValues.name, Toast.LENGTH_LONG).show();
      new Thread(new Runnable() {
@@ -248,23 +253,31 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/get/user/info?name="+UsefullValues.name);
-            String responsee = null;
+            if(UsefullValues.isTaged) {
+                ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/get/user/info?name=" + UsefullValues.name);
+                String responsee = null;
 
-            try {
-                responsee = connection.getResponse();
-            } catch (IOException e) {
-                e.printStackTrace();
+                try {
+                    responsee = connection.getResponse();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Type listType = new TypeToken<ArrayList<User>>() {
+                }.getType();
+                List<User> userList = new Gson().fromJson(responsee, listType);
+                UsefullValues.name = userList.get(0).getUsername();
+                UsefullValues.email = userList.get(0).getEmail();
+                UsefullValues.about = userList.get(0).getAbout();
+
+                gamesGet();
+                try {
+                    groupGet();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                userGet();
+                return true;
             }
-            Type listType = new TypeToken<ArrayList<User>>(){}.getType();
-            List<User> userList = new Gson().fromJson(responsee, listType);
-            UsefullValues.name = userList.get(0).getUsername();
-            UsefullValues.email = userList.get(0).getEmail();
-            UsefullValues.about = userList.get(0).getAbout();
-
-            gamesGet();
-            groupGet();
-            userGet();
             return true;
         }
 
@@ -308,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        protected void groupGet() {
+        protected void groupGet() throws JSONException {
 
             /*GroupControllerSerwer gf = new GroupControllerSerwer();
             String responsee = gf.getAllGroups();*/
@@ -333,18 +346,39 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
+            for(Content.Item g:Content.GROUPS) {
+                ServerConnection connection2 = new ServerConnection(ServerConnection.SERVER_URL + "/user/group/name?name=" + g.getContent());
+                String respone2 = "";
+
+                try {
+                    respone2 = connection2.getResponse();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Type listString = new TypeToken<ArrayList<Test>>() {
+                }.getType();
+                List<Test> userList = new Gson().fromJson(respone2, listString);
+                GroupWithUser gwu = new GroupWithUser();
+                gwu.setGroupName(g.getContent());
+                gwu.setList(userList);
+                Content.GroupWithUser.add(gwu);
+            }
+
+
         }
 
 
         @Override
         protected void onPostExecute(final Boolean success) {
-
+            if(success) {
+            }
         }
 
         @Override
         protected void onCancelled() {
         }
     }
+
     class UserAddToGroup extends AsyncTask<Void, Void, Boolean> {
 
         private String respone="";

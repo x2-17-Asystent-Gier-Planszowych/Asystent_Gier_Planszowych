@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.content.Content;
 import pwcdma.asystentgierplanszowych.model.Game;
 import pwcdma.asystentgierplanszowych.model.Group;
+import pwcdma.asystentgierplanszowych.model.UsefullValues;
 import pwcdma.asystentgierplanszowych.server.GroupControllerSerwer;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
@@ -130,9 +132,7 @@ public class TagActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     boolean newState = !list.get(position).isChecked();
                     list.get(position).checked = newState;
-                    Toast.makeText(getApplicationContext(),
-                            itemStr + "setOnClickListener\nchecked: " + newState,
-                            Toast.LENGTH_LONG).show();
+
                 }
             });
 
@@ -142,7 +142,7 @@ public class TagActivity extends AppCompatActivity {
         }
     }
 
-    Button btnLookup;
+    ImageButton btnLookup;
     List<Item> items;
     ListView listView;
     ItemsListAdapter myItemsListAdapter;
@@ -152,7 +152,7 @@ public class TagActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag);
         listView = (ListView)findViewById(R.id.listview);
-        btnLookup = (Button)findViewById(R.id.lookup);initItems();
+        btnLookup = (ImageButton)findViewById(R.id.lookup);initItems();
         myItemsListAdapter = new ItemsListAdapter(this, items);
         listView.setAdapter(myItemsListAdapter);
 
@@ -161,9 +161,7 @@ public class TagActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(TagActivity.this,
-                        ((Item)(parent.getItemAtPosition(position))).ItemString,
-                        Toast.LENGTH_LONG).show();
+
             }});
 
         btnLookup.setOnClickListener(new View.OnClickListener() {
@@ -176,8 +174,18 @@ public class TagActivity extends AppCompatActivity {
                         str +=items.get(i).getItemString();
                     }
 
+                if(str.equals("Bitewna") || str.equals("Ekonomiczna") || str.equals("Karciana") || str.equals("Logiczna") || str.equals("MMO") || str.equals("Online") || str.equals("Strategiczna")){
                     waitFroDate = new WaitFroDate(str,TagActivity.this );
                     waitFroDate.execute((Void) null);
+                    Toast.makeText(getApplicationContext(),
+                            "Wybierz  tag",
+                            Toast.LENGTH_LONG).show();}
+                    else{
+                    Toast.makeText(getApplicationContext(),
+                            "Wybierz tylko jeden tag",
+                            Toast.LENGTH_LONG).show();
+
+                 }
                 }
 
                 /*
@@ -189,9 +197,7 @@ public class TagActivity extends AppCompatActivity {
                 }
                 */
 
-                Toast.makeText(TagActivity.this,
-                        str,
-                        Toast.LENGTH_LONG).show();
+
 
             }
         });
@@ -211,7 +217,11 @@ public class TagActivity extends AppCompatActivity {
 
         arrayText.recycle();
     }
-
+    public void clearTag(View view){
+        UsefullValues.isTaged = true;
+        Intent myIntent = new Intent(TagActivity.this, MainActivity.class);
+        TagActivity.this.startActivity(myIntent);
+    }
     class WaitFroDate extends AsyncTask<Void, Void, Boolean> {
         private final String tag1;
         private final Activity activity;
@@ -226,7 +236,7 @@ public class TagActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... params) {
 
             gamesGet();
-            //groupGet();
+            UsefullValues.isTaged=false;
             return true;
         }
 
@@ -240,6 +250,7 @@ public class TagActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
             Content.GAMES.clear();
             Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
             List<Game> gamesListFromServer = new Gson().fromJson(responsee, listType);
@@ -251,26 +262,15 @@ public class TagActivity extends AppCompatActivity {
 
 
 
-        protected void groupGet() {
-
-            GroupControllerSerwer gf = new GroupControllerSerwer();
-            String responsee = gf.getAllGroups();
-
-
-            Type listType = new TypeToken<ArrayList<Group>>(){}.getType();
-            List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);
-            for(Group g : gamesListFromServer){
-                Content.Item item = new Content.Item(Integer.toString(g.getId()), g.getGroupName(),"",null);
-                Content.addGroup(item);
-            }
-        }
 
 
         @Override
         protected void onPostExecute(final Boolean success) {
             // mAuthTask = null;
             // showProgress(false);
-            activity.startActivity(new Intent(activity, MainActivity.class));;
+
+                activity.startActivity(new Intent(activity, MainActivity.class));
+
         }
 
         @Override

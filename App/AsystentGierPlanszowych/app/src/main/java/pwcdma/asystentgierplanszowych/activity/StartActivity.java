@@ -1,6 +1,7 @@
 package pwcdma.asystentgierplanszowych.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -33,6 +35,7 @@ import pwcdma.asystentgierplanszowych.model.Group;
 import pwcdma.asystentgierplanszowych.model.StartViewPagerItem;
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.model.UsefullValues;
+import pwcdma.asystentgierplanszowych.model.UserInGroup;
 import pwcdma.asystentgierplanszowych.server.GroupControllerSerwer;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
@@ -60,6 +63,10 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
 
         UsefullValues.name=loginfromsignup;
         UsefullValues.name=loginfromlogin;
+
+        UserAddToGroup userAddToGroup = new UserAddToGroup();
+        userAddToGroup.execute((Void) null);
+
         if (isUserLoggedIn())
             startMainActivity();
         setContentView(R.layout.activity_start);
@@ -142,5 +149,31 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
 
     }
 
+    class UserAddToGroup extends AsyncTask<Void, Void, Boolean> {
 
+        private String respone="";
+        private Context cont;
+        UserAddToGroup() {
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/group/useringroup");
+
+            try {
+                respone = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Type listType = new TypeToken<ArrayList<UserInGroup>>(){}.getType();
+            List<UserInGroup> gamesListFromServer = new Gson().fromJson(respone, listType);
+            Content.sizeOfList = gamesListFromServer.size();
+
+            return false;
+
+        }
+
+
+    }
 }

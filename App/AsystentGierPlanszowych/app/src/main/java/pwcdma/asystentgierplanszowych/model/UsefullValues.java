@@ -8,10 +8,13 @@ import java.util.List;
  */
 
 public class UsefullValues {
+    public static String group;
     public static String name;
     public static int pageSelected = 0;
     public static String email;
     public static String about;
     public static User user;
     public static List<String> userInGroup = new ArrayList<String>();
+    public static  boolean isTaged = true;
+    public static String tag = "Nothing";
 }

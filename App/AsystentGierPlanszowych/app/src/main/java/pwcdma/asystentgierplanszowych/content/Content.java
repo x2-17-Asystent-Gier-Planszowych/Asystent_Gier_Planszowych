@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import pwcdma.asystentgierplanszowych.model.Game;
+import pwcdma.asystentgierplanszowych.model.Group;
+import pwcdma.asystentgierplanszowych.model.GroupWithUser;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -20,6 +22,7 @@ public class Content {
     /**
      * An array of sample (dummy) items.
      */
+    public static  List<GroupWithUser> GroupWithUser = new ArrayList<GroupWithUser>();
     public static  List<Item> ITEMS = new ArrayList<Item>();
     public static  List<Item> GAMES= new ArrayList<Item>();
     public static  List<Item> GROUPS= new ArrayList<Item>();

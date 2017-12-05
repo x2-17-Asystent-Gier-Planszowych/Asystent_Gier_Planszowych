@@ -1,5 +1,6 @@
 package pwcdma.asystentgierplanszowych.activity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -52,8 +54,12 @@ public class AddGameActivity extends AppCompatActivity {
         gameTask = new AddGameActivity.GameTask(title,tag);
         gameTask.execute((Void) null);
 
-        this.finish();
+
     }
+
+    public void change(){  Intent myIntent = new Intent(
+            AddGameActivity.this, MainActivity.class);
+        AddGameActivity.this.startActivity(myIntent);}
 
 
 
@@ -82,10 +88,21 @@ public class AddGameActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... params) {
             try {
                 gamesAdd();
+                return true;
             } catch (IOException e) {
                 e.printStackTrace();
             }
             return false;
+        }
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            if(success){
+                Toast.makeText(AddGameActivity.this, "Udało się dodać gre", Toast.LENGTH_LONG).show();
+                change();
+            }else{
+
+                Toast.makeText(AddGameActivity.this, "Nie udało się dodać gry", Toast.LENGTH_LONG).show();
+            }
         }
 
         protected void gamesAdd() throws IOException {

@@ -29,7 +29,9 @@ import java.util.Random;
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.content.Content;
 import pwcdma.asystentgierplanszowych.model.Game;
+import pwcdma.asystentgierplanszowych.model.Test;
 import pwcdma.asystentgierplanszowych.model.UsefullValues;
+import pwcdma.asystentgierplanszowych.model.User;
 import pwcdma.asystentgierplanszowych.server.GamesController;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
@@ -56,6 +58,7 @@ public class GroupActivity extends AppCompatActivity {
         if (extras != null) {
             value = extras.getString("nameGroup");
         }
+        UsefullValues.group=value;
 
         mProgressView = findViewById(R.id.login_progress3);
         linearLayout = (LinearLayout) findViewById(R.id.tab);
@@ -67,12 +70,26 @@ public class GroupActivity extends AppCompatActivity {
         }else{
             showProgress(false);
         }
+        int indexOfGroup=0;
         group_label.setText("Grupa \n" + value);
-
-            for (String s : UsefullValues.userInGroup) {
-                gamers.setText(s + " ,");
+        for(int i =0 ;i<Content.GroupWithUser.size();i++){
+            if(Content.GroupWithUser.get(i).getGroupName().equals(value)){
+                indexOfGroup=i;
             }
 
+        }
+
+        String users = "";
+            for (Test s : Content.GroupWithUser.get(indexOfGroup).getList()) {
+                users = users + s.getLogin() + ", " ;
+            }
+        gamers.setText(users);
+    }
+
+    public void back(View view){
+        Intent myIntent = new Intent(GroupActivity.this, MainActivity.class);
+
+        GroupActivity.this.startActivity(myIntent);
     }
 
     public void addUserToGroup(View view){
@@ -111,7 +128,37 @@ public class GroupActivity extends AppCompatActivity {
             }
         });
     }
+    class SetGame extends AsyncTask<Void, Void, Boolean> {
 
+        private final String title;
+        SetGame(String title) {
+            this.title=title;
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/user/group/name?name=" + title);
+            String responsee = null;
+            try {
+                responsee = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Type listType = new TypeToken<ArrayList<String>>(){}.getType();
+            UsefullValues.userInGroup = new Gson().fromJson(responsee, listType);
+
+
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+
+
+
+        }
+    }
     class GetInfo extends AsyncTask<Void, Void, Boolean> {
 
         private final String title;

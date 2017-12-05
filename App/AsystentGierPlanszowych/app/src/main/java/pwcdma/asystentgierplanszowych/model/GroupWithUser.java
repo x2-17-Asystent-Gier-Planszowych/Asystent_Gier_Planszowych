@@ -21,7 +21,7 @@ public class GroupWithUser {
         this.about = about;
     }
 
-    List<User> list;
+    List<Test> list;
 
     public int getId() {
         return id;
@@ -47,11 +47,11 @@ public class GroupWithUser {
         this.active = active;
     }
 
-    public List<User> getList() {
+    public List<Test> getList() {
         return list;
     }
 
-    public void setList(List<User> list) {
+    public void setList(List<Test> list) {
         this.list = list;
     }
 }

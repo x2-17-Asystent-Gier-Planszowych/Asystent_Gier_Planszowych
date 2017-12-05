@@ -111,14 +111,17 @@ public class GroupActivity extends AppCompatActivity {
         Random r = new Random();
         int i1 = r.nextInt(Content.GAMES.size() - 1) + 1;
 
-       /* SetGame setGame = new SetGame(Content.GAMES.get(i1).getContent());
-        setGame.execute((Void) null);*/
-       setText(Content.GAMES.get(i1).getContent());
+        SetGame setGame = new SetGame(Content.GAMES.get(i1).getContent());
+        setGame.execute((Void) null);
+        //game_rand.setText(Content.GAMES.get(i1).getContent());
+        //setTextGame(Content.GAMES.get(i1).getContent());
 
     }
-    public void setText(String title){
-        game_rand.setText(title);
+   public void setTextGame(String title){
+       game_rand.setText(title);
     }
+
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -174,7 +177,7 @@ public class GroupActivity extends AppCompatActivity {
         protected void onPostExecute(final Boolean success) {
             if(success){
                 Toast.makeText(GroupActivity.this, title, Toast.LENGTH_LONG).show();
-                setText(title);
+                //setText(title);
 
             }
 
@@ -210,7 +213,7 @@ public class GroupActivity extends AppCompatActivity {
         protected void onPostExecute(final Boolean success) {
             if(success){
                 Toast.makeText(GroupActivity.this, title, Toast.LENGTH_LONG).show();
-                setText(title);
+                setTextGame(title);
 
             }
 

@@ -76,6 +76,14 @@
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
+                <Button
+                    android:id="@+id/rand_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAccentLight"
+                    android:text="Wylosuj Gre"
+                    android:textColor="@color/white" />
+
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="match_parent"
@@ -85,10 +93,21 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/about_game"
+                <EditText
+                    android:id="@+id/edit_about_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="91dp"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+                <Button
+                    android:id="@+id/edit_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAccentLight"
+                    android:onClick="changeAbout"
+                    android:text="Edytuj notatki"
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/textView13"
@@ -110,17 +129,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/rand_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/colorAccentLight"
-                        android:onClick="randGame"
-                        android:text="Wylosuj Gre"
-                        android:textColor="@color/white" />
 
                     <Button
                         android:id="@+id/add_button"

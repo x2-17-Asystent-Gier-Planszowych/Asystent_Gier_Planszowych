@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.StringTokenizer;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.content.Content;
@@ -43,6 +45,7 @@ public class GroupActivity extends AppCompatActivity {
     private TextView group_label;
     private TextView game_rand;
     private TextView gamers;
+    private EditText about;
     private  String value;
     private View mProgressView;
     private LinearLayout linearLayout;
@@ -54,6 +57,7 @@ public class GroupActivity extends AppCompatActivity {
         group_label = (TextView) findViewById(R.id.group_label);
         game_rand = (TextView) findViewById(R.id.Game_rand);
         gamers = (TextView) findViewById(R.id.gamers);
+        about = (EditText) findViewById(R.id.edit_about_text);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             value = extras.getString("nameGroup");
@@ -97,12 +101,24 @@ public class GroupActivity extends AppCompatActivity {
         myIntent.putExtra("nameGroup", value);
         GroupActivity.this.startActivity(myIntent);
     }
+
+
+    public void changeAbout(View view){
+        about.getText();
+    }
+
     public void randGame(View view) {
         Random r = new Random();
         int i1 = r.nextInt(Content.GAMES.size() - 1) + 1;
-        game_rand.setText(Content.GAMES.get(i1).getContent());
-    }
 
+       /* SetGame setGame = new SetGame(Content.GAMES.get(i1).getContent());
+        setGame.execute((Void) null);*/
+       setText(Content.GAMES.get(i1).getContent());
+
+    }
+    public void setText(String title){
+        game_rand.setText(title);
+    }
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -128,6 +144,43 @@ public class GroupActivity extends AppCompatActivity {
             }
         });
     }
+
+    class SetAbout extends AsyncTask<Void, Void, Boolean> {
+
+        private final String title;
+        SetAbout(String title) {
+            this.title=title;
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/group/setGame?nameGroup=" + value + "&nameGame=" + title);
+            String responsee = null;
+            try {
+                responsee = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if(responsee.equals("Succes")){
+                return true;
+            }
+
+
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            if(success){
+                Toast.makeText(GroupActivity.this, title, Toast.LENGTH_LONG).show();
+                setText(title);
+
+            }
+
+
+        }
+    }
     class SetGame extends AsyncTask<Void, Void, Boolean> {
 
         private final String title;
@@ -138,27 +191,35 @@ public class GroupActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/user/group/name?name=" + title);
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/group/setGame?nameGroup=" + value + "&nameGame=" + title);
             String responsee = null;
             try {
                 responsee = connection.getResponse();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Type listType = new TypeToken<ArrayList<String>>(){}.getType();
-            UsefullValues.userInGroup = new Gson().fromJson(responsee, listType);
+           if(responsee.equals("Succes")){
+               return true;
+           }
 
 
-            return true;
+            return false;
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
+            if(success){
+                Toast.makeText(GroupActivity.this, title, Toast.LENGTH_LONG).show();
+                setText(title);
 
+            }
 
 
         }
     }
+
+
+
     class GetInfo extends AsyncTask<Void, Void, Boolean> {
 
         private final String title;

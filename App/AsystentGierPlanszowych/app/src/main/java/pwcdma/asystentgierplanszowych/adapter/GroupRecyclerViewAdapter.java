@@ -1,14 +1,22 @@
 package pwcdma.asystentgierplanszowych.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import pwcdma.asystentgierplanszowych.activity.AddGameActivity;
+import pwcdma.asystentgierplanszowych.activity.AddGroupActivity;
+import pwcdma.asystentgierplanszowych.activity.GroupActivity;
+import pwcdma.asystentgierplanszowych.activity.MainActivity;
 import pwcdma.asystentgierplanszowych.fragment.GroupsFragment.OnListFragmentInteractionListener;
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.content.Content.Item;
+import pwcdma.asystentgierplanszowych.model.Group;
 
 import java.util.List;
 
@@ -43,6 +51,12 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               TextView w = (TextView) v.findViewById(R.id.content);
+                Intent intent = new Intent(v.getContext(),GroupActivity.class);
+                intent.putExtra("nameGroup", w.getText().toString());
+
+                v.getContext().startActivity(intent);
+
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.

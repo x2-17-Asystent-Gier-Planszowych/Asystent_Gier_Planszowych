@@ -62,4 +62,9 @@
     <string name="customDiceListItemResultLabel">Wynik:</string>
     <string name="diceNotPickedText">nie wybrano kostki</string>
     <string name="diceShowHistoryText">Zobacz historię rzutów</string>
+    <string name="addUser">Dodaj użytkownika</string>
+    <string name="add">Dodaj</string>
+    <string name="added_user">Dodano użytkownika</string>
+    <string name="add_user_error">Błąd - nie można dodać użytkownika</string>
+    <string name="chuj"> kutas</string>
 </resources>

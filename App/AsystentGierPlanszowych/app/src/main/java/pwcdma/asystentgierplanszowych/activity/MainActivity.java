@@ -1,25 +1,67 @@
 package pwcdma.asystentgierplanszowych.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Handler;
+import android.os.NetworkOnMainThreadException;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.net.ConnectException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.adapter.MainActivityViewPagerAdapter;
+import pwcdma.asystentgierplanszowych.content.Content;
 import pwcdma.asystentgierplanszowych.model.CustomViewPager;
+import pwcdma.asystentgierplanszowych.model.Game;
+import pwcdma.asystentgierplanszowych.model.Group;
+import pwcdma.asystentgierplanszowych.model.GroupWithUser;
+import pwcdma.asystentgierplanszowych.model.Test;
+import pwcdma.asystentgierplanszowych.model.UsefullValues;
+import pwcdma.asystentgierplanszowych.model.User;
+import pwcdma.asystentgierplanszowych.model.UserInGroup;
+import pwcdma.asystentgierplanszowych.server.GroupControllerSerwer;
+import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
 public class MainActivity extends AppCompatActivity {
     // TODO: 23.10.2017  ponaprawiać
     private final String TAG = MainActivity.class.getSimpleName();
-
+    private ProgressDialog progress;
     private static final String TAB = "pwcdma.asystentgierplanszowych.tab";
     private CustomViewPager mVpFragmentPager;
     private MainActivityViewPagerAdapter mPagerAdapter;
+    private ImageView smutek;
+
     private TabLayout mTlNavBar;
     private int[] mNavBarIcons = {
             R.drawable.bottom_navigation_bar_group_selector,
@@ -32,8 +74,10 @@ public class MainActivity extends AppCompatActivity {
             "Przybornik",
             "Profil"
     };
-
-
+    private LinearLayout tab_host;
+    private UserAddToGroup userAddToGroup;
+    private View mProgressView;
+    private WaitFroDate waitFroDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: ");
@@ -43,12 +87,80 @@ public class MainActivity extends AppCompatActivity {
         setViewPager();
         setTabLayout();
         setFragmentBarIcons();
+        smutek = (ImageView) findViewById(R.id.smuteczek);
+        tab_host =(LinearLayout) findViewById(R.id.tab_host);
+        mProgressView = findViewById(R.id.login_progress2);
+
+        SharedPreferences sp1=this.getSharedPreferences("Login", MODE_PRIVATE);
+
+        UsefullValues.name= sp1.getString("loginlogin", null);
+       // Toast.makeText(MainActivity.this, UsefullValues.name, Toast.LENGTH_LONG).show();
+     new Thread(new Runnable() {
+            public Handler mHandler;
+            @Override
+            public void run() {
+                while(true) {
+                    try {
+                    userAddToGroup = new UserAddToGroup();
+                    userAddToGroup.execute((Void) null);
+                        Thread.sleep(3000);
+                    userAddToGroup.cancel(true);
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+
+        UsefullValues.userInGroup.add("");
         if (savedInstanceState != null) {
             TabLayout.Tab tab = mTlNavBar.getTabAt(savedInstanceState.getInt(TAB));
             tab.select();
         }
+
+        showProgress(true);
+        waitFroDate = new WaitFroDate();
+        waitFroDate.execute((Void) null);
+
     }
 
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    private void showProgress(final boolean show) {
+        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
+        // for very easy animations. If available, use these APIs to fade-in
+        // the progress spinner.
+        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
+        mVpFragmentPager.setVisibility(show ? View.GONE : View.VISIBLE);
+        mVpFragmentPager.animate().setDuration(shortAnimTime).alpha(
+                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mVpFragmentPager.setVisibility(show ? View.GONE : View.VISIBLE);
+            }
+        });
+
+        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        mProgressView.animate().setDuration(shortAnimTime).alpha(
+                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            }
+        });
+    }
+
+    private void showImage(){
+        mVpFragmentPager.setVisibility(true ? View.GONE : View.VISIBLE);
+        smutek.setVisibility(true ? View.VISIBLE : View.VISIBLE);
+    }
+    private void dontShowImage(){
+        mVpFragmentPager.setVisibility(true ? View.VISIBLE : View.VISIBLE);
+        smutek.setVisibility(true ? View.GONE : View.VISIBLE);
+    }
     @Override
     protected void onSaveInstanceState(Bundle state) {
         Log.d(TAG, "onSaveInstanceState: ");
@@ -76,12 +188,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 Log.d(TAG, "onPageScrolled: " + position);
+
             }
 
             @Override
             public void onPageSelected(int position) {
-                Log.d(TAG, "onPageSelected: " + position);
+
+                UsefullValues.pageSelected = position;
+                if(position==1)
+                    smutek.setVisibility(true ? View.GONE : View.VISIBLE);
+                if(position==0 && Content.GROUPS.size()<1)
+                    smutek.setVisibility(true ? View.VISIBLE : View.VISIBLE);
+                Log.d(TAG, "onPageSelected: " +  UsefullValues.pageSelected);
             }
+
+
 
             @Override
             public void onPageScrollStateChanged(int state) {
@@ -89,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void setTabLayout() {
         Log.d(TAG, "setTabLayout: ");
@@ -104,9 +226,248 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    public void kurwa(View view){
+        /* TODO */
+        if(UsefullValues.pageSelected == 1) {
+            Intent myIntent = new Intent(MainActivity.this, AddGameActivity.class);
+            MainActivity.this.startActivity(myIntent);
+        }else if(UsefullValues.pageSelected == 0){
+            Intent myIntent = new Intent(MainActivity.this, AddGroupActivity.class);
+            MainActivity.this.startActivity(myIntent);
+        }
+    }
+
+
+
+    public void refresh(View view) {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+        showProgress(true);
+        waitFroDate = new WaitFroDate();
+        waitFroDate.execute((Void) null);
+    }
+
+    public void Filtr(View view) {
+        if(UsefullValues.pageSelected == 1) {
+            Intent myIntent = new Intent(MainActivity.this, TagActivity.class);
+            MainActivity.this.startActivity(myIntent);
+        }
+    }
+
+    class WaitFroDate extends AsyncTask<Void, Void, Boolean> {
+
+        WaitFroDate(){}
+
+
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            if(UsefullValues.isTaged) {
+                ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/get/user/info?name=" + UsefullValues.name);
+                String responsee = null;
+
+                try {
+                    responsee = connection.getResponse();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Type listType = new TypeToken<ArrayList<User>>() {
+                }.getType();
+                List<User> userList = new Gson().fromJson(responsee, listType);
+                UsefullValues.name = userList.get(0).getUsername();
+                UsefullValues.email = userList.get(0).getEmail();
+                UsefullValues.about = userList.get(0).getAbout();
+
+                gamesGet();
+
+                try {
+                    groupGet();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                userGet();
+                return true;
+            }
+            return true;
+        }
+
+
+        protected void gamesGet() {
+
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/games");
+            String responsee = null;
+            try {
+                responsee = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Content.clearList(Content.GAMES, Content.GAME_MAP);
+            Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
+            List<Game> gamesListFromServer = new Gson().fromJson(responsee, listType);
+            int i = 0;
+            for(Game g : gamesListFromServer){
+                i++;
+                Content.Item item = new Content.Item(String.valueOf(i),g.getName(),"",null);
+                Content.addGame(item);
+            }
+        }
+
+        protected void userGet() {
+
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/get/users");
+            String responsee = null;
+            try {
+                responsee = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Content.USER.clear();
+            Type listType = new TypeToken<ArrayList<User>>(){}.getType();
+            List<User> userListFromSerwer = new Gson().fromJson(responsee, listType);
+            for(User g : userListFromSerwer){
+                Content.addUser(g.getUsername());
+            }
+        }
+
+
+
+        protected void groupGet() throws JSONException {
+
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/getGroupsForUser?name=" + UsefullValues.name);
+            String responsee = null;
+            try {
+                responsee = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Type listType = new TypeToken<ArrayList<Group>>(){}.getType();
+            List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);
+            Content.clearList(Content.GROUPS, Content.GROUP_MAP);
+
+
+            int i = 0;
+            for(Group g : gamesListFromServer){
+                Content.Item item = new Content.Item(String.valueOf(++i), g.getGroupName(),"",null);
+                Content.addGroup(item);
+            }
+
+            for(Content.Item g:Content.GROUPS) {
+                ServerConnection connection2 = new ServerConnection(ServerConnection.SERVER_URL + "/user/group/name?name=" + g.getContent());
+                String respone2 = "";
+
+                try {
+                    respone2 = connection2.getResponse();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Type listString = new TypeToken<ArrayList<Test>>() {
+                }.getType();
+                List<Test> userList = new Gson().fromJson(respone2, listString);
+                GroupWithUser gwu = new GroupWithUser();
+                gwu.setGroupName(g.getContent());
+                gwu.setList(userList);
+                Content.GroupWithUser.add(gwu);
+            }
+
+        }
+
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            if(success) {
+                showProgress(false);
+                int index =0;
+                if(Content.GROUPS.size()<1){
+                    showImage();
+                }else{
+                    dontShowImage();
+                }
+                Log.d("asda",Integer.toString(Content.GROUPS.size()));
+                for(Content.Item g:Content.GROUPS) {
+                    ServerConnection connection2 = new ServerConnection(ServerConnection.SERVER_URL + "/group/getGame?nameGroup=" + g.getContent());
+                    String respone2 = "";
+
+
+                  /*  try {
+                        Toast.makeText(MainActivity.this,  connection2.getResponse(), Toast.LENGTH_SHORT).show();
+                    } catch (NetworkOnMainThreadException exception) {
+                        exception.printStackTrace();
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }*/
+                    Content.GroupWithUser.get(index).setGame(respone2);
+                    index++;
+                    //Toast.makeText(MainActivity.this, respone2, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+        }
+    }
+
+    class UserAddToGroup extends AsyncTask<Void, Void, Boolean> {
+
+        private String respone="";
+        private Context cont;
+        UserAddToGroup() {
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/group/useringroup");
+
+            try {
+                respone = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Type listType = new TypeToken<ArrayList<UserInGroup>>(){}.getType();
+            List<UserInGroup> gamesListFromServer = new Gson().fromJson(respone, listType);
+            Log.d("co jest",Integer.toString(gamesListFromServer.size()));
+            Log.d("sizeoflist",Integer.toString(Content.sizeOfList));
+            Log.d("name",UsefullValues.name);
+            if(gamesListFromServer.size()>Content.sizeOfList){
+                for (int i = Content.sizeOfList;i<gamesListFromServer.size()+1;i++
+                        ) {
+                    if(gamesListFromServer.get(i--).getNameUser().equals(UsefullValues.name)){
+                        Log.d("sizeoflist",Integer.toString(Content.sizeOfList));
+                        Content.sizeOfList = gamesListFromServer.size();
+                        return true;
+                    }
+
+                }
+            }
+
+            return false;
+
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+           // Toast.makeText(MainActivity.this, Integer.toString( Content.sizeOfList), Toast.LENGTH_SHORT).show();
+            showProgress(false);
+
+            if(success){
+                Toast.makeText(MainActivity.this, "Dodano cię do grupy", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+        @Override
+        protected void onCancelled() {
+
+        }
+
     }
 }

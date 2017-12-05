@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import pwcdma.asystentgierplanszowych.adapter.GameRecyclerViewAdapter;
 import pwcdma.asystentgierplanszowych.adapter.GroupRecyclerViewAdapter;
 import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.content.Content;
@@ -55,7 +56,7 @@ public class GroupsFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new GroupRecyclerViewAdapter(Content.ITEMS, mListener));
+            recyclerView.setAdapter(new GroupRecyclerViewAdapter(Content.GROUPS, mListener));
         }
         return view;
     }

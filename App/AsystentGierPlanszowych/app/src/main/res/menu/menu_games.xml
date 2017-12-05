@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="pwcdma.asystentgierplanszowych.activity.MainActivity">
+    <item android:id="@+id/resource_name"
+        android:title="string"
+        android:titleCondensed="string"
+        android:onClick="method name"
+        />
+    <item
+        android:id="@+id/action_favorite"
+        android:icon="@drawable/button_primary_selector"
+        android:title="@string/app_name"
+        app:showAsAction="ifRoom"/>
+
+
+</menu>

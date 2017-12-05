@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.LoaderManager;
 import android.content.CursorLoader;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -130,14 +131,14 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
             return true;
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        @TargetApi(Build.VERSION_CODES.M)
-                        public void onClick(View v) {
-                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-                        }
-                    });
+//            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+//                    .setAction(android.R.string.ok, new View.OnClickListener() {
+//                        @Override
+//                        @TargetApi(Build.VERSION_CODES.M)
+//                        public void onClick(View v) {
+//                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
+//                        }
+//                    });
         } else {
             requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
         }
@@ -185,6 +186,12 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         String password = mPasswordView.getText().toString();
         String confirmPassword = mConfirmPasswordView.getText().toString();
 
+        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
+        SharedPreferences.Editor Ed=sp.edit();
+
+
+        //Ed.putString("Psw",Value);
+
         boolean cancel = false;
         View focusView = null;
 
@@ -229,7 +236,11 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
+            Ed.clear();
+            Ed.putString("loginlogin",username);
+            Ed.commit();
             showProgress(true);
+
             signUpTask = new UserSignUpTask(username, email, password);
             signUpTask.execute((Void) null);
         }
@@ -343,7 +354,6 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
                 String response = connection.getResponse();
                 return response.equals("Succes");
             } catch (IOException e){
-                Toast.makeText(SignUpActivity.this, R.string.connection_error, Toast.LENGTH_LONG).show();
                 return false;
             }
         }

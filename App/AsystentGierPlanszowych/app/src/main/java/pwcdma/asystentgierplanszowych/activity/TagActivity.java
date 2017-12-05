@@ -169,11 +169,11 @@ public class TagActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String str = "";
 
-                for (int i=0; i<items.size(); i++){
-                    if (items.get(i).isChecked()){
-                        str +=items.get(i).getItemString();
+                for (int i=0; i<items.size(); i++) {
+                    if (items.get(i).isChecked()) {
+                        str += items.get(i).getItemString();
                     }
-
+                }
                 if(str.equals("Bitewna") || str.equals("Ekonomiczna") || str.equals("Karciana") || str.equals("Logiczna") || str.equals("MMO") || str.equals("Online") || str.equals("Strategiczna")){
                     waitFroDate = new WaitFroDate(str,TagActivity.this );
                     waitFroDate.execute((Void) null);
@@ -199,7 +199,7 @@ public class TagActivity extends AppCompatActivity {
 
 
 
-            }
+
         });
     }
 

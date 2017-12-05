@@ -159,18 +159,18 @@ public class StartActivity extends AppCompatActivity implements StartFragment.On
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/group/useringroup");
-
-            try {
-                respone = connection.getResponse();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Type listType = new TypeToken<ArrayList<UserInGroup>>(){}.getType();
-            List<UserInGroup> gamesListFromServer = new Gson().fromJson(respone, listType);
-            Content.sizeOfList = gamesListFromServer.size();
-
-            return false;
+//            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/group/useringroup");
+//
+//            try {
+//                respone = connection.getResponse();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            Type listType = new TypeToken<ArrayList<UserInGroup>>(){}.getType();
+//            List<UserInGroup> gamesListFromServer = new Gson().fromJson(respone, listType);
+//            Content.sizeOfList = gamesListFromServer.size();
+//
+               return false;
 
         }
 

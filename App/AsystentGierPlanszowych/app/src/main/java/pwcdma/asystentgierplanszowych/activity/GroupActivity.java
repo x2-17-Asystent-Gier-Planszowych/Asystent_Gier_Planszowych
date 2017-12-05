@@ -49,6 +49,7 @@ public class GroupActivity extends AppCompatActivity {
     private  String value;
     private View mProgressView;
     private LinearLayout linearLayout;
+    private LinearLayout layout;
     private GetInfo getInfo;
     private boolean isFinished=false;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,7 +58,7 @@ public class GroupActivity extends AppCompatActivity {
         group_label = (TextView) findViewById(R.id.group_label);
         game_rand = (TextView) findViewById(R.id.Game_rand);
         gamers = (TextView) findViewById(R.id.gamers);
-        about = (EditText) findViewById(R.id.edit_about_text);
+        layout = (LinearLayout) findViewById(R.id.layout);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             value = extras.getString("nameGroup");
@@ -66,14 +67,13 @@ public class GroupActivity extends AppCompatActivity {
 
         mProgressView = findViewById(R.id.login_progress3);
         linearLayout = (LinearLayout) findViewById(R.id.tab);
+        SetAbout setAbout = new SetAbout(value);
+        setAbout.execute((Void) null);
 
-        if(isFinished) {
-            showProgress(true);
-            getInfo = new GetInfo(value);
-            getInfo.execute((Void) null);
-        }else{
-            showProgress(false);
-        }
+        showProgress(true);
+       // getInfo = new GetInfo(value);
+       // getInfo.execute((Void) null);
+        Toast.makeText(GroupActivity.this,  UsefullValues.group, Toast.LENGTH_SHORT).show();
         int indexOfGroup=0;
         group_label.setText("Grupa \n" + value);
         for(int i =0 ;i<Content.GroupWithUser.size();i++){
@@ -88,6 +88,8 @@ public class GroupActivity extends AppCompatActivity {
                 users = users + s.getLogin() + ", " ;
             }
         gamers.setText(users);
+
+
     }
 
     public void back(View view){
@@ -129,12 +131,12 @@ public class GroupActivity extends AppCompatActivity {
         // the progress spinner.
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-        linearLayout.setVisibility(show ? View.GONE : View.VISIBLE);
-        linearLayout.animate().setDuration(shortAnimTime).alpha(
+        layout.setVisibility(show ? View.GONE : View.VISIBLE);
+        layout.animate().setDuration(shortAnimTime).alpha(
                 show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                linearLayout.setVisibility(show ? View.GONE : View.VISIBLE);
+                layout.setVisibility(show ? View.GONE : View.VISIBLE);
             }
         });
 
@@ -158,26 +160,29 @@ public class GroupActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/group/setGame?nameGroup=" + value + "&nameGame=" + title);
-            String responsee = null;
+            ServerConnection connection2 = new ServerConnection(ServerConnection.SERVER_URL + "/group/getGame?nameGroup=" +  UsefullValues.group);
+            String respone2 = "";
+
             try {
-                responsee = connection.getResponse();
+                respone2=connection2.getResponse();
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-            if(responsee.equals("Succes")){
+                return true;
+            }catch (RuntimeException e){
                 return true;
             }
-
-
-            return false;
+            UsefullValues.game=respone2;
+            return true;
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
+
             if(success){
-                Toast.makeText(GroupActivity.this, title, Toast.LENGTH_LONG).show();
-                //setText(title);
+
+                showProgress(false);
+                setTextGame(UsefullValues.game);
+                Toast.makeText(GroupActivity.this, title, Toast.LENGTH_SHORT).show();
 
             }
 
@@ -224,7 +229,7 @@ public class GroupActivity extends AppCompatActivity {
 
 
     class GetInfo extends AsyncTask<Void, Void, Boolean> {
-
+        private String titleGameFromSerwer;
         private final String title;
         GetInfo(String title) {
             this.title=title;
@@ -234,9 +239,18 @@ public class GroupActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
             ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/user/group/name?name=" + title);
+            ServerConnection connection2 = new ServerConnection(ServerConnection.SERVER_URL + " /group/getGame?nameGroup=" + title);
+
             String responsee = null;
             try {
                 responsee = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            try {
+                titleGameFromSerwer = connection2.getResponse();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -249,6 +263,7 @@ public class GroupActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(final Boolean success) {
+
             Intent intent = getIntent();
             finish();
             startActivity(intent);

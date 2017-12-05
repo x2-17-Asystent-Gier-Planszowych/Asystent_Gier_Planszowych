@@ -23,6 +23,16 @@ public class GroupWithUser {
 
     List<Test> list;
 
+    public String getGame() {
+        return game;
+    }
+
+    public void setGame(String game) {
+        this.game = game;
+    }
+
+    String game;
+
     public int getId() {
         return id;
     }

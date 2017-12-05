@@ -52,17 +52,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ProgressBar
-            android:id="@+id/login_progress2"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:indeterminateDrawable="@drawable/spinning_dice"
-            android:visibility="gone" />
-
         <LinearLayout
 
             android:id="@+id/tab_host"
@@ -78,6 +67,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/smuteczek"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_groups_no_groups_logo" />
+
+                <ProgressBar
+                    android:id="@+id/login_progress2"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:indeterminateDrawable="@drawable/spinning_dice" />
 
                 <pwcdma.asystentgierplanszowych.model.CustomViewPager
                     android:id="@+id/mainActivityViewPager"

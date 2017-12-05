@@ -54,6 +54,10 @@ import pwcdma.asystentgierplanszowych.R;
 import pwcdma.asystentgierplanszowych.content.Content;
 import pwcdma.asystentgierplanszowych.model.Game;
 import pwcdma.asystentgierplanszowych.model.Group;
+import pwcdma.asystentgierplanszowych.model.GroupWithUser;
+import pwcdma.asystentgierplanszowych.model.Test;
+import pwcdma.asystentgierplanszowych.model.UsefullValues;
+import pwcdma.asystentgierplanszowych.model.UserInGroup;
 import pwcdma.asystentgierplanszowych.server.GroupControllerSerwer;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
@@ -402,16 +406,43 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
         protected void groupGet() {
-            GroupControllerSerwer gf = new GroupControllerSerwer();
-            String responsee = gf.getAllGroups();
-
-
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/getGroupsForUser?name=" + UsefullValues.name);
+            // ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/getUsersForGroupJSON?name=" + UsefullValues.name);
+            String responsee = null;
+            try {
+                responsee = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             Type listType = new TypeToken<ArrayList<Group>>(){}.getType();
             List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);
+            Content.clearList(Content.GROUPS, Content.GROUP_MAP);
+
+
+            int i = 0;
             for(Group g : gamesListFromServer){
-                Content.Item item = new Content.Item(Integer.toString(g.getId()), g.getGroupName(),"",null);
+                Content.Item item = new Content.Item(String.valueOf(++i), g.getGroupName(),"",null);
                 Content.addGroup(item);
             }
+
+            for(Content.Item g:Content.GROUPS) {
+                ServerConnection connection2 = new ServerConnection(ServerConnection.SERVER_URL + "/user/group/name?name=" + g.getContent());
+                String respone2 = "";
+
+                try {
+                    respone2 = connection2.getResponse();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Type listString = new TypeToken<ArrayList<Test>>() {
+                }.getType();
+                List<Test> userList = new Gson().fromJson(respone2, listString);
+                GroupWithUser gwu = new GroupWithUser();
+                gwu.setGroupName(g.getContent());
+                gwu.setList(userList);
+                Content.GroupWithUser.add(gwu);
+            }
+
         }
 
 

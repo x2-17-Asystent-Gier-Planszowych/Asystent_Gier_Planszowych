@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
+import android.os.NetworkOnMainThreadException;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -58,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAB = "pwcdma.asystentgierplanszowych.tab";
     private CustomViewPager mVpFragmentPager;
     private MainActivityViewPagerAdapter mPagerAdapter;
+    private ImageView smutek;
+
     private TabLayout mTlNavBar;
     private int[] mNavBarIcons = {
             R.drawable.bottom_navigation_bar_group_selector,
@@ -83,15 +87,15 @@ public class MainActivity extends AppCompatActivity {
         setViewPager();
         setTabLayout();
         setFragmentBarIcons();
-
+        smutek = (ImageView) findViewById(R.id.smuteczek);
         tab_host =(LinearLayout) findViewById(R.id.tab_host);
         mProgressView = findViewById(R.id.login_progress2);
 
         SharedPreferences sp1=this.getSharedPreferences("Login", MODE_PRIVATE);
 
         UsefullValues.name= sp1.getString("loginlogin", null);
-        Toast.makeText(MainActivity.this, UsefullValues.name, Toast.LENGTH_LONG).show();
-     new Thread(new Runnable() {
+       // Toast.makeText(MainActivity.this, UsefullValues.name, Toast.LENGTH_LONG).show();
+     /*new Thread(new Runnable() {
             public Handler mHandler;
             @Override
             public void run() {
@@ -99,14 +103,15 @@ public class MainActivity extends AppCompatActivity {
                     try {
                     userAddToGroup = new UserAddToGroup();
                     userAddToGroup.execute((Void) null);
-                    Thread.sleep(3000);
+                        Thread.sleep(3000);
                     userAddToGroup.cancel(true);
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
-        }).start();
+        }).start();*/
 
 
         UsefullValues.userInGroup.add("");
@@ -129,12 +134,12 @@ public class MainActivity extends AppCompatActivity {
         // the progress spinner.
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-        tab_host.setVisibility(show ? View.GONE : View.VISIBLE);
-        tab_host.animate().setDuration(shortAnimTime).alpha(
+        mVpFragmentPager.setVisibility(show ? View.GONE : View.VISIBLE);
+        mVpFragmentPager.animate().setDuration(shortAnimTime).alpha(
                 show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                tab_host.setVisibility(show ? View.GONE : View.VISIBLE);
+                mVpFragmentPager.setVisibility(show ? View.GONE : View.VISIBLE);
             }
         });
 
@@ -148,6 +153,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void showImage(){
+        mVpFragmentPager.setVisibility(true ? View.GONE : View.VISIBLE);
+        smutek.setVisibility(true ? View.VISIBLE : View.VISIBLE);
+    }
+    private void dontShowImage(){
+        mVpFragmentPager.setVisibility(true ? View.VISIBLE : View.VISIBLE);
+        smutek.setVisibility(true ? View.GONE : View.VISIBLE);
+    }
     @Override
     protected void onSaveInstanceState(Bundle state) {
         Log.d(TAG, "onSaveInstanceState: ");
@@ -182,6 +195,10 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
 
                 UsefullValues.pageSelected = position;
+                if(position==1)
+                    smutek.setVisibility(true ? View.GONE : View.VISIBLE);
+                if(position==0 && Content.GROUPS.size()<1)
+                    smutek.setVisibility(true ? View.VISIBLE : View.VISIBLE);
                 Log.d(TAG, "onPageSelected: " +  UsefullValues.pageSelected);
             }
 
@@ -270,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
                 UsefullValues.about = userList.get(0).getAbout();
 
                 gamesGet();
+
                 try {
                     groupGet();
                 } catch (JSONException e) {
@@ -323,11 +341,7 @@ public class MainActivity extends AppCompatActivity {
 
         protected void groupGet() throws JSONException {
 
-            /*GroupControllerSerwer gf = new GroupControllerSerwer();
-            String responsee = gf.getAllGroups();*/
-
             ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/getGroupsForUser?name=" + UsefullValues.name);
-           // ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/getUsersForGroupJSON?name=" + UsefullValues.name);
             String responsee = null;
             try {
                 responsee = connection.getResponse();
@@ -344,7 +358,6 @@ public class MainActivity extends AppCompatActivity {
                 Content.Item item = new Content.Item(String.valueOf(++i), g.getGroupName(),"",null);
                 Content.addGroup(item);
             }
-
 
             for(Content.Item g:Content.GROUPS) {
                 ServerConnection connection2 = new ServerConnection(ServerConnection.SERVER_URL + "/user/group/name?name=" + g.getContent());
@@ -364,13 +377,36 @@ public class MainActivity extends AppCompatActivity {
                 Content.GroupWithUser.add(gwu);
             }
 
-
         }
 
 
         @Override
         protected void onPostExecute(final Boolean success) {
             if(success) {
+                showProgress(false);
+                int index =0;
+                if(Content.GROUPS.size()<1){
+                    showImage();
+                }else{
+                    dontShowImage();
+                }
+                Log.d("asda",Integer.toString(Content.GROUPS.size()));
+                for(Content.Item g:Content.GROUPS) {
+                    ServerConnection connection2 = new ServerConnection(ServerConnection.SERVER_URL + "/group/getGame?nameGroup=" + g.getContent());
+                    String respone2 = "";
+
+
+                  /*  try {
+                        Toast.makeText(MainActivity.this,  connection2.getResponse(), Toast.LENGTH_SHORT).show();
+                    } catch (NetworkOnMainThreadException exception) {
+                        exception.printStackTrace();
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }*/
+                    Content.GroupWithUser.get(index).setGame(respone2);
+                    index++;
+                    //Toast.makeText(MainActivity.this, respone2, Toast.LENGTH_SHORT).show();
+                }
             }
         }
 
@@ -389,7 +425,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-                ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/group/useringroup");
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/group/useringroup");
 
             try {
                 respone = connection.getResponse();
@@ -398,10 +434,14 @@ public class MainActivity extends AppCompatActivity {
             }
             Type listType = new TypeToken<ArrayList<UserInGroup>>(){}.getType();
             List<UserInGroup> gamesListFromServer = new Gson().fromJson(respone, listType);
+            Log.d("co jest",Integer.toString(gamesListFromServer.size()));
+            Log.d("sizeoflist",Integer.toString(Content.sizeOfList));
+            Log.d("name",UsefullValues.name);
             if(gamesListFromServer.size()>Content.sizeOfList){
-                for (int i = Content.sizeOfList;i<gamesListFromServer.size();i++
+                for (int i = Content.sizeOfList;i<gamesListFromServer.size()+1;i++
                         ) {
                     if(gamesListFromServer.get(i).getNameUser().equals(UsefullValues.name)){
+                        Log.d("sizeoflist",Integer.toString(Content.sizeOfList));
                         Content.sizeOfList = gamesListFromServer.size();
                         return true;
                     }
@@ -415,10 +455,11 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(final Boolean success) {
-
+           // Toast.makeText(MainActivity.this, Integer.toString( Content.sizeOfList), Toast.LENGTH_SHORT).show();
             showProgress(false);
+
             if(success){
-            Toast.makeText(MainActivity.this, "Dodano cię do grupy", Toast.LENGTH_LONG).show();}
+            }
 
         }
 

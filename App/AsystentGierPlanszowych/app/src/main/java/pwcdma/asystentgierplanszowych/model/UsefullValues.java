@@ -10,6 +10,7 @@ import java.util.List;
 public class UsefullValues {
     public static String group;
     public static String name;
+    public static String game="";
     public static int pageSelected = 0;
     public static String email;
     public static String about;

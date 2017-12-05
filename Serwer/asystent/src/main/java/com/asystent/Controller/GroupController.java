@@ -75,6 +75,7 @@ public class GroupController {
     @RequestMapping(value = "/group/add", method = RequestMethod.GET)
     public String addGroup(@RequestParam(value="name") String name, @RequestParam(value="owner") String owner) {
         if(groupServices.addGroup(name,owner)!=0) {
+            groupServices.addUserToGroupByName(owner,name);
             return new String("Succes");
         }else{
             return new  String("Failed");

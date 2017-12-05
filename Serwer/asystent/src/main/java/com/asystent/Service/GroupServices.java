@@ -88,6 +88,8 @@ public class GroupServices {
         return jdbcTemplate.update("INSERT INTO \"Group_User\"(\"Group_Id\", \"User_Id\") VALUES (?,?)",new Object[]{idGroup,idUser});
     }
 
+
+
     public String getUserInGroup(int idGroup){
         Gson gson = new Gson();
         JsonArray jsonArray = new JsonArray();

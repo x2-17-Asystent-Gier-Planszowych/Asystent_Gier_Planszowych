@@ -62,4 +62,8 @@
     <string name="customDiceListItemResultLabel">Wynik:</string>
     <string name="diceNotPickedText">nie wybrano kostki</string>
     <string name="diceShowHistoryText">Zobacz historię rzutów</string>
+    <string name="table_zero_value">0</string>
+    <string name="table_hint">Mozesz w niej zapisywać punkty, statystyki, zmieniać nazwy kolumn oraz sumować wartości z wierszach.</string>
+    <string name="table_add_table">Dodaj tabelę</string>
+    <string name="table_sum">SUMA</string>
 </resources>

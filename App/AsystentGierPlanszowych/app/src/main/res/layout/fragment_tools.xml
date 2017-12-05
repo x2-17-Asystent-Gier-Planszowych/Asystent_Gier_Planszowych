@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimaryLight"
         android:padding="@dimen/toolsButtonPadding"
         android:src="@drawable/ic_dice_button" />
 
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/colorPrimaryLight"
+        android:background="@color/colorAccent"
         android:padding="@dimen/toolsButtonPadding"
         android:src="@drawable/ic_hourglass_button" />
 
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/colorAccentDark"
+        android:background="@color/colorPrimaryHelper"
         android:padding="@dimen/toolsButtonPadding"
         android:src="@drawable/ic_table_button"/>
 </LinearLayout>

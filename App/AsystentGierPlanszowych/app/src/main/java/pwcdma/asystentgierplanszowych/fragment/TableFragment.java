@@ -34,21 +34,8 @@ public class TableFragment extends Fragment {
     private FloatingActionButton mFabShowResultsTable;
     private FloatingActionButton mFabCreateTable;
     private FloatingActionButton mFabResizeTable;
-    private List<TextView> mTableTitles = new ArrayList<>();
-    private List<List<TextView>> mCells = new ArrayList<>();
-    private List<TextView> mRow01 = new ArrayList<>();
-    private List<TextView> mRow02 = new ArrayList<>();
-    private List<TextView> mRow03 = new ArrayList<>();
-    private List<TextView> mRow04 = new ArrayList<>();
-    private List<TextView> mRow05 = new ArrayList<>();
-    private List<TextView> mRow06 = new ArrayList<>();
-    private List<TextView> mRow07 = new ArrayList<>();
-    private List<TextView> mRow08 = new ArrayList<>();
-    private List<TextView> mRow09 = new ArrayList<>();
-    private List<TextView> mRow10 = new ArrayList<>();
-
+    private FloatingActionButton mFabClearTable;
     private List<TextView> mResults = new ArrayList<>();
-
     private List<TextView> mTableTitlesEdit = new ArrayList<>();
     private List<List<EditText>> mCellsEdit = new ArrayList<>();
     private List<EditText> mRowEdit01 = new ArrayList<>();
@@ -61,22 +48,16 @@ public class TableFragment extends Fragment {
     private List<EditText> mRowEdit08 = new ArrayList<>();
     private List<EditText> mRowEdit09 = new ArrayList<>();
     private List<EditText> mRowEdit10 = new ArrayList<>();
-    private String[] titles;
     private int cells[][];
-
-    // TODO: 26.11.2017 naprawic
     private int mNumberOfRows = 10;
     private int mNumberOfCols = 10;
     private int rowSum[] = new int[mNumberOfRows];
-    private int colSum[] = new int[mNumberOfCols];
-    private AlertDialog.Builder builder;
     private Dialog dialog;
     private NumberPicker mNumOfRowsPicker;
     private NumberPicker mNumOfColsPicker;
     private Button dialogButtonOk;
 
     private LinearLayout mEmptyTableLL;
-    private FrameLayout mFrameLayout;
 
     private static final String TAG = TableFragment.class.getSimpleName();
 
@@ -116,6 +97,7 @@ public class TableFragment extends Fragment {
         mSvEditTable.setVisibility(View.GONE);
         mFabResizeTable.setVisibility(View.GONE);
         mFabShowResultsTable.setVisibility(View.GONE);
+        mFabClearTable.setVisibility(View.GONE);
         cells = new int[mNumberOfRows][mNumberOfCols];
         return view;
     }
@@ -124,6 +106,7 @@ public class TableFragment extends Fragment {
         mFabResizeTable.setOnClickListener(onClickListenerResizeTable);
         mFabCreateTable.setOnClickListener(onClickListenerCreateTable);
         mFabShowResultsTable.setOnClickListener(onClickListenerShowResults);
+        mFabClearTable.setOnClickListener(onClickListenerClearTable);
     }
 
     private void getTexts() {
@@ -159,18 +142,35 @@ public class TableFragment extends Fragment {
         }
     };
 
+    private View.OnClickListener onClickListenerClearTable = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "onClick:ClearTable ");
+            clearTable();
+            mFam.close(true);
+        }
+    };
+
+
     private void createTable() {
         Log.d(TAG, "createTable: ");
         redrawTable();
         mFabResizeTable.setVisibility(View.VISIBLE);
         mFabCreateTable.setVisibility(View.GONE);
         mFabShowResultsTable.setVisibility(View.VISIBLE);
+        mFabClearTable.setVisibility(View.VISIBLE);
     }
 
     private void resizeTable() {
         Log.d(TAG, "resizeTable: ");
         clearSums();
         redrawTable();
+    }
+
+    private void clearTable() {
+        Log.d(TAG, "clearTable: ");
+        clearSums();
+        drawTable();
     }
 
     private void redrawTable() {
@@ -237,20 +237,20 @@ public class TableFragment extends Fragment {
     }
 
 
-    private void iterateTable(){
+    private void iterateTable() {
         Log.d(TAG, "iterateTable2: ");
-        for (int i = 0; i < mNumberOfRows; i++){
-           List<EditText> temp = mCellsEdit.get(i);
-           for (int j = 0 ; j < mNumberOfCols; j++){
-               Log.d(TAG, "iterateTable2: " + temp.get(j).getText().toString());
-               if(temp.get(j).getText().toString().equals("")){
-                   cells[i][j] = 0;
-               } else {
-                   cells[i][j] = Integer.parseInt(temp.get(j).getText().toString());
-                   Log.d(TAG, "iterateTable2: " + cells[i][j]);
-               }
-               rowSum[i] += cells[i][j];
-           }
+        for (int i = 0; i < mNumberOfRows; i++) {
+            List<EditText> temp = mCellsEdit.get(i);
+            for (int j = 0; j < mNumberOfCols; j++) {
+                Log.d(TAG, "iterateTable2: " + temp.get(j).getText().toString());
+                if (temp.get(j).getText().toString().equals("")) {
+                    cells[i][j] = 0;
+                } else {
+                    cells[i][j] = Integer.parseInt(temp.get(j).getText().toString());
+                    Log.d(TAG, "iterateTable2: " + cells[i][j]);
+                }
+                rowSum[i] += cells[i][j];
+            }
         }
     }
 
@@ -265,7 +265,7 @@ public class TableFragment extends Fragment {
 
     public void showRowResults() {
         Log.d(TAG, "showRowResults: ");
-        for (int i = 0;  i < mNumberOfRows; i++){
+        for (int i = 0; i < mNumberOfRows; i++) {
             mResults.get(i).setText(String.valueOf(rowSum[i]));
         }
     }
@@ -273,12 +273,12 @@ public class TableFragment extends Fragment {
     private void findViews(View view) {
         Log.d(TAG, "findViews: ");
         mEmptyTableLL = view.findViewById(R.id.tableEmptyLayout);
-        mFrameLayout = view.findViewById(R.id.tableFrameLayout);
         mSvEditTable = view.findViewById(R.id.tableEditView);
         mFam = view.findViewById(R.id.tableMenuFAB);
         mFabCreateTable = view.findViewById(R.id.fabTableCreate);
         mFabShowResultsTable = view.findViewById(R.id.fabTableShowResults);
         mFabResizeTable = view.findViewById(R.id.fabTableResize);
+        mFabClearTable = view.findViewById(R.id.fabTableClear);
 
         mResults.add((TextView) view.findViewById(R.id.result01));
         mResults.add((TextView) view.findViewById(R.id.result02));
@@ -411,18 +411,6 @@ public class TableFragment extends Fragment {
         mRowEdit10.add((EditText) view.findViewById(R.id.editCell0810));
         mRowEdit10.add((EditText) view.findViewById(R.id.editCell0910));
         mRowEdit10.add((EditText) view.findViewById(R.id.editCell1010));
-
-        mCells.add(mRow01);
-        mCells.add(mRow02);
-        mCells.add(mRow03);
-        mCells.add(mRow04);
-        mCells.add(mRow05);
-        mCells.add(mRow06);
-        mCells.add(mRow07);
-        mCells.add(mRow08);
-        mCells.add(mRow09);
-        mCells.add(mRow10);
-
 
         mCellsEdit.add(mRowEdit01);
         mCellsEdit.add(mRowEdit02);

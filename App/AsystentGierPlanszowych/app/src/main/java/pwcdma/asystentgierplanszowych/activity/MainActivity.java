@@ -382,8 +382,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(final Boolean success) {
+            showProgress(false);
             if(success) {
-                showProgress(false);
                 int index =0;
                 if(Content.GROUPS.size()<1){
                     showImage();

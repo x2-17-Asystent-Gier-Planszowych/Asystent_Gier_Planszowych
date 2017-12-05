@@ -66,5 +66,5 @@
     <string name="add">Dodaj</string>
     <string name="added_user">Dodano użytkownika</string>
     <string name="add_user_error">Błąd - nie można dodać użytkownika</string>
-    <string name="chuj"> kutas</string>
+    <string name="bar"> foo</string>
 </resources>

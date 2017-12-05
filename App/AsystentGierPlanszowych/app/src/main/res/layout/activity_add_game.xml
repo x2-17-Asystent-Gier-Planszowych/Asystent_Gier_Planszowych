@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.AppBarLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:theme="@style/AppTheme"
-    app:layout_behavior="@string/chuj"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    app:layout_behavior="@string/bar">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -38,8 +38,6 @@
     </android.support.v7.widget.Toolbar>
 
 
-
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -49,6 +47,7 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin"
         tools:context="pwcdma.asystentgierplanszowych.activity.MainActivity">
 
 
@@ -66,8 +65,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="@dimen/avatarBigHeight">
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/imageView5"
@@ -82,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Twojej ulubionej gry nie ma w bazie? Dodaj ją do naszej kolekcji "
-                        android:textColor="@color/black"
+                        android:textAppearance="@style/BodySmallLightLeft"
                         android:textSize="18sp" />
                 </LinearLayout>
 
@@ -116,22 +114,24 @@
                 <Spinner
                     android:id="@+id/spinner1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/btn_dropdown"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="@dimen/normalVerticalMargin"
                     android:spinnerMode="dropdown" />
-
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorAccentLight"
-                    android:onClick="addGame"
-                    android:text="Dodaj Gre"
-                    android:textColor="@color/white" />
 
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/button_primary_selector"
+                android:onClick="addGame"
+                android:text="Dodaj Gre"
+                android:textAllCaps="true"
+                android:textAppearance="@style/ButtonLabelPrimary"
+                android:textStyle="bold" />
         </RelativeLayout>
 
 

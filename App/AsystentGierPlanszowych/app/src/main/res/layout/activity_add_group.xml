@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.AppBarLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:theme="@style/AppTheme"
-    app:layout_behavior="@string/chuj"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    app:layout_behavior="@string/bar">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -22,7 +22,6 @@
             android:visibility="gone" />
 
 
-
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,8 +30,6 @@
             android:text="Departure"
             android:visibility="gone" />
     </android.support.v7.widget.Toolbar>
-
-
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,6 +41,7 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
+        android:padding="@dimen/activity_vertical_margin"
         tools:context="pwcdma.asystentgierplanszowych.activity.MainActivity">
 
 
@@ -61,7 +59,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="100dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -76,7 +73,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Stwórz grupę i zaproś znajomych do wspólnego grania! Pamiętaj, że możesz dodać użytkownika do grupy w każdej chwili!" />
+                        android:text="Stwórz grupę i zaproś znajomych do wspólnego grania! Pamiętaj, że możesz dodać użytkownika do grupy w każdej chwili!"
+                        android:textAppearance="@style/BodySmallLightLeft" />
                 </LinearLayout>
 
                 <TextView
@@ -97,22 +95,22 @@
                     android:ems="10"
                     android:inputType="textPersonName" />
 
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/accountDetailsLabelHeight"
-                    android:layout_marginTop="@dimen/fab_size_normal"
-                    android:backgroundTint="@color/colorAccentLight"
-                    android:onClick="addGame"
-                    android:shadowColor="@color/colorAccent"
-                    android:text="Dodaj Grupe"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="@color/colorAccentLight"
-                    android:textColorHint="@color/colorAccentLight" />
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/accountDetailsLabelHeight"
+                android:layout_marginTop="@dimen/fab_size_normal"
+                android:background="@drawable/button_primary_selector"
+                android:onClick="addGame"
+                android:text="Dodaj Grupe"
+                android:textAllCaps="true"
+                android:textAppearance="@style/ButtonLabelPrimary"
+                android:textStyle="bold" />
         </RelativeLayout>
 
 

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/AppTheme"
-    app:layout_behavior="@string/chuj"
+    app:layout_behavior="@string/bar"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <android.support.v7.widget.Toolbar
@@ -99,9 +99,11 @@
                     android:id="@+id/button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorAccentLight"
                     android:onClick="onClickSubmit"
                     android:text="Edytuj"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/ButtonLabelPrimary"
+                    android:textStyle="bold"
                     android:textColor="@color/white" />
 
             </LinearLayout>

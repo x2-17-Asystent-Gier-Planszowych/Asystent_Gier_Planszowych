@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.AppBarLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@color/white"
     android:theme="@style/AppTheme"
-    app:layout_behavior="@string/chuj"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    app:layout_behavior="@string/bar">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -36,8 +38,6 @@
             android:visibility="gone" />
 
     </android.support.v7.widget.Toolbar>
-
-
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -72,8 +72,7 @@
                     android:id="@+id/add_user_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="50dp"
-                    android:paddingTop="30dp"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:text="@string/addUser"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -98,6 +97,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textAppearance="@style/BodySmallLightLeft"
                         android:text="Dodaj znajomych. Zaproszenia zostaną wysłane natychmiast po utowrzeniu gry!" />
 
                 </LinearLayout>
@@ -106,6 +106,7 @@
                     android:id="@+id/username_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/normalVerticalMargin"
                     android:text="@string/prompt_username"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="@color/colorPrimary"
@@ -115,23 +116,32 @@
                 <Spinner
                     android:id="@+id/user_spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/btn_dropdown"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="@dimen/normalVerticalMargin"
+                    android:layout_marginTop="@dimen/normalVerticalMargin"
+
                     android:spinnerMode="dropdown" />
 
-                <Button
-                    android:id="@+id/add_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="@color/colorAccentLight"
-                    android:drawableBottom="@drawable/button_primary_selector"
-                    android:onClick="addUserToGroup"
-                    android:text="@string/add"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white" />
+
+                <!--android:background="@android:drawable/btn_dropdown"-->
+
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/add_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/normalVerticalMargin"
+                android:layout_marginTop="@dimen/normalVerticalMargin"
+                android:background="@drawable/button_primary_selector"
+                android:onClick="addUserToGroup"
+                android:text="@string/add"
+                android:textAllCaps="true"
+                android:textAppearance="@style/ButtonLabelPrimary"
+                android:textStyle="bold" />
         </RelativeLayout>
 
 

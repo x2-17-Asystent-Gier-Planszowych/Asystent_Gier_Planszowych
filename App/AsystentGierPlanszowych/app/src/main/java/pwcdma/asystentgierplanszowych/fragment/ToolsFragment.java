@@ -1,5 +1,6 @@
 package pwcdma.asystentgierplanszowych.fragment;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -57,7 +59,8 @@ public class ToolsFragment extends Fragment {
         return view;
     }
 
-    private void setOnClickListeners(){
+
+        private void setOnClickListeners(){
         mTimerImageButton.setOnClickListener(onClickListenerTimerBtn);
         mDiceImageButton.setOnClickListener(onClickListenerDiceBtn);
         mTableImageButton.setOnClickListener(getOnClickListenerTableBtn);

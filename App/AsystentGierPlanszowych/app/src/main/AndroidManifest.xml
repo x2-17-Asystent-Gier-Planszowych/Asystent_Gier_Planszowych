@@ -12,9 +12,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_add_game_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_add_game_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -36,49 +36,49 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="pwcdma.asystentgierplanszowych.activity.StartActivity" />
         </activity>
-        <activity android:name=".activity.AddGroupActivity"
+        <activity
+            android:name=".activity.AddGroupActivity"
             android:configChanges="orientation"
             android:label="sdsdsdd"
             android:parentActivityName=".activity.MainActivity"
-            android:screenOrientation="portrait"
-            ></activity>
-        <activity android:name=".activity.GroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.GroupActivity"
             android:configChanges="orientation"
             android:label="sdsdsdd"
             android:parentActivityName=".activity.MainActivity"
-            android:screenOrientation="portrait"
-            ></activity>
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".activity.EditPasswd"
-        android:configChanges="orientation"
-        android:label="sdsdsdd"
-        android:parentActivityName=".activity.MainActivity"
-        android:screenOrientation="portrait"
-        ></activity>
-        <activity android:name=".activity.EditDate"
+        <activity
+            android:name=".activity.EditPasswd"
             android:configChanges="orientation"
             android:label="sdsdsdd"
             android:parentActivityName=".activity.MainActivity"
-            android:screenOrientation="portrait"
-            ></activity>
-        <activity android:name=".activity.TagActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.EditDate"
             android:configChanges="orientation"
             android:label="sdsdsdd"
             android:parentActivityName=".activity.MainActivity"
-            android:screenOrientation="portrait"
-            ></activity>
-        <activity android:name=".activity.AddUserToGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TagActivity"
+            android:configChanges="orientation"
+            android:label="sdsdsdd"
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AddUserToGroupActivity"
             android:configChanges="orientation"
             android:label="AddUserToGroup"
             android:parentActivityName=".activity.MainActivity"
-            android:screenOrientation="portrait"
-            ></activity>
-        <activity android:name=".activity.AddGameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AddGameActivity"
             android:configChanges="orientation"
             android:label="Games"
             android:parentActivityName=".activity.MainActivity"
-            android:screenOrientation="portrait"
-            ></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.LogInActivity"
             android:configChanges="orientation"
@@ -92,9 +92,9 @@
         <activity
             android:name=".activity.MainActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-
             android:label="@string/app_name"
+
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

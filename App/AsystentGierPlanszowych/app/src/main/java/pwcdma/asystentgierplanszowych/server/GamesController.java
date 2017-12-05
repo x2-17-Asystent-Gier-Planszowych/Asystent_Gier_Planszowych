@@ -9,8 +9,8 @@ public class GamesController {
                 .getResponse();
     }
 
-    public boolean addGame(String name) throws IOException {
-        String response = new ServerConnection(ServerConnection.SERVER_URL + "/games/addGame?name=" + name)
+    public boolean addGame(String name, String tags) throws IOException {
+        String response = new ServerConnection(ServerConnection.SERVER_URL + "/games/addGame2?name=" + name + "&tag=" + tags)
                 .getResponse();
         return response.equals("Success");
     }

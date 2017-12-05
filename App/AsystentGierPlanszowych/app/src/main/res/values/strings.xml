@@ -66,4 +66,9 @@
     <string name="table_hint">Mozesz w niej zapisywać punkty, statystyki, zmieniać nazwy kolumn oraz sumować wartości z wierszach.</string>
     <string name="table_add_table">Dodaj tabelę</string>
     <string name="table_sum">SUMA</string>
+    <string name="addUser">Dodaj użytkownika</string>
+    <string name="add">Dodaj</string>
+    <string name="added_user">Dodano użytkownika</string>
+    <string name="add_user_error">Błąd - nie można dodać użytkownika</string>
+    <string name="chuj"> kutas</string>
 </resources>

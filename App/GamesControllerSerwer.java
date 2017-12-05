@@ -32,6 +32,20 @@ public class GamesControllerSerwer {
     public String getGameByName(String game){
         return connectToSerwer(ipSerwer+"/games/"+game);
     }
+	
+	    public String getGameByTags(String tag1){
+        return connectToSerwer(ipSerwer+"/games/getByTags?tag1="+tag1);
+    }
+	
+	    public String getGameByTags(String tag1, String tag2){
+        return connectToSerwer(ipSerwer+"/games/getByTags?tag1="+tag1+"&tag2="+tag2);
+    }
+	
+	    public String getGameByTags(String tag1, String tag2, String tag3){
+        return connectToSerwer(ipSerwer+"/games/getByTags?tag1="+tag1+"&tag2="+tag2+"&tag3="+tag3);
+    }
+	
+	
     // not safe
     public Boolean deleteGame(String game){
         if(connectToSerwer(ipSerwer+ "/games/"+game+"/inactive").equals("Success"))

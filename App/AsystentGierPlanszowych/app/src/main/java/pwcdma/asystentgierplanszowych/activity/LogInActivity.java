@@ -3,6 +3,8 @@ package pwcdma.asystentgierplanszowych.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -18,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,9 +32,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Downloader;
+
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.security.MessageDigest;
@@ -40,6 +51,10 @@ import java.security.NoSuchAlgorithmException;
 import org.json.*;
 
 import pwcdma.asystentgierplanszowych.R;
+import pwcdma.asystentgierplanszowych.content.Content;
+import pwcdma.asystentgierplanszowych.model.Game;
+import pwcdma.asystentgierplanszowych.model.Group;
+import pwcdma.asystentgierplanszowych.server.GroupControllerSerwer;
 import pwcdma.asystentgierplanszowych.server.ServerConnection;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -196,6 +211,11 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             focusView = mEmailView;
             cancel = true;
         }
+        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
+        SharedPreferences.Editor Ed=sp.edit();
+        Ed.clear();
+        Ed.putString("loginlogin",login);
+        Ed.commit();
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -204,8 +224,10 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
+
+
             showProgress(true);
-            mAuthTask = new UserLoginTask(login, password);
+            mAuthTask = new UserLoginTask(login, password,getApplicationContext());
             mAuthTask.execute((Void) null);
         }
     }
@@ -328,10 +350,11 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
 
         private final String mLogin;
         private final String mPassword;
-
-        UserLoginTask(String email, String password) {
+        private Context cont;
+        UserLoginTask(String email, String password,Context context) {
             mLogin = email;
             mPassword = password;
+            this.cont=context;
         }
 
         @Override
@@ -341,21 +364,67 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
                 ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/signin?" +
                         "login=" + mLogin + "&haslo=" + hashPassword);
                 String response = connection.getResponse();
+
+                gamesGet();
+                groupGet();
+
                 return response.equals("Succes");
             } catch (IOException e){
-                Toast.makeText(LogInActivity.this, R.string.connection_error, Toast.LENGTH_LONG).show();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(LogInActivity.this, R.string.connection_error, Toast.LENGTH_LONG).show();
+                    }
+                });
                 return false;
             }
         }
+
+
+        protected void gamesGet() {
+
+            ServerConnection connection = new ServerConnection(ServerConnection.SERVER_URL + "/games");
+            String responsee = null;
+            try {
+                responsee = connection.getResponse();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //saveFile(responsee);
+            Type listType = new TypeToken<ArrayList<Game>>(){}.getType();
+            List<Game> gamesListFromServer = new Gson().fromJson(responsee, listType);
+            for(Game g : gamesListFromServer){
+                Content.Item item = new Content.Item(g.getId().toString(),g.getName(),"",null);
+                Content.addGame(item);
+            }
+        }
+
+
+
+        protected void groupGet() {
+            GroupControllerSerwer gf = new GroupControllerSerwer();
+            String responsee = gf.getAllGroups();
+
+
+            Type listType = new TypeToken<ArrayList<Group>>(){}.getType();
+            List<Group> gamesListFromServer = new Gson().fromJson(responsee, listType);
+            for(Group g : gamesListFromServer){
+                Content.Item item = new Content.Item(Integer.toString(g.getId()), g.getGroupName(),"",null);
+                Content.addGroup(item);
+            }
+        }
+
 
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
 
+
             if (success) {
                 Toast.makeText(LogInActivity.this, R.string.login_success, Toast.LENGTH_LONG).show();
-                saveUserData(mLogin, hashPassword(mPassword));
+                saveUserData(mLogin);
+
                 setResult(RESULT_CODE_SUCCESS);
                 finish();
             } else {
@@ -369,20 +438,39 @@ public class LogInActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
         }
+        public boolean saveFile(String text){
+            try {
+                FileOutputStream fos = cont.openFileOutput(cont.getFilesDir().getAbsolutePath() + "/" + "data" +".txt",Context.MODE_PRIVATE);
+                Writer out = new OutputStreamWriter(fos);
+                out.write(text);
+                out.close();
+                return true;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
     }
 
-    private void saveUserData(String login, String password){
-        try {
-            JSONObject userDataJson = new JSONObject();
-            userDataJson.put("login", login);
-            userDataJson.put("password", password);
-            String userData = userDataJson.toString();
-            File userDataFile = new File(getFilesDir(), "user_data.json");
-            FileWriter writer = new FileWriter(userDataFile);
-            writer.write(userData);
-            writer.close();
-        } catch (Exception e){
-            throw new RuntimeException(e.getMessage());
-        }
+
+
+    private void saveUserData(String login){
+
+        
+
+//        try {
+//            JSONObject userDataJson = new JSONObject();
+//            userDataJson.put("login", login);
+//            userDataJson.put("password", password);
+//            String userData = userDataJson.toString();
+//            Log.d("tag",getFilesDir().toString());
+//            String dir = getFilesDir().toString();
+//            File userDataFile = new File(getFilesDir(), "user_data.json");
+//            FileWriter writer = new FileWriter(userDataFile);
+//            writer.write(userData);
+//            writer.close();
+//        } catch (Exception e){
+//            throw new RuntimeException(e.getMessage());
+//        }
     }
 }

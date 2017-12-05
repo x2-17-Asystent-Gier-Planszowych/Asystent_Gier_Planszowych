@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
         UsefullValues.name= sp1.getString("loginlogin", null);
        // Toast.makeText(MainActivity.this, UsefullValues.name, Toast.LENGTH_LONG).show();
-     /*new Thread(new Runnable() {
+     new Thread(new Runnable() {
             public Handler mHandler;
             @Override
             public void run() {
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
-        }).start();*/
+        }).start();
 
 
         UsefullValues.userInGroup.add("");
@@ -329,7 +329,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
+            Content.USER.clear();
             Type listType = new TypeToken<ArrayList<User>>(){}.getType();
             List<User> userListFromSerwer = new Gson().fromJson(responsee, listType);
             for(User g : userListFromSerwer){
@@ -440,7 +440,7 @@ public class MainActivity extends AppCompatActivity {
             if(gamesListFromServer.size()>Content.sizeOfList){
                 for (int i = Content.sizeOfList;i<gamesListFromServer.size()+1;i++
                         ) {
-                    if(gamesListFromServer.get(i).getNameUser().equals(UsefullValues.name)){
+                    if(gamesListFromServer.get(i--).getNameUser().equals(UsefullValues.name)){
                         Log.d("sizeoflist",Integer.toString(Content.sizeOfList));
                         Content.sizeOfList = gamesListFromServer.size();
                         return true;
@@ -459,6 +459,7 @@ public class MainActivity extends AppCompatActivity {
             showProgress(false);
 
             if(success){
+                Toast.makeText(MainActivity.this, "Dodano cię do grupy", Toast.LENGTH_SHORT).show();
             }
 
         }

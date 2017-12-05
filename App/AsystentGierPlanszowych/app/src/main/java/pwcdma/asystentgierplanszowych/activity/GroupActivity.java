@@ -111,7 +111,7 @@ public class GroupActivity extends AppCompatActivity {
 
     public void randGame(View view) {
         Random r = new Random();
-        int i1 = r.nextInt(Content.GAMES.size() - 1) + 1;
+        int i1 = r.nextInt(Content.GAMES.size() - 1) + 0;
 
         SetGame setGame = new SetGame(Content.GAMES.get(i1).getContent());
         setGame.execute((Void) null);
